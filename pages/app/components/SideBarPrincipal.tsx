@@ -27,7 +27,6 @@ import {
 } from "@chakra-ui/core";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import QRCode from "qrcode.react";
 import ReactDOM from "react-dom";
 import $ from "jquery";
 import {
@@ -54,8 +53,6 @@ import {
   IconDefinition,
   faExclamation,
 } from "@fortawesome/free-solid-svg-icons";
-import { Props } from "react";
-import { route } from "next/dist/next-server/server/router";
 // import { Container } from './styles';
 
 interface ISideBarPrincipal {

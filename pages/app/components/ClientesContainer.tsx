@@ -61,7 +61,8 @@ const ClientesContainer: React.FC = () => {
 
   const getClients = async () => {
     console.log(setup.API_HOST + "/profile");
-    const res = await fetch(setup.API_HOST + "/api/profile");
+    //const res = await fetch(setup.API_HOST + "/api/profile");
+    const res = await fetch(setup.API_HOST + "/api/contacts");
     const json = await res.json();
     console.log(json);
     setClients(json);
@@ -128,7 +129,7 @@ const ClientesContainer: React.FC = () => {
       </ListItem>
 
       {clients.map((clientItem, index) => (
-        <ClienteItem name={clientItem.name} phone={clientItem.whatsapp} />
+        <ClienteItem name={clientItem.name} phone={clientItem.id.user} />
       ))}
     </List>
   );

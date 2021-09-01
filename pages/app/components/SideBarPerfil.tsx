@@ -1,66 +1,8 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import {
-  Heading,
-  Grid,
-  Flex,
-  Link,
-  Button,
-  Image,
-  Text,
-  List,
-  InputGroup,
-  InputRightElement,
-  Box,
-  Stack,
-  SimpleGrid,
-  Avatar,
-  StatGroup,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  StatArrow,
-  ListIcon,
-  ListItem,
-  Tag,
-} from "@chakra-ui/core";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import QRCode from "qrcode.react";
-import ReactDOM from "react-dom";
-import $ from "jquery";
-import {
-  faAt,
-  faCommentDollar,
-  faFile,
-  faFire,
-  faLifeRing,
-  faPlus,
-  faRobot,
-  faThLarge,
-  faTimes,
-  faStar,
-  faUser,
-  faUsers,
-  faUserTag,
-  faRocket,
-  faUserClock,
-  faClock,
-  faMailBulk,
-  faTools,
-  faBox,
-  faBirthdayCake,
-  IconDefinition,
-  faExclamation,
-} from "@fortawesome/free-solid-svg-icons";
-import { Props } from "react";
-import { route } from "next/dist/next-server/server/router";
-// import { Container } from './styles';
+import { Avatar, ListItem } from "@chakra-ui/core";
 
 const SideBarPerfil: React.FC = () => {
-  const router = useRouter();
-
   return (
     <ListItem
       position={"absolute"}
