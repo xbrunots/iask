@@ -1,0 +1,119 @@
+*, *::before, *::after {
+  border-width: 0;
+  border-style: solid;
+  border-color: #082c5c00 !important;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
+}
+
+button:focus{
+  box-shadow: none !important;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.menu_selected{
+  background-color: #cccccc !important;
+  border-radius: 50px !important;
+  width: 200px !important;
+  color: #000000  !important;
+  font-weight: bold !important;
+  opacity: 1.0 !important;
+}
+
+.indicator_card_basic:hover,
+.indicator_card_campanha:hover{
+  box-shadow: 0 0 10px #c0c0c0; 
+}
+.indicator_clients_chat:hover{
+  background: #edf2f7;
+}
+.indicator_clients_chat{
+  
+/* box-shadow: 0 0 10px #c0c0c078; */
+  
+padding: 16px;
+  
+border-bottom: 1px solid #c0c0c038 !important;
+  
+cursor: pointer;
+}.indicator_card_basic{
+  
+  box-shadow: 0 0 10px #c0c0c078;
+      
+  margin: 10px;
+      
+  border-radius: 10px;
+      
+  padding: 16px;
+       
+  }
+
+  .indicator_card_campanha{
+      
+  box-shadow: 0 0 10px #c0c0c078;
+      
+  margin: 10px;
+      
+  border-radius: 10px;
+      
+  padding: 16px;
+
+  cursor: pointer;
+       
+  }
+  .search_input{
+    box-shadow: none !important;;
+  }
+
+  .pulse { 
+      display: block;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%; 
+      cursor: pointer;
+      box-shadow: 0 0 0 rgba(21, 255, 0, 0.4);
+      animation: pulse 2s infinite;
+    }
+    .pulse:hover {
+      animation: none;
+    }
+    
+    @-webkit-keyframes pulse {
+      0% {
+        -webkit-box-shadow: 0 0 0 0 rgba(44, 204, 92, 0.4);
+      }
+      70% {
+          -webkit-box-shadow: 0 0 0 10px rgba(44, 204, 124, 0);
+      }
+      100% {
+          -webkit-box-shadow: 0 0 0 0 rgba(44, 204, 92, 0);
+      }
+    }
+    @keyframes pulse {
+      0% {
+        -moz-box-shadow: 0 0 0 0 rgba(44, 204, 65, 0.4);
+        box-shadow: 0 0 0 0 rgba(44, 204, 97, 0.4);
+      }
+      70% {
+          -moz-box-shadow: 0 0 0 10px rgba(44, 204, 71, 0);
+          box-shadow: 0 0 0 10px rgba(44, 204, 79, 0);
+      }
+      100% {
+          -moz-box-shadow: 0 0 0 0 rgba(44, 204, 84, 0);
+          box-shadow: 0 0 0 0 rgba(44, 204, 57, 0);
+      }
+    }
