@@ -1,10 +1,11 @@
-import useSwr from "swr";
-import Link from "next/link";
 const axios = require("axios").default;
 const instance = axios.create({
   baseURL: "http://localhost:3000/api",
   timeout: 99000,
-  headers: { "Content-Type": "application/json", Accept: "application/json" },
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json"
+  },
 });
 
 function countdownx(result) {
