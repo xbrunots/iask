@@ -76,14 +76,22 @@ const ClienteItem: React.FC<IClienteItem> = (props: IClienteItem) => {
           width={"30px"}
           fontSize={14}
           textShadow={"0px 0px 2px #00000075"}
-          name={props.name.toString()}
+          name={
+            props.name == null || props.name == undefined
+              ? ""
+              : props.name.toString()
+          }
         />
         <List>
           <StatLabel fontSize={"16px"} marginLeft={2} marginTop={"4px"}>
-            {props.name}
+            {props.name == null || props.name == undefined
+              ? ""
+              : props.name.toString()}
           </StatLabel>{" "}
           <StatHelpText marginBottom={"0px"} marginLeft={"8px"}>
-            {props.phone.replace(/(\d{2})(\d{5})(\d{2})/, "($1) $2-$3")}
+            {props.phone == null || props.phone == undefined
+              ? ""
+              : props.phone.replace(/(\d{2})(\d{5})(\d{2})/, "($1) $2-$3")}
           </StatHelpText>
           <Flex position={"absolute"} right={0} top={2}></Flex>
         </List>
