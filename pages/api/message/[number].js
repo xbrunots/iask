@@ -1,7 +1,7 @@
  var error = {}
  var success = {}
  import whatsApp from '../core/core'
- import sessionMiddleware from '../../middlewares/Sessions'
+ import sessionMiddleware from '../../../middlewares/Sessions'
 
 
  export default async function handler(req, res) {
