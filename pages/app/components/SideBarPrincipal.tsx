@@ -53,6 +53,7 @@ import {
   IconDefinition,
   faExclamation,
 } from "@fortawesome/free-solid-svg-icons";
+import { faBolt } from "@fortawesome/free-solid-svg-icons";
 // import { Container } from './styles';
 
 interface ISideBarPrincipal {
@@ -81,10 +82,8 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
 
   return (
     <Stack
-      maxW="sm"
-      minW={240}
+      minW={"240px"}
       height="100%"
-      width="1500"
       backgroundColor={"#eeeeee"}
       left={0}
       top={0}
@@ -104,8 +103,8 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
       </Flex>
       <Button
         borderRadius={100}
-        height={60}
-        width={60}
+        height={"60px"}
+        width={"60px"}
         backgroundColor={"#000000"}
         color={"#FFFFFF"}
         position={"fixed"}
@@ -116,11 +115,11 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
           backgroundColor: "#000000",
           boxShadow: "0 0 10px black !important",
         }}
-        right={4}
-        bottom={4}
+        left={"calc(120px - 30px)"}
+        bottom={"20px"}
         zIndex={99999999999}
       >
-        <FontAwesomeIcon icon={faPlus} />{" "}
+        <FontAwesomeIcon icon={faBolt} size="1x" />{" "}
       </Button>{" "}
       <Button
         id="btn_menu_dashboard"

@@ -55,9 +55,12 @@ import {
 import CampanhaCard from "./CampanhaCard";
 import ClienteItem from "./ClienteItem";
 import setup from "../../../config/setup.json";
+import SideBarClientes from "./SideBarClientes";
 
 const ClientesContainer: React.FC = () => {
   const [clients, setClients] = useState([]);
+  const [query, setQuery] = useState("");
+  const handleChange = (event) => setQuery(event.target.value);
 
   const getClients = async () => {
     console.log(setup.API_HOST + "/profile");
@@ -65,12 +68,16 @@ const ClientesContainer: React.FC = () => {
     const res = await fetch(setup.API_HOST + "/api/contacts");
     const json = await res.json();
     console.log(json);
-    setClients(json);
+    setClients(json.fullResponse);
   };
 
   useEffect(() => {
     getClients();
   }, []);
+
+  function safeString(str) {
+    return str == null || str == undefined ? "" : str;
+  }
 
   return (
     <List width={"100%"} paddingBottom={"40px"} paddingTop={"100px"}>
@@ -102,8 +109,8 @@ const ClientesContainer: React.FC = () => {
           top={"12px"}
           fontSize={"14px"}
         >
-          <i style={{ margin: "4px" }} className="fab fa-whatsapp"></i> Importar
-          do WhatsApp
+          <i style={{ margin: "4px" }} className="fab fa-whatsapp"></i>Atualizar
+          contatos com o WhatsApp
         </Button>
         <Flex
           borderRadius={"30px"}
@@ -121,16 +128,35 @@ const ClientesContainer: React.FC = () => {
             }}
           />
           <Input
+            onChange={handleChange}
             backgroundColor={"#ececec00"}
             className={"search_input"}
             placeholder="digite para buscar cliente..."
           />
         </Flex>
       </ListItem>
+      {clients
+        .filter(
+          (clienteItemRow) =>
+            safeString(clienteItemRow.name).includes(query) ||
+            safeString(clienteItemRow.id.user).includes(query)
+        )
+        .map((clientItem) => (
+          <ClienteItem
+            name={clientItem.name}
+            pic={clientItem.profilePicThumbObj.eurl}
+            phone={clientItem.id.user}
+          />
+        ))}
 
-      {clients.map((clientItem, index) => (
+      {/*clients.map((clientItem, index) => (
         <ClienteItem name={clientItem.name} phone={clientItem.id.user} />
-      ))}
+      ))*/}
+      <SideBarClientes
+        pic={
+          "https://cdn.12min.com/books/books_background/68_steve_jobs.site_thumb.jpg"
+        }
+      />
     </List>
   );
 };

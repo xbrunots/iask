@@ -1,6 +1,6 @@
 var error = {}
 var success = {}
-import whatsApp from '../core/core'
+import whatsApp from '../../../core/core'
 import sessionMiddleware from '../../../middlewares/Sessions'
 
 

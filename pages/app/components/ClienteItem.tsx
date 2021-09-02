@@ -51,18 +51,23 @@ import {
 // import { Container } from './styles';
 
 interface IClienteItem {
-  name: String;
-  phone: String;
+  name: string;
+  phone: string;
+  pic: string;
 }
 
 const ClienteItem: React.FC<IClienteItem> = (props: IClienteItem) => {
   function getRandomColor() {
-    var letters = "0123456789ABCDEF";
-    var color = "#";
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+    if (props.pic != null && props.pic != undefined) {
+      return null;
+    } else {
+      var letters = "0123456789ABCDEF";
+      var color = "#";
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
     }
-    return color;
   }
 
   return (
@@ -70,10 +75,10 @@ const ClienteItem: React.FC<IClienteItem> = (props: IClienteItem) => {
       <Flex width={"100%"}>
         <Avatar
           marginTop={"8px"}
-          bg={getRandomColor()}
           color={"#FFFFFF"}
-          height={"30px"}
-          width={"30px"}
+          src={props.pic}
+          height={"40px"}
+          width={"40px"}
           fontSize={14}
           textShadow={"0px 0px 2px #00000075"}
           name={
@@ -82,17 +87,28 @@ const ClienteItem: React.FC<IClienteItem> = (props: IClienteItem) => {
               : props.name.toString()
           }
         />
-        <List>
-          <StatLabel fontSize={"16px"} marginLeft={2} marginTop={"4px"}>
-            {props.name == null || props.name == undefined
-              ? ""
-              : props.name.toString()}
-          </StatLabel>{" "}
-          <StatHelpText marginBottom={"0px"} marginLeft={"8px"}>
-            {props.phone == null || props.phone == undefined
-              ? ""
-              : props.phone.replace(/(\d{2})(\d{5})(\d{2})/, "($1) $2-$3")}
-          </StatHelpText>
+        <List className={"client_name"}>
+          {props.name == null || props.name == undefined ? (
+            ""
+          ) : (
+            <StatLabel fontSize={"16px"} marginLeft={3} marginTop={"4px"}>
+              {props.name.toString()}
+            </StatLabel>
+          )}
+
+          {props.phone == null || props.phone == undefined ? (
+            ""
+          ) : (
+            <StatHelpText marginBottom={"0px"} marginLeft={"8px"}>
+              {props.phone == null || props.phone == undefined
+                ? ""
+                : props.phone.replace(
+                    /(\d{2})(\d{2})(\d{5})(\d{2})/,
+                    "+$1 ($2) $3-$4"
+                  )}
+            </StatHelpText>
+          )}
+
           <Flex position={"absolute"} right={0} top={2}></Flex>
         </List>
       </Flex>
