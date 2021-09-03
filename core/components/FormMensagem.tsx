@@ -30,7 +30,7 @@ import {
   faPenAlt,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import setup from "../../../config/setup.json";
+import setup from "../../config/setup.json";
 import Loading from "./Loading";
 interface IFormMensagem {
   pic: string;

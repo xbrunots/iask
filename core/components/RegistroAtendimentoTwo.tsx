@@ -31,7 +31,7 @@ import {
   faPlus,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-import setup from "../../../config/setup.json";
+import setup from "../../config/setup.json";
 import Loading from "./Loading";
 import ClientesContainer from "./ClientesContainer";
 import ClienteItem from "./ClienteItem";

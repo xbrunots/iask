@@ -50,11 +50,13 @@ import {
   faClock,
   faMailBulk,
   faSearch,
+  faBox,
+  faBoxes,
 } from "@fortawesome/free-solid-svg-icons";
 // import { Container } from './styles';
 import CampanhaCard from "./CampanhaCard";
-import GroupClienteItem from "./GroupClienteItem";
-import setup from "../../../config/setup.json";
+import ProdutosItem from "./ProdutosItem";
+import setup from "../../config/setup.json";
 import SideBarGrupo from "./SideBarGrupo";
 
 const GruposContainer: React.FC = () => {
@@ -66,10 +68,10 @@ const GruposContainer: React.FC = () => {
   const getClients = async () => {
     console.log(setup.API_HOST + "/profile");
     //const res = await fetch(setup.API_HOST + "/api/profile");
-    const res = await fetch(setup.API_HOST + "/api/groups");
+    const res = await fetch(setup.API_HOST + "/api/product");
     const json = await res.json();
-    console.log(json.fullResponse);
-    setGrupo(json.fullResponse);
+    console.log(json);
+    setGrupo(json);
   };
 
   useEffect(() => {
@@ -91,14 +93,14 @@ const GruposContainer: React.FC = () => {
         zIndex={-1}
       >
         <Text fontWeight={"bold"} margin={4} marginLeft={0}>
-          Grupos
+          Produtos
           <FontAwesomeIcon
             style={{
               fontSize: 16,
               color: "#c5c4c4",
               marginLeft: "8px",
             }}
-            icon={faUsers}
+            icon={faBoxes}
           />
         </Text>
 
@@ -136,30 +138,27 @@ const GruposContainer: React.FC = () => {
           />
         </Flex>
       </ListItem>
-      {grupo
-        .filter(
-          (GroupClienteItemRow) =>
-            safeString(GroupClienteItemRow["contact"].name).includes(query) ||
-            safeString(GroupClienteItemRow["contact"].id.user).includes(query)
-        )
-        .map((clientItem) => (
-          <GroupClienteItem
-            size={
-              clientItem["groupMetadata"] == null ||
-              clientItem["groupMetadata"] == undefined ||
-              clientItem["groupMetadata"]["participants"] == null ||
-              clientItem["groupMetadata"]["participants"] == undefined
-                ? 0
-                : clientItem["groupMetadata"]["participants"].length
-            }
-            json={clientItem}
-            name={clientItem["contact"].name}
-            pic={clientItem["contact"].profilePicThumbObj.eurl}
-            phone={clientItem["contact"].id.user}
-            click={(json) => setOpenGrupo(json)}
-          />
-        ))}
-
+      <Grid
+        padding={"16px"}
+        marginTop={"24px"}
+        className={"custom_grid_product"}
+      >
+        {grupo
+          .filter(
+            (p) =>
+              safeString(p.title).includes(query) ||
+              safeString(p.description).includes(query)
+          )
+          .map((clientItem) => (
+            <ProdutosItem
+              json={clientItem}
+              name={clientItem.title}
+              pic={clientItem.picture}
+              description={clientItem.description}
+              click={(json) => alert(json)}
+            />
+          ))}
+      </Grid>
       {/*clients.map((clientItem, index) => (
         <GroupClienteItem name={clientItem.name} phone={clientItem.id.user} />
       ))*/}

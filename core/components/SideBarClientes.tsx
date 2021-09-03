@@ -25,7 +25,7 @@ import {
   faPenAlt,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import Divider from "../../../components/Divider";
+import Divider from "../../components/Divider";
 import ClienteCaracteristicasItem from "./ClienteCaracteristicasItem";
 import TagsCliente from "./TagsCliente";
 import FormMensagem from "./FormMensagem";
