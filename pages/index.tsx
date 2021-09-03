@@ -37,7 +37,7 @@ export default function Home() {
       alignItems="center"
       alignContent="center"
     >
-      <Grid position={"absolute"} marginTop={16} marginLeft={16} width={200}>
+      <Grid position={"absolute"} top={"16px"} marginLeft={16} width={200}>
         <img src="/images/logo_rocket.png" width="80" alt="Rocketseat" />
       </Grid>
       <Flex

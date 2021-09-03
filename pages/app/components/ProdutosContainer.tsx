@@ -50,25 +50,28 @@ import {
   faClock,
   faMailBulk,
   faSearch,
+  faBox,
+  faBoxes,
 } from "@fortawesome/free-solid-svg-icons";
 // import { Container } from './styles';
 import CampanhaCard from "./CampanhaCard";
-import ClienteItem from "./ClienteItem";
+import ProdutosItem from "./ProdutosItem";
 import setup from "../../../config/setup.json";
-import SideBarClientes from "./SideBarClientes";
+import SideBarGrupo from "./SideBarGrupo";
 
-const ClientesContainer: React.FC = () => {
-  const [clients, setClients] = useState([]);
+const GruposContainer: React.FC = () => {
+  const [openGrupo, setOpenGrupo] = useState(null);
   const [query, setQuery] = useState("");
-  const [cliente, setCliente] = useState(null);
+  const [grupo, setGrupo] = useState([]);
   const handleChange = (event) => setQuery(event.target.value);
 
   const getClients = async () => {
-    console.log(setup.API_HOST + "/api/profile");
-    const res = await fetch(setup.API_HOST + "/api/profile");
+    console.log(setup.API_HOST + "/profile");
+    //const res = await fetch(setup.API_HOST + "/api/profile");
+    const res = await fetch(setup.API_HOST + "/api/product");
     const json = await res.json();
     console.log(json);
-    setClients(json);
+    setGrupo(json);
   };
 
   useEffect(() => {
@@ -90,14 +93,14 @@ const ClientesContainer: React.FC = () => {
         zIndex={-1}
       >
         <Text fontWeight={"bold"} margin={4} marginLeft={0}>
-          Clientes
+          Produtos
           <FontAwesomeIcon
             style={{
               fontSize: 16,
               color: "#c5c4c4",
               marginLeft: "8px",
             }}
-            icon={faUser}
+            icon={faBoxes}
           />
         </Text>
 
@@ -135,28 +138,33 @@ const ClientesContainer: React.FC = () => {
           />
         </Flex>
       </ListItem>
-      {clients
-        .filter(
-          (clienteItemRow) =>
-            safeString(clienteItemRow.name).includes(query) ||
-            safeString(clienteItemRow.whatsapp).includes(query)
-        )
-        .map((clientItem) => (
-          <ClienteItem
-            json={clientItem}
-            name={clientItem.name}
-            pic={clientItem.picture}
-            phone={clientItem.whatsapp}
-            click={(json) => setCliente(json)}
-          />
-        ))}
-
+      <Grid
+        padding={"16px"}
+        marginTop={"24px"}
+        className={"custom_grid_product"}
+      >
+        {grupo
+          .filter(
+            (p) =>
+              safeString(p.title).includes(query) ||
+              safeString(p.description).includes(query)
+          )
+          .map((clientItem) => (
+            <ProdutosItem
+              json={clientItem}
+              name={clientItem.title}
+              pic={clientItem.picture}
+              description={clientItem.description}
+              click={(json) => alert(json)}
+            />
+          ))}
+      </Grid>
       {/*clients.map((clientItem, index) => (
-        <ClienteItem name={clientItem.name} phone={clientItem.id.user} />
+        <GroupClienteItem name={clientItem.name} phone={clientItem.id.user} />
       ))*/}
-      <SideBarClientes
-        json={cliente}
-        onClose={() => setCliente(null)}
+      <SideBarGrupo
+        json={openGrupo}
+        onClose={() => setOpenGrupo(null)}
         pic={
           "https://cdn.12min.com/books/books_background/68_steve_jobs.site_thumb.jpg"
         }
@@ -165,4 +173,4 @@ const ClientesContainer: React.FC = () => {
   );
 };
 
-export default ClientesContainer;
+export default GruposContainer;

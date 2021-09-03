@@ -54,6 +54,9 @@ import {
   faExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { faBolt } from "@fortawesome/free-solid-svg-icons";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import RegistroAtendimento from "./RegistroAtendimento";
 // import { Container } from './styles';
 
 interface ISideBarPrincipal {
@@ -75,6 +78,8 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
     $("button").removeClass("menu_selected");
     $("#" + e).addClass("menu_selected");
   }
+
+  const [atendimento, setAtendimento] = useState(false);
 
   useEffect(() => {
     applyProps(props.selectedID.replace("#", ""));
@@ -103,11 +108,13 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
       </Flex>
       <Button
         borderRadius={100}
-        height={"60px"}
-        width={"60px"}
         backgroundColor={"#000000"}
         color={"#FFFFFF"}
         position={"fixed"}
+        onClick={(e) => setAtendimento(true)}
+        style={{
+          fontSize: "16px",
+        }}
         _hover={{
           backgroundColor: "#000000c7",
         }}
@@ -115,11 +122,16 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
           backgroundColor: "#000000",
           boxShadow: "0 0 10px black !important",
         }}
-        left={"calc(120px - 30px)"}
+        left={"8px"}
         bottom={"20px"}
         zIndex={99999999999}
       >
-        <FontAwesomeIcon icon={faBolt} size="1x" />{" "}
+        <FontAwesomeIcon
+          style={{ marginRight: "8px" }}
+          icon={faCartPlus}
+          size="1x"
+        />
+        {" Registrar Atendimento "}
       </Button>{" "}
       <Button
         id="btn_menu_dashboard"
@@ -323,6 +335,11 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
         <FontAwesomeIcon icon={faLifeRing} />
         <Text marginLeft={2}>Tickets</Text>
       </Button>
+      {atendimento == true ? (
+        <RegistroAtendimento close={() => setAtendimento(false)} />
+      ) : (
+        <Text />
+      )}
     </Stack>
   );
 };

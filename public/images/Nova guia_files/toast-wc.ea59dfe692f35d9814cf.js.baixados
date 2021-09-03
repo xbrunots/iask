@@ -1,0 +1,128 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["toast-wc"],{"+qLX":function(t,e,a){"use strict";var s,o,n,i,r,c,l;a.d(e,"a",(function(){return i})),function(t){t.Article="article",t.Gallery="gallery",t.Video="video",t.Win32="win32",t.UWP="uwp",t[t.Module=8]="Module",t[t.ActionButton=11]="ActionButton",t[t.Navigation=14]="Navigation",t[t.WebView=31]="WebView",t[t.SmartList=35]="SmartList"}(s||(s={})),function(t){t[t.Taboola=0]="Taboola",t[t.Outbrain=1]="Outbrain",t[t.MediaNet=2]="MediaNet",t[t.Editor=3]="Editor",t[t.Personalization=4]="Personalization",t[t.Autocuration=5]="Autocuration"}(o||(o={})),function(t){t[t.MUID=0]="MUID",t[t.ANID=1]="ANID",t[t.AAD=2]="AAD"}(n||(n={})),function(t){t.StartPage="startpage",t.SpartanDhp="default",t.SpartanNtp="default",t.ArticleVnext="article_vnext",t.GalleryVnext="gallery_vnext",t.GalleryClassic="gallery_classic",t.GalleryFlex="gallery_flex",t.ArticleFlex="article_flex",t.StockDetailsPage="stockdetails",t.TeamStatsPage="teamstats",t.Xfeed="xfeed",t.Interests="cinterests"}(i||(i={})),function(t){t.DHP="dhp",t.NTP="ntp",t.Article="article",t.Gallery="gallery",t.Video="video"}(r||(r={})),function(t){t.Emmx="emmx",t.Prime="prime",t.Spartan="spartan",t.ChromeExt="chromeext",t.IEExt="ieext"}(c||(c={})),function(t){t[t.Empty=0]="Empty",t[t.SearchBox=1]="SearchBox",t[t.TopSites=2]="TopSites",t[t.Suggested=4]="Suggested",t[t.ContentFeed=8]="ContentFeed",t[t.WinFRE=16]="WinFRE"}(l||(l={}))},"8ntK":function(t,e,a){"use strict";var s;a.d(e,"a",(function(){return s})),function(t){t.Save="Save",t.Mute="Mute",t.Follow="Follow",t.Unfollow="Unfollow",t.InterestFailure="InterestFailure",t.ShowMore="ShowMore",t.ShowFewer="ShowFewer",t.Hide="Hide",t.DisableNotification="DisableNotification",t.EnableNotification="EnableNotification"}(s||(s={}))},JzSW:function(t,e,a){"use strict";a.d(e,"a",(function(){return n}));var s=a("HxRh"),o=a("u5KZ");class n extends Map{constructor(t){super(),this.identifier=t,this.subscriptions=new Map}set(t,e){super.set(t,e);const a=this.subscriptions.get(t)||[];return a.length?(a.forEach((a,n)=>{try{a&&a(e)}catch(e){o.a.sendAppErrorEvent(Object.assign(Object.assign({},s.eh),{message:"Failed to exceute subscription callback",pb:Object.assign(Object.assign({},s.eh.pb),{customMessage:`Error executing subscription callback for key [${t}] at handler index [${n}]`,instanceId:this.identifier,errorMessage:e&&e.message})}))}}),this):this}subscribe(t,e){const a=this.subscribeInternal(t,e);return this.has(t)&&this.tryExecuteSubscriptionCallback(t,a.index,this.get(t)),{unsubscribe:a.unsubscribe}}subscribeInternal(t,e){const a=this.subscriptions.get(t)||[];this.subscriptions.set(t,[...a,e]);const s=a.length;return{unsubscribe:()=>{const e=this.subscriptions.get(t)||[];e[s]&&(e[s]=null),this.subscriptions.set(t,e)},index:s}}tryExecuteSubscriptionCallback(t,e,a){const s=this.subscriptions.get(t);if(!s||!s.length)return;const o=s[e];"function"==typeof o&&o(a)}}},P6f5:function(t,e,a){"use strict";a.r(e),a.d(e,"ToolingInfo",(function(){return at})),a.d(e,"ToastWC",(function(){return w})),a.d(e,"ToastWCTemplate",(function(){return J})),a.d(e,"ToastWCStyles",(function(){return et}));var s=a("A03o"),o=a("C49W"),n=a("sydv"),i=a("akWC"),r=a("Zn5T");const c=Object(s.a)(r.a.toastWC,"A sample Peregrine Web Component experience",Object.assign(Object.assign(Object.assign(Object.assign({},Object(o.c)("savedStoriesWithinPersonalize","Set to true when Saved Stories is within personalize.")),Object(o.c)("hideCurrentSearchParams","Set to true when current search params should not be added to url.")),Object(o.f)("OneRiverInterestsPivotInfo","OneRiverInterestsPivotInfo","Information for the interests pivot",Object.assign(Object.assign(Object.assign({},Object(n.c)("pivotId","Pivot Id","The ID of the interests pivot")),Object(n.c)("configIndexHref","Config Index Link","The config index href for the interests experience")),Object(n.c)("displayName","Interests Pivot Display Name","The display string for the interests pivot")))),Object(i.a)({toastCloseButtonTitle:"Toast Close Button Title ",saveStoryToastText:"Save toast content text (i.e. Story saved in {0}) ",personalizeTabName:"Save toast personalize tab name (i.e. Personalize) ",muteToastBodyText:"Mute toast content text (i.e. Stories from {0} have been hidden) ",interestErrorMessage:" Interest error message (i.e. We can't update your feed right now. Please try again later.)",followSuccessMessage:"Follow success content text (i.e. Great! You are now following {0}.)",unfollowSuccessMessage:"Unfollow success content text (i.e. You've unfollowed {bold}.)",showFewerToastText:"Show Fewer toast text (i.e. You'll see fewer stories like this) ",showMoreToastText:"Show More toast text (i.e. You'll see more stories like this) ",showMoreFewerToastButtonText:"Undo button for show more/fewer toast text (i.e. Undo) ",hideToastText:"Hide toast text (i.e. The {0} card has been hidden. {1}.)",undoHideToastButtonText:"Undo button for hide toast text (i.e. Undo)",manageHideToastButtonText:"Manage button for hide toast text (i.e. Manage)"})));var l=a("D57K"),u=a("IqCT"),d=a("oePG"),h=a("Qo3E"),b=a("Am8i");const p={telemetryContracts:{toastCloseButton:{name:"Close",behavior:b.b.Close,action:b.a.Click,type:b.e.ActionButton}},savedStoriesWithinPersonalizeUrl:"/{locale}/feed/personalize#saves",standaloneSavedStoriesUrl:"/{locale}/feed/personalize/saves",urlBase:"https://www.msn.com",locale:"{locale}",defaultBottomPosition:32};var g=a("rvYQ"),f=a("W+kI"),m=a("RIQ7");class w extends u.a{constructor(){super(...arguments),this.candidateSelectors="input,a[href],fluent-anchor[href],button,fluent-button,[tabindex]",this.focusBack=!1,this.keyDownHandler=t=>{switch(t.key){case"Escape":this.closeToast();break;case"Tab":if(window.clearTimeout(this.timer),this.tabbableElements)this.handleTabKeyDown(t);else{const t=this.toast.querySelectorAll(this.candidateSelectors);t&&t.length&&(this.tabbableElements=Array.from(t),this.toast.focus(),this.focusBack=!0)}break;default:return!0}},this.handleTabKeyDown=t=>{const e=this.tabbableElements.length;if(0===e)return this.toast.focus(),void t.preventDefault();let a=t.target;for(;a&&a.shadowRoot&&a.shadowRoot.activeElement;)a=a.shadowRoot.activeElement;t.shiftKey&&a===this.tabbableElements[0]?(this.tabbableElements[e-1].focus(),t.preventDefault()):t.shiftKey||a!==this.tabbableElements[e-1]||(this.tabbableElements[0].focus(),t.preventDefault())}}experienceConnected(){const t=(this.config.savedStoriesWithinPersonalize?p.savedStoriesWithinPersonalizeUrl:p.standaloneSavedStoriesUrl).replace(p.locale,g.a.CurrentMarket);if(this.personalizeUrl=new URL(t,p.urlBase),!this.config.hideCurrentSearchParams){const t=Object(f.a)();this.personalizeUrl.search=t.toString()}const e=Object(m.b)();e&&this.personalizeUrl.searchParams.set("ocid",e),h.a.setRenderToastCallback(t=>{this.toastDataProps=t,window.addEventListener("keydown",this.keyDownHandler),this.timer=window.setTimeout(()=>this.closeToast(t.id),t.expirationInMs||5e3)}),h.a.setExpireToastCallback(t=>this.closeToast(t))}getExperienceType(){return r.a.toastWC}closeToast(t){(this.toastDataProps&&this.toastDataProps.id===t||!t)&&(this.timer&&window.clearTimeout(this.timer),this.toastDataProps=null),window.removeEventListener("keydown",this.keyDownHandler),this.tabbableElements=null}dismissToast(t){this.toastDataProps&&this.toastDataProps.onClick&&this.toastDataProps.onClick(t),this.toastDataProps=null}}Object(l.d)([d.d],w.prototype,"toastDataProps",void 0),Object(l.d)([d.d],w.prototype,"focusBack",void 0);var v=a("u5KZ"),T=a("6BDD"),x=a("UNqU"),C=a("+53S"),k=a("m1Vi"),y=a("OI02"),S=a("+qLX"),I=a("8ntK"),P=a("Gsg7");const{telemetryContracts:O}=p,$=t=>new P.a(Object.assign(Object.assign({},O.toastCloseButton),{content:{headline:t.toastCloseButtonTitle}})).getMetadataTag(),M=t=>{const e=Object(f.a)(),a=new URL("/personalize",window.location.origin);return a.search=e.toString(),new P.a({name:"ToastButton",type:b.e.Interaction,content:{headline:t.personalizeTabName},action:b.a.Click,destinationUrl:a.href}).getMetadataTag()},j=t=>new P.a({name:"ToastButton",type:b.e.ActionButton,behavior:b.b.Unlike,content:{headline:[t.showMoreFewerToastButtonText,I.a.ShowMore].join(" ")},action:b.a.Click}).getMetadataTag(),R=t=>new P.a({name:"ToastButton",type:b.e.ActionButton,behavior:b.b.Undislike,content:{headline:[t.showMoreFewerToastButtonText,I.a.ShowFewer].join(" ")},action:b.a.Click}).getMetadataTag(),U=t=>new P.a({name:"ToastButton",type:b.e.ActionButton,behavior:b.b.Hide,content:{headline:[t.hideToastText,I.a.Hide].join(" ")},action:b.a.Click}).getMetadataTag(),E=t=>{const e=Object(f.a)(),a=new URL("/personalize",window.location.origin);return a.search=e.toString(),new P.a({name:"ManageToastButton",type:b.e.ActionButton,behavior:b.b.Navigate,content:{headline:[t.manageHideToastButtonText,I.a.Hide].join(" ")},action:b.a.Click,destinationUrl:a.href}).getMetadataTag()};var D=a("w0HK"),B=a("AxnZ"),A=a("qxGE"),L=a("eUhr");y.a,k.b;const N=T.b`${t=>t}`,F=(t,e)=>T.b`
+<fluent-button
+    class = "lightweight toast-navigation-button"
+    aria-label="${e?t.strings.manageHideToastButtonText:t.strings.personalizeTabName}"
+     ${Object(L.b)(()=>e?E(t.strings):M(t.strings))}
+    @click ="${(a,{event:s})=>{const{config:o}=t;v.a.sendActionEvent(s.target,b.a.Click);const n={isRequestFromSavedStoryToast:!0,noScroll:!0};if(A.a.getRouteById("my-saves"))return void A.a.navigate("my-saves",n);const i={isRequestFromSdCardAddRemoveClick:!0};o.oneRiverInterestsPivotInfo?Object(D.a)(t.pivotsNavInstanceId).switchPivot({pivotId:o.oneRiverInterestsPivotInfo.pivotId,configIndexHref:o.oneRiverInterestsPivotInfo.configIndexHref,configIndexRef:o.oneRiverInterestsPivotInfo.configIndexRef,context:e?i:n,telemetryPageName:S.a.Interests,display:o.oneRiverInterestsPivotInfo.displayName}):window.open(t.personalizeUrl.href,"_blank")}}">
+    ${e?t.strings.manageHideToastButtonText:t.strings.personalizeTabName}
+</fluent-button>`,z=T.b`
+    <span class="toast-middle-align">
+        ${Object(x.c)(t=>Object(B.a)(t.strings.saveStoryToastText,F(t,!1)),N)}
+    </span>`,H=T.b`
+    <span>
+      ${Object(x.c)(t=>Object(B.a)(t.strings.muteToastBodyText,T.b`<b key="muteToastContent">${t.toastDataProps.inputText}</b>`),N)}
+    </span>
+`,W=T.b`
+    <span>
+      ${Object(x.c)(t=>Object(B.a)(t.strings.followSuccessMessage,T.b`<b key="interestToastContent">${t.toastDataProps.inputText}</b>`),N)}
+    </span>
+`,K=T.b`
+    <span>
+      ${Object(x.c)(t=>Object(B.a)(t.strings.unfollowSuccessMessage,T.b`<b key="interestToastContent">${t.toastDataProps.inputText}</b>`),N)}
+    </span>
+`,G=T.b`
+    <span class="toast-middle-align">
+      ${Object(x.c)(t=>Object(B.a)(t.toastDataProps.toastType===I.a.ShowMore?t.strings.showMoreToastText:t.strings.showFewerToastText,T.b`
+            <fluent-button
+                ${Object(L.b)(()=>t.toastDataProps.toastType===I.a.ShowMore?j(t.strings):R(t.strings))}
+                key="showMoreFewerToastContent"
+                class="lightweight toast-navigation-button"
+                @click=${(e,a)=>t.dismissToast(a.event)}
+            >
+                ${t.strings.showMoreFewerToastButtonText}
+            </fluent-button>`),N)}
+    </span>
+`,V=t=>T.b`
+    <span class="toast-middle-align toast-hide-sdcard">
+      ${Object(x.c)(t=>Object(B.a)(t.strings.hideToastText,t.toastDataProps.inputText,T.b`
+        <fluent-button
+            ${Object(L.b)(U(t.strings))}
+            key="undoHideSDCard"
+            class="lightweight toast-navigation-button"
+            @click=${(e,a)=>t.dismissToast(a.event)}
+        >
+            ${t.strings.undoHideToastButtonText}
+        </fluent-button>`,F(t,!0)),N)}
+    </span>
+`,q=T.b`<span>${t=>t.strings.interestErrorMessage}</span>`,Q=T.b`<span>${t=>t.toastDataProps.inputText}</span>`,Z=t=>{var e;return T.b`<div
+        class="toast-root-wrapper"
+        style="bottom: ${!t.useRouter&&(()=>{const t=document.querySelectorAll("div[class^='footer']");if(t&&t.length){const e=parseInt(window.getComputedStyle(t[0]).marginTop)||0,a=t[0].getBoundingClientRect().height+e;return a?a+10:null}return null})()||t.toastBottomPosition||p.defaultBottomPosition}px ;">
+        <msn-toast :focusBack=${t=>t.focusBack} ${Object(C.b)("toast")}>
+            <output role="alert">${(t=>{const{toastDataProps:e}=t;if(e)switch(e.toastType){case I.a.Save:return z;case I.a.Mute:return H;case I.a.Follow:return W;case I.a.Unfollow:return K;case I.a.InterestFailure:return q;case I.a.ShowMore:case I.a.ShowFewer:return G;case I.a.Hide:return V;case I.a.DisableNotification:return Q;default:return}})(t)}</output>
+            ${(null===(e=t.toastDataProps)||void 0===e?void 0:e.buttonText)?T.b`
+            <fluent-button class="lightweight toast-navigation-button"
+                slot = "actions"
+                ${Object(L.b)(E(t.strings))}
+                @click=${(e,a)=>t.dismissToast(a.event)}
+            > ${t.toastDataProps.buttonText}</fluent-button>`:""}
+            <fluent-button
+                ${Object(L.b)($(t.strings))}
+                class="toast-close-button"
+                slot = "close-button"
+                appearance = "stealth"
+                @click=${()=>t.closeToast()}
+                title = "${t.strings.toastCloseButtonTitle}"
+                aria-label="${t.strings.toastCloseButtonTitle}" >
+                <svg width="12" height = "12" viewBox = "0 0 12 12" xmlns = "http://www.w3.org/2000/svg" > <path d="M6.84961 6L12 11.1504L11.1504 12L6 6.84961L0.849609 12L0 11.1504L5.15039 6L0 0.849609L0.849609 0L6 5.15039L11.1504 0L12 0.849609L6.84961 6Z" /> </svg>
+            </fluent-button>
+        </msn-toast>
+    </div>`},J=T.b`${t=>t.toastDataProps?Z(t):""}`;var Y=a("3KaK"),_=a("MZhw"),X=a("HzrG"),tt=a("kL0l");const et=a("4X57").a`
+    ms-toast::host {
+        box-sizing: border-box;
+        display: block;
+        height: 100%;
+    }
+
+    .toast-middle-align {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    b {
+        margin: 0 5px;
+    }
+
+    .toast-root-wrapper {
+        position: fixed;
+        left: 50%;
+        --background-color: ${(()=>{const t=Object(_.b)(()=>Y.d)(X.b);return Object(Y.e)()?Y.c:t})()};
+        --neutral-foreground-rest: ${(()=>{const t=Object(_.b)(()=>Y.d)(X.b);return Object(Y.e)()?t:Y.c})()};
+        --accent-foreground-rest: ${Object(Y.e)()?"#006CBE":"#63ADE5"};
+        --toast-max-width: 490px;
+        transform: translate(-50%, 0);
+        width: fit-content;
+        max-width: 95%;
+    }
+
+    msn-toast::part(toast-root){
+        color: var(--neutral-foreground-rest);
+        background: var(--background-color);
+    }
+
+    .toast-close-button {
+        background: transparent;
+    }
+    
+    .toast-close-button svg:hover {
+        stroke: var(--neutral-foreground-rest);
+    }
+
+    .toast-navigation-button {
+        margin-inline-start: 4px;
+        background: transparent;
+        color: var(--accent-foreground-rest);
+    }
+   
+    .toast-navigation-button::part(control):hover {
+        border-bottom: 1px solid var(--accent-foreground-rest);
+    }
+
+    .toast-hide-sdcard .toast-navigation-button:not(:first-of-type) {
+        margin-inline-start: -10px;
+    }
+
+    fluent-button::part(control) {
+        padding: 0px 2px;
+    }
+`.withBehaviors(tt.v,tt.s),at={experienceConfigSchema:c}},Qo3E:function(t,e,a){"use strict";a.d(e,"a",(function(){return i}));var s=a("u5KZ"),o=a("XlyT"),n=a("HxRh");class i{static renderToast(t){this.renderToastCallback?this.renderToastCallback(t):s.a.sendAppErrorEvent(Object(o.a)(n.Gh,"Undefined toast render callback function"))}static setRenderToastCallback(t){this.renderToastCallback=t}static expireToast(t){this.expireToastCallback?this.expireToastCallback(t):s.a.sendAppErrorEvent(Object(o.a)(n.Fh,"Undefined toast expire callback function"))}static setExpireToastCallback(t){this.expireToastCallback=t}static setCurrentToast(t,e){this.currentToastId!==t&&(this.currentToastId=t,this.renderToastCallback=e,this.currentToastIdChangeCallbacks.forEach(e=>e(t)),this.renderToast())}static addCurrentToastIdChangeCallback(t){t&&this.currentToastIdChangeCallbacks.push(t)}}i.currentToastIdChangeCallbacks=[]},RIQ7:function(t,e,a){"use strict";a.d(e,"c",(function(){return n})),a.d(e,"b",(function(){return i})),a.d(e,"a",(function(){return r}));var s=a("Am8i"),o=a("u5KZ");a("y+Kz");function n(t,e){if(t){const a={type:s.e.Module,name:e,content:{}};return t.addOrUpdateChild(a)}return null}function i(){if(!o.a)return;const t=o.a.getPageMetadata();return t&&t.contract&&t.contract.page?t.contract.page.ocid:void 0}function r(t){const e=i(),a=t.toLowerCase();if(!e||-1!=a.indexOf("?ocid=")||-1!=a.indexOf("&ocid="))return t;const s=-1==t.indexOf("?")?"?":"&";return`${t}${s}ocid=${encodeURIComponent(e)}`}},mJTN:function(t,e,a){"use strict";a.d(e,"b",(function(){return s})),a.d(e,"a",(function(){return o}));const s=new(a("JzSW").a)("AppState");var o;!function(t){t[t.IsSignedIn=1]="IsSignedIn",t[t.CookieConsentStatus=2]="CookieConsentStatus",t[t.OnetrustActiveCookieGroups=3]="OnetrustActiveCookieGroups",t[t.IsDarkMode=4]="IsDarkMode",t[t.ColumnArrangement=5]="ColumnArrangement",t[t.CurrentRoute=6]="CurrentRoute",t[t.TopicData=7]="TopicData",t[t.AboveTheFoldVisuallyReady=8]="AboveTheFoldVisuallyReady",t[t.IsDocumentVisible=9]="IsDocumentVisible"}(o||(o={}))},qxGE:function(t,e,a){"use strict";a.d(e,"a",(function(){return l}));var s,o,n=a("rvYQ"),i=a("Am8i"),r=a("Gsg7"),c=a("mJTN");!function(t){t[t.Router=0]="Router",t[t.ExternalLink=2]="ExternalLink",t[t.PrimeExternalLink=3]="PrimeExternalLink"}(s||(s={})),function(t){t.Replace="replace",t.Retain="retain"}(o||(o={}));const l=new class{constructor(){this.routeMap=new Map,this.market=n.a.CurrentMarket,this.currentUrl=new URL(location.href.toLowerCase())}init(t){if(this.options||!t)return;this.options=t,this.config=t.config,this.options.localizedStrings=this.options.localizedStrings||{},this.options.blockedQueryParams=this.options.blockedQueryParams||[],this.baseUrl=`${location.origin}/${this.market}${t.basePath}`,"/"===location.pathname&&(location.pathname=`/${this.market}${t.basePath}`);const e=this.currentUrl.searchParams.get("spapage");this.currentPath=e?`/${this.market}${t.basePath}/${e}`:this.currentUrl.pathname,this.currentUrl.searchParams.delete("spapage"),this.setRoutes(this.config),this.currentRoute&&(c.b.set(c.a.CurrentRoute,this.currentRoute),window.history.replaceState(this.currentRoute,"",this.currentRoute.destinationUrl)),window.addEventListener("popstate",t=>{const e=this.routeMap.get(t.state.id);c.b.set(c.a.CurrentRoute,e||this.config.homeNavigationItem)})}navigate(t,e){const a=c.b.get(c.a.CurrentRoute);if(a&&a.id===t)return;const s=this.routeMap.get(t),o=new URL(s.destinationUrl);if(o.hash&&(o.hash="",s.destinationUrl=o.toString()),!s)return;const n=Object.assign(Object.assign({},s),{dynamicContext:e});window.history.pushState(n,s.display,s.destinationUrl),c.b.set(c.a.CurrentRoute,n)}getRouteById(t){return this.routeMap.get(t)}updateMarket(t){location.replace(location.href.replace(`/${this.market}/`,`/${t}/`))}getUrlInfo(t){const{context:e,renderType:a,path:o,externalUrl:n}=t.renderInfo;if(t.id===this.config.homeNavigationItem.id)return{url:`${this.baseUrl}${this.currentUrl.search}`,path:`/${this.market}/${o}`};if(a===s.Router){let t=this.baseUrl;e&&e.excludeFeedPrefix&&(t=`${location.origin}/${this.market}/`);const a=`${0===o.indexOf("personalize")?"":"/interest"}/${o}`;return{url:`${t}${a}${this.currentUrl.search}${location.hash}`,path:`/${this.market}${e&&e.excludeFeedPrefix?"":"/feed"}${a}`}}let i=new URL(n);const r=i.searchParams;return-1!==i.hostname.indexOf(".msn.com")&&(i.hostname!==location.hostname&&(i=new URL(`${i.pathname}${i.search}`,location.origin)),this.currentUrl.search&&this.currentUrl.searchParams.forEach((t,e)=>{e=e.toLowerCase(),-1===r.getAll(e).indexOf(t)&&-1===this.options.blockedQueryParams.indexOf(e)&&i.searchParams.append(e,t)}),!i.searchParams.get("ocid")&&this.options.ocid&&i.searchParams.set("ocid",this.options.ocid)),{url:decodeURIComponent(i.toString()),path:i.pathname,searchParams:r}}setRoutes(t){if(!t)return;const{contextualNavItems:e=[],hamburgerMenuItems:a=[],homeNavigationItem:s,interestsNavigationItem:o}=t;s&&a.length&&e.length&&(this.buildNavMap(s),this.buildNavMap(o),this.mapChildItems(a),this.mapChildItems(e))}processRoute(t,e){const{id:a,display:s,displayKey:o}=t,n=o?this.options.localizedStrings[o]:s,c=this.getUrlInfo(t),l=c.url,u=Object.assign(Object.assign({},t),{display:n,destinationUrl:l,parentId:e,telemetryMetadata:new r.a({name:n,action:i.a.Click,behavior:i.b.Navigate,content:{headline:n},destinationUrl:l,overrideDestinationUrl:l,feed:{id:a,name:n,type:"category filter"}}).getMetadata()});return this.detectCurrentRoute(u,c.path,c.searchParams),u}detectCurrentRoute(t,e="",a){if(e=e.toLowerCase(),this.currentPath===e||this.currentPath===e+"/"){let e=!1;if(a&&a.toString()&&a.forEach((t,a)=>{a=a.toLowerCase(),-1===this.currentUrl.searchParams.getAll(a).indexOf(t.toLowerCase())&&(e=!0)}),e)return;this.currentRoute=t}}buildNavMap(t){if(!t||this.routeMap.get(t.id))return;const{id:e,children:a=[]}=t;this.routeMap.set(e,this.processRoute(t)),this.mapChildItems(a,t.id)}mapChildItems(t=[],e){t.forEach(t=>{this.routeMap.get(t.id)||this.routeMap.set(t.id,this.processRoute(t,e));const{children:a}=t;a&&a.length&&this.mapChildItems(a,t.id)})}}}}]);

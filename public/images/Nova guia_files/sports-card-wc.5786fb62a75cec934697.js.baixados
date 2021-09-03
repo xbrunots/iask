@@ -1,0 +1,909 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["sports-card-wc"],{"0hJ9":function(t,e,i){"use strict";var r=i("v6nU");e.a=function(t){return"number"==typeof t&&t==Object(r.a)(t)}},"39vG":function(t,e,i){"use strict";i.d(e,"a",(function(){return r}));const r=i("6BDD").b`
+    <slot></slot>
+`},"3q48":function(t,e,i){"use strict";i.d(e,"a",(function(){return n}));var r=i("JzSW"),a=i("zEbR");const s=new r.a("WidgetLoadTracker");function n(t){s.has(t)||("hidden"!==document.visibilityState?Object(a.a)(()=>s.set(t,!0)):s.set(t,!0))}},"5tHy":function(t,e,i){"use strict";i.d(e,"a",(function(){return a})),i.d(e,"c",(function(){return s})),i.d(e,"b",(function(){return h})),i.d(e,"d",(function(){return u})),i.d(e,"e",(function(){return p}));var r,a,s,n=i("w7FX"),o=i("P4Ao"),c=i("QBS5"),d=i("oePG"),l=i("6BDD");!function(t){t.half="1x_1y",t.full="1x_2y",t.tall="1x_3y"}(r||(r={})),function(t){t.preGame="pre-game",t.inprogressGame="inprogress-game",t.postGame="post-game"}(a||(a={})),function(t){t.singleparticipant="single",t.dualparticipants="dual"}(s||(s={}));class h extends o.a{constructor(){super(...arguments),this.cardLayout=r.half,this.sportsMatchData=[],this.clickthroughTarget="_blank"}}function u(t,e){if(t){if("tennis"===e.toLowerCase()){let e=t.split(", ");const i=/\((.*?)\)/i;let r,a="";return e.forEach(t=>{t.includes("(")?(a+=t.charAt(0),r=t.match(i),null!=r&&(a+=r[1].sup()+"  ")):a+=t+"  "}),l.b` ${a.trim()} `}return t}}function p(t){return"cricket"===t||"tennis"===t||"Tennis"===t?"long-score":""}Object(n.a)([Object(c.b)({attribute:"card-layout"})],h.prototype,"cardLayout",void 0),Object(n.a)([c.b],h.prototype,"background",void 0),Object(n.a)([c.b],h.prototype,"uxstyle",void 0),Object(n.a)([d.d],h.prototype,"sportsMatchupCardData",void 0),Object(n.a)([d.d],h.prototype,"sportsMatchData",void 0),Object(n.a)([Object(c.b)({attribute:"clickthrough-target"})],h.prototype,"clickthroughTarget",void 0),Object(n.a)([d.d],h.prototype,"matchTelemetryTags",void 0),Object(n.a)([d.d],h.prototype,"headerTelemetryTag",void 0),Object(n.a)([d.d],h.prototype,"seeMoreTelemetryTag",void 0)},"6ADy":function(t,e,i){"use strict";i.d(e,"b",(function(){return d})),i.d(e,"c",(function(){return h})),i.d(e,"a",(function(){return u}));var r=i("rvYQ"),a=i("I6Lx"),s=i("kN1G"),n=i("tMmC");let o,c;function d(){const t=Object(r.b)();if(!o){!function(t){o=new URL("",t),p(o)}(Object(s.j)()&&Object(s.k)()?t.EnterpriseServiceUrlBase:t.ServiceUrlBase)}return o}function l(){const t=Object(r.b)();if(!c){!function(t){c=new URL("",t),p(c)}(Object(s.j)()&&Object(s.k)()?t.EnterpriseServiceUrlBase:t.FeedServiceUrlBase)}return c}function h(t,e=d()){return new URL(t+(null==e?void 0:e.search),e)}function u(t,e=l()){return new URL(t+(null==e?void 0:e.search),e)}function p(t){let e=!1;"dev"!==t.searchParams.get("env.service")&&Object(a.a)().UserIsSignedIn&&(e=!0),n.a.log("u-si: "+Object(r.b)().UserId),n.a.log("a-si: "+e),n.a.log("ss-si: "+Object(a.a)().UserIsSignedIn)}},CgWR:function(t,e,i){"use strict";var r;i.d(e,"a",(function(){return r})),function(t){t.HoroscopeCard="horoscopeCardEnabled",t.WeatherCard="weatherCardEnabled",t.SportsCard="sportsCardEnabled",t.MoneyCard="moneyCardEnabled",t.FinanceCard="financeCardEnabled",t.OnThisDayCard="onThisDayCardEnabled",t.ShoppingCard="shoppingCardEnabled",t.TrafficCard="trafficCardEnabled",t.EsportsCard="esportsCardEnabled",t.ElectionsCard="genericElectionCardEnabled",t.LotteryCard="lotteryCardEnabled",t.QnaCard="qnaCardEnabled",t.RecipesCard="recipeCardEnabled"}(r||(r={}))},JzSW:function(t,e,i){"use strict";i.d(e,"a",(function(){return s}));var r=i("HxRh"),a=i("u5KZ");class s extends Map{constructor(t){super(),this.identifier=t,this.subscriptions=new Map}set(t,e){super.set(t,e);const i=this.subscriptions.get(t)||[];return i.length?(i.forEach((i,s)=>{try{i&&i(e)}catch(e){a.a.sendAppErrorEvent(Object.assign(Object.assign({},r.eh),{message:"Failed to exceute subscription callback",pb:Object.assign(Object.assign({},r.eh.pb),{customMessage:`Error executing subscription callback for key [${t}] at handler index [${s}]`,instanceId:this.identifier,errorMessage:e&&e.message})}))}}),this):this}subscribe(t,e){const i=this.subscribeInternal(t,e);return this.has(t)&&this.tryExecuteSubscriptionCallback(t,i.index,this.get(t)),{unsubscribe:i.unsubscribe}}subscribeInternal(t,e){const i=this.subscriptions.get(t)||[];this.subscriptions.set(t,[...i,e]);const r=i.length;return{unsubscribe:()=>{const e=this.subscriptions.get(t)||[];e[r]&&(e[r]=null),this.subscriptions.set(t,e)},index:r}}tryExecuteSubscriptionCallback(t,e,i){const r=this.subscriptions.get(t);if(!r||!r.length)return;const a=r[e];"function"==typeof a&&a(i)}}},KETb:function(t,e,i){"use strict";i.d(e,"a",(function(){return E})),i.d(e,"b",(function(){return P}));var r=i("D57K"),a=i("XlyT"),s=i("IhCV"),n=i("z2Ro"),o=i("vq4Z"),c=i("VcDS");class d extends n.a{constructor(t,e,i,r){super(t,i,c.a.BeginActivity,s.a.newGuid(),new Date,e),this.LogLevel=o.a.Activity,this.Ended=!1,this.correlationVector=r}}var l=i("KSHU"),h=i("mRXR");class u extends n.a{constructor(t,e,i,r,a,n,d,l){super(t,l,c.a.BeginNetworkActivity,s.a.newGuid(),new Date,d),this.serviceName=e,this.LogLevel=o.a.Activity,this.Ended=!1,this.requestUri=i,this.requestHttpMethod=r,this.currentOperationName=a,this.correlationVector=n}}var p=i("9RHM");class g extends l.a{constructor(t,e){super(t),this.correlationVectorProvider=e}static getInstance(t,e){var i=t||"Default",r=g.InstancesMap[i];if(r)return r;var a=new h.a(i,o.a.Activity);return r=new g(a,e),g.InstancesMap[i]=r,r}isActivityEnabled(){return this.logger.isEnabledFor(o.a.Activity)}createActivity(t,e,i){if(this.isActivityEnabled()){let r,a;e&&(r=e.ActivityId,a=this.getVectorForNewActivity(e,!1));let s=new d(t,r,i,a);return this.logger.log(o.a.Activity,s),s}return e||null}createActivityCallback(t,e,i){return this.isActivityEnabled()?this.createActivity(t(),e,i):e||null}endActivity(t){if(this.isActivityEnabled()&&t&&!t.Ended){t.Ended=!0;const e=new Date,i=Object(p.a)(t);i.LogType=c.a.EndActivity,i.LogDateTime=e;const r=i.LogDateTime.getTime()-t.LogDateTime.getTime();i.Message=i.Message+" ElapsedTime (Milliseconds):"+r.toString(),i.elapsedTimeInMs=r,this.logger.log(o.a.Activity,i)}}createNetworkActivity(t,e,i,r,a,s,n,o){if(this.isActivityEnabled()){s||n||console.warn("'correlationVector' or 'parentActivity' is required to create network activity");let c=s||this.getVectorForNewActivity(n,!0),d=n?n.ActivityId:"";return new u(t,e,i,r,a,c,d,o)}return null}endSuccessfulNetworkActivity(t,e,i){this.endNetworkActivity(t,!0,e,i)}endFailedNetworkActivity(t,e,i,r){this.endNetworkActivity(t,!1,e,i,r)}endNetworkActivity(t,e,i,r,a){if(t&&!t.Ended){t.Ended=!0;let s=new Date,n=Object(p.a)(t);n.LogType=c.a.EndNetworkActivity,n.LogDateTime=s,n.elapsedTimeInMs=n.LogDateTime.getTime()-t.LogDateTime.getTime(),n.successful=e,n.responseSize=i,n.responseStatusCode=r,n.errorMessage=a,this.logger.log(o.a.Activity,n)}}getVectorForNewActivity(t,e){return t&&this.correlationVectorProvider?(t.latestChildCorrelationVector?t.latestChildCorrelationVector=this.correlationVectorProvider.incrementExternalVector(t.latestChildCorrelationVector):(t.latestChildCorrelationVector=this.correlationVectorProvider.extendExternalVector(t.correlationVector),e&&(t.latestChildCorrelationVector=this.correlationVectorProvider.incrementExternalVector(t.latestChildCorrelationVector))),t.latestChildCorrelationVector):""}}g.InstancesMap={};var m=i("/wq8");class v{constructor(t){if(this.loggingService=t,!t)throw"loggingService is required for LoggedExceptionManager."}error(t){throw this.loggingService.error(t),t}fatal(t){throw this.loggingService.fatal(t),t}}var b=i("HDSB");class f{constructor(t,e,i,r,a,s,n){if(!t)throw new Error("loggingService is required for ExponentialBackoffRetry.");const o=new v(t);this.logInvalidParams(o,e,i,r,a,n),this.loggingService=t,this.maxRetries=e||f.defaultMaxRetries,this.baseRetryDelayInMs=i||f.defaultBaseRetryDelayInMs,this.maxRetryDelayInMs=r||f.maxAllowedRetryDelayInMs,this.factor=a||f.defaultFactor,this.minOffsetInMs=s||f.defaultMinOffsetInMs,this.maxOffsetInMs=n||f.defaultMaxOffsetInMs,Object(b.a)()&&this.loggingService.infoCallback(()=>"ExponentialBackoffRetry has been configured.",null,{maxRetries:e,minTimeout:i,maxTimeout:r,factor:a})}executeRequest(t,e,i){return Object(r.a)(this,void 0,void 0,(function*(){return new Promise((a,s)=>Object(r.a)(this,void 0,void 0,(function*(){yield this.tryRequest(t,a,s,0,e,i)})))}))}logInvalidParams(t,e,i,r,a,s){e&&(e<1||e>f.maxAllowedRetries)&&t.fatal(`maxRetries should be at least 1 and less than ${f.maxAllowedRetries}.`),i&&i<f.defaultBaseRetryDelayInMs&&t.fatal("baseRetryDelay has to be a positive value greater than or equal to 100."),i&&s&&i<=s&&t.fatal("baseRetryDelay must not be smaller than the maximum delay offset."),r&&(r<=0||r>f.maxAllowedRetryDelayInMs)&&t.fatal(`maxRetryDelay has to be a positive value less than ${f.maxAllowedRetryDelayInMs}.`),a&&a<=0&&t.fatal("factor has to be a positive value.")}tryRequest(t,e,i,a,s,n){return Object(r.a)(this,void 0,void 0,(function*(){try{const i=1e4,r=yield this.timeoutServiceRequest(i,t());e(r)}catch(r){if(Object(b.a)()&&a<this.maxRetries){const o=3,c=parseFloat((Math.random()*(this.minOffsetInMs-this.maxOffsetInMs)+this.maxOffsetInMs).toFixed(o)),d=.5,l=Math.random()<d?-1:1,h=Math.min(this.baseRetryDelayInMs*Math.pow(this.factor,a),this.maxRetryDelayInMs)+c*l;this.loggingService.warnCallback(()=>`Retrying the request in ${h} milliseconds.`,n,{error:r,currentRetry:a+1,requestInfo:s}),setTimeout(()=>this.tryRequest(t,e,i,a+1,s,n),h)}else this.loggingService.errorCallback(()=>Object(b.a)()&&a<this.maxRetries?"ExponentialBackoffRetry has exceeded maximum retries "+this.maxRetries:"Request has failed.",n,{error:r,currentRetry:a,requestInfo:s}),i(r)}}))}timeoutServiceRequest(t,e){return Object(r.a)(this,void 0,void 0,(function*(){return new Promise((i,a)=>Object(r.a)(this,void 0,void 0,(function*(){const r=setTimeout(()=>a(new Error("Service Request Timed out!")),t);try{const t=yield e;i(t),clearTimeout(r)}catch(t){a(t),clearTimeout(r)}})))}))}}f.defaultBaseRetryDelayInMs=100,f.defaultFactor=2,f.defaultMaxOffsetInMs=25,f.defaultMaxRetries=5,f.defaultMinOffsetInMs=1,f.maxAllowedRetries=10,f.maxAllowedRetryDelayInMs=2e3;var y,S=i("VOUN"),O=i("hqLi");class w extends n.a{constructor(t,e,i,r,a){super(t,i,c.a.Instrumentation,r,a),this._counterName=t,this.CounterValue=e}get CounterName(){return this._counterName}incrementValue(){if("number"!=typeof this.CounterValue)throw"ERROR: Counter value is never initialized, cannot perform increment action.";this.CounterValue++}}class C extends l.a{constructor(t){super(t)}static getInstance(t){const e=t||"Default";let i=C.InstancesMap[e];if(i)return i;let r=new h.a(e,o.a.Trace);return i=new C(r),C.InstancesMap[e]=i,i}static getDimensionedLogItems(t,e){let i=[],r=new w(t.CounterName,t.CounterValue,Object(p.a)(t.Data),t.ActivityId,t.LogDateTime);if(r.LogLevel=o.a.Trace,i.push(r),e&&!Object(O.a)(e))for(let r of Object.keys(e))for(let a of e[r]){let e=r.indexOf(":")>-1?`${t.CounterName}(${r.replace(":","-")}: ${a})`:`${t.CounterName}(${r}: ${a})`,s=new w(e,t.CounterValue,Object(p.a)(t.Data),t.ActivityId,t.LogDateTime);s.LogLevel=o.a.Trace,i.push(s)}return i}logPerfCounter(t,e,i,r){const a=new w(t,e,r);this.logPerfCounterItem(a,i)}logPerfCounterItem(t,e){const i=C.getDimensionedLogItems(t,e);for(let t of i)this.logger.log(o.a.Trace,t)}}C.InstancesMap={};class j extends n.a{constructor(t,e,i,r,a,s,n,c){super(t,n),this.pageName=t,this.LogLevel=o.a.Activity,this._userActivityType=e,this.correlationVector=i,this.trackingData=r,this.pageTitle=a,this.pageUri=s,this.eventData=c}get userActivityType(){return this._userActivityType}}!function(t){t[t.None=0]="None",t[t.PageAction=1]="PageAction",t[t.PageView=2]="PageView"}(y||(y={}));class I extends l.a{constructor(t){super(t)}static getInstance(t){var e=t||"Default",i=I.InstancesMap[e];if(i)return i;var r=new h.a(e,o.a.Activity);return i=new I(r),I.InstancesMap[e]=i,i}isActivityTrackingEnabled(){return this.logger.isEnabledFor(o.a.Activity)}logPageView(t,e,i,r,a,s){this.isActivityTrackingEnabled()&&this.logger.log(o.a.Activity,this.getUserActivityLogItem(t,e,i,a,s,r))}logPageActionEvent(t,e,i,r,a,s,n){if(this.isActivityTrackingEnabled()){if(!t)throw"''eventData' required for logging page action event.";t.elementTitle&&t.eventType&&t.elementTitle.trim()&&t.eventType.trim()&&this.logger.log(o.a.Activity,this.getUserActivityLogItem(e,i,r,s,n,a,t))}}getUserActivityLogItem(t,e,i,r,a,s,n){if(!t)throw"''pageName' is required for logging user activity.";return n?new j(t,y.PageAction,e,i,r,a,s,n):new j(t,y.PageView,e,i,r,a,s)}}I.InstancesMap={};class x{constructor(t,e,i,r){this.loggingServiceInstance=t||S.a.getInstance(),this.activityServiceInstance=e||g.getInstance(),this.userActivityServiceInstance=i||I.getInstance(),this.perfCounterServiceInstance=r||C.getInstance()}get loggingService(){return this.loggingServiceInstance}get activityLoggingService(){return this.activityServiceInstance}get userActivityTrackingService(){return this.userActivityServiceInstance}get perfCounterLoggingService(){return this.perfCounterServiceInstance}getLoggingServiceByName(t){return this.checkLoggerName(t),S.a.getInstance(t)}getActivityLoggingServiceByName(t){return this.checkLoggerName(t),g.getInstance(t)}getUserActivityTrackingServiceByName(t){return this.checkLoggerName(t),I.getInstance(t)}getPerfCounterLoggingServiceByName(t){return this.checkLoggerName(t),C.getInstance(t)}addActivityLoggingService(t){this.checkServiceInstance(t),g.getInstance(t.getLoggerName())}checkLoggerName(t){if(!t)throw"'loggerName' is required."}checkServiceInstance(t){if(!t)throw"'serviceInstance' is required."}}var M=i("msIb"),T=i("tMmC");let D,k;function E(t,e,i){return Object(r.a)(this,void 0,void 0,(function*(){let r,s;try{if(r=yield fetch(t,e),r&&r.ok)return r}catch(e){Object(a.c)(e,i,"Exception calling 1S primary Url: "+t)}return r&&r.headers&&r.headers.get("OneWebServiceLatency")?r:t.indexOf("assets.msn.com/service/")>0?(s=t.replace("assets.msn.com/service/","api.msn.com/"),yield fetch(s,e)):r}))}function P(t,e){return Object(r.a)(this,void 0,void 0,(function*(){const i=A().activityLoggingService.createActivity(e);return yield M.a.serviceRequestOnComplete(()=>function(){if(k)return k;return k=new f(A().loggingService,3),k}().executeRequest(t,null,i),()=>A().activityLoggingService.endActivity(i))}))}function A(){if(D)return D;const t=g.getInstance("ExperienceActivityLogger");return Object(b.a)()&&T.a.isDebug()&&t.addAppender(new m.a(o.a.Activity)),D=new x(T.a.getLoggingService(),t),D}},LJMo:function(t,e,i){"use strict";var r;function a(t){switch(t){case"ArticlePreview":return 13;case"SlideshowPreview":return 14;case"VideoPreview":return 15;default:return null}}i.d(e,"a",(function(){return r})),i.d(e,"b",(function(){return a})),function(t){t.Article="article",t.Slideshow="slideshow",t.Video="video",t.Spotlight="content360",t.Infopane="infopane",t.TabbedInfopane="tabbedInfopane",t.HalfPane="HalfPane",t.HeadToHead="HeadToHead",t.Mosaic="Mosaic",t.Triptych="Triptych",t.TabbedInfopaneTab="tabbedInfopaneTab",t.WebContent="webcontent",t.ExternalLink="link",t.DenseList="DenseList",t.BackFillContent="BackfillContent",t.MyBriefRiverCard="toppicks",t.NativeAd="nativead",t.CmsAd="cmsad",t.ShoppingCard="ShoppingCard",t.ShoppingCarousel="ShoppingCarousel",t.ComicsCarousel="ComicsCarousel",t.EditorsPickCarousel="EditorsPickCarousel",t.SelectCarousel="SelectCarousel",t.DailyFixGamesCarousel="DailyFixGamesCarousel",t.NewsSegmentCarousel="NewsSegmentCarousel",t.SubscriptionCarousel="SubscriptionCarousel",t.TopStories="topStories",t.WorkHeadlines="workNews",t.Trending="trendingnow",t.LocalNews="XfeedUpsell",t.LocalNewsFeed="LocalNewsFeed",t.TrendingInTenMinutes="trendingInTenMinutes",t.Horoscope="Horoscope",t.Elections="GenericElection",t.RecommendedSearchCarousel="RecommendedSearch",t.OnThisDay="OnThisDay",t.Lottery="Lottery",t.PartnerUpsell="PartnerUpsell",t.Qna="qnacard",t.Recipes="recipecard",t.TravelDestinationCard="TravelDestinationCard",t.TravelDestinationCarouselCard="TravelDestinationCarouselCard",t.BingHealthCovid19StatsCard="Covid19Stats",t.PlaceholderCard="placeholder",t.BingVideo="BingVideo",t.BingVideoCarousel="BingVideoCarousel",t.EsportsHighlight="esportsHighlight",t.EsportsLiveStream="esportsLiveStream",t.EsportsMatch="esportsMatch",t.EsportsTournament="esportsTournament",t.WeatherSummary="WeatherSummary",t.WeatherSummary_spotlight="WeatherSummary_spotlight",t.StockQuote="StockQuote",t.StockQuote_spotlight="StockQuote_spotlight",t.MoneyInfo="MoneyInfo",t.SportsMatch="SportsMatch",t.SportsOlympics="SportsOlympics",t.TrafficDelays="TrafficDelays",t.ShoppingMerchantCategoryDeals="ShoppingMerchantCategoryDeals",t.Group="group",t.Upsell="FreUpsell",t.Dense="densetab",t.IndustryNewsCard="IndustryNewsCard",t.RecommendedCardFeed="RecommendedCardFeed",t.TopicFeed="TopicFeed"}(r||(r={}))},MWBq:function(t,e,i){"use strict";i.r(e),i.d(e,"ToolingInfo",(function(){return ut})),i.d(e,"SportsCardWC",(function(){return H})),i.d(e,"SportsCardWCTemplate",(function(){return st})),i.d(e,"SportsCardWCStyles",(function(){return ht}));var r=i("A03o"),a=i("C49W"),s=i("akWC"),n=i("sydv"),o=i("Zn5T");const c=Object(r.a)(o.a.sportsCardWC,"Sports Card Web Component experience",Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({},Object(a.d)("refreshIntervalInMs","300000")),Object(s.a)({sportsStateFinal:"Final",sportsSeeMore:"See More",seeMoreSports:"See More {0}",sportsMoreSetting:"More settings",sportsActionButton:"More options",sportsNotInterested:"Not interested in {0}",sportsHideCard:"Hide sports card",done:"Done",cancel:"Cancel",searchPlaceholder:"Search team or league",noSearchResult:"No search result",suggestedForYou:"Suggested for you",poweredByMSSports:"Powered by Microsoft Sports",widgetHeader:"Sports",teamDescription:"{0} team",leagueDescription:"Sports league",sportsTBA:"TBA",followSports:"Click to follow",haveFollowed:"Have followed",saveSettings:"Save settings",pointsAbbreviation:"pts",secondsAbbreviation:"s",leader:"leader",laps:"laps"})),Object(n.c)("cardLayout","sports card layout")),Object(n.c)("fetchSearchSuggestionUrl","sports search suggestion api url")),Object(n.c)("fetchEntityUrl","sports get entity api url")),Object(n.c)("ocid","sports 1S url ocid")),Object(a.c)("enableCache","enable local storage cache of sports data")),Object(a.c)("enableCardAction","show action button in sports card")),Object(a.c)("enableHideCard","show hide sports card menu in action menus")));var d,l,h=i("D57K"),u=i("W3y6"),p=i("ZwaX"),g=i("gqPI"),m=i("TgmJ"),v=i("kL0l"),b=i("rvYQ"),f=i("rfxS"),y=i("FJcQ"),S=i("msIb"),O=i("6ADy");!function(t){t.Initial="initial",t.Default="default",t.League="league",t.Team="team",t.Standings="standings",t.Hybrid="hybrid",t.Settings="settings"}(d||(d={})),function(t){t.Small="1x_1y",t.Medium="1x_2y",t.Large="1x_3y"}(l||(l={}));const w="widget",C="feed";var j;!function(t){t.SportsMatchCardData="SportsMatchCardData",t.SportsMatchDataList="SportsMatchDataList",t.SportsSelectedEntityId="SportsSelectedEntityId",t.SportsRecommendation="SportsRecommendation",t.SportsSelectedEntity="SportsSelectedEntity"}(j||(j={}));var I=i("XlyT"),x=i("HxRh"),M=i("+djJ"),T=i("5tHy"),D=i("u5KZ"),k=i("Am8i"),E=i("JnE6"),P=i("Gsg7"),A=i("L1Sn"),$=i("kpPY"),L=i("0QZK"),U=i("IqCT"),F=i("1aPi"),R=i("mQa5"),N=i("mJTN"),G=i("3q48"),W=i("oePG");class H extends U.a{constructor(){super(),this.isActionMenuOpen=!1,this.SportsIndexedDbStoreName=`${Object(b.b)().CurrentRequestTargetScope.pageType}.${o.a.sportsCardWC}.store`,this.SportsIndexedDbName=`${Object(b.b)().CurrentRequestTargetScope.pageType}.${o.a.sportsCardWC}`,this.fetchSuggestions=Object(F.a)(t=>Object(h.a)(this,void 0,void 0,(function*(){const e=Object($.a)(this.config.fetchSearchSuggestionUrl,t,Object(b.b)().CurrentMarket||"en-us");this.sportsSuggestions=[],this.noSuggestResult=!1;const i=yield u.a.fetchSuggestions(t,e);i&&i.length?(this.sportsSuggestions=i.map(t=>Object.assign(Object.assign({},t),{selected:this.sportsEntityId==t.id||this.followedEntities.some(e=>e.id==t.id),telemetryContext:Object(p.g)(this.telemetryObject,t,!0)})),this.defaultSuggestions=[]):this.noSuggestResult=!0,this.showSuggests=!0})),200),this.followSports=(t,e=!1)=>Object(h.a)(this,void 0,void 0,(function*(){if(e)this.sportsEntityId=null,this.selectedEntity=null;else if(t&&t.id){this.sportsEntityId=t.id,this.selectedEntity={id:t.id,name:t.name,type:t.type};const e=yield this.getWidgetOneServiceHeaders();u.a.postActionRequest(t.id,t.name,p.a.Follow,t.type,this.config.ocid,!1,e)}this.refreshEntityIdCache(),this.fetchSportsMatchData(this.sportsEntityId),this.showSuggests=!1,this.noSuggestResult=!1,this.sportsSuggestions=[],this.inputControl.value="",this.widgetSettings?this.widgetSettings.hideSettings():this.switchToMatchCard()})),this.showImage=()=>{var t,e;return(null===(e=null===(t=this.sportsSuggestions)||void 0===t?void 0:t.filter(t=>t.imageUrl))||void 0===e?void 0:e.length)>0},this.sizeChangeHandler=t=>{var e;this.widgetSize&&(this.cardSize=this.widgetSize.getSize()||this.cardSize,"onSizeChangeEnd"===t&&(this.currentSportsMatchupData=this.getCurrentSportsMatchupData(),this.recommendations=this.allRecommendations.slice(0,H.maxRecommendationCount),this.defaultSuggestions=this.recommendations,this.getCurrentLayout(),this.telemetryContext=Object(p.f)(this.telemetryObject,this.sportsMatchDataList,this.sportsMatchCardData,this.sportsCardTelemetryData,Object(R.c)(null===(e=this.widgetSize)||void 0===e?void 0:e.getSize()))))},this.handleClickForActionMenu=t=>{const e=t.composedPath()&&t.composedPath()[0];t&&(t.target instanceof H||this.actionButtonControl&&this.actionButtonControl.contains(e))||this.toggleActionMenu(null)},this.handleKeyDownForActionMenu=t=>{"Escape"!==t.code?this.handleClickForActionMenu(t):this.toggleActionMenu(t)},this.handleSportsNotInterested=()=>Object(h.a)(this,void 0,void 0,(function*(){var t;if(this.isActionMenuOpen=!1,Object($.b)(null===(t=this.sportsCardTelemetryData)||void 0===t?void 0:t.primaryEntityId))return;const e={id:this.sportsCardTelemetryData.primaryEntityId,name:this.sportsCardTelemetryData.primaryEntityName,type:this.sportsCardTelemetryData.primaryEntityType};(yield u.a.notInterestedSportsCard(e))&&(this.refreshFeed?this.refreshFeed():this.$emit("refreshSDCardSection"))})),this.handleHideSports=()=>Object(h.a)(this,void 0,void 0,(function*(){this.isActionMenuOpen=!1;(yield u.a.hideSportsCard())&&(this.refreshFeed?this.refreshFeed():this.$emit("refreshSDCardSection"))})),this.handleMoreSettings=()=>{this.switchToSetting(),this.isActionMenuOpen=!1,this.goToPersonalizeCallback?this.goToPersonalizeCallback():this.$emit("goToPersonalizeCallback")},this.settingsHandler=t=>{switch(t){case"onShowSettingsEnd":this.switchToSetting();break;case"onHideSettingsEnd":this.switchToMatchCard()}},this.visibilityHandler=t=>{"visible"===t?(this.setRefreshTimer(this.refreshIntervalInMs),this.checkTimer=setInterval(()=>this.updateRefreshTimer(),H.minuteInMs)):"notvisible"===t&&this.clearRefreshTimer()},this.interactionsHandler=t=>{"titleInteracted"===t?(this.headerTitle||(this.headerTitle=Object(R.b)("sports",this.widgetProperties.activationUrl,this.widgetProperties.title)),D.a.sendActionEvent(this.headerTitle,k.a.Click,k.b.Navigate)):"settingsInteracted"===t&&(this.seeMoreButton||(this.seeMoreButton=Object(R.a)("sports")),D.a.sendActionEvent(this.seeMoreButton,k.a.Click,k.b.More))},this.lifecycleHandler=t=>Object(h.a)(this,void 0,void 0,(function*(){"removing"===t&&this.clearRefreshTimer()})),this.propertiesHandler=t=>{"colorMode"===t&&(this.widgetBackgroundMode=this.widgetProperties.getProperty(t)||"light",this.setCardProperties())},this.getWidgetOneServiceHeaders=()=>Object(h.a)(this,void 0,void 0,(function*(){let t=null;if(this.widgetInstance){const e=yield S.a.getWinWidgetOneServiceHeaders(this.widgetInstance,!1,this.widgetInstanceId,this.widgetProperties&&this.widgetProperties.getProperty("sessionId"),N.b.get(N.a.IsDocumentVisible));if(e){t=[];for(const i in e)e[i]&&t.push({key:i,value:e[i]});this.widgetMuid=e[H.muidKey]}}return t})),this.fetchSportsMatchData=(t=null)=>Object(h.a)(this,void 0,void 0,(function*(){let e=null,i=!0,r=!1,a=null;if(Object($.b)(t)){const t=Object(O.a)("news/feed/segments/sports");e=(null==t?void 0:t.href)||"https://assets.msn.com/service/news/feed/segments/sports",r=!1,a=this.widgetMuid?[{key:H.muidKey,value:this.widgetMuid}]:yield this.getWidgetOneServiceHeaders()}else e=this.config.fetchEntityUrl.replace("{entityId}",t),i=!1,r=!0;u.a.fetchSportsFeed(e,this.config.ocid,!1,i,r,a).then(i=>{var r,a,s,n,c;if(!i)return void Object(I.b)(x.Tg,"Fetch sports feed get null response",`market:${Object(b.b)().CurrentMarket}, entityId:${t}, Url:${e}, ocid:${this.config.ocid}`);let l,h=!1;if(Array.isArray(i)&&i.length?l=i.find(t=>t.type==p.e.Match):i.value&&Array.isArray(i.value)&&i.value.length&&(l=i.value[0],h=!0),!l)return void Object(I.b)(x.Tg,"Fetch sports feed get null sports match data",`market:${Object(b.b)().CurrentMarket}, entityId:${t}, Url:${e}, ocid:${this.config.ocid}`);const u=h?g.a.transformSportsMatchDataWithTrans(l,this.strings,H.maxMatchCount):g.a.mapSubCardToSportsMatchData(l,this.strings,H.maxMatchCount);u?(this.sportsMatchCardData=u.sportsMatchupCardData,this.sportsMatchDataList=u.sportsMatchOverallData,this.sportsMatchupData=[],this.sportsMatchupData.push({sportsMatchupCardData:u.sportsMatchupCardData,sportsMatchOverallData:u.sportsMatchOverallData}),this.telemetryContext=Object(p.f)(this.telemetryObject,this.sportsMatchDataList,this.sportsMatchCardData,u.sportsCardTelemetryData,Object(R.c)(null===(r=this.widgetSize)||void 0===r?void 0:r.getSize())),this.currentSportsMatchupData=this.getCurrentSportsMatchupData(),this.sportsViewMode==d.Initial&&(this.sportsViewMode=d.Default,Object(G.a)(o.a.sportsCardWC),this.markTimeToVisuallyReady(!0)),this.widgetProperties&&(this.widgetProperties.title=(null===(a=this.sportsMatchCardData)||void 0===a?void 0:a.cardTitle)||this.strings.widgetHeader,this.isLeagueWithNoLandingPage(null===(s=u.sportsCardTelemetryData)||void 0===s?void 0:s.leagueId)?this.widgetProperties.activationUrl=null===(n=this.sportsMatchCardData)||void 0===n?void 0:n.seeMoreClickthroughUrl:this.widgetProperties.activationUrl=null===(c=this.sportsMatchCardData)||void 0===c?void 0:c.cardTitleClickthroughUrl),this.lastUpdateTime=Date.now(),this.updateRefreshTimer(),this.getRecommendations(i),this.refreshCache()):Object(I.b)(x.Tg,"Parse sports feed data error",`market:${Object(b.b)().CurrentMarket}, entityId:${t}, Url:${e}, ocid:${this.config.ocid}, response:${l}`)})})),this.handleClick=t=>{t.defaultPrevented||this.sportsViewMode!=d.Settings||this.suggestListControl&&!this.suggestListControl.contains(t.target)&&(this.showSuggests=!1)},this.handleKeydown=t=>{if("Escape"===t.code&&this.isActionMenuOpen)this.isActionMenuOpen=!1;else if(!t.defaultPrevented&&this.sportsViewMode==d.Settings&&this.sportsSuggestions&&this.sportsSuggestions.length&&(!this.suggestListControl||this.suggestListControl.contains(t.target)))switch(t.key){case"ArrowDown":null==this.activeSuggestIndex||this.activeSuggestIndex<0||this.activeSuggestIndex>=this.sportsSuggestions.length-1?this.activeSuggestIndex=0:this.activeSuggestIndex=this.activeSuggestIndex+1,t.preventDefault();break;case"ArrowUp":null==!this.activeSuggestIndex||this.activeSuggestIndex<=0||this.activeSuggestIndex>this.sportsSuggestions.length-1?this.activeSuggestIndex=this.sportsSuggestions.length-1:this.activeSuggestIndex=this.activeSuggestIndex-1,t.preventDefault();break;case"Enter":case"Escape":null!=this.activeSuggestIndex&&this.activeSuggestIndex>=0&&this.activeSuggestIndex<this.sportsSuggestions.length&&(this.handleSelectSuggest(t,this.sportsSuggestions[this.activeSuggestIndex]),this.activeSuggestIndex=-1,t.preventDefault());break;case"Tab":this.showSuggests=!1;break;default:return}},this.sportsMatchDataList=[],this.allRecommendations=[],this.recommendations=[],this.followedEntities=[],this.isInitialSetup=!0,this.sportsViewMode=d.Initial}experienceConnected(){this.isInitialSetup?(this.isInitialSetup=!1,this.telemetryObject=new P.a({name:p.d.SportsCard,type:k.e.Module}),this.sportsCardData&&this.sportsMatchData&&this.sportsOverallData?(this.sportsMatchCardData=this.sportsCardData,this.sportsMatchupData=[],this.sportsMatchupData.push({sportsMatchupCardData:this.sportsCardData,sportsMatchOverallData:this.sportsOverallData}),this.sportsMatchDataList=this.sportsMatchDataList.concat(this.sportsMatchData),this.telemetryContext=this.telemetry||Object(p.f)(this.telemetryObject,this.sportsMatchDataList,this.sportsMatchCardData,this.sportsCardTelemetryData),this.sportsViewMode=d.Default,this.uxStyle=C,this.cardLayout=this.cardSizeInt<=1?l.Small:l.Medium,this.cardSize=this.cardSizeInt<=1?"small":"medium",this.currentSportsMatchupData=this.getCurrentSportsMatchupData()):(this.uxStyle=w,this.openLinksInNewTab=!0,this.readSportsDataFromIndexDb()||this.fetchSportsMatchData(),this.refreshIntervalInMs=this.config.refreshIntervalInMs),this.initActionMenuItems(),this.initialWidgetInstance(),this.getWidgetOneServiceHeaders()):this.addWidgetEvents(),this.showSuggests=!1,this.setCardProperties(),this.addEventListener("keydown",this.handleKeydown),this.addEventListener("click",this.handleClick)}shadowDomPopulated(){Object(M.e)(this.getExperienceType())}disconnectedCallback(){super.disconnectedCallback(),this.removeEventListener("keydown",this.handleKeydown),this.removeEventListener("click",this.handleClick),this.widgetSize&&this.widgetSize.removeEventListener(this.sizeChangeHandler),this.widgetSettings&&this.widgetSettings.removeEventListener(this.settingsHandler),this.widgetVisibility&&this.widgetVisibility.removeEventListener(this.visibilityHandler),this.widgetLifecycle&&this.widgetLifecycle.removeEventListener(this.lifecycleHandler),this.widgetProperties&&this.widgetProperties.removePropertyChangeListener(this.propertiesHandler),this.widgetInteractions&&this.widgetInteractions.removeEventListener(this.interactionsHandler)}initialWidgetInstance(){var t;if(this.uxStyle==w&&this.widgetInstanceId){const e=document.getElementById(this.widgetInstanceId);this.widgetInstance=e&&e.instance,this.widgetInstance?(this.widgetProperties=this.widgetInstance.tryGetApi("properties",f.a,f.a),this.widgetProperties&&(this.widgetProperties.title=this.sportsViewMode==d.Settings?this.strings.widgetHeader:(null===(t=this.sportsMatchCardData)||void 0===t?void 0:t.cardTitle)||this.strings.widgetHeader,this.widgetProperties.attribution=this.strings.poweredByMSSports,this.widgetBackgroundMode=this.widgetProperties.getProperty("colorMode")||"light",this.widgetProperties.addPropertyChangeListener(this.propertiesHandler)),this.widgetSize=this.widgetInstance.tryGetApi("sizes",f.a,f.a),this.widgetSize&&(this.cardSize=this.widgetSize.getSize()||"small",this.widgetSize.addEventListener(this.sizeChangeHandler),this.getCurrentLayout()),this.widgetStatus=this.widgetInstance.tryGetApi("status",f.a,f.a),this.widgetSettings=this.widgetInstance.tryGetApi("settings",f.a,f.a),this.widgetSettings&&this.widgetSettings.addEventListener(this.settingsHandler),this.widgetVisibility=this.widgetInstance.tryGetApi("visibility",f.a,f.a),this.widgetVisibility&&this.widgetVisibility.addEventListener(this.visibilityHandler),this.widgetLifecycle=this.widgetInstance.tryGetApi("lifecycle",f.a,f.a),this.widgetLifecycle&&this.widgetLifecycle.addEventListener(this.lifecycleHandler),this.widgetInteractions=this.widgetInstance.tryGetApi("interactions",f.a,f.a),this.widgetInteractions&&this.widgetInteractions.addEventListener(this.interactionsHandler)):D.a.sendAppErrorEvent(Object.assign(Object.assign({},x.Vg),{message:"Fail to get sports widget instance"}))}}addWidgetEvents(){this.uxStyle==w&&(this.widgetProperties&&this.widgetProperties.addPropertyChangeListener(this.propertiesHandler),this.widgetSize&&this.widgetSize.addEventListener(this.sizeChangeHandler),this.widgetSettings&&this.widgetSettings.addEventListener(this.settingsHandler),this.widgetVisibility&&this.widgetVisibility.addEventListener(this.visibilityHandler),this.widgetLifecycle&&this.widgetLifecycle.addEventListener(this.lifecycleHandler),this.widgetInteractions&&this.widgetInteractions.addEventListener(this.interactionsHandler))}getExperienceType(){return o.a.sportsCardWC}getCurrentSportsMatchupData(){var t;if(!(null===(t=this.sportsMatchupData)||void 0===t?void 0:t.length))return;let e=1;switch(this.cardSize){case"medium":e=H.maxMatchCount-1;break;case"large":e=H.maxMatchCount;break;default:e=1}return{sportsMatchupCardData:this.sportsMatchupData[0].sportsMatchupCardData,sportsMatchOverallData:this.sportsMatchupData[0].sportsMatchOverallData.slice(0,e)}}getCurrentLayout(){switch(this.cardSize){case"medium":return void(this.cardLayout=l.Medium);case"large":return void(this.cardLayout=l.Large);default:return void(this.cardLayout=l.Small)}}handleClickForSuggestions(t){var e,i,r;if(null===(e=this.recommendations)||void 0===e?void 0:e.length){if(t){t.preventDefault();const e=t.currentTarget;e&&D.a.sendActionEvent(e,k.a.Click)}null===(i=this.inputControl)||void 0===i||i.focus(),Object($.b)(null===(r=this.inputControl)||void 0===r?void 0:r.value)?(this.sportsSuggestions=[],this.sportsSuggestions.push(...this.recommendations),this.showSuggests=!0):this.fetchSuggestions(this.inputControl.value)}}handleInputForSuggestions(t){if(t){t.preventDefault();const e=t.currentTarget;e&&D.a.sendActionEvent(e,k.a.Click)}this.inputControl&&!Object($.b)(this.config.fetchSearchSuggestionUrl)&&this.fetchSuggestions(this.inputControl.value)}handleSelectSuggest(t,e){var i;if(t){t.preventDefault();const e=t.currentTarget;e&&D.a.sendActionEvent(e,k.a.Click)}this.activeSuggestIndex=e.index;e.selected=!0,this.noSuggestResult=!1,this.sportsSuggestions=[],this.showSuggests=!1,this.recommendations.forEach(t=>t.selected=t.id==e.id),this.defaultSuggestions=(null===(i=this.sportsSuggestions)||void 0===i?void 0:i.length)?[]:this.recommendations,this.followSports(e)}handleUnselectSuggest(t,e){if(t){t.preventDefault();const e=t.currentTarget;e&&D.a.sendActionEvent(e,k.a.Click)}this.followSports(e,!0)}cancelSetting(t){if(t){t.preventDefault();const e=t.currentTarget;e&&D.a.sendActionEvent(e,k.a.Click)}this.showSuggests=!1,this.noSuggestResult=!1,this.sportsSuggestions=[],this.inputControl.value="",this.widgetSettings?this.widgetSettings.hideSettings():this.switchToMatchCard()}actionButtonClickHandler(t){t&&(t.preventDefault(),D.a.sendActionEvent(t.target,k.a.Click,k.b.Customize)),this.toggleActionMenu(t,!this.isActionMenuOpen)}toggleActionMenu(t,e=!1){this.isActionMenuOpen=e,e&&t?(this.actionButtonControl=t&&t.currentTarget,document.addEventListener("click",this.handleClickForActionMenu),document.addEventListener("keydown",this.handleKeyDownForActionMenu)):(this.actionButtonControl=null,document.removeEventListener("click",this.handleClickForActionMenu),document.removeEventListener("keydown",this.handleKeyDownForActionMenu))}initActionMenuItems(){var t,e;this.config.enableCardAction&&(this.actionMenuItems=[],!this.config.enableHideCard||Object($.b)(null===(t=this.sportsCardTelemetryData)||void 0===t?void 0:t.primaryEntityType)||Object($.b)(null===(e=this.sportsCardTelemetryData)||void 0===e?void 0:e.primaryEntityName)||this.actionMenuItems.push({glyph:L.hb,title:Object($.a)(this.strings.sportsNotInterested,this.sportsCardTelemetryData.primaryEntityName),id:"dislike",telemetryTag:this.telemetryContext&&this.telemetryContext.menuHideCard&&this.telemetryContext.menuHideCard.getMetadataTag(),onClick:()=>Object(h.a)(this,void 0,void 0,(function*(){this.handleSportsNotInterested()}))}),Object($.b)(this.strings.sportsHideCard)||this.actionMenuItems.push({glyph:L.hb,title:this.strings.sportsHideCard,id:"hide",telemetryTag:this.telemetryContext&&this.telemetryContext.menuHideSports&&this.telemetryContext.menuHideSports.getMetadataTag(),onClick:()=>Object(h.a)(this,void 0,void 0,(function*(){this.handleHideSports()}))}),this.actionMenuItems.push({glyph:L.oc,id:"more",title:this.strings.sportsMoreSetting,telemetryTag:this.telemetryContext&&this.telemetryContext.menuMoreSettings&&this.telemetryContext.menuMoreSettings.getMetadataTag(),onClick:()=>Object(h.a)(this,void 0,void 0,(function*(){this.handleMoreSettings()}))}))}setCardProperties(){var t,e,i,r,a,s,n,o,c,l;if(this.uxStyle==w){if(this.widgetInstanceId){const t=m.a.findProvider(this);t.setAttribute("background-color","dark"===this.widgetBackgroundMode?"#2C2C2C":"#F2F2F2"),t.registerCSSCustomProperty&&t.registerCSSCustomProperty(v.G)}else null===(i=null===(e=null===(t=this.$fastController)||void 0===t?void 0:t.element)||void 0===e?void 0:e.parentElement)||void 0===i||i.setAttribute("background-color","dark"===this.widgetBackgroundMode?"#2C2C2C":"#F2F2F2");if(this.sportsViewMode==d.Settings)null===(s=null===(a=null===(r=this.$fastController)||void 0===r?void 0:r.element)||void 0===a?void 0:a.parentElement)||void 0===s||s.setAttribute("neutral-base-color","dark"===this.widgetBackgroundMode?"#000000":"#FFFFFF"),setTimeout(()=>{this.shadowRoot.querySelectorAll(".sports-wc-settings").forEach(t=>{t&&(A.a.addElement(t),D.a.sendContentViewEvent(t,E.b.View))})},200);else{null===(c=null===(o=null===(n=this.$fastController)||void 0===n?void 0:n.element)||void 0===o?void 0:o.parentElement)||void 0===c||c.setAttribute("neutral-base-color","#687DCA");const t="dark"===this.widgetBackgroundMode?"background: linear-gradient(160deg, rgba(48,61,105,0), rgba(48,61,105,1)), #2C2C2C":"background: linear-gradient(160deg, rgba(215,220,241,0), rgba(215,220,241,1)), #F2F2F2";this.shadowRoot.querySelectorAll(".sports-wc").forEach(e=>{e&&e.querySelectorAll("#sports-matchup-wc").forEach(e=>{e&&e.shadowRoot.querySelectorAll(".sports-matchup-card").forEach(e=>{e&&e.setAttribute("style",t)})})})}this.widgetProperties&&(this.widgetProperties.title=this.sportsViewMode==d.Settings?this.strings.widgetHeader:(null===(l=this.sportsMatchCardData)||void 0===l?void 0:l.cardTitle)||this.strings.widgetHeader)}}switchToSetting(){this.sportsViewMode=d.Settings,this.setCardProperties()}switchToMatchCard(){this.sportsViewMode=d.Default,this.setCardProperties()}readSportsDataFromIndexDb(){if(!this.config.enableCache)return!1;if(this.indexedDb||(this.indexedDb=new y.a),!this.indexedDb)return Object(I.b)(x.Ug,"new IndexedDb() failed for sports card"),!1;try{this.indexedDb.initializeIndexedDb(1,this.SportsIndexedDbStoreName,this.SportsIndexedDbName).then(()=>{this.popSportsDataFromIndexDb()})}catch(t){return Object(I.c)(t,x.Ug,`Exception when initial&read indexed db: ${this.SportsIndexedDbStoreName} - ${this.SportsIndexedDbName}`),!1}return!0}popSportsDataFromIndexDb(){this.config.enableCache&&this.indexedDb.getAllObjects().then(t=>{var e;t&&(t.forEach(t=>{var e,i,r,a;switch(t.sportsCardCacheKey){case j.SportsMatchCardData:this.sportsMatchCardData=t.sportsCardCacheData,this.widgetProperties&&(this.widgetProperties.title=(null===(e=this.sportsMatchCardData)||void 0===e?void 0:e.cardTitle)||this.strings.widgetHeader,this.isLeagueWithNoLandingPage(null===(i=t.sportsCardTelemetryData)||void 0===i?void 0:i.leagueId)?this.widgetProperties.activationUrl=null===(r=this.sportsMatchCardData)||void 0===r?void 0:r.seeMoreClickthroughUrl:this.widgetProperties.activationUrl=null===(a=this.sportsMatchCardData)||void 0===a?void 0:a.cardTitleClickthroughUrl);break;case j.SportsMatchDataList:this.sportsMatchDataList=t.sportsCardCacheData;break;case j.SportsSelectedEntityId:this.sportsEntityId=t.sportsCardCacheData;break;case j.SportsSelectedEntity:this.selectedEntity=t.sportsCardCacheData;break;case j.SportsRecommendation:this.allRecommendations=[],Array.isArray(t.sportsCardCacheData)&&t.sportsCardCacheData.length&&t.sportsCardCacheData.forEach(t=>{this.allRecommendations.push(Object.assign(Object.assign({},t),{telemetryContext:Object(p.g)(this.telemetryObject,t,!0)}))}),this.recommendations=this.allRecommendations.slice(0,H.maxRecommendationCount),this.defaultSuggestions=this.recommendations}}),this.sportsMatchCardData&&this.sportsViewMode==d.Initial&&(this.sportsMatchupData=[],this.sportsMatchupData.push({sportsMatchupCardData:this.sportsMatchCardData,sportsMatchOverallData:this.sportsMatchDataList}),this.sportsMatchDataList&&this.sportsMatchDataList.length>0&&(this.sportsCardTelemetryData=this.sportsMatchDataList[0].sportsMatchTelemetryData),this.sportsViewMode=d.Default,Object(G.a)(o.a.sportsCardWC),this.markTimeToVisuallyReady(!0)),this.currentSportsMatchupData=this.getCurrentSportsMatchupData(),this.telemetryContext=Object(p.f)(this.telemetryObject,this.sportsMatchDataList,this.sportsMatchCardData,this.sportsCardTelemetryData,Object(R.c)(null===(e=this.widgetSize)||void 0===e?void 0:e.getSize())),this.fetchSportsMatchData(this.sportsEntityId))})}refreshCache(){this.config.enableCache&&this.indexedDb&&(this.sportsMatchCardData&&this.indexedDb.setObject(j.SportsMatchCardData,{sportsCardCacheKey:j.SportsMatchCardData,sportsCardCacheData:this.sportsMatchCardData}),this.sportsMatchDataList&&this.indexedDb.setObject(j.SportsMatchDataList,{sportsCardCacheKey:j.SportsMatchDataList,sportsCardCacheData:this.sportsMatchDataList}),this.sportsEntityId&&this.indexedDb.setObject(j.SportsSelectedEntityId,{sportsCardCacheKey:j.SportsSelectedEntityId,sportsCardCacheData:this.sportsEntityId}),this.allRecommendations.length&&this.indexedDb.setObject(j.SportsRecommendation,{sportsCardCacheKey:j.SportsRecommendation,sportsCardCacheData:this.allRecommendations}),this.selectedEntity&&this.indexedDb.setObject(j.SportsSelectedEntity,{SportsCardCacheKey:j.SportsSelectedEntity,sportsCardCacheData:this.selectedEntity}))}refreshEntityIdCache(){this.config.enableCache&&this.indexedDb&&(this.indexedDb.setObject(j.SportsSelectedEntityId,{sportsCardCacheKey:j.SportsSelectedEntityId,sportsCardCacheData:this.sportsEntityId}),this.indexedDb.setObject(j.SportsSelectedEntity,{sportsCardCacheKey:j.SportsSelectedEntity,sportsCardCacheData:this.selectedEntity}))}updateRefreshTimer(){let t=this.config.refreshIntervalInMs||H.minuteInMs;if(this.sportsMatchDataList&&this.sportsMatchDataList.length){const e=this.sportsMatchDataList.filter(t=>t.sportsMatchData.gameStateCatetory==T.a.inprogressGame);if(e&&e.length)t=H.minuteInMs;else{const e=this.sportsMatchDataList.filter(t=>t.sportsMatchData.gameStateCatetory==T.a.preGame);if(e&&e.length){const i=e.sort((t,e)=>t.sportsMatchTelemetryData.gameStartTime<e.sportsMatchTelemetryData.gameStartTime?-1:1)[0],r=Date.now()+15*H.minuteInMs;t=(i.sportsMatchTelemetryData.gameStartTime||0)>r?24*H.hourInMs:H.minuteInMs}else{const e=this.sportsMatchDataList.filter(t=>t.sportsMatchData.gameStateCatetory==T.a.postGame);e&&e.length&&(t=H.hourInMs)}}}if(this.refreshTimer&&this.refreshIntervalInMs==t||(this.refreshIntervalInMs=t,this.setRefreshTimer(t)),this.widgetStatus&&this.lastUpdateTime>0){Date.now()-this.lastUpdateTime>H.minuteInMs&&this.widgetStatus.showLastUpdated(new Date(this.lastUpdateTime))}else this.widgetStatus&&this.widgetStatus.hideLastUpdated()}setRefreshTimer(t=null){this.clearRefreshTimer(!1),this.refreshTimer=setInterval(()=>this.fetchSportsMatchData(this.sportsEntityId),t||H.minuteInMs)}clearRefreshTimer(t=!0){this.refreshTimer&&(clearInterval(this.refreshTimer),this.refreshTimer=null),t&&this.checkTimer&&(clearInterval(this.checkTimer),this.checkTimer=null)}getRecommendations(t){return Object(h.a)(this,void 0,void 0,(function*(){if(t&&t.length){this.allRecommendations=[];let e=0;t.forEach(t=>{var i;if(!t||e>H.maxRecommendationCount-1)return;const r=g.a.mapSubCardToSportsMatchData(t,this.strings,0);if(r&&r.sportsCardTelemetryData){const t=r.sportsCardTelemetryData;if(t&&t.primaryEntityId){const r={index:e++,id:t.primaryEntityId,name:t.primaryEntityName,displayText:t.primaryEntityName,type:t.primaryEntityType,typeDisplayHint:0===(null===(i=t.primaryEntityType)||void 0===i?void 0:i.localeCompare(p.c.Team,void 0,{sensitivity:"accent"}))?Object($.a)(this.strings.teamDescription,t.leagueName):this.strings.leagueDescription};this.allRecommendations.push(Object.assign(Object.assign({},r),{telemetryContext:Object(p.g)(this.telemetryObject,r,!0)}))}}else Object(I.b)(x.Tg,"Parse sports feed data error",`market:${Object(b.b)().CurrentMarket}, entityId:${this.sportsEntityId}, ocid:${this.config.ocid}, response:${t}`)}),this.selectedEntity&&this.selectedEntity.id&&!this.allRecommendations.some(t=>t.id===this.selectedEntity.id)&&this.allRecommendations.push({index:0,id:this.selectedEntity.id,name:this.selectedEntity.name,type:this.selectedEntity.type}),this.recommendations=this.allRecommendations.slice(0,H.maxRecommendationCount),this.defaultSuggestions=this.recommendations}}))}isLeagueWithNoLandingPage(t){if(!t)return!1;const e=Object(b.b)().CurrentMarket;if(!e)return!1;const i=t.toLowerCase(),r=e.toString().toLowerCase(),a=this.config.leagueidToMktNoLandingPageMap;if(!a||0==a.length)return!1;const s=new Map;if(a.forEach(t=>{if(!t||!t.leagueId||!t.commaSeperatedMarketList)return;const e=""+t.leagueId;s.has(e)||s.set(e,""+t.commaSeperatedMarketList)}),s.has(i)){const t=s.get(i);return!!t&&t.includes(r)}return!1}}H.hourInMs=36e5,H.minuteInMs=6e4,H.maxMatchCount=4,H.maxRecommendationCount=2,H.muidKey="MUID",Object(h.d)([W.d],H.prototype,"sportsViewMode",void 0),Object(h.d)([W.d],H.prototype,"currentSportsMatchupData",void 0),Object(h.d)([W.d],H.prototype,"sportsMatchupData",void 0),Object(h.d)([W.d],H.prototype,"sportsMatchCardData",void 0),Object(h.d)([W.d],H.prototype,"sportsMatchDataList",void 0),Object(h.d)([W.d],H.prototype,"sportsSuggestions",void 0),Object(h.d)([W.d],H.prototype,"activeSuggestIndex",void 0),Object(h.d)([W.d],H.prototype,"defaultSuggestions",void 0),Object(h.d)([W.d],H.prototype,"showSuggests",void 0),Object(h.d)([W.d],H.prototype,"noSuggestResult",void 0),Object(h.d)([W.d],H.prototype,"actionMenuItems",void 0),Object(h.d)([W.d],H.prototype,"isActionMenuOpen",void 0),Object(h.d)([W.d],H.prototype,"widgetBackgroundMode",void 0),Object(h.d)([W.d],H.prototype,"telemetryContext",void 0),Object(h.d)([W.d],H.prototype,"cardLayout",void 0),Object(h.d)([W.d],H.prototype,"uxStyle",void 0);var B=i("6BDD"),V=i("6vBc"),z=i("ZIAv"),q=i("eUhr"),_=i("vmYD"),J=i("m1Vi"),K=i("bica"),Z=i("+53S"),Q=i("UNqU");const Y=B.b`
+    <svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        class="sports-wc-st-search-icon"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path
+            d="M8.5 3a5.5 5.5 0 014.23 9.02l4.12 4.13a.5.5 0 01-.63.76l-.07-.06-4.13-4.12A5.5 5.5 0 118.5 3zm0 1a4.5 4.5 0 100 9 4.5 4.5 0 000-9z"
+        />
+    </svg>
+`,X=B.b`
+    <svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M6 10C6 9.72386 6.22386 9.5 6.5 9.5H9.5V6.5C9.5 6.22386 9.72386 6 10 6C10.2761 6 10.5 6.22386 10.5 6.5V9.5H13.5C13.7761 9.5 14 9.72386 14 10C14 10.2761 13.7761 10.5 13.5 10.5H10.5V13.5C10.5 13.7761 10.2761 14 10 14C9.72386 14 9.5 13.7761 9.5 13.5V10.5H6.5C6.22386 10.5 6 10.2761 6 10Z"/>
+        <path d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10C17 13.866 13.866 17 10 17Z"/>
+    </svg>
+`,tt=B.b`
+    <svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M10.0013 1.6665C14.6036 1.6665 18.3346 5.39746 18.3346 9.99984C18.3346 14.6022 14.6036 18.3332 10.0013 18.3332C5.39893 18.3332 1.66797 14.6022 1.66797 9.99984C1.66797 5.39746 5.39893 1.6665 10.0013 1.6665ZM12.6844 7.47456L8.95964 11.1993L7.31824 9.55792C7.07417 9.31384 6.67844 9.31384 6.43436 9.55792C6.19029 9.802 6.19029 10.1977 6.43436 10.4418L8.51772 12.5251C8.7618 12.7692 9.15747 12.7692 9.40155 12.5251L13.5682 8.35842C13.8123 8.11437 13.8123 7.71864 13.5682 7.47456C13.3241 7.23049 12.9285 7.23049 12.6844 7.47456Z"/>
+    </svg>
+`,et=B.b`
+    <li
+        class="${(t,e)=>e.index==e.parent.activeSuggestIndex?"sports-wc-st-suggest-item sports-wc-st-suggest-item-h":"sports-wc-st-suggest-item"}"
+        role="option"
+        tabindex="0"
+        title="${t=>t.name}"
+        aria-label="${t=>t.name} ${t=>t.displayText} ${(t,e)=>t.selected?e.parent.strings.haveFollowed:e.parent.strings.followSports}"
+        aria-selected="${(t,e)=>e.index==e.parent.activeSuggestIndex}"
+        @click="${(t,e)=>t.selected?e.parent.handleUnselectSuggest(e.event,t):e.parent.handleSelectSuggest(e.event,t)}"
+        @keypress="${(t,e)=>t.selected?e.parent.handleUnselectSuggest(e.event,t):e.parent.handleSelectSuggest(e.event,t)}"
+        ${Object(q.b)(t=>t.telemetryContext&&t.telemetryContext.followEntity&&t.telemetryContext.followEntity.getMetadataTag())}
+    >
+        ${Object(V.a)((t,e)=>e.parent.showImage(),B.b`
+            <div class="sports-wc-st-suggest-icon" tabindex="-1">
+                <img class="sports-wc-st-suggest-img"
+                    role="presentation"
+                    src="${t=>t.imageUrl}"
+                    aria-label="${t=>t.displayText}" />
+            </div>`)}
+        <div class="sports-wc-st-suggest-content" tabindex="-1">
+            <div class="sports-wc-st-suggest-text">${t=>t.name}</div>
+            <div class="sports-wc-st-suggest-description">${t=>t.typeDisplayHint}</div>
+        </div>
+        <div class="sports-wc-st-suggest-add"
+            tabindex="-1"
+            title="${(t,e)=>t.selected?e.parent.strings.haveFollowed:e.parent.strings.followSports}"
+            aria-label="${(t,e)=>t.selected?e.parent.strings.haveFollowed:e.parent.strings.followSports}"
+        >
+            ${t=>t.selected?tt:X}
+        </div>
+    </li>
+`,it=B.b`
+    <div class="sports-wc-settings" ${Object(q.b)(t=>t.telemetryContext&&t.telemetryContext.editSports&&t.telemetryContext.editSports.getMetadataTag())}>
+        <div class="sports-wc-st-inputcon">
+            <input
+                class="sports-wc-st-input"
+                id="sports-wc-st-input"
+                placeholder="${t=>t.strings.searchPlaceholder}"
+                @input="${(t,e)=>t.handleInputForSuggestions(e.event)}"
+                @click="${(t,e)=>t.handleClickForSuggestions(e.event)}"
+                type="text"
+                value=""
+                autofocus="autofocus"
+                autocomplete="off"
+                aria-controls="sports_suggestion_list"
+                aria-expanded="${t=>t.showSuggests}"
+                aria-autocomplete="both"
+                aria-activedescendant=${t=>null!=t.activeSuggestIndex&&t.activeSuggestIndex>=0?"sp_wc_sg_"+t.activeSuggestIndex:null}
+                aria-owns="sports_suggestion_list"
+                ${Object(Z.b)("inputControl")}
+                ${Object(q.b)(t=>t.telemetryContext&&t.telemetryContext.sportsInput&&t.telemetryContext.sportsInput.getMetadataTag())}
+            />
+            ${Y}
+        </div>
+        ${Object(V.a)(t=>t.defaultSuggestions&&!1===t.showSuggests,B.b`
+            <div class="sports-wc-suggested-list" aria-expanded="true">
+                <div class="sports-wc-suggested">
+                    <span class="sports-wc-line"></span>
+                    <span class="sports-wc-suggested-title">${t=>t.strings.suggestedForYou}</span>
+                    <span class="sports-wc-line"></span>
+                </div>
+                ${Object(Q.c)(t=>t.defaultSuggestions,et)}
+            </div>`)}
+        <div class="setting-action-button">
+            <fluent-button
+                class="sports-wc-st-done sd-action"
+                appearance="accent"
+                aria-label="${t=>t.strings.saveSettings}"
+                @click="${(t,e)=>t.cancelSetting(e.event)}"
+                ${Object(q.b)(t=>t.telemetryContext&&t.telemetryContext.saveSetting&&t.telemetryContext.saveSetting.getMetadataTag())}
+            >
+                ${t=>t.strings.done}
+            </fluent-button>
+        </div>
+        ${Object(V.a)(t=>0!=t.showSuggests&&t.sportsSuggestions,B.b`
+            <div
+                class="sports-wc-st-suggest"
+                id="sports_suggestion_list"
+                aria-expanded="${t=>0!=t.showSuggests}"
+                aria-label="${t=>t.strings.searchPlaceholder}"
+                aria-labelledby="sports-wc-st-input"
+                aria-live="polite"
+                tabindex="1"
+            >
+                <ul
+                    class="sports-wc-st-suggest-list"
+                    ${Object(Z.b)("suggestListControl")}
+                >
+                    ${Object(V.a)(t=>t.sportsSuggestions&&t.sportsSuggestions.length>0,B.b`${Object(Q.c)(t=>t.sportsSuggestions,et,{positioning:!0})}`)}
+                    ${Object(V.a)(t=>t.noSuggestResult,B.b`<li
+                            role="option"
+                            aria-label="${t=>t.strings.noSearchResult}"
+                            title="${t=>t.strings.noSearchResult}"
+                            class="sports-wc-st-suggest-text sports-wc-st-suggest-noret"
+                            tabindex="0"
+                        >
+                            ${t=>t.strings.noSearchResult}
+                        </li>`)}
+                </ul>
+            </div>`)}
+    </div>
+`;J.b,K.b,z.a,_.a;const rt=B.b`
+    <msft-sports-matchup-card
+        id="sports-matchup-wc"
+        background="gradient"
+        uxstyle="${t=>t.uxStyle}"
+        card-layout="${t=>t.cardLayout}"
+        :sportsMatchupCardData="${t=>{var e;return null===(e=t.currentSportsMatchupData)||void 0===e?void 0:e.sportsMatchupCardData}}"
+        :sportsMatchData="${t=>{var e;return(null===(e=t.currentSportsMatchupData)||void 0===e?void 0:e.sportsMatchOverallData)&&t.currentSportsMatchupData.sportsMatchOverallData.map((function(t){return t.sportsMatchData}))}}"
+        clickthrough-target=${t=>t.openLinksInNewTab?"_blank":"_self"}
+        ${Object(q.b)(t=>t.telemetryContext&&t.telemetryContext.sportsCard&&t.telemetryContext.sportsCard.getMetadataTag())}
+        :matchTelemetryTags=${t=>t.telemetryContext&&t.telemetryContext.destinations}
+        :headerTelemetryTag=${t=>t.telemetryContext&&t.telemetryContext.header&&t.telemetryContext.header.getMetadataTag()}
+        :seeMoreTelemetryTag=${t=>t.telemetryContext&&t.telemetryContext.seeMore&&t.telemetryContext.seeMore.getMetadataTag()}
+    />
+    ${Object(V.a)(t=>t.config.enableCardAction,B.b`
+        <fluent-button
+            slot="more-actions"
+            class="more-actions"
+            appearance="neutral"
+            style="width: 24px; height: 24px; min-width: 24px; border-width: 0; border-radius: 16px; cursor: pointer;"
+            @click="${(t,e)=>t.actionButtonClickHandler(e.event)}"            
+            title="${t=>t.strings.sportsActionButton}"
+            aria-label="${t=>t.strings.sportsActionButton}"
+            ${Object(q.b)(t=>t.telemetryContext&&t.telemetryContext.actionButton&&t.telemetryContext.actionButton.getMetadataTag())}
+        >
+            ${L.t}
+        </fluent-button>
+    `)}
+`,at=B.b`
+    <msn-actions-menu 
+        :referrerButton=${t=>t.actionButtonControl}
+        :menuItems=${t=>t.actionMenuItems}
+        defaulthorizontalposition="start"
+    />
+`,st=B.b`
+    ${Object(V.a)(t=>t.sportsViewMode==d.Settings,B.b`
+        <fluent-design-system-provider use-defaults background-color=${t=>"dark"===t.widgetBackgroundMode?"#2c2c2c":"#f2f2f2"}
+            neutral-base-color=${t=>"dark"===t.widgetBackgroundMode?"#000000":"#FFFFFF"}
+            style="padding: 0; width: 100%; height: 100%; margin: 0;"
+        >
+            <div class="sports-wc">
+                ${it}
+            </div>
+        </fluent-design-system-provider>
+    `)}
+    ${Object(V.a)(t=>t.sportsViewMode!=d.Settings,B.b`
+        <fluent-design-system-provider
+            neutral-base-color="#687DCA"
+            style="padding: 0; width: 100%; height: 100%; margin: 0;"
+        >
+            <a class="sports-wc"
+                href=${t=>t.currentSportsMatchupData&&t.currentSportsMatchupData.sportsMatchupCardData&&t.currentSportsMatchupData.sportsMatchupCardData.cardTitleClickthroughUrl}
+                target=${t=>t.openLinksInNewTab?"_blank":"_self"}
+                ${Object(q.b)(t=>t.telemetryContext&&t.telemetryContext.header&&t.telemetryContext.header.getMetadataTag())}>
+                ${Object(V.a)(t=>!t.sportsViewMode||t.sportsViewMode==d.Default,B.b`
+                    ${rt}
+                `)}
+            </a>
+        </fluent-design-system-provider>
+    `)}
+    ${Object(V.a)(t=>t.isActionMenuOpen,at)}
+`;var nt=i("4X57"),ot=i("CzTk"),ct=i("oqLQ");const dt=nt.a`
+    .more-actions {
+        right: 16px;
+        left: auto;
+    }
+    .sports-wc-st-suggest-icon {
+        float: left;
+    }
+`,lt=nt.a`
+    .more-actions {
+        left: 16px;
+        right: auto;
+    }
+    .sports-wc-st-suggest-icon {
+        float: right;
+    }
+`,ht=nt.a`
+.sports-wc {
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.sports-wc-settings {
+    height: 100%;
+    padding: 48px 16px 16px 16px;
+}
+.sports-wc-st-inputcon {
+    margin-bottom: 16px;
+    height: 32px;
+    width: 100%;
+    border: 1px solid ${v.l.var};
+    border-radius: 2px;
+    display: flex;
+    box-shadow: 0 1px 1px ${v.l.var};
+}
+.sports-wc-st-search-icon {
+    margin: 6px;
+    fill: currentcolor;
+}
+.sports-wc-st-input {
+    height: calc(100% - 4px);
+    margin: 2px 1px;
+    flex: 1 0 0px;
+    background: transparent;
+    min-width: inherit;
+    width: 100%;
+    padding: 0 5px;
+    border: none;
+    outline: none;
+    color: ${v.G.var};
+    text-overflow: ellipsis !important;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.sports-wc-st-input:disabled {
+    background: ${v.s.var};
+    opacity: var(--disabled-opacity);
+}
+
+.sports-wc-suggested {
+    display: flex;
+    color: ${v.G.var};
+}
+.sports-wc-suggested-title {
+    font-size: var(--type-ramp-minus-1-font-size);
+    line-height: var(--type-ramp-minus-1-line-height);
+}
+.sports-wc-line {
+    border-bottom: 1px solid ${v.k.var};
+    height: 10px;
+    flex-grow: 1;
+    flex-basis: 0;
+}
+.sports-wc-st-selected {
+    margin-bottom: 12px;
+}
+
+.sports-wc-st-suggest-list {
+    top: 82px;
+    width: 266px;
+    bottom: 44px;
+    display: block;
+    position: absolute;
+    list-style: none;
+    border: 1px solid;
+    border-radius: 4px;
+    margin: 0;
+    padding: 0;
+    z-index: 99;
+    outline: none;
+    border-color: ${v.k.var};
+    background: ${v.w.var};
+    overflow-y: scroll;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+.sports-wc-st-suggest-item {
+    display: flex;
+    padding: 4px 12px;
+    gap: 4px;
+    align-items: center;
+}
+.sports-wc-st-suggest-icon {
+    width: 28px;
+    height: 28px;
+    float: left;
+    padding-inline-end: 8px
+}
+.sports-wc-st-suggest-img {
+    width: 100%
+}
+.sports-wc-st-suggest-content {
+    width: calc(100% - 20px);
+    text-decoration: none;
+    text-align: start;
+}
+.sports-wc-st-suggest-text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 20px;
+    font-size: var(--type-ramp-base-font-size);
+    line-height: var(--type-ramp-base-line-height);
+    color: ${v.G.var}
+}
+
+.sports-wc-st-suggest-noret {
+    text-align: center;
+}
+
+.sports-wc-st-suggest-item:hover {
+    background: ${v.o.var};
+}
+
+.sports-wc-st-suggest-description {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 16px;
+    font-size: var(--type-ramp-minus-1-font-size);
+    line-height: var(--type-ramp-minus-1-line-height);
+    color: ${v.z.var};
+}
+.sports-wc-st-suggest-add {
+    display: flex;
+    align-items: center;
+    width: 20px;
+    fill: ${v.z.var};
+    cursor: pointer;
+}
+
+.sports-wc-st-suggest-add:hover path {
+    fill: ${v.c.var};
+}
+
+.sports-wc-st-recom {
+    color: ${v.G.var};
+    font-size: var(--type-ramp-minus-1-font-size);
+    line-height: var(--type-ramp-minus-1-line-height);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 50%;
+}
+.setting-action-button {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sports-wc-st-done {
+    width: 118px;
+    align-self: center;
+    height: 30px;
+    border-radius: 4px;
+    font-size: var(--type-ramp-minus-1-font-size);
+    line-height: var(--type-ramp-minus-1-line-height);
+}
+.more-actions {
+    position: absolute;
+    top: 8px;
+    --corner-radius: 16;
+    min-width: 24px;
+    width: 24px;
+    height: 24px;
+    z-index: 9;
+}
+`.withBehaviors(v.l,v.w,v.z,v.h,v.k,v.o,v.s,v.D,v.G,v.P,new ot.a(dt,lt),Object(ct.c)(nt.a`
+                :host {
+                    forced-color-adjust: auto;
+                }
+            `)),ut={experienceConfigSchema:c}},OTKB:function(t,e,i){"use strict";i.d(e,"c",(function(){return n})),i.d(e,"b",(function(){return o})),i.d(e,"g",(function(){return c})),i.d(e,"f",(function(){return d})),i.d(e,"e",(function(){return l})),i.d(e,"d",(function(){return h})),i.d(e,"a",(function(){return u}));var r=i("hOj1"),a=i("rvYQ"),s=i("I6Lx");const n="00000000400F9D16",o="3a4d129e-7f50-4e0d-a7fd-033add0a29f4",c="service::www.msn.com::MBI_SSL",d="User.Read Userinfo.ReadWrite",l="https://www.api.msn.com/",h="https://enterprisenews.microsoft.com/";function u(t){var e;const i=a.a.IsCnDomain||"zh-cn"===(null===(e=null===s.b||void 0===s.b?void 0:s.b.Locale)||void 0===e?void 0:e.toLowerCase());t&&Object(r.c)("MUID",t,365,i?".msn.cn":".msn.com","/")}},RIQ7:function(t,e,i){"use strict";i.d(e,"c",(function(){return s})),i.d(e,"b",(function(){return n})),i.d(e,"a",(function(){return o}));var r=i("Am8i"),a=i("u5KZ");i("y+Kz");function s(t,e){if(t){const i={type:r.e.Module,name:e,content:{}};return t.addOrUpdateChild(i)}return null}function n(){if(!a.a)return;const t=a.a.getPageMetadata();return t&&t.contract&&t.contract.page?t.contract.page.ocid:void 0}function o(t){const e=n(),i=t.toLowerCase();if(!e||-1!=i.indexOf("?ocid=")||-1!=i.indexOf("&ocid="))return t;const r=-1==t.indexOf("?")?"?":"&";return`${t}${r}ocid=${encodeURIComponent(e)}`}},S7gc:function(t,e,i){"use strict";i.d(e,"a",(function(){return s}));var r,a=i("dMmp");!function(t){t[t.Default=0]="Default",t[t.Medium=1]="Medium",t[t.MonthDate=2]="MonthDate",t[t.Weekday=3]="Weekday",t[t.Time=4]="Time"}(r||(r={}));class s{constructor(){this.dateFormatOptionsMap=new Map,this.setSupportsLocaleSpecifiers(),this.dateFormatOptionsMap.set(r.Medium,{year:"numeric",month:"short",day:"numeric"}),this.dateFormatOptionsMap.set(r.MonthDate,{month:"short",day:"numeric"}),this.dateFormatOptionsMap.set(r.Weekday,{weekday:"short"}),this.dateFormatOptionsMap.set(r.Time,{hour:"numeric",minute:"numeric"})}overrideDateFormat(t,e){t&&e&&this.dateFormatOptionsMap.set(t,e)}localizedDateString(t,e){return this.formatDate(t,r.Default,e)}localizedDateStringMedium(t,e){return this.formatDate(t,r.Medium,e)}localizedMonthDate(t,e){return this.formatDate(t,r.MonthDate,e)}localizedWeekday(t,e){return this.formatDate(t,r.Weekday,e)}formatTimeFromDate(t,e){return this.supportsLocaleSpecifiers&&this.dateFormatOptionsMap?t.toLocaleTimeString(e,this.dateFormatOptionsMap.get(r.Time)):t.toTimeString()}format(t,...e){return t?a.String.Format(t,...e):""}localizedNumberString(t,e){return this.supportsLocaleSpecifiers?t.toLocaleString(e):t.toString()}formatDate(t,e,i){let a=null;if(this.supportsLocaleSpecifiers)if(e===r.Default)a=t.toLocaleDateString(i);else if(this.dateFormatOptionsMap){const r=this.dateFormatOptionsMap.get(e);a=t.toLocaleDateString(i,r)}return null===a&&(a=t.toDateString()),null!==a?a.replace(/\u200E/g,"").replace(/\u200F/g,""):a}setSupportsLocaleSpecifiers(){this.supportsLocaleSpecifiers=(()=>{try{(0).toLocaleString("i")}catch(t){return"RangeError"===t.name}return!1})()}}},VGrc:function(t,e,i){"use strict";i.d(e,"b",(function(){return o})),i.d(e,"a",(function(){return c}));var r=i("D57K"),a=i("XlyT"),s=i("HxRh"),n=i("rfxS");function o(t,e,i,o,c=""){return Object(r.a)(this,void 0,void 0,(function*(){if(!t)return null;try{const r=t.tryGetApi("authenticator",n.a,n.a);return yield r.getToken(e,i,o,c)}catch(t){return Object(a.c)(t,s.Xb,"Exception calling GetToken",JSON.stringify(t)),null}}))}function c(t){return Object(r.a)(this,void 0,void 0,(function*(){if(!t)return null;try{const e=t.tryGetApi("authenticator",n.a,n.a);return yield e.getProperty("MUID")}catch(t){return Object(a.c)(t,s.Xb,"Exception fetching MUID",JSON.stringify(t)),null}}))}},W3y6:function(t,e,i){"use strict";i.d(e,"a",(function(){return r}));var r,a=i("D57K"),s=i("Ybri"),n=i("rvYQ"),o=i("ADRF"),c=i("I6Lx"),d=i("msIb"),l=i("KETb"),h=i("6ADy"),u=i("HxRh"),p=i("XlyT"),g=i("fuIx"),m=i("e8jz"),v=i("CgWR"),b=i("tERu"),f=i("ZwaX"),y=i("YuP+"),S=i("u5KZ"),O=i("/+Un"),w=i("kpPY"),C=i("hSGL"),j=i("lifk");!function(t){t.sportsApi="https://api.sports.microsoft.com/SportsReco/v1/SportsRecommendation?apikey=be5b9e52150e49f1b58fafff97d11487";const e={width:32,height:32,enableDpiScaling:!1,format:j.d.PNG};let i,r;function I(t,e,i,r,s=null,n=!1,o=null){return Object(a.a)(this,void 0,void 0,(function*(){if(Object(w.b)(t))return null;const c=i===f.a.Follow?"sid:"+t:t,g={Title:e,Sid:t},m={method:"POST",body:JSON.stringify({actionType:i,targetId:c,targetType:i===f.a.Follow?null:r,metadata:g}),headers:yield d.a.getOneServiceHeaders()};D()&&(m.credentials="include");const v=Object(h.c)("graph/actions");let b;(yield T(s,n)).forEach(t=>t.value&&v.searchParams.set(t.key,t.value)),o&&o.forEach(t=>t.value&&v.searchParams.set(t.key,t.value));try{return b=yield Object(l.b)(()=>Object(a.a)(this,void 0,void 0,(function*(){const t=yield fetch(v.href,m);if(t.status>=400){const e=`postActionRequest OneService returned error response. Status: ${t.status} for actionType: ${i}, targetId: ${c}, targetType: ${r}`;throw new Error(e)}return t.json()})),"postCardAction"+i),yield b}catch(t){Object(p.c)(t,u.bh,"Error while posting action for card interest action","Url: "+v.href)}return b}))}function x(){return Object(a.a)(this,void 0,void 0,(function*(){const t=yield function(){return Object(a.a)(this,void 0,void 0,(function*(){const t={method:"GET",headers:yield d.a.getOneServiceHeaders()};D()&&(t.credentials="include");const e=Object(h.c)("graph/actions");let i;(yield T()).forEach(t=>t.value&&e.searchParams.set(t.key,t.value)),e.searchParams.set("$top","100");try{return i=yield Object(l.b)(()=>Object(a.a)(this,void 0,void 0,(function*(){const i=yield fetch(e.href,t);if(i.status>=400){const t="getActionRequest OneService returned error response. Status: "+i.status;throw new Error(t)}return i.json()})),"getCardAction"),yield i}catch(t){return Object(p.c)(t,u.bh,"Error while getting action for card interest action","Url: "+e.href),null}}))}();t&&t.value&&t.value.length?function(t){if(!t)return;i=[],r=[];const e=t.filter(t=>null!=t&&0===t.actionType.localeCompare(f.a.Dislike,void 0,{sensitivity:"accent"})&&(0===t.targetType.localeCompare(f.c.League,void 0,{sensitivity:"accent"})||0===t.targetType.localeCompare(f.c.Team,void 0,{sensitivity:"accent"}))),a=t.filter(t=>null!=t&&0===t.actionType.localeCompare(f.a.Follow,void 0,{sensitivity:"accent"})&&(0===t.targetType.localeCompare(f.c.League,void 0,{sensitivity:"accent"})||0===t.targetType.localeCompare(f.c.Team,void 0,{sensitivity:"accent"})||t.metadata));e.length>0&&e.forEach(t=>{t.metadata&&t.metadata.Title&&i.push({id:t.targetId,name:t.metadata.Title,type:t.targetType})});a.length>0&&a.forEach(t=>{var e,i;r.push({id:(null===(e=t.metadata)||void 0===e?void 0:e.Sid)||"",name:null===(i=t.metadata)||void 0===i?void 0:i.Title,type:t.targetType,feedId:t.targetId})})}(t.value):t&&(i=[],r=[])}))}function M(t,e,i){return Object(a.a)(this,void 0,void 0,(function*(){if(Object(w.b)(t))return null;const r=t,s={method:"DELETE",headers:yield d.a.getOneServiceHeaders()};D()&&(s.credentials="include");const n=Object(h.c)("graph/actions");let o;(yield T()).forEach(t=>t.value&&n.searchParams.set(t.key,t.value));try{return o=yield Object(l.b)(()=>Object(a.a)(this,void 0,void 0,(function*(){const t=yield fetch(`${n.href}&$filter=actionType+eq+'${e}'+and+targetId+eq+'${r}'+and+targetType+eq+'${i}'`,s);if(t.status>=400){const a=`deleteActionRequest OneService returned error response. Status: ${t.status} for actionType: ${e}, targetId: ${r}, targetType: ${i}`;throw new Error(a)}return t})),"deleteCardAction"+e),yield o}catch(t){Object(p.c)(t,u.bh,"Error while delete action for card interest action","Url: "+n.href)}}))}function T(t=null,e=!0){return Object(a.a)(this,void 0,void 0,(function*(){return D()?d.a.getOneServiceParamsWithAuth(Object(n.b)().UserId,t||"Peregrine",e):d.a.getOneServiceParamsWithoutAuth(Object(n.b)().UserId,t||"Peregrine",e)}))}function D(){return Object(a.a)(this,void 0,void 0,(function*(){return!!c.b.UserIsSignedIn||(yield Object(O.d)())===b.c.SignedIn}))}function k(t){const e="undefined"!=typeof window&&Object(g.b)()&&Object(m.b)(),i=e?e.market||"en-us":Object(n.b)().CurrentMarket||"en-us",r=e?e.anid:Object(n.b)().UserId,a=e?e.latitude:Object(n.b)().Latitude,s=e?e.longitude:Object(n.b)().Longitude;t.set("market",i),Object(w.b)(r)||t.set("user",r),a&&s&&(t.set("lat",a),t.set("long",s))}t.fetchSports=function(){return Object(a.a)(this,void 0,void 0,(function*(){const e=t.sportsApi;if(Object(s.a)(e)){const t=new URL(e),i=yield d.a.getBaseRequestData("GET");k(t.searchParams);try{const e=yield Object(l.b)(()=>Object(a.a)(this,void 0,void 0,(function*(){const e=yield fetch(decodeURIComponent(t.href),i);if(!e.ok)throw S.a.sendAppErrorEvent(Object.assign(Object.assign({},u.ah),{message:"Error while calling fetch for sports data ",pb:Object.assign(Object.assign({},u.ah.pb),{fetchNetworkResponse:{statusCode:e.status,statusText:e.statusText,activityId:Object(n.b)().ActivityId,requestUrl:t.href,requestHeaders:JSON.stringify(i&&i.headers)},customMessage:`URL: ${t.href}, responseMessage: ${JSON.stringify(e)}`})})),Error(e.statusText);return e})),"FetchSports");return yield e.json()}catch(e){let r;i&&i.headers&&(r=i.headers),S.a.sendAppErrorEvent(Object.assign(Object.assign({},u.Zg),{message:"Error while request sports data with exception.",pb:Object.assign(Object.assign({},u.Zg.pb),{fetchNetworkResponse:{activityId:Object(n.b)().ActivityId,requestUrl:t.href,requestHeaders:JSON.stringify(i&&i.headers)},customMessage:`Error: ${e} URL: ${t.href} headers: ${JSON.stringify(r)}`})}))}}}))},t.fetchSportsFeed=function(t=null,e=null,i=!1,r=!0,s=!1,c=null){return Object(a.a)(this,void 0,void 0,(function*(){const h=t;if(!Object(w.b)(h)){let t,p;try{if(t=new URL(h),!t||!o.a.isValidUrl(t.href,!0))return}catch(t){return void S.a.sendAppErrorEvent(Object.assign(Object.assign({},u.Zg),{message:"Error while request sports feed data with URL exception.",pb:Object.assign(Object.assign({},u.Zg.pb),{fetchNetworkResponse:{activityId:Object(n.b)().ActivityId,requestUrl:h},customMessage:`Error while request sports feed data with URL exception: ${t&&t.message} URL: ${h}`})}))}if(r){p=yield d.a.getBaseRequestData("GET"),k(t.searchParams);(yield T(e,i)).forEach(e=>e.value&&t.searchParams.set(e.key,e.value))}if(s){const e="undefined"!=typeof window&&Object(g.b)()&&Object(m.b)(),i=e?e.market:Object(n.b)().CurrentMarket;t.searchParams.set("market",i)}c&&c.length&&c.forEach(e=>{e.value&&t.searchParams.set(e.key,e.value)});try{const e=yield Object(l.b)(()=>Object(a.a)(this,void 0,void 0,(function*(){const e=yield fetch(decodeURIComponent(t.href),r?p:null);if(e&&e.ok)return e;S.a.sendAppErrorEvent(Object.assign(Object.assign({},u.ah),{message:"Error while calling fetch sports feed data.",pb:Object.assign(Object.assign({},u.ah.pb),{fetchNetworkResponse:{statusCode:e.status,statusText:e.statusText,activityId:Object(n.b)().ActivityId,requestUrl:t.href,requestHeaders:JSON.stringify(p&&p.headers)},customMessage:`Error while calling fetch sports feed data: URL: ${t.href}, responseMessage: ${JSON.stringify(e)}`})}))})),"FetchSportsFeed");return yield e.json()}catch(e){S.a.sendAppErrorEvent(Object.assign(Object.assign({},u.Zg),{message:"Error while request sports feed data with exception.",pb:Object.assign(Object.assign({},u.Zg.pb),{fetchNetworkResponse:{activityId:Object(n.b)().ActivityId,requestUrl:t.href,requestHeaders:JSON.stringify(p&&p.headers)},customMessage:`Error while request sports feed data with exception: ${e&&e.message} URL: ${t.href} headers: ${(null==p?void 0:p.headers)&&JSON.stringify(null==p?void 0:p.headers)}`})}))}}}))},t.hideSportsCard=function(){return Object(a.a)(this,void 0,void 0,(function*(){try{return yield C.a.updateSegmentCardsEnableStatus([{cardType:v.a.SportsCard,enabled:!1}]),!0}catch(t){return Object(p.c)(t,u.bh,"Sports card settings save failed while hide sports card."),!1}}))},t.notInterestedSportsCard=function(t){return Object(a.a)(this,void 0,void 0,(function*(){if(!t||Object(w.b)(t.id))return!1;try{return yield I(t.id,t.name,f.a.Dislike,t.type||""),!0}catch(e){return Object(p.c)(e,u.bh,"Sports card settings save failed while dislike sports card leagueId: "+t.leagueId),!1}}))},t.removeDislikeSportsCard=function(t){return Object(a.a)(this,void 0,void 0,(function*(){if(!t||Object(w.b)(t.id))return!1;try{return yield M(t.id,f.a.Dislike,t.type||f.c.League),i=null,r=null,!0}catch(e){return Object(p.c)(e,u.bh,"Sports card settings save failed while remove dislike sports card leagueId: "+t.leagueId),!1}}))},t.getDislikeSportsEntities=function(t){x().then(()=>{i&&t(i)})},t.getFollowSportsEntities=function(t){x().then(()=>{r&&t(r)})},t.fetchSuggestions=function(i,r){return Object(a.a)(this,void 0,void 0,(function*(){const a=r.replace("{searchText}",i),s=Object(n.b)().CurrentMarket||"en-us",o=[];return yield t.fetchSportsFeed(a,null,!1,!1,!0).then(t=>{if(!t||!t.suggestionGroups||!t.suggestionGroups.length)return Object(p.b)(u.Sg,"Fetch sports suggestion get null response.",`market=${s}, input:${i}, searchUrl:${a}`),o;if(!t.suggestionGroups[0].searchSuggestions||!t.suggestionGroups[0].searchSuggestions.length)return Object(p.b)(u.Sg,"Fetch sports suggestion get empty groups.",`market=${s}, input:${i}, searchUrl:${a}`),o;let r=0;t.suggestionGroups[0].searchSuggestions.forEach(t=>{var i,a,n,c;if((null===(a=null===(i=t.entityPresentationInfo)||void 0===i?void 0:i.formattedFacts)||void 0===a?void 0:a.length)&&(null===(c=null===(n=t.entityPresentationInfo)||void 0===n?void 0:n.formattedFacts[0].items)||void 0===c?void 0:c.length)&&t.contractualRules.length){let i=t.richContent&&t.richContent.length&&t.richContent[0].webSearchUrl;i=i&&i.startsWith("/")?i:"/"+i;const a=t.richContent&&t.richContent.length&&t.richContent[0].screenshot&&t.richContent[0].screenshot.imageId;let n=a&&Object(y.b)(a,e);n=n&&n.startsWith("//")?"https:"+n:n,o.push({index:r++,id:t.entityPresentationInfo.formattedFacts[0].items[0].text,name:t.displayText,type:t.contractualRules[0].targetPropertyName,displayText:t.displayText,typeDisplayHint:t.entityPresentationInfo.entityTypeDisplayHint,webSearchUrl:i&&`https://${Object(y.h)(s)}/${s}${i}`,imageUrl:n})}})}),o}))},t.postActionRequest=I,t.deleteActionRequest=M}(r||(r={}))},"YuP+":function(t,e,i){"use strict";i.d(e,"g",(function(){return l})),i.d(e,"f",(function(){return h})),i.d(e,"c",(function(){return u})),i.d(e,"a",(function(){return p})),i.d(e,"h",(function(){return g})),i.d(e,"e",(function(){return m})),i.d(e,"b",(function(){return v})),i.d(e,"d",(function(){return b}));var r=i("5tHy"),a=i("kpPY"),s=i("rvYQ"),n=i("RIQ7"),o=i("fuIx"),c=i("e8jz"),d=i("lifk");d.d.PNG,d.d.PNG,d.d.PNG;function l(){let t,e=null;return Object(o.b)()&&(e=Object(c.b)()),t=e?e.market:s.a.CurrentMarket,t||"en-us"}function h(t,e,i){if(!(i&&t&&e&&i[t]))return null;if(i[t][e])return i[t][e];const r=e?e.substr(0,2):"en";return i[t][r]?i[t][r]:i[t].en}function u(t,e){switch(t){case r.a.postGame:return e.sportsStateFinal;default:return""}}function p(t){if(!t||!t.length||t.includes("ocid="))return t;const e=Object(n.b)();return e?t+"?ocid="+e:t}function g(t){return"zh-cn"===t?"www.msn.cn":"www.msn.com"}function m(t,e,i=!1){return Object(a.b)(t)?i?Object(d.h)("BB1dV8FG",e):null:t.indexOf(".")>0?Object(d.g)(`${d.a}?id=${t}&pid=MSports`,e):Object(d.h)(t,e)}function v(t,e,i=!1){return Object(a.b)(t)?i?Object(d.h)("BB1dV8FG",e):null:Object(d.g)(`${d.a}?id=${t}&pid=MSports`,e)}function b(t,e,i=!1){return Object(a.b)(t)?i?Object(d.h)("BB1dV8FG",e):null:Object(d.g)(t,e)}},Z5nQ:function(t,e,i){"use strict";i.d(e,"a",(function(){return a})),i.d(e,"b",(function(){return s}));var r=i("4X57");const a=r.a`
+    .line-clamp {
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: var(--heading-max-lines, 3);
+    }
+`,s=r.a`
+    .sd-action:not([appearance="lightweight"]) {
+        --corner-radius: 999;
+        font-size: var(--type-ramp-minus-1-font-size);
+        line-height: var(--type-ramp-minus-1-line-height);
+    }
+
+    .sd-action::part(control) {
+        width: 100%;
+    }
+
+    .sd-action::part(content) {
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+`},ZIAv:function(t,e,i){"use strict";i.d(e,"a",(function(){return I}));var r=i("w7FX"),a=i("P4Ao"),s=i("5tHy"),n=i("wHpb"),o=i("CzTk"),c=i("oqLQ"),d=i("sfV1"),l=i("kL0l"),h=i("4X57");const u=h.a`
+    .sports-match-score-container {
+        flex-direction: row;
+    }
+`,p=h.a`
+    .sports-match-score-container {
+        flex-direction: row-reverse;
+    }
+`,g=h.a`
+    :host {
+        font-family: var(--body-font);
+    }
+
+    .sports-matchup-card {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        padding: 12px 0;
+        height: 100%;
+    }
+
+    :host([background="dynamic"]) .sports-matchup-card {
+        background: ${d.b.var};
+    }
+
+    :host([background="gradient"]) .sports-matchup-card {
+        background: ${d.a.var};
+    }
+
+    .sports-matchup-card-header {
+        display: flex;
+        flex-direction: row;
+        min-height: 24px;
+        padding: 0 16px;
+    }
+
+    ::slotted([slot="sports-header-icon"]) {
+        padding-inline-end: 6px;
+        margin-top: 6px;
+    }
+
+    .sports-matchup-card-header-title-link {
+        color: ${l.G.var};
+        display: flex;
+        flex: 1;
+        min-width: 0;
+        text-decoration: none;
+        font-weight: 500;
+        letter-spacing: 0.7px;
+        text-transform: uppercase;
+        z-index: 2;
+    }
+
+    .sports-matchup-card-header-title {
+        font-size: var(--type-ramp-minus-1-font-size);
+        line-height: var(--type-ramp-minus-1-line-height);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding-inline-end: 12px;
+    }
+
+    .sports-matchup-card-header-title-link:hover,
+    .sports-matchup-card-header-title-link:active,
+    .sports-matchup-card-header-title-link:${n.a} {
+        text-decoration: underline;
+        outline: none;
+    }
+
+    .sports-matchup-card-header-action-button {
+        z-index: 2;
+        display: flex;
+        margin-top: -4px;
+    }
+
+    .sports-match-clickthrough-link {
+        color: ${l.G.var};
+        text-decoration: none;
+        z-index: 2;
+        overflow: hidden;
+        margin: 0 6px;
+    }
+
+    .sports-match-clickthrough-link a::after {
+        position: absolute;
+        content: "";
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .sports-match-clickthrough-link:hover,
+    .sports-match-clickthrough-link:${n.a} {
+        background: ${l.v.var};
+        border-radius: calc(var(--corner-radius) * 2px);
+        overflow: hidden;
+    }
+
+    .sports-matches {
+        display: grid;
+        row-gap: 14px;
+        padding-top: 12px;
+    }
+
+    :host([uxstyle="widget"]):host([card-layout="1x_1y"]) .sports-matches {
+        padding-top: 28px;
+    }
+
+    :host([uxstyle="widget"]):host([card-layout="1x_3y"]) .sports-matches {
+        row-gap: 20px;
+        padding-top: 14px;
+    }
+
+    .sports-match {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        padding: 0 16px;
+    }
+
+    .sports-match-dual-participants {
+        display: flex;
+        flex-direction: column;
+        padding: 2px 0;
+        width: 204px;
+        gap: 4px;
+    }
+
+    .sports-match-participant {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        height: 28px;
+    }
+
+    .sports-match-participant-image {
+        height: 28px;
+        padding-inline-end: 8px;
+        width: 28px;
+    }
+
+    .sports-match-participant-image img {
+        width: 100%;
+    }
+
+    .sports-match-participant-name {
+        flex: 1;
+        font-size: var(--type-ramp-base-font-size);
+        line-height: var(--type-ramp-base-line-height);
+        overflow: hidden;
+        padding-inline-end: 8px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .sports-match-score-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .sports-match-participant-score {
+        font-size: var(--type-ramp-base-font-size);
+        line-height: var(--type-ramp-base-line-height);
+        overflow: hidden;
+        padding-inline-end: 4px;
+        text-align: right;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .sports-match-participant-name.winner,
+    .sports-match-participant-score.winner,
+    .sports-match-detail-attribute-game-time {
+        font-weight: bold;
+    }
+
+    .long-score .sports-match-participant-name {
+        font-size: var(--type-ramp-minus-1-font-size);
+        line-height: var(--type-ramp-minus-1-line-height);
+    }
+
+    .long-score .sports-match-participant-score {
+        font-size: var(--type-ramp-minus-1-font-size);
+        line-height: var(--type-ramp-minus-1-line-height);
+    }
+
+    .long-score .sports-match-participant-name.winner,
+    .long-score .sports-match-participant-score.winner {
+        font-weight: 600;
+    }
+
+    .sports-match-participant-winner-tag {
+        padding-inline-end: 4px;
+        width: 5px;
+        height: 24px;
+    }
+
+    .sports-match-participant-winner-tag > svg > path {
+        fill: currentColor;
+    }
+
+    .sports-match-participant-name.loser,
+    .sports-match-participant-score.loser {
+        color: ${l.G.var};
+    }
+
+    .sports-match-details {
+        font-size: var(--type-ramp-minus-1-font-size);
+        line-height: var(--type-ramp-minus-1-line-height);
+        width: 64px;
+        color: ${l.G.var};
+    }
+
+    .sports-match-detail-attributes {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .sports-match-detail-attribute {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .sports-match-detail-attribute-game-clock,
+    .sports-match-detail-attribute-game-state,
+    .sports-match-detail-attribute-game-date,
+    .sports-match-detail-attribute-game-time,
+    .sports-match-detail-attribute-game-tv-channel {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: center;
+        color: ${l.G.var};
+    }
+
+    .inprogress-game .sports-match-detail-attribute-game-clock {
+        color: #cc0000;
+        font-weight: bold;
+    }
+
+    .sports-matchup-card-footer {
+        display: flex;
+        justify-content: center;
+        padding: 0 16px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 8px;
+    }
+
+    .sports-matchup-card-footer-seemore-arrow > svg > path {
+        fill: currentcolor;
+    }
+
+    ::slotted([slot="more-actions"]) {
+        --corner-radius: 20;
+        height: 24px;
+        width: 24px;
+        min-width: 24px;
+        background: ${l.s.var};
+    }
+
+    ::slotted([slot="more-actions"])::part(control) {
+        padding: 0;
+    }
+
+    ::slotted([slot="more-actions"]:hover) {
+        background: ${l.o.var};
+    }
+
+    .sd-action {
+        height: 24px;
+    }
+
+    .sd-action::part(control) {
+        padding: 0 24px;
+    }
+
+    .sd-action::part(control)::after {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+    }
+
+    :host([uxstyle="widget"]) .sd-action {
+        background: transparent
+    }
+`.withBehaviors(l.D,l.G,l.s,l.o,l.v,d.a,d.b,new o.a(u,p),Object(c.c)(h.a`
+            :host {
+                forced-color-adjust: auto;
+            }
+        `));var m=i("Z5nQ"),v=i("6BDD"),b=i("6vBc"),f=i("UNqU"),y=i("eUhr"),S=i("kpPY");const O=v.b`
+    <slot name="sports-header-icon"></slot>
+    <a
+        class="sports-matchup-card-header-title-link"
+        href=${t=>{var e;return null===(e=t.sportsMatchupCardData)||void 0===e?void 0:e.cardTitleClickthroughUrl}}
+        target=${t=>t.clickthroughTarget}
+        ${Object(y.b)(t=>t.headerTelemetryTag)}
+    >
+        <div class="sports-matchup-card-header-title">
+            ${t=>{var e;return"widget"==t.uxstyle?"":null===(e=t.sportsMatchupCardData)||void 0===e?void 0:e.cardTitle}}
+        </div>
+    </a>
+    <div class="sports-matchup-card-header-action-button" id="sports-matchup-action">
+        <slot name="more-actions"></slot>
+    </div>
+`,w=v.b`
+    <a
+        class="sports-match-clickthrough-link"
+        href=${t=>t.matchClickthroughUrl?t.matchClickthroughUrl:void 0}
+        target=${(t,e)=>e.parent.clickthroughTarget}
+        ${Object(y.b)((t,e)=>e.parent.matchTelemetryTags&&t.matchClickthroughUrl?e.parent.matchTelemetryTags.get(t.matchClickthroughUrl):"")}
+    >
+        <div
+            class="sports-match ${(t,e)=>Object(s.e)(e.parent.sportsMatchupCardData.dataType+"")}"
+        >
+            <div class="sports-match-participants">
+                <div class="sports-match-dual-participants">
+                    <div class="sports-match-participant participant-one">
+                        ${Object(b.a)(t=>t.participantOneImageUrl&&!Object(S.b)(t.participantOneImageUrl),v.b` <div
+                                class="sports-match-participant-image"
+                            >
+                                <img
+                                    role="presentation"
+                                    src="${t=>t.participantOneImageUrl}"
+                                    alt="${t=>t.participantOneImageAltText}"
+                                    elementtiming="${(t,e)=>e.parent.sportsMatchupCardData.elementTiming}"
+                                    onLoad="${(t,e)=>e.parent.sportsMatchupCardData.imgLoadCallback?e.parent.sportsMatchupCardData.imgLoadCallback("sports"):void 0}"
+                                />
+                            </div>`)}
+                        <div
+                            class="sports-match-participant-name ${t=>1==t.participantOneIsWinner&&t.gameStateCatetory==s.a.postGame?"winner":0==t.participantOneIsWinner&&t.gameStateCatetory==s.a.postGame?"loser":""}"
+                        >
+                            ${t=>t.participantOneName}
+                        </div>
+                        <div class="sports-match-score-container">
+                            ${Object(b.a)(t=>t.gameStateCatetory==s.a.inprogressGame||t.gameStateCatetory==s.a.postGame,v.b`
+                                    <div
+                                        class="sports-match-participant-score ${t=>1==t.participantOneIsWinner&&t.gameStateCatetory==s.a.postGame?"winner":0==t.participantOneIsWinner&&t.gameStateCatetory==s.a.postGame?"loser":""}"
+                                    >
+                                        ${(t,e)=>Object(s.d)(t.participantOneScore+"",e.parent.sportsMatchupCardData.dataType+"")}
+                                    </div>
+                                    <div class="sports-match-participant-winner-tag">
+                                        ${Object(b.a)(t=>1==t.participantOneIsWinner&&t.gameStateCatetory==s.a.postGame,v.b`
+                                                <svg
+                                                    width="5"
+                                                    height="10"
+                                                    viewBox="0 0 5 10"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path d="M5 0L0 5.21739L5 10V0Z" />
+                                                </svg>
+                                            `)}
+                                    </div>
+                                `)}
+                        </div>
+                    </div>
+                    <div class="sports-match-participant participant-two">
+                        ${Object(b.a)(t=>t.participantTwoImageUrl&&!Object(S.b)(t.participantTwoImageUrl),v.b` <div
+                                class="sports-match-participant-image"
+                            >
+                                <img
+                                    role="presentation"
+                                    src="${t=>t.participantTwoImageUrl}"
+                                    alt="${t=>t.participantTwoImageAltText}"
+                                />
+                            </div>`)}
+                        <div
+                            class="sports-match-participant-name ${t=>1==t.participantTwoIsWinner?"winner":0==t.participantTwoIsWinner?"loser":""}"
+                        >
+                            ${t=>t.participantTwoName}
+                        </div>
+                        <div class="sports-match-score-container">
+                            ${Object(b.a)(t=>t.gameStateCatetory==s.a.inprogressGame||t.gameStateCatetory==s.a.postGame,v.b`
+                                    <div
+                                        class="sports-match-participant-score ${t=>1==t.participantTwoIsWinner&&t.gameStateCatetory==s.a.postGame?"winner":0==t.participantTwoIsWinner&&t.gameStateCatetory==s.a.postGame?"loser":""}"
+                                    >
+                                        ${(t,e)=>Object(s.d)(t.participantTwoScore+"",e.parent.sportsMatchupCardData.dataType+"")}
+                                    </div>
+                                    <div class="sports-match-participant-winner-tag">
+                                        ${Object(b.a)(t=>1==t.participantTwoIsWinner&&t.gameStateCatetory==s.a.postGame,v.b`
+                                                <svg
+                                                    width="5"
+                                                    height="10"
+                                                    viewBox="0 0 5 10"
+                                                    fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
+                                                    <path d="M5 0L0 5.21739L5 10V0Z" />
+                                                </svg>
+                                            `)}
+                                    </div>
+                                `)}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sports-match-details">
+                ${Object(b.a)(t=>t.gameStateCatetory==s.a.preGame,v.b`
+                        <div class="sports-match-detail-attributes pre-game">
+                            <div class="sports-match-detail-attribute-game-date">
+                                ${t=>t.gameDate}
+                            </div>
+                            <div class="sports-match-detail-attribute-game-time">
+                                ${t=>t.gameStartTime}
+                            </div>
+                            <div class="sports-match-detail-attribute-game-tv-channel">
+                                ${t=>t.tvChannel}
+                            </div>
+                        </div>
+                    `)}
+                ${Object(b.a)(t=>t.gameStateCatetory==s.a.inprogressGame,v.b`
+                        <div class="sports-match-detail-attributes inprogress-game">
+                            <div class="sports-match-detail-attribute-game-clock">
+                                ${t=>t.gamePeriodAndClock}
+                            </div>
+                            <div class="sports-match-detail-attribute-game-tv-channel">
+                                ${t=>t.tvChannel}
+                            </div>
+                        </div>
+                    `)}
+                ${Object(b.a)(t=>t.gameStateCatetory==s.a.postGame,v.b`
+                        <div class="sports-match-detail-attributes post-game">
+                            <div class="sports-match-detail-attribute-game-state">
+                                ${t=>t.gameState}
+                            </div>
+                            <div class="sports-match-detail-attribute-game-date">
+                                ${t=>t.gameDate}
+                            </div>
+                        </div>
+                    `)}
+            </div>
+        </div>
+    </a>
+`,C=v.b`
+    <fluent-anchor
+        class="sd-action"
+        part="sd-action"
+        href=${t=>{var e;return null===(e=t.sportsMatchupCardData)||void 0===e?void 0:e.seeMoreClickthroughUrl}}
+        target=${t=>t.clickthroughTarget}
+        ${Object(y.b)(t=>t.seeMoreTelemetryTag)}
+    >
+        ${t=>{var e;return null===(e=t.sportsMatchupCardData)||void 0===e?void 0:e.seeMoreText}}
+    </fluent-anchor>
+`,j=v.b`
+    <div class="sports-matchup-card">
+        <div class="sports-matchup-card-header">
+            ${O}
+        </div>
+        <div class="sports-matches">
+            ${Object(f.c)(t=>t.sportsMatchData,w)}
+        </div>
+        <div class="sports-matchup-card-footer">
+            ${C}
+        </div>
+    </div>
+`;let I=class extends s.b{};I=Object(r.a)([Object(a.b)({name:"msft-sports-matchup-card",template:j,styles:[g,m.b]})],I)},ZwaX:function(t,e,i){"use strict";i.d(e,"d",(function(){return r})),i.d(e,"c",(function(){return s})),i.d(e,"a",(function(){return n})),i.d(e,"e",(function(){return o})),i.d(e,"b",(function(){return c})),i.d(e,"f",(function(){return d})),i.d(e,"g",(function(){return h}));var r,a=i("Am8i");!function(t){t.SportsCard="SportsCard",t.Homepage="homepage",t.Game="sports_game",t.Header="sports_header",t.SeeMore="seemore",t.Customization="sportscard_customization",t.MoreSettings="sportscard_customization_moresettings",t.Vertical="sports",t.HideCard="HideSport",t.HideSports="HideSportsCard",t.SaveSetting="done",t.CancelSetting="Cancel",t.SportsInput="searchsports",t.SportsSuggest="suggestresult",t.SportsSuggestUrl="suggesturl",t.ConfidenceScoreKey="cs",t.PreviousMatch="previous",t.NextMatch="next",t.AddSports="FollowWizard",t.AddSportsMenu="FollowTeamOrLeague",t.FollowSports="Follow",t.GoBack="Goback",t.EditSports="FollowWizard",t.ClickCarouselDot="CarouselDotClick"}(r||(r={}));const s={League:"League",Team:"Team"},n={Dislike:"Dislike",Follow:"Follow"},o={Match:"SportsMatch",Olympics:"SportsOlympics"},c="#",d=(t,e,i,s,n)=>{if(!(t&&e&&i&&s))return;const o=e||[],c=i||{},d=s.leagueName,h=s.leagueId,u=c.cardTitleClickthroughUrl,p=c.seeMoreClickthroughUrl,g=l(r.SportsCard,t,{category:d,headline:d},n),m=l(r.Header,t,{headline:d,id:h,type:a.c.StructuredData,category:d,destinationUrl:u},n),v=l(r.Customization,t,{headline:r.Customization,id:r.Customization,category:d},n),b=l(r.SeeMore,t,{headline:d,id:h,type:a.c.StructuredData,category:d,destinationUrl:p},n),f=l(r.MoreSettings,t,{category:d},n),y=l(r.HideCard,t,{category:d},n),S=l(r.HideSports,t,{category:d},n),O=new Map,w=new Map;o.forEach(e=>{if(!e.sportsMatchData.matchClickthroughUrl)return;const i=e.sportsMatchTelemetryData.gameId,a=e.sportsMatchData.gameStateCatetory,s=l(r.Game,t,{category:a,headline:d,gameId:i,destinationUrl:e.sportsMatchData.matchClickthroughUrl},n);O.set(e.sportsMatchData.matchClickthroughUrl,s.getMetadataTag()),w.set(i,s)});const C=l(r.SaveSetting,t,{headline:d,id:h,type:a.c.StructuredData,category:d},n),j=l(r.CancelSetting,t,{headline:d,id:h,type:a.c.StructuredData,category:d},n),I=l(r.SportsInput,t,{headline:d,id:h,type:a.c.StructuredData,category:d},n),x=l(r.SportsSuggest,t,{headline:d,id:h,type:a.c.StructuredData,category:d},n),M=l(r.PreviousMatch,t,{headline:d,id:h,type:a.c.StructuredData,category:d},n),T=l(r.NextMatch,t,{headline:d,id:h,type:a.c.StructuredData,category:d},n),D=l(r.AddSports,t,{headline:d,id:h,type:a.c.StructuredData,category:d},n),k=l(r.AddSportsMenu,t,{headline:d,id:h,type:a.c.StructuredData,category:d},n),E=l(r.FollowSports,t,{headline:d,id:h,type:a.c.StructuredData,category:d},n),P=l(r.GoBack,t,{headline:d,id:h,type:a.c.StructuredData,category:d},n),A=l(r.EditSports,t,{category:d,headline:d},n),$=l(r.ClickCarouselDot,t,{category:d,headline:d},n);return{componentRoot:t,sportsCard:g,destinations:O,games:w,header:m,actionButton:v,seeMore:b,menuMoreSettings:f,menuHideCard:y,menuHideSports:S,saveSetting:C,cancelSetting:j,sportsInput:I,sportsSuggest:x,previousMatch:M,nextMatch:T,addSports:D,menuAddSports:k,followSports:E,goBack:P,editSports:A,clickCarouselDot:$}};function l(t,e,i,s){if(!e||!i||!i.category)return null;const n=e.addOrUpdateChild({name:r.SportsCard,type:a.e.Module}),o={contentVertical:r.Vertical,category:i.category};switch(t){case r.SportsCard:return n.addOrUpdateChild({name:r.SportsCard,content:{vertical:o.contentVertical,category:o.category,type:a.c.StructuredData,id:""},ext:s},i.savedChildObject);case r.Header:return n.addOrUpdateChild({name:r.Header,behavior:a.b.Navigate,destinationUrl:i.destinationUrl,content:{vertical:o.contentVertical,category:o.category,headline:i.headline,type:a.c.StructuredData,id:""},ext:s},i.savedChildObject);case r.SeeMore:return n.addOrUpdateChild({name:r.SeeMore,behavior:a.b.Navigate,destinationUrl:i.destinationUrl,content:{vertical:o.contentVertical,category:o.category,headline:i.headline,type:a.c.StructuredData,id:""},ext:s},i.savedChildObject);case r.Game:return n.addOrUpdateChild({name:r.Game,behavior:a.b.Navigate,destinationUrl:i.destinationUrl,content:{vertical:o.contentVertical,category:o.category,headline:i.headline,type:a.c.StructuredData,id:""},ext:s},i.savedChildObject);case r.Customization:return n.addOrUpdateChild({name:r.Customization,behavior:a.b.More,content:{headline:r.Customization,vertical:o.contentVertical,type:a.c.StructuredData,id:""},destinationUrl:"",type:a.e.Interaction,ext:s},i.savedChildObject);case r.MoreSettings:return n.addOrUpdateChild({name:r.MoreSettings,content:{headline:r.MoreSettings,vertical:o.contentVertical,type:a.c.StructuredData,id:""},overrideDestinationUrl:(window.location.origin||"")+"/personalize",type:a.e.ActionButton,ext:s},i.savedChildObject);case r.HideCard:return n.addOrUpdateChild({name:r.HideCard,behavior:a.b.Hide,content:{headline:r.HideCard,vertical:o.contentVertical,type:a.c.StructuredData,id:""},destinationUrl:"",type:a.e.ActionButton,ext:s},i.savedChildObject);case r.HideSports:return n.addOrUpdateChild({name:r.HideSports,behavior:a.b.Hide,content:{headline:r.HideSports,vertical:o.contentVertical,type:a.c.StructuredData,id:""},destinationUrl:"",type:a.e.ActionButton,ext:s},i.savedChildObject);case r.PreviousMatch:return n.addOrUpdateChild({name:r.PreviousMatch,behavior:a.b.Navigate,content:{headline:r.PreviousMatch,vertical:o.contentVertical,type:a.c.StructuredData,id:""},destinationUrl:"",type:a.e.ActionButton,ext:s},i.savedChildObject);case r.NextMatch:return n.addOrUpdateChild({name:r.NextMatch,behavior:a.b.Navigate,content:{headline:r.NextMatch,vertical:o.contentVertical,type:a.c.StructuredData,id:""},destinationUrl:"",type:a.e.ActionButton,ext:s},i.savedChildObject);case r.SaveSetting:return n.addOrUpdateChild({name:r.SaveSetting,behavior:a.b.Save,content:{headline:r.SaveSetting,vertical:o.contentVertical,type:a.c.StructuredData,id:""},destinationUrl:"",type:a.e.ActionButton,ext:s},i.savedChildObject);case r.CancelSetting:{const t=n.addOrUpdateChild({name:r.AddSports,action:a.a.View,type:a.e.Module});return t.addOrUpdateChild({name:r.CancelSetting,behavior:a.b.Cancel,content:{headline:r.CancelSetting,vertical:o.contentVertical,type:a.c.StructuredData,id:""},destinationUrl:"",type:a.e.ActionButton,ext:s},t)}case r.SportsInput:return n.addOrUpdateChild({name:r.SportsInput,content:{headline:r.SportsInput,vertical:o.contentVertical,type:a.c.StructuredData,id:""},destinationUrl:"",type:a.e.InputBox,ext:s},i.savedChildObject);case r.SportsSuggest:return n.addOrUpdateChild({name:r.SportsSuggest,content:{headline:r.SportsSuggest,vertical:o.contentVertical,type:a.c.StructuredData,id:""},destinationUrl:"",type:a.e.AutoSuggest,ext:s},i.savedChildObject);case r.AddSports:return n.addOrUpdateChild({name:r.AddSports,action:a.a.View,type:a.e.Module});case r.AddSportsMenu:return n.addOrUpdateChild({name:r.AddSportsMenu,behavior:a.b.Open,content:{headline:r.AddSportsMenu,vertical:o.contentVertical,type:a.c.StructuredData,id:""},destinationUrl:"",type:a.e.ActionButton,ext:s},i.savedChildObject);case r.FollowSports:return n.addOrUpdateChild({name:r.FollowSports,behavior:a.b.Follow,content:{headline:r.FollowSports,vertical:o.contentVertical,type:a.c.StructuredData,id:""},destinationUrl:"",type:a.e.ActionButton,ext:s},i.savedChildObject);case r.GoBack:return n.addOrUpdateChild({name:r.GoBack,behavior:a.b.Navigate,content:{headline:r.GoBack,vertical:o.contentVertical,type:a.c.StructuredData,id:""},destinationUrl:"",type:a.e.Interaction,ext:s},i.savedChildObject);case r.EditSports:return n.addOrUpdateChild({name:r.EditSports,content:{vertical:o.contentVertical,category:o.category,type:a.c.StructuredData,id:""},ext:s},i.savedChildObject);case r.ClickCarouselDot:return n.addOrUpdateChild({name:r.ClickCarouselDot,content:{vertical:o.contentVertical,category:o.category,type:a.c.StructuredData,id:""},ext:s},i.savedChildObject)}}const h=(t,e,i=!1)=>{if(!t||!e)return null;const s=t.addOrUpdateChild({name:i?r.AddSports:r.SportsCard,action:a.a.View,type:a.e.Module});return{componentRoot:t,webSearchUrl:s.addOrUpdateChild({name:r.SportsSuggestUrl,behavior:a.b.Navigate,content:{headline:r.SportsSuggestUrl,vertical:r.Vertical,category:e.name,type:a.c.StructuredData,id:""},overrideDestinationUrl:e.webSearchUrl}),followEntity:s.addOrUpdateChild({name:r.FollowSports,behavior:a.b.Follow,content:{headline:e.name,vertical:r.Vertical,category:e.name,type:a.c.StructuredData,id:e.id},destinationUrl:""})}}},bica:function(t,e,i){"use strict";i.d(e,"b",(function(){return f})),i.d(e,"a",(function(){return y}));var r=i("3rEL"),a=i("oePG"),s=i("QBS5"),n=i("YBl9"),o=i("9ZcS"),c=i("39vG"),d=i("cqAE"),l=i("TgmJ"),h=i("4X57"),u=i("xY0q"),p=i("oqLQ"),g=i("j9Xn"),m=i("cQsl"),v=i("kL0l");const b=h.a`
+  ${Object(u.a)("block")} :host {
+    --elevation: 4;
+    display: block;
+    contain: content;
+    height: var(--card-height, 100%);
+    width: var(--card-width, 100%);
+    box-sizing: border-box;
+    border-radius: calc(var(--elevated-corner-radius) * 1px);
+    ${m.a}
+  }
+
+  :host(:hover) {
+    --elevation: 8;
+  }
+
+  :host(:focus-within) {
+    --elevation: 8;
+  }
+
+  :host {
+    content-visibility: auto;
+  }
+`.withBehaviors(v.m,Object(p.c)(h.a`
+      :host {
+        forced-color-adjust: none;
+        background: ${g.a.Canvas};
+        box-shadow: 0 0 0 1px ${g.a.CanvasText};
+      }
+    `));let f=class extends l.a{cardBackgroundColorChanged(t,e){if(e){null!==Object(n.d)(this.cardBackgroundColor)&&(this.neutralBaseColor=this.cardBackgroundColor,this.backgroundColor=this.cardBackgroundColor)}else this.provider&&this.provider.designSystem&&this.handleChange(this.provider.designSystem,"backgroundColor")}handleChange(t,e){this.cardBackgroundColor||(this.neutralBaseColor?this.backgroundColor=Object(d.a)(this.designSystem):this.backgroundColor=Object(d.a)(t))}connectedCallback(){var t,e;super.connectedCallback();const i=a.b.getNotifier(null===(t=this.provider)||void 0===t?void 0:t.designSystem);i.subscribe(this,"backgroundColor"),i.subscribe(this,"neutralPalette"),this.handleChange(null===(e=this.provider)||void 0===e?void 0:e.designSystem,"backgroundColor")}};Object(r.a)([Object(s.b)({attribute:"card-background-color",mode:"fromView"})],f.prototype,"cardBackgroundColor",void 0),f=Object(r.a)([Object(o.c)({name:"fluent-card",template:c.a,styles:b,shadowOptions:{mode:"closed"}})],f);const y=b},dMmp:function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=function(){function t(){}return t.IsNullOrWhiteSpace=function(t){try{return null==t||"undefined"==t||t.toString().replace(/\s/g,"").length<1}catch(t){return console.log(t),!1}},t.Join=function(e){for(var i=[],r=1;r<arguments.length;r++)i[r-1]=arguments[r];try{var a=i[0];if(Array.isArray(a)||a instanceof Array){for(var s=t.Empty,n=0;n<a.length;n++){var o=a[n];n<a.length-1?s+=o+e:s+=o}return s}if("object"==typeof a){var c=t.Empty,d=a;return Object.keys(a).forEach((function(t){c+=d[t]+e})),c=c.slice(0,c.length-e.length)}var l=i;return t.join.apply(t,[e].concat(l))}catch(e){return console.log(e),t.Empty}},t.Format=function(e){for(var i=[],r=1;r<arguments.length;r++)i[r-1]=arguments[r];try{return e.match(t.regexNumber)?t.format(t.regexNumber,e,i):e.match(t.regexObject)?t.format(t.regexObject,e,i,!0):t.Empty}catch(e){return console.log(e),t.Empty}},t.format=function(e,i,r,a){return void 0===a&&(a=!1),i.replace(e,(function(e,i){var s,n=e.split(":");return n.length>1&&(i=n[0].replace("{",""),e=n[1].replace("}","")),null==(s=a?r[0][i]:r[i])||null==s||e.match(/{\d+}/)||void 0!==(s=t.parsePattern(e,s))&&null!=s?s:t.Empty}))},t.parsePattern=function(e,i){switch(e){case"L":return i.toLowerCase();case"U":return i.toUpperCase();case"d":if("string"==typeof i)return t.getDisplayDateFromString(i);if(i instanceof Date)return t.Format("{0:00}.{1:00}.{2:0000}",i.getDate(),i.getMonth(),i.getFullYear());break;case"s":if("string"==typeof i)return t.getSortableDateFromString(i);if(i instanceof Date)return t.Format("{0:0000}-{1:00}-{2:00}",i.getFullYear(),i.getMonth(),i.getDate());break;case"n":"string"!=typeof i&&(i=i.toString());var r=i.replace(/,/g,".");if(isNaN(parseFloat(r))||r.length<=3)break;var a=r.split(/[^0-9]+/g),s=a;a.length>1&&(s=[t.join.apply(t,[""].concat(a.splice(0,a.length-1))),a[a.length-1]]);var n=s[0],o=n.length%3,c=o>0?n.substring(0,o):t.Empty,d=n.substring(o).match(/.{3}/g);return(c=c+"."+t.Join(".",d))+(s.length>1?","+s[1]:"")}return"number"!=typeof i&&isNaN(i)||isNaN(+e)||t.IsNullOrWhiteSpace(i)?i:t.formatNumber(i,e)},t.getDisplayDateFromString=function(t){var e;if((e=t.split("-")).length<=1)return t;var i=e[e.length-1],r=e[e.length-2],a=e[e.length-3];return(i=(i=i.split("T")[0]).split(" ")[0])+"."+r+"."+a},t.getSortableDateFromString=function(e){var i=e.replace(",","").split(".");if(i.length<=1)return e;var r=i[i.length-1].split(" "),a=t.Empty;r.length>1&&(a=r[r.length-1]);var s=i[i.length-1].split(" ")[0]+"-"+i[i.length-2]+"-"+i[i.length-3];return!t.IsNullOrWhiteSpace(a)&&a.length>1?s+="T"+a:s+="T00:00:00",s},t.formatNumber=function(t,e){var i=e.length,r=t.toString();if(i<=r.length)return r;var a=i-r.length;return new Array(a+=1).join("0")+r},t.join=function(e){for(var i=[],r=1;r<arguments.length;r++)i[r-1]=arguments[r];for(var a=t.Empty,s=0;s<i.length;s++)if(!("string"==typeof i[s]&&t.IsNullOrWhiteSpace(i[s])||"number"!=typeof i[s]&&"string"!=typeof i[s])){a+=""+i[s];for(var n=s+1;n<i.length;n++)if(!t.IsNullOrWhiteSpace(i[n])){a+=e,s=n-1;break}}return a},t.regexNumber=/{(\d+(:\w*)?)}/g,t.regexObject=/{(\w+(:\w*)?)}/g,t.Empty="",t}();e.String=r;var a=function(){function t(t){void 0===t&&(t=r.Empty),this.Values=[],this.Values=new Array(t)}return t.prototype.ToString=function(){return this.Values.join("")},t.prototype.Append=function(t){this.Values.push(t)},t.prototype.AppendFormat=function(t){for(var e=[],i=1;i<arguments.length;i++)e[i-1]=arguments[i];this.Values.push(r.Format.apply(r,[t].concat(e)))},t.prototype.Clear=function(){this.Values=[]},t}();e.StringBuilder=a},eNhF:function(t,e,i){"use strict";i.d(e,"a",(function(){return c}));var r=i("YBl9"),a=i("6eT7"),s=i("JIBo"),n=i("lFvR"),o=i("qTjs");function c(t=0,e=1,i=(()=>"#FFF"),c=o.b){return Object(s.d)(s=>{const o=Object(n.o)(c,s),d=Object(n.o)(i,s),{r:l,g:h,b:u}=Object(r.d)(o);return`linear-gradient(160deg, ${new a.a(l,h,u,t).toStringWebRGBA()}, ${new a.a(l,h,u,e).toStringWebRGBA()}), ${d}`})}},gqPI:function(t,e,i){"use strict";i.d(e,"a",(function(){return r}));var r,a=i("5tHy"),s=i("XlyT"),n=i("HxRh"),o=i("YuP+"),c=i("S7gc"),d=i("LJMo"),l=i("dMmp"),h=i("kpPY"),u=i("lifk");!function(t){u.d.PNG;function e(e,d,l=1,u=null){var p;if(!(e&&e.Model&&e.Model.SportsMatches&&e.Trans))return null;const g=u&&u.disableMatchClickThroughBySport,m=u&&u.segmentList,v=Object(o.g)(),b=function(t,e,i,r=null){if(!t||!i)return null;const a="DisplayText_"+t,s="UrlSegment_"+t,n=r&&r.find(t=>t.market.toLowerCase()===e.toLowerCase());return{id:t,name:Object(o.f)(a,e,i),urlSegment:n&&n.leagueSegment?n.leagueSegment:Object(o.f)(s,e,i),urlSegmentGameCenter:Object(o.f)("UrlSegment_gamecenter",e,i),urlSegmentSchedule:Object(o.f)("UrlSegment_schedule",e,i),urlSegmentSports:n&&n.sportsVertical?n.sportsVertical:Object(o.f)("UrlSegment_verticalname_sports",e,i)}}(e.Model.SportsMatches.League.Id,v,e.Trans,m);if(!b)return null;Object(h.b)(b.name)&&Object(s.b)(n.Xg,`Sports card title(league name) has no value. LeagueId=${b.id} Market=${v}`);const f=e.Model.SportsMatches.Sport&&e.Model.SportsMatches.Sport,y=g&&f&&g.filter(t=>t.toLowerCase()==f.toLowerCase()).length>0,S=`https://${Object(o.h)(v)}/${v}/${b.urlSegmentSports}/${b.urlSegment}`,O={cardTitle:null===(p=b.name)||void 0===p?void 0:p.toLocaleUpperCase(),cardTitleClickthroughUrl:Object(h.b)(b.urlSegmentSports)||Object(h.b)(b.urlSegment)||Object(h.b)(b.urlSegmentSchedule)?null:`${S}/${b.urlSegmentSchedule}`,cardTitleImageUrl:Object(o.e)(e.Model.SportsMatches.League.ImageId,t.teamImageInfo),particiapntFormat:a.c.dualparticipants,seeMoreText:i(d,b.name),seeMoreClickthroughUrl:Object(h.b)(b.urlSegmentSports)||Object(h.b)(b.urlSegment)?null:S,dataType:e.Model.DataType};O.cardTitleClickthroughUrl=Object(o.a)(O.cardTitleClickthroughUrl),O.seeMoreClickthroughUrl=Object(o.a)(O.seeMoreClickthroughUrl);const w=function(e,i,s,n,d,l,u){if(!e||e.length<1)return null;e=e.sort((function(t,e){if(!t||!e)return-1;const i=t.GameState&&t.GameState.State?r(t.GameState.State):a.a.preGame,s=e.GameState&&e.GameState.State?r(e.GameState.State):a.a.preGame;if(i==a.a.inprogressGame&&s!=a.a.inprogressGame)return-1;if(i!=a.a.inprogressGame&&s==a.a.inprogressGame)return 1;const n=(new Date).getTime(),o=t.GameStartDateTime?parseInt(t.GameStartDateTime):0,c=e.GameStartDateTime?parseInt(e.GameStartDateTime):0,d=Number.isNaN(o)||!o?0:o-n,l=Number.isNaN(c)||!c?0:c-n,h=t.Rank&&parseInt(t.Rank)||0,u=e.Rank&&parseInt(e.Rank)||0,p=Number.isNaN(h)?0:h,g=Number.isNaN(u)?0:u;return t.GameStartDateTime&&e.GameStartDateTime&&(d>0&&(d<l||d==l&&p<g)||d<0&&(d>l||d==l&&p<g)||d<0&&l>0&&(Math.abs(d)<l||Math.abs(d)==l&&p<g)||d>0&&l<0&&(d<Math.abs(l)||d==Math.abs(l)&&p<g))?-1:1}));const p=[];return e.some(e=>{if(e){const g=function(e,i,s,n,d,l){if(!e||!i||!s)return null;const u=Object(o.g)(),p=new c.a,g=e.GameState&&e.GameState.State?e.GameState.State:null,m=new Date(parseInt(e.GameStartDateTime)),v=e.GameState&&e.GameState.GamePeriod?e.GameState.GamePeriod:"",b=e.GameState&&e.GameState.GameClock?e.GameState.GameClock:"",f=r(g),y=e.ParticipantOne.Score,S=e.ParticipantTwo.Score,O=f===a.a.postGame&&y&&S;let w=!1;w=e.ParticipantOne.IsWinner?"true"===e.ParticipantOne.IsWinner.toString().toLowerCase():O?parseInt(y)>parseInt(S):null;let C=!1;C=e.ParticipantTwo.IsWinner?"true"===e.ParticipantTwo.IsWinner.toString().toLowerCase():O?parseInt(S)>parseInt(y):null;const j=l||Object(h.b)(i.urlSegmentSports)||Object(h.b)(i.urlSegment)||Object(h.b)(i.urlSegmentGameCenter)||Object(h.b)(e.GameId)||Object(h.b)(e.ParticipantOne.GameCenterUrlSegment)||Object(h.b)(e.ParticipantTwo.GameCenterUrlSegment)?null:`${n}/${i.urlSegmentGameCenter}/sp-id-${e.GameId}`,I=!(Object(h.b)(e.ParticipantOne.ImageId)&&Object(h.b)(e.ParticipantTwo.ImageId)),x=e.GameStartDateTimeIsToBeAnnounced&&f===a.a.preGame;return{sportsMatchData:{participantOneImageUrl:Object(o.e)(e.ParticipantOne.ImageId,t.teamImageInfo,I),participantOneImageAltText:e.ParticipantOne.Name,participantOneName:Object(o.f)(e.ParticipantOne.Loc,u,d)||e.ParticipantOne.Name,participantOneScore:y||"",participantOneIsWinner:w,participantTwoImageUrl:Object(o.e)(e.ParticipantTwo.ImageId,t.teamImageInfo,I),participantTwoImageAltText:e.ParticipantTwo.Name,participantTwoName:Object(o.f)(e.ParticipantTwo.Loc,u,d)||e.ParticipantTwo.Name,participantTwoScore:S||"",participantTwoIsWinner:C,matchClickthroughUrl:Object(o.a)(j),gameStateCatetory:f,gameState:Object(o.c)(f,s),gameDate:p.localizedMonthDate(m,u),gameStartTime:x?s.sportsTBA:p.formatTimeFromDate(m,u),gamePeriodAndClock:v+" "+b,tvChannel:e.TvChannel},sportsMatchTelemetryData:{gameId:e.GameId,gameStartTime:e.GameStartDateTime}}}(e,i,s,n,l,u);if(g&&(p.push(g),p.length>=d))return!0}}),p}(e.Model.SportsMatches.League.Matches,b,d,S,l,e.Trans,y);return{sportsMatchOverallData:1===l?w.slice(0,1):w,sportsMatchupCardData:O,sportsCardTelemetryData:{leagueId:b.id,leagueName:b.name,primaryEntityId:e.Model.PrimaryEntityId,primaryEntityName:Object(o.f)(e.Model.PrimaryEntityLoc,v,e.Trans),primaryEntityType:e.Model.PrimaryEntityType}}}function i(t,e){var i;const r=t.sportsSeeMore||t.seeMoreTooltip||(null===(i=t.cardActionsTooltips)||void 0===i?void 0:i.seeMore)||"";return Object(h.b)(e)||Object(h.b)(t.seeMoreSports)?r:l.String.Format(t.seeMoreSports,e)}function r(t){switch(t){case"PreGame":return a.a.preGame;case"InProgressGame":return a.a.inprogressGame;case"Final":case"PostGame":return a.a.postGame;default:return a.a.preGame}}t.teamImageInfo={width:26,height:26,enableDpiScaling:!1,format:u.d.PNG},t.mapSubCardToSportsMatchData=function(t,i,r=1,a=null){if(!t||!t.data)return null;let o;try{o=JSON.parse(t.data)}catch(e){Object(s.c)(e,n.Wg,`Sports card parse exception. CardId=${t.id} data=${t.data}`)}if(!o)return Object(s.b)(n.Yg,"Sports card data has no value."),null;switch(t.type){case d.a.SportsMatch:return e(o,i,r,a);default:return Object(s.b)(n.Wg,"Sports card unknown type value: type="+t.type),null}},t.transformSportsMatchDataWithTrans=e}(r||(r={}))},hSGL:function(t,e,i){"use strict";i.d(e,"a",(function(){return y}));var r=i("D57K"),a=i("tERu"),s=i("ypwz"),n=i("tMmC"),o=i("HxRh"),c=i("XlyT"),d=i("rvYQ"),l=i("zfSW"),h=i("msIb"),u=i("6ADy"),p=i("KETb"),g=i("u8F0"),m=i("u5KZ"),v=i("l+Jz"),b=i("HDSB"),f=i("/+Un");const y=new class extends class{constructor(t){this.fetchImpl=t,this.userUpdateEndpoint="msn/user",this.pdpServiceEndpoint="graph/actions",this.followServiceEndPoint="v1/news/users/me/preferences",this.locationsServiceEndPoint="v1/news/users/me/locations",this.ocid="Peregrine",this.ocidOverride=!1}getUserDefaultLocation(t){return Object(r.a)(this,void 0,void 0,(function*(){const e={method:"GET",headers:yield h.a.getOneServiceHeaders(),credentials:"include"},i=Object(u.c)(this.locationsServiceEndPoint);let a;[...h.a.getCommonParams2(this.ocid,!this.ocidOverride),{key:"autodetect",value:t&&""+t}].forEach(t=>{t.value&&i.searchParams.set(t.key,t.value)});try{a=yield Object(p.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){const t=yield this.fetchImpl(i.href,e);if(t.status>=400){const e=`OneService returned error response. Status: ${t.status} for actionType: getUserDefaultLocation}`;throw new Error(e)}return t})),"getUserDefaultLocation")}catch(t){return a}return a}))}addToFavoriteLocation(t,e){return Object(r.a)(this,void 0,void 0,(function*(){const i={method:"POST",body:JSON.stringify({actionType:"Follow",targetType:"Location",definitionName:e,degree:"FavoriteLocation",metaData:t}),headers:yield h.a.getOneServiceHeaders(),credentials:"include"},s=Object(u.c)(this.pdpServiceEndpoint);let n;((yield Object(f.d)())===a.c.SignedIn?h.a.getOneServiceParamsWithAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride):h.a.getOneServiceParamsWithoutAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride)).forEach(t=>{t.value&&s.searchParams.set(t.key,t.value)});try{n=yield Object(p.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){const t=yield this.fetchImpl(s.href,i);if(t.status>=400){const e=`OneService returned error response. Status: ${t.status} for actionType: Follow, targetType: Location`;throw new Error(e)}return t.json()})),"addToFavoriteLocation")}catch(t){return!1}return!0}))}removeFavoriteLocation(t){return Object(r.a)(this,void 0,void 0,(function*(){return yield this.deleteFromPdp(g.a.Location,"definitionName",[t])}))}updatePdpHomeLocation(t,e,i={},s){return Object(r.a)(this,void 0,void 0,(function*(){const n=g.a.Location,o=yield this.getRequestInit({method:"POST"},i);o.body=JSON.stringify({actionType:"Follow",targetType:n,definitionName:e,degree:"DefaultLocation",metaData:t});const c=Object(u.c)(this.pdpServiceEndpoint);return((yield Object(f.d)())===a.c.SignedIn?h.a.getOneServiceParamsWithAuth(null!=s?s:Object(d.b)().UserId,this.ocid,!this.ocidOverride):h.a.getOneServiceParamsWithoutAuth(null!=s?s:Object(d.b)().UserId,this.ocid,!this.ocidOverride)).forEach(t=>{t.value&&c.searchParams.set(t.key,t.value)}),yield Object(p.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){const t=yield this.fetchImpl(c.href,o);if(t.status>=400){const e=`OneService returned error response. Status: ${t.status} for actionType: Follow, targetType: ${n}`;throw new Error(e)}return t})),"setPdpHomeLocation"),this.tryInvalidateBulkFetchedPdpTargetType(n),!0}))}updateCommuteLocation(t,e,i,s,n){return Object(r.a)(this,void 0,void 0,(function*(){const o=g.a.Traffic,c={method:"POST",body:JSON.stringify({actionType:"Follow",targetType:o,degree:t?"HomeLocation":"WorkLocation",definitionName:e,metadata:{OriginalName:i,Address:{SingleLine:s},formattedAddress:s}}),headers:yield h.a.getOneServiceHeaders(),credentials:"include"},l=Object(u.c)(this.pdpServiceEndpoint);let m;[...(yield Object(f.d)())===a.c.SignedIn?h.a.getOneServiceParamsWithAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride):h.a.getOneServiceParamsWithoutAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride),...n].forEach(t=>{t.value&&l.searchParams.set(t.key,t.value)});try{m=yield Object(p.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){const t=yield this.fetchImpl(l.href,c);if(t.status>=400){const e=`OneService returned error response. Status: ${t.status} for actionType: Follow, targetType: ${o}`;throw new Error(e)}return t.json()})),"updateCommuteLocation"),this.tryInvalidateBulkFetchedPdpTargetType(o)}catch(t){return!1}return!0}))}deleteCommuteLocation(t,e,i){return Object(r.a)(this,void 0,void 0,(function*(){const s={method:"DELETE",headers:yield this.getOneserviceHeaders(),credentials:"include"},n=Object(u.c)(this.pdpServiceEndpoint),o=(yield Object(f.d)())===a.c.SignedIn?h.a.getOneServiceParamsWithAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride):h.a.getOneServiceParamsWithoutAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride),c=`targetType eq '${g.a.Traffic}'`,l=`definitionName eq '${e}'`,m=`degree eq '${t?"HomeLocation":"WorkLocation"}'`;n.searchParams.set("$filter",`actionType eq 'Follow' and (${l}) and (${c}) and (${m})`),[...o,...i].forEach(t=>{t.value&&n.searchParams.set(t.key,t.value)});try{yield Object(p.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){const t=yield this.fetchImpl(n.href,s);if(t.status>=400){const e=`OneService returned error response. Status: ${t.status} for actionType: Follow, targetType: ${g.a.Traffic}`;throw new Error(e)}return t})),"deleteTrafficFromPdp"),this.tryInvalidateBulkFetchedPdpTargetType(g.a.Traffic)}catch(t){return!1}return!0}))}addToWatchList(t,e=0,i={}){return Object(r.a)(this,void 0,void 0,(function*(){const s=g.a.Finance,n={method:"POST",body:JSON.stringify({actionType:"Follow",targetType:s,targetId:t,metadata:{securityType:e,tickerId:this.generateUUID()}}),headers:yield this.getOneserviceHeaders(i),credentials:"include"},o=Object(u.c)(this.pdpServiceEndpoint),c="zh-cn"!==Object(d.b)().CurrentMarket;let l;((yield Object(f.d)())===a.c.SignedIn&&c?h.a.getOneServiceParamsWithAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride):h.a.getOneServiceParamsWithoutAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride)).forEach(t=>{t.value&&o.searchParams.set(t.key,t.value)});try{l=yield Object(p.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){const t=yield this.fetchImpl(o.href,n);if(t.status>=400){const e=`OneService returned error response. Status: ${t.status} for actionType: Follow, targetType: ${s}`;throw new Error(e)}return t.json()})),"addToWatchList"),this.tryInvalidateBulkFetchedPdpTargetType(s)}catch(t){return!1}return!0}))}generateUUID(){let t=(new Date).getTime();return"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,(function(e){const i=(t+16*Math.random())%16|0;return t=Math.floor(t/16),("x"==e?i:3&i|8).toString(16)}))}sortWatchList(t,e={}){return Object(r.a)(this,void 0,void 0,(function*(){const i=g.a.Finance,s=yield y.readPdpWithTargetType(g.a.Finance,!0,200,e),n=s&&s.value;if(n.length!=t.length)return!1;const o={};t.forEach((t,e)=>{const r=n.filter(e=>e.targetId===t)[0];if(!r)return!1;o[t]=JSON.stringify({actionType:"Follow",targetId:t,targetType:i,rank:e,metadata:r.metadata})});const c={method:"PUT",body:JSON.stringify(o),headers:yield this.getOneserviceHeaders(e),credentials:"include"},l=Object(u.c)(this.pdpServiceEndpoint);((yield Object(f.d)())===a.c.SignedIn?h.a.getOneServiceParamsWithAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride):h.a.getOneServiceParamsWithoutAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride)).forEach(t=>{t.value&&l.searchParams.set(t.key,t.value)});try{yield Object(p.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){const t=yield this.fetchImpl(l.href,c);if(t.status>=400){const e=`OneService returned error response. Status: ${t.status} for actionType: Follow, targetType: ${i}`;throw new Error(e)}return t.json()})),"sortWatchList"),this.tryInvalidateBulkFetchedPdpTargetType(g.a.Finance)}catch(t){return!1}return!0}))}updateWeatherSettings(t,e,i={},s){return Object(r.a)(this,void 0,void 0,(function*(){if(!t&&!e)return!0;let r="";r=t&&!e?'{"weatherDisplayUnit":"'+t+'"}':!t&&e?'{"userSettings":{"weatherLocationSettingMode":"'+e+'"}}':'{"weatherDisplayUnit":"'+t+'","userSettings":{"weatherLocationSettingMode":"'+e+'"}}';const n=yield this.getRequestInit({method:"POST"},i);n.body=r;const o=Object(u.c)(this.userUpdateEndpoint);((yield Object(f.d)())===a.c.SignedIn?h.a.getOneServiceParamsWithAuth(null!=s?s:Object(d.b)().UserId,this.ocid,!this.ocidOverride):h.a.getOneServiceParamsWithoutAuth(null!=s?s:Object(d.b)().UserId,this.ocid,!this.ocidOverride)).forEach(t=>{t.value&&o.searchParams.set(t.key,t.value)});const c=yield this.fetchImpl(o.href,n);if(c.status>=400){const t=`OneService returned error response. Status: ${c.status} for update weather setting call`;throw new Error(t)}return!0}))}getPdpUserPreference(t={}){return Object(r.a)(this,void 0,void 0,(function*(){const e=yield this.getRequestInit({method:"GET"},t),i=Object(u.c)(this.userUpdateEndpoint);[...(yield Object(f.d)())===a.c.SignedIn?h.a.getOneServiceParamsWithAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride):h.a.getOneServiceParamsWithoutAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride)].forEach(t=>{t.value&&i.searchParams.set(t.key,t.value)});try{const t=yield Object(p.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){const t=yield this.fetchImpl(i.href,e);if(!t.ok){if(t.status>=400&&t.status<500&&408!=t.status)return t;throw Error(t.statusText)}return t})),"readPDPData");if(!t.ok)throw Error(`code=${t.status}, ${t.statusText}`);return yield t.json()}catch(t){return n.a.logError(t.message),null}}))}updatePdpLayoutPreference(t){return Object(r.a)(this,void 0,void 0,(function*(){const e={method:"PUT",credentials:"include",body:JSON.stringify({dummyid:{userLayoutPreference:t}})},i=Object(u.c)(this.userUpdateEndpoint);((yield Object(f.d)())===a.c.SignedIn?h.a.getOneServiceParamsWithAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride):h.a.getOneServiceParamsWithoutAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride)).forEach(t=>{t.value&&i.searchParams.set(t.key,t.value)});try{const t=yield this.fetchImpl(i.href,e);if(t.status>=400){const e=`OneService returned error response. Status: ${t.status} for update layout preference setting call`;throw new Error(e)}}catch(t){return n.a.logError(t.message),!1}return!0}))}updateSegmentCardsEnableStatus(t){return Object(r.a)(this,void 0,void 0,(function*(){if(!t&&!t.length)return!0;const e='{"segmentCardSettings":"{'+t.map(t=>`\\"${t.cardType}\\":${t.enabled?'\\"1\\"':'\\"0\\"'}`).join(",")+'}"}';return this.updateUserPreference(e)}))}updateCommunitySettingsOptOutStatus(t){return Object(r.a)(this,void 0,void 0,(function*(){if(!t&&!t.length)return!0;const e={};t.forEach(t=>{e[t.settingType]=t.optedOut?"1":"0"});const i={communitySettings:e};return this.updateUserPreference(JSON.stringify(i))}))}updateUserPreference(t){return Object(r.a)(this,void 0,void 0,(function*(){const e={method:"POST",body:t,credentials:"include"},i=Object(u.c)(this.userUpdateEndpoint);((yield Object(f.d)())===a.c.SignedIn?h.a.getOneServiceParamsWithAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride):h.a.getOneServiceParamsWithoutAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride)).forEach(t=>{t.value&&i.searchParams.set(t.key,t.value)});try{const r=yield this.fetchImpl(i.href,e);if(r.status>=400){const e=`OneService returned error response while updating user preference. Status: ${r.status}, payload: ${t}`;throw new Error(e)}}catch(t){return!1}return!0}))}setPdpTargetTypesForBulkLoad(t){t&&t.length&&!this.bulkGraphActionTargetTypes&&(this.bulkGraphActionTargetTypes=t)}readPdpWithTargetType(t,e=!1,i,a={}){return Object(r.a)(this,void 0,void 0,(function*(){const r=yield this.getFromWebWorker(t);if(r)return r;if(this.bulkGraphActionTargetTypes&&this.bulkGraphActionTargetTypes.length)if(this.bulkGraphActionTargetTypes.indexOf(t)>=0){this.bulkGraphActionResultCache=this.bulkGraphActionResultCache||(yield this.bulkGraphActionPromise||(this.bulkGraphActionPromise=this.fetchPdpWithTargetTypes(this.bulkGraphActionTargetTypes,e,i)));const r=this.bulkGraphActionResultCache.get(t);if(r)return{value:r}}else m.a.sendAppErrorEvent(Object.assign(Object.assign({},o.Hh),{message:`Received an unknown target type "${t}" that was not in the bulk graph action target types list "${this.bulkGraphActionTargetTypes}". Falling back to new network call. Please update the EntryPoint config's "graphActionsToBulkLoad" property to include this type.`}));const s=(yield this.fetchPdpWithTargetTypes([t],e,i,a)).get(t);return s?{value:s}:void 0}))}deleteFromPdp(t,e,i,s={}){return Object(r.a)(this,void 0,void 0,(function*(){const n={method:"DELETE",headers:yield this.getOneserviceHeaders(s),credentials:"include"},o=Object(u.c)(this.pdpServiceEndpoint),c=(yield Object(f.d)())===a.c.SignedIn?h.a.getOneServiceParamsWithAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride):h.a.getOneServiceParamsWithoutAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride),l=`targetType eq '${t}'`,g=i.map(t=>`${e} eq '${t}'`).join(" or ");o.searchParams.set("$filter",`actionType eq 'Follow' and (${g}) and (${l})`),c.forEach(t=>{t.value&&o.searchParams.set(t.key,t.value)});try{yield Object(p.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){const e=yield this.fetchImpl(o.href,n);if(e.status>=400){const i=`OneService returned error response. Status: ${e.status} for actionType: Follow, targetType: ${t}`;throw new Error(i)}return e})),"deleteFromPdp"),this.tryInvalidateBulkFetchedPdpTargetType(t)}catch(t){return!1}return!0}))}tryInvalidateBulkFetchedPdpTargetType(t){this.bulkGraphActionResultCache&&this.bulkGraphActionResultCache.delete(t)}fetchPdpWithTargetTypes(t,e=!1,i,s={}){return Object(r.a)(this,void 0,void 0,(function*(){if(!t.length)return new Map;const n=t.map(t=>`targetType eq '${t}'`).join(" or "),o=[{key:"$top",value:""+(i=i||10*t.length*2)},{key:"$filter",value:`actionType eq 'Follow' and (${n})`}],c=yield this.getRequestInit({method:"GET"},s);!0===e&&(c.cache="no-store");const l=Object(u.c)(this.pdpServiceEndpoint);[...o,...(yield Object(f.d)())===a.c.SignedIn?h.a.getOneServiceParamsWithAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride):h.a.getOneServiceParamsWithoutAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride)].forEach(t=>{t.value&&l.searchParams.set(t.key,t.value)});const g=yield Object(p.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){const t=yield this.fetchImpl(l.href,c);if(!t.ok){if(t.status>=400&&t.status<500&&408!=t.status)return t;throw Error(t.statusText)}return t})),"readPDPData");if(!g.ok)throw Error(`code=${g.status}, ${g.statusText}`);const m=new Map,v=yield g.json();if(!v)return m;if(v.value)for(const t of v.value){let e=m.get(t.targetType);e||m.set(t.targetType,e=[]),e.push(t)}for(const e of t)m.get(e)||m.set(e,[]);return m}))}updateMarketPreference(t){return Object(r.a)(this,void 0,void 0,(function*(){const e={method:"POST",credentials:"include",body:JSON.stringify({userSettings:{preferredMarket:t}})},i=Object(u.c)(this.userUpdateEndpoint);((yield Object(f.d)())===a.c.SignedIn?h.a.getOneServiceParamsWithAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride):h.a.getOneServiceParamsWithoutAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride)).forEach(t=>{t.value&&i.searchParams.set(t.key,t.value)});try{const t=yield this.fetchImpl(i.href,e);if(!t.ok)throw new Error("Failed to update market preference: Status: "+t.status);return!0}catch(t){return n.a.logError(t.message),!1}}))}getFromWebWorker(t){return Object(r.a)(this,void 0,void 0,(function*(){let e=null;if(l.c){const i=this.maptoWebWorkerId(t);if(i&&i.trim()){const i=yield Object(l.b)({id:this.maptoWebWorkerId(t)});i.fetched&&(e=i.payload)}}return e}))}maptoWebWorkerId(t){switch(t){case g.a.Location:return v.a.WeatherPdp;case g.a.League:return v.a.SportsLeaguePdp;case g.a.Player:return v.a.SportsPlayerPdp;case g.a.Team:return v.a.SportsTeamPdp;case g.a.Finance:return v.a.MoneyPdp;default:return""}}getRequestInit(t={method:"GET"},e={}){return Object(r.a)(this,void 0,void 0,(function*(){const i=yield h.a.getOneServiceHeaders();return t.headers=Object.assign(Object.assign({},i),e),t.credentials="include",t}))}getOneserviceHeaders(t={}){return Object(r.a)(this,void 0,void 0,(function*(){const e=yield h.a.getOneServiceHeaders();return Object.assign(Object.assign({},e),t)}))}getFollowedLists(){return Object(r.a)(this,void 0,void 0,(function*(){const t=yield this.getRequestInit({method:"GET"}),e=Object(u.c)(this.followServiceEndPoint);[...(yield Object(f.d)())===a.c.SignedIn?h.a.getOneServiceParamsWithAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride):h.a.getOneServiceParamsWithoutAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride)].forEach(t=>{t.value&&e.searchParams.set(t.key,t.value)});try{const i=yield Object(p.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){const i=yield this.fetchImpl(e.href,t);if(!i.ok){if(i.status>=400&&i.status<500&&408!=i.status)return i;Object(c.c)(null,o.Uc,"Error get followed list")}return i})),"getFollowedLists");return i.ok||Object(c.c)(null,o.Uc,"Error get followed list"),yield i.json()}catch(t){return n.a.logError(t.message),null}}))}addToFollowedLists(t){return Object(r.a)(this,void 0,void 0,(function*(){const e=g.a.Finance,i={method:"POST",body:JSON.stringify({financeListIds:t}),headers:yield h.a.getOneServiceHeaders(),credentials:"include"},s=Object(u.c)(this.followServiceEndPoint);let n;((yield Object(f.d)())===a.c.SignedIn?h.a.getOneServiceParamsWithAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride):h.a.getOneServiceParamsWithoutAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride)).forEach(t=>{t.value&&s.searchParams.set(t.key,t.value)});try{n=yield Object(p.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){const t=yield this.fetchImpl(s.href,i);if(t.status>=400){const i=`OneService returned error response. Status: ${t.status} for actionType: FollowList, targetType: ${e}`;throw new Error(i)}return t.json()})),"addToFollowedLists")}catch(t){return!1}return!0}))}deleteFromFollowedLists(t){return Object(r.a)(this,void 0,void 0,(function*(){const e=g.a.Finance,i={method:"DELETE",body:null,headers:yield h.a.getOneServiceHeaders(),credentials:"include"},s=Object(u.c)(this.followServiceEndPoint);let n;[...(yield Object(f.d)())===a.c.SignedIn?h.a.getOneServiceParamsWithAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride):h.a.getOneServiceParamsWithoutAuth(Object(d.b)().UserId,this.ocid,!this.ocidOverride),...[{key:"financeListIds",value:t.toString()}]].forEach(t=>{t.value&&s.searchParams.set(t.key,t.value)});try{n=yield Object(p.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){const t=yield this.fetchImpl(s.href,i);if(t.status>=400){const i=`OneService returned error response. Status: ${t.status} for actionType: UnFollowList, targetType: ${e}`;throw new Error(i)}return t.json()})),"deleteFromFollowedLists")}catch(t){return!1}return!0}))}}{constructor(){super(Object(b.a)()?window.fetch.bind(window):fetch),d.a.AppType!==s.a.WindowsNewsPlus&&d.a.AppType!==s.a.NewsAndInterests||(this.ocid="winp2",this.ocidOverride=!0)}}},lifk:function(t,e,i){"use strict";i.d(e,"d",(function(){return n})),i.d(e,"e",(function(){return o})),i.d(e,"c",(function(){return c})),i.d(e,"a",(function(){return d})),i.d(e,"b",(function(){return l})),i.d(e,"h",(function(){return h})),i.d(e,"g",(function(){return u})),i.d(e,"f",(function(){return g}));var r=i("HDSB"),a=i("0hJ9");let s;var n,o;!function(t){t.JPG="jpg",t.PNG="png"}(n||(n={})),function(t){t[t.None=0]="None",t[t.Letterbox=1]="Letterbox",t[t.Scale=2]="Scale",t[t.Stretch=3]="Stretch",t[t.Crop=4]="Crop",t[t.FocalCrop=5]="FocalCrop",t[t.FacialCrop=6]="FacialCrop"}(o||(o={}));const c=90,d="www.bing.com/th",l=new RegExp(/bing.(com|net)\/th/);function h(t,e){return u("//img-s-msn-com.akamaized.net/tenant/amp/entityid/"+t,e)}function u(t,e){if(t&&l.test(t))return g(t,e);const{focalRegion:i,backgroundColor:o}=e;let{width:c=0,height:d=0,format:h=n.JPG}=e,u="";if(i){const t=m(i.x1,i.x2),e=m(i.y1,i.y2);null!=t&&null!=e&&(u+=`&x=${t}&y=${e}`)}o&&(u+="&b="+o);const p=null==e.mode?6:e.mode;if(6===p&&(u+="&u=t"),e.enableDpiScaling){if(!e.devicePixelRatio)throw new Error("A valid devicePixelRatio value must be provided when DPI scaling is enabled");const t=function(t){if(Object(r.a)()&&s)return s;if(t<1)return null;let e=t;Object(a.a)(4*e)||(e=Math.ceil(10*e)/10);e>3&&(e=3);Object(r.a)()&&(s=e);return e}(e.devicePixelRatio);t&&(c=Math.round(c*t),d=Math.round(d*t))}return`${t}?w=${c}&h=${d}&q=${e.quality||60}&m=${p}&f=${h}${u}`}function p(t,e){const{width:i=0,height:r=0}=e,a=e.quality||c;return t.searchParams.set("w",""+i),t.searchParams.set("h",""+r),t.searchParams.set("qlt",""+a),t.searchParams.set("c","1"),t.searchParams.set("rs","1"),e.enableDpiScaling&&(t.searchParams.set("dpr",""+e.devicePixelRatio),t.searchParams.set("p","0")),t}function g(t,e){try{return p(new URL(t),e).href}catch(i){const r=p(new URL("https://"+t),e);return`//${r.host}${r.pathname}${r.search}`}}function m(t,e){if(null!=t&&null!=e)return Math.floor((t+e)/2)}},mJTN:function(t,e,i){"use strict";i.d(e,"b",(function(){return r})),i.d(e,"a",(function(){return a}));const r=new(i("JzSW").a)("AppState");var a;!function(t){t[t.IsSignedIn=1]="IsSignedIn",t[t.CookieConsentStatus=2]="CookieConsentStatus",t[t.OnetrustActiveCookieGroups=3]="OnetrustActiveCookieGroups",t[t.IsDarkMode=4]="IsDarkMode",t[t.ColumnArrangement=5]="ColumnArrangement",t[t.CurrentRoute=6]="CurrentRoute",t[t.TopicData=7]="TopicData",t[t.AboveTheFoldVisuallyReady=8]="AboveTheFoldVisuallyReady",t[t.IsDocumentVisible=9]="IsDocumentVisible"}(a||(a={}))},mQa5:function(t,e,i){"use strict";i.d(e,"a",(function(){return s})),i.d(e,"b",(function(){return n})),i.d(e,"c",(function(){return o}));var r=i("Am8i"),a=i("Gsg7");function s(t){const e=new a.a({name:t+"_customization",type:r.e.ActionButton,content:{headline:t+"_customization",type:r.c.StructuredData,vertical:t}}),i=document.createElement("button");return i.setAttribute("data-t",e.getMetadataTag()),i}function n(t,e,i){const s=new a.a({name:t+"_header",type:r.e.ActionButton,content:{headline:i,type:r.c.StructuredData,vertical:t}}),n=document.createElement("a");return n.href=e,n.setAttribute("data-t",s.getMetadataTag()),n}function o(t){if(!t)return;return"large"===t?{width:"300",height:"412"}:"medium"===t?{width:"300",height:"304"}:"small"===t?{width:"300",height:"146"}:void 0}},msIb:function(t,e,i){"use strict";i.d(e,"a",(function(){return r}));var r,a=i("D57K"),s=i("rvYQ"),n=i("y+Kz"),o=i("I6Lx"),c=i("wBSZ"),d=i("OTKB"),l=i("hOj1"),h=i("ax+D"),u=i("BQg2"),p=i("kN1G"),g=i("VGrc"),m=i("/+Un"),v=i("HDSB"),b=i("NIfb"),f=i("4wjP"),y=i("MptA"),S=i("u5KZ"),O=i("HxRh");!function(t){let e;function i(t=null,e,i=!0,r=null,a=!1,c=Object(p.j)()){const d=Object(s.b)(),l=[{key:n.t.apiKey,value:d.OneServiceApiKey},{key:n.t.activityId,value:d.ActivityId},{key:n.t.ocid,value:i?w(d.TrackInfo,e):e},{key:n.t.market,value:d.CurrentMarket}];t&&l.push({key:n.t.user,value:t});let h=Object(o.a)().CurrentFlights;if(r){h=h?`${h},${r}`:r;const t="prg-bngimg-t";-1===h.indexOf(t)&&(h+=","+t),!0===a&&(h=r)}return h&&l.push({key:n.t.fdhead,value:h}),c&&l.push({key:p.c,value:p.d}),o.b.IsBlendedEnterprise&&l.push({key:"audienceMode",value:"enterprise"}),l}function r(t=Object(p.j)(),e){return Object(a.a)(this,void 0,void 0,(function*(){const i={};if(t&&!(yield Object(p.g)())){const t=yield Object(p.e)(c.c,c.f,c.e);t&&t.token&&e?i[n.s.entAuthorization]=t.token:t&&t.token&&(i[n.s.authorization]="Bearer "+t.token)}if(!Object(v.a)()){const t=Object(b.a)().cookie;t&&(i.Cookie=t);const e=Object(b.a)().referer;e&&(i.Referer=e)}return i}))}function w(t,e){return h.a.isNonNullObject(t)&&h.a.isNonNullObject(t.sitePage)&&Object(y.a)(t.sitePage.page_product)&&Object(y.a)(t.sitePage.page_type)?t.sitePage.page_product+"-"+t.sitePage.page_type+(e?"-"+e:""):e}t.authenticationTicketType="10",t.signedInCookieNameHeader="signedInCookieName",t.userLocationHeader="user-location",t.serviceRequestOnComplete=function(t,e){return Object(a.a)(this,void 0,void 0,(function*(){try{const i=yield t();return e(),i}catch(t){throw e(),t}}))},t.getOneServiceParamsWithoutAuth=i,t.getOneServiceNonDynamicParamsWithoutAuth=function(t,e=!0){const i=Object(s.b)(),r=[{key:n.t.apiKey,value:i.OneServiceApiKey},{key:n.t.ocid,value:e?w(i.TrackInfo,t):t},{key:n.t.market,value:i.CurrentMarket}];return Object(p.j)()&&r.push({key:p.c,value:p.d}),r},t.getOneServiceParamsWithAuth=function(t=null,e,r=!0,a=null,o=!1){const c=Object(s.b)().AuthCookieName,d=[...i(t,e,r,a,o)];return c&&d.push({key:n.t.signInCookieName,value:c.toUpperCase()}),d},t.getOneServiceHeaders=r,t.getWinWidgetOneServiceHeaders=function(t,i=!1,r,o,c){var h;return Object(a.a)(this,void 0,void 0,(function*(){const a=Object(s.b)(),u=(null===(h=null==a?void 0:a.CurrentRequestTargetScope)||void 0===h?void 0:h.audienceMode)===f.a.Enterprise,p={};if(!t)return S.a.sendAppErrorEvent(Object.assign(Object.assign({},O.ic),{message:"Failed to retrieve user auth token and MUID from WDX client due to undefined widget instance",source:"OneSericeUtility",pb:Object.assign(Object.assign({},O.ic.pb),{widgetInstance:t,widgetInstanceId:r,windowsSessionId:o})})),p;let m;const v=Object(g.b)(t,u?d.b:d.c,u?d.f:d.g,u?d.d:d.e);e?m=yield v:[m,e]=yield Promise.all([v,Object(g.a)(t)]),m?(u&&i&&(p[n.s.entAuthorization]=m),u||(p[n.s.rpsToken]=m)):c&&S.a.sendAppErrorEvent(Object.assign(Object.assign({},O.hc),{message:"WDX Client failed to return user auth token",source:"OneSericeUtility",pb:Object.assign(Object.assign({},O.hc.pb),{widgetInstance:t,widgetInstanceId:r,windowsSessionId:o})}));const b=Object(l.b)();return e?(p[n.s.muid]=e,e!==b&&Object(d.a)(e)):b&&(p[n.s.muid]=b),p}))},t.getOneServiceFeedCallHeaders=function(t,e){return Object(a.a)(this,void 0,void 0,(function*(){const i=yield r(t,e),a=Object(s.b)(),o=a.ActivityId;return a.SendFeedCallActivityIdInHeader&&o&&(i[n.s.activityId]=o),i}))},t.getLocationParams=function(t,e){const i=Object(s.b)(),r=t||i.Latitude,a=e||i.Longitude;return r&&a?{key:n.t.location,value:`${r}|${a}`}:null},t.getOneServiceOCID=w,t.getBaseRequestData=function(e){return Object(a.a)(this,void 0,void 0,(function*(){return{headers:yield t.getOneServiceHeaders(),method:e}}))},t.getCommonParams=function(t,e=!1){return Object(o.a)().UserIsSignedIn?this.getOneServiceParamsWithAuth(Object(s.b)().UserId,t,e):this.getOneServiceParamsWithoutAuth(Object(s.b)().UserId,t,e)},t.getCommonParams2=function(t,e=!0,i=!1){return Object(m.e)()?this.getOneServiceParamsWithAuth(Object(s.b)().UserId,t,e,i):this.getOneServiceParamsWithoutAuth(Object(s.b)().UserId,t,e,i)},t.urlContainsOcidParam=function(t){if(!t)return!1;const e=t.split("?");if(e.length<2)return!1;const i=e[1].split("#")[0];return!!new u.a(i).get("ocid")},t.removeOcidFromUrl=function(t){if(!t)return t;const e=t.split("?");if(e.length<2)return t;const i=e[1].split("#")[0],r=new u.a(i);if(r.get("ocid")){r.delete("ocid");let e=t.replace(i,r.toString());return"?"===e.charAt(e.length-1)&&(e=e.substring(0,e.length-1)),e}return t},t.removeOcidFromRiverCardProviderResponse=function(e){e&&e.cardMetadata&&e.cardMetadata.length&&e.cardMetadata.forEach(e=>{e.cardContent&&e.cardContent.destinationUrl?e.cardContent.destinationUrl=t.removeOcidFromUrl(e.cardContent.destinationUrl):e.subItems&&e.subItems.length&&e.subItems.forEach(e=>{e.cardContent&&e.cardContent.destinationUrl&&(e.cardContent.destinationUrl=t.removeOcidFromUrl(e.cardContent.destinationUrl))})})},t.removeOcidFromWindowsOneServiceResponse=function(e){e&&e.cards&&e.cards.forEach(e=>{e.subCards.forEach(e=>{e.url?e.url=t.removeOcidFromUrl(e.url):e.subCards&&e.subCards.forEach(e=>{e.url&&(e.url=t.removeOcidFromUrl(e.url))})})})}}(r||(r={}))},rfxS:function(t,e,i){"use strict";i.d(e,"a",(function(){return r}));const r=1},sfV1:function(t,e,i){"use strict";i.d(e,"b",(function(){return j})),i.d(e,"a",(function(){return I})),i.d(e,"c",(function(){return x})),i.d(e,"d",(function(){return M}));var r=i("Kt+H"),a=i("TgmJ"),s=i("qTjs"),n=i("jbxw"),o=i("lFvR"),c=i("JIBo"),d=i("YBl9"),l=i("6eT7"),h=i("hv+n");function u(t,e,i){i*=1;const r=Object(d.c)(t)||new l.a(1,0,1,1),a=Object(d.c)(e)||new l.a(1,0,1,1),s=a.r*(1-i)+r.r*i,n=a.g*(1-i)+r.g*i,o=a.b*(1-i)+r.b*i;return new l.a(s,n,o,1).toStringHexRGB()}const p=Object(c.f)(o.C,o.w,o.t);function g(t){return e=>{Object(h.a)(e),p(e);return function(t){return e=>{const i=u("#FFF",Object(o.l)(e),t);return u(Object(o.b)(e),i,t)}}((11+1*t(e))/100)(e)}}const m=Object(c.d)(t=>({rest:v(t),hover:b(t),active:f(t),focus:y(t),selected:S(t)})),v=Object(c.d)(g(t=>0)),b=Object(c.d)(g(t=>9)),f=Object(c.d)(g(t=>-2)),y=Object(c.d)(g(t=>0)),S=Object(c.d)(g(t=>0));var O=i("eNhF");const w=t=>{const e=Object(h.b)(o.T,Object(o.l)(t))(t);return Object(h.d)(e-5,Object(o.T)(t))};function C(t){return"function"==typeof t?e=>w(Object.assign({},e,{backgroundColor:t(e)})):w(t)}Object(r.b)("accent-muted-fill-rest",t=>m(t).rest,a.a.findProvider);const j=Object(r.b)("gradient-white-fill",t=>Object(O.a)(.8,1)(t),a.a.findProvider),I=Object(r.b)("gradient-background-fill",t=>Object(O.a)(0,1,Object(o.l)(t))(t),a.a.findProvider),x=Object(r.b)("neutral-fill-bubble-over-rest",t=>C(s.b)(t),a.a.findProvider),M=Object(r.b)("neutral-foreground-hint-over-bubble",t=>Object(n.a)(t=>C(s.b)(t))(t),a.a.findProvider)},u8F0:function(t,e,i){"use strict";var r;i.d(e,"a",(function(){return r})),function(t){t.Location="Location",t.Finance="Finance",t.Team="Team",t.League="League",t.Player="Player",t.Traffic="Traffic"}(r||(r={}))}}]);

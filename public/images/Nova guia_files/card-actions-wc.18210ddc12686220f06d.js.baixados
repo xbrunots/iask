@@ -1,0 +1,976 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["card-actions-wc"],{"0hJ9":function(e,t,i){"use strict";var o=i("v6nU");t.a=function(e){return"number"==typeof e&&e==Object(o.a)(e)}},"6ADy":function(e,t,i){"use strict";i.d(t,"b",(function(){return l})),i.d(t,"c",(function(){return u})),i.d(t,"a",(function(){return h}));var o=i("rvYQ"),r=i("I6Lx"),a=i("kN1G"),n=i("tMmC");let s,c;function l(){const e=Object(o.b)();if(!s){!function(e){s=new URL("",e),p(s)}(Object(a.j)()&&Object(a.k)()?e.EnterpriseServiceUrlBase:e.ServiceUrlBase)}return s}function d(){const e=Object(o.b)();if(!c){!function(e){c=new URL("",e),p(c)}(Object(a.j)()&&Object(a.k)()?e.EnterpriseServiceUrlBase:e.FeedServiceUrlBase)}return c}function u(e,t=l()){return new URL(e+(null==t?void 0:t.search),t)}function h(e,t=d()){return new URL(e+(null==t?void 0:t.search),t)}function p(e){let t=!1;"dev"!==e.searchParams.get("env.service")&&Object(r.a)().UserIsSignedIn&&(t=!0),n.a.log("u-si: "+Object(o.b)().UserId),n.a.log("a-si: "+t),n.a.log("ss-si: "+Object(r.a)().UserIsSignedIn)}},"7qs3":function(e,t,i){"use strict";i.d(t,"a",(function(){return j}));var o,r=i("D57K"),a=i("h3hC"),n=i("ypwz"),s=i("tERu"),c=i("HxRh"),l=i("XlyT"),d=i("rvYQ"),u=i("I6Lx"),h=i("u5KZ"),p=i("6ADy"),g=i("msIb"),b=i("KETb"),v=i("k112"),m=i("KUTD"),f=i("Qo3E"),y=i("8ntK");!function(e){e[e.feedbackDefault=2224]="feedbackDefault",e[e.windowsFeed=2475]="windowsFeed"}(o||(o={}));class C{constructor(){this.manifestType="Sas",this.appId=o.feedbackDefault,this.source="Client",this.type="Idea"}}var w=i("HDSB"),O=i("4L2h"),k=i("r6MD"),A=i("/+Un"),T=i("ac9z");class x extends class{constructor(e,t){this.fetchImpl=e,this.additionalHeaders=t,this.isWindowsDashboard=d.a.AppType===n.a.NewsAndInterests||d.a.AppType===n.a.WindowsNewsPlus,this.providersServiceEndpointURL=Object(p.c)("./Msn/Providers"),this.cardActionsServiceEndpointURL=Object(p.c)("./Graph/Actions"),this.userFeedbackEventhubUrl="/labs/api/feedbackSignal",this.ocid="feeds",this.isWindowsDashboard?this.ocid="winp2":u.b.IsBlendedEnterprise&&(this.ocid="entnewsntp")}ShowFewer(e){return Object(r.a)(this,void 0,void 0,(function*(){return this.PostCardActionRequest(e,a.a.Dislike,null)}))}UnshowFewer(e){return Object(r.a)(this,void 0,void 0,(function*(){return this.DeleteCardActionRequest(e,a.a.Dislike)}))}ShowMore(e){return Object(r.a)(this,void 0,void 0,(function*(){return this.PostCardActionRequest(e,a.a.Like)}))}UnshowMore(e){return Object(r.a)(this,void 0,void 0,(function*(){return this.DeleteCardActionRequest(e,a.a.Like)}))}Save(e){return Object(r.a)(this,void 0,void 0,(function*(){return this.PostCardActionRequest(e,a.a.Save)}))}Unsave(e){return Object(r.a)(this,void 0,void 0,(function*(){return this.DeleteCardActionRequest(e,a.a.Save)}))}Hide(e){return Object(r.a)(this,void 0,void 0,(function*(){return this.PostCardActionRequest(e,a.a.Dislike,null)}))}Unhide(e){return Object(r.a)(this,void 0,void 0,(function*(){return this.DeleteCardActionRequest(e,a.a.Dislike)}))}Mute(e){return Object(r.a)(this,void 0,void 0,(function*(){return this.PostCardActionRequest(e,a.a.Mute,"SourceProvider")}))}Report(e,t,i){return Object(r.a)(this,void 0,void 0,(function*(){const o=u.b.ClientSettings?u.b.ClientSettings.aid:"";let r="";const a={serviceType:"oneservice",oneServiceTraceId:"",oneServiceActivityId:o};d.a.AppType===n.a.Windows&&(r=h.a.getPageMetadata().JoinIdProps.IDXId,a.oneServiceTraceId="",a.oneServiceActivityId=o),h.a.sendTraceInfoEvent(a);const s=JSON.stringify({article:{id:e},canvas:{name:d.a.AppType,version:navigator.userAgent,pageType:u.b.ClientSettings.pagetype},data:{activityId:o,feedbackTags:t,feedbackText:i},appEnvironment:d.a,clientSettings:u.b.ClientSettings,extSchema:a}),l=Object(p.b)().origin+this.userFeedbackEventhubUrl,b={method:"POST",headers:Object.assign(Object.assign({},yield g.a.getOneServiceHeaders()),this.additionalHeaders),body:s,credentials:"include"};let v;try{if(v=yield fetch(l,b),v.status>=400)throw new Error(v.statusText)}catch(e){h.a.sendAppErrorEvent(Object.assign(Object.assign({},c.ab.CardActionPostActionError),{message:"Error while posting action for card action",pb:Object.assign(Object.assign({},c.ab.CardActionPostActionError.pb),{customMessage:`url: ${l}, error: ${e}`})}))}return v}))}reportNonCMS(e,t,i,o){return Object(r.a)(this,void 0,void 0,(function*(){this.ReportOCV(e,t,i,o)}))}ReportOCV(e,t,i,o){return Object(r.a)(this,void 0,void 0,(function*(){let r=!1;const a="https://petrol.office.microsoft.com/v1/feedback",n=this.createOcvFeedbackData(e,t,i,o),s={method:"POST",mode:"cors",cache:"no-cache",headers:{"Content-Type":"application/json"},body:JSON.stringify(n)};try{const e=yield this.fetchImpl(a,s);if(e.ok)r=!0;else{const t=`Error code: ${e.status} Error message: ${e.statusText} Request params: ${s} Service url: ${a}`;Object(l.b)(c.ab.CardActionBadRequestReportingToOcv,"Request is not valid, it has no content, or the manifest is not formatted correctly",t)}}catch(e){const t=`Error code: ${e?e.code:"undefined"} Error message: ${e?e.message:"undefined"} Request params: ${s} Service url: ${a}`;Object(l.c)(e,c.ab.CardActionExceptionReportingToOcv,"Exception reporting feedback to OCV",t)}}))}createOcvFeedbackData(e,t,i,o){var r,a,n,s;const c=new C,l=null===u.b||void 0===u.b?void 0:u.b.ClientSettings,p=null===d.a||void 0===d.a?void 0:d.a.HostPage,g=(null==l?void 0:l.aid)||"";let b="";const v=(null===(a=null===(r=null===d.a||void 0===d.a?void 0:d.a.CurrentRequestTargetScope)||void 0===r?void 0:r.pageExperiments)||void 0===a?void 0:a.join(","))||"",m=null===(n=null===d.a||void 0===d.a?void 0:d.a.CurrentRequestTargetScope)||void 0===n?void 0:n.browser;return b=h.a.getPageMetadata().JoinIdProps.IDXId,c.submitTime=(new Date).toISOString(),c.clientFeedbackId=Object(O.e)(),c.comment=i,c.rating=4,c.application={appData:`{"ScreenResolution":"${window&&window.screen?[screen.width,screen.height].join("x"):""}","DDDActivityId":"${b}","articleId":"${e}"}`},c.telemetry={audience:(null===d.a||void 0===d.a?void 0:d.a.CurrentMarket)||"",audienceGroup:(null==p?void 0:p.verticalKey)||"Production",channel:(null==p?void 0:p.categoryKey)||"",deviceType:(null==l?void 0:l.deviceFormFactor)||"",errorClassification:JSON.stringify({NotRelevant:t.NotRelevant,ImageQuality:t.BlurryImage,MisleadingTitle:t.Misleading,OutdatedArticle:t.Outdated,DuplicateArticle:t.Duplicate,OffensiveContent:t.Offensive,Vertical:o}),featureArea:(null==l?void 0:l.pagetype)||"",flights:v,isUserSubscriber:Object(A.e)(),platform:null===(s=d.a.CurrentRequestTargetScope)||void 0===s?void 0:s.os,processSessionId:g,sourceContext:d.a.AppType},c.web={browser:(null==m?void 0:m.browserType)||"",browserVersion:(null==m?void 0:m.version)||"",sourcePageName:(null==p?void 0:p.subcategoryKey)||"",sourcePageURI:""},c}ReportAd(e,t){return Object(r.a)(this,void 0,void 0,(function*(){const i=e.concat("&f="+t);let o=new Image(1,1);o.src=i,o=null}))}GetProviderIcon(e){return Object(r.a)(this,void 0,void 0,(function*(){const t=yield this.GetPublisherDetails(e);return Object(k.a)(t,"value[0].logos[0].imageLink.href",void 0)}))}PostCardActionEvent(e,t,i,o=(()=>null),n,s,c=!0,l,d=5e3){return Object(r.a)(this,void 0,void 0,(function*(){switch(t){case a.a.ShowMore:return e&a.b.showMore?(c&&f.a.renderToast({id:y.a.ShowMore+"-"+i,toastType:y.a.ShowMore,expirationInMs:d,onClick:()=>{n?n(i,e^a.b.showMore,t,!0):this.PostCardActionEvent(e^a.b.showMore,t,i,o)},referrerButton:l}),yield this.ShowMore(i)):(f.a.expireToast(y.a.ShowMore+"-"+i),yield this.UnshowMore(i)),o(i,e);case a.a.ShowFewer:return e&a.b.showFewer?(c&&f.a.renderToast({id:y.a.ShowFewer+"-"+i,toastType:y.a.ShowFewer,expirationInMs:d,onClick:()=>{n?n(i,e^a.b.showFewer,t,!0):this.PostCardActionEvent(e^a.b.showFewer,t,i,o)},referrerButton:l}),yield this.ShowFewer(i)):(f.a.expireToast(y.a.ShowFewer+"-"+i),yield this.UnshowFewer(i)),o(i,e);case a.a.Save:return e&a.b.saved?(c&&f.a.renderToast({id:y.a.Save+"-"+i,toastType:y.a.Save,expirationInMs:d,referrerButton:l}),yield this.Save(i)):(f.a.expireToast(y.a.Save+"-"+i),yield this.Unsave(i)),o(i,e);case a.a.Hide:return e&a.b.hide?yield this.Hide(i):yield this.Unhide(i),o(i,e);case a.a.Mute:yield this.Mute(s);break;case a.a.ReportAd:return o(i,e);default:return}}))}GetPublisherDetails(e){return Object(r.a)(this,void 0,void 0,(function*(){const t=this.providersServiceEndpointURL,i={method:"GET",headers:Object.assign(Object.assign({},yield g.a.getOneServiceHeaders()),this.additionalHeaders)};[{key:"ids",value:e},...yield this.getOneServiceCommonParam()].forEach(e=>e.value&&t.searchParams.set(e.key,e.value));try{const o=yield Object(b.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){return yield this.fetchImpl(t.href,i)})),"getProviderDetails");if(!o.ok){const i=`OneService returned error response. Status: ${o.status} for providerId: ${e} (url: ${t.href}`;throw new Error(i)}return o.json()}catch(e){h.a.sendAppErrorEvent(Object.assign(Object.assign({},c.ab.CardActionGetActionError),{message:`Error while calling getPublisherDetails action for card action: url: ${t.href}, error: ${e}`}))}}))}DeleteCardActionRequest(e,t){return Object(r.a)(this,void 0,void 0,(function*(){const i=this.cardActionsServiceEndpointURL,o={method:"DELETE",credentials:"include",headers:Object.assign(Object.assign({},yield g.a.getOneServiceHeaders()),this.additionalHeaders)};[{key:"$filter",value:`actionType eq '${t}' and targetId eq '${e}'`},...yield this.getOneServiceCommonParam()].forEach(e=>e.value&&i.searchParams.set(e.key,e.value));try{const a=yield Object(b.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){return yield this.fetchImpl(i.href,o)})),"deleteCardAction"+t);if(a.status>=400){const i=`OneService returned error response. Status: ${a.status} for actionType: ${t} and targetId: ${e}`;throw new Error(i)}return Object(v.a)(this.getPreloadReloadReason(t)),Object(T.e)(),a}catch(e){h.a.sendAppErrorEvent(Object.assign(Object.assign({},c.ab.CardActionDeleteActionError),{message:`Error while calling delete action for card action: url: ${i.href}, error: ${e}`}))}}))}PostCardActionRequest(e,t,i){return Object(r.a)(this,void 0,void 0,(function*(){const o=this.cardActionsServiceEndpointURL,a={method:"POST",body:JSON.stringify({actionType:t,targetId:e,targetType:i}),headers:Object.assign(Object.assign({},yield g.a.getOneServiceHeaders()),this.additionalHeaders),credentials:"include"};(yield this.getOneServiceCommonParam()).forEach(e=>e.value&&o.searchParams.set(e.key,e.value));try{const n=yield Object(b.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){return yield this.fetchImpl(o.href,a)})),"getCardAction"+t);if(n.status>=400){const o=`OneService returned error response. Status: ${n.status} for actionType: ${t}, targetId: ${e} and targetType: ${i}`;throw new Error(o)}return Object(v.a)(this.getPreloadReloadReason(t)),Object(T.e)(),n.json()}catch(e){h.a.sendAppErrorEvent(Object.assign(Object.assign({},c.ab.CardActionPostActionError),{message:`Error while posting action for card action: url: ${o.href}, error: ${e}`}))}}))}getOneServiceCommonParam(){return Object(r.a)(this,void 0,void 0,(function*(){return this.isWindowsDashboard?g.a.getOneServiceParamsWithoutAuth(d.a.UserId,this.ocid,!1):(yield this.isUserSignedIn())?g.a.getOneServiceParamsWithAuth(d.a.UserId,this.ocid,!u.b.IsBlendedEnterprise):g.a.getOneServiceParamsWithoutAuth(d.a.UserId,this.ocid,!u.b.IsBlendedEnterprise)}))}isUserSignedIn(){return Object(r.a)(this,void 0,void 0,(function*(){if(u.b.UserIsSignedIn)return!0;return(yield Object(A.d)())===s.c.SignedIn}))}getPreloadReloadReason(e){switch(e){case a.a.Mute:return m.a.MutePublisher;case a.a.Save:return m.a.Save;case a.a.Like:return m.a.Like;case a.a.Dislike:return m.a.Dislike;default:return m.a.SettingsChange}}}{constructor(e,t){let i;i=e||(Object(w.a)()?window.fetch.bind(window):fetch),super(i,t)}}let S;const j=(e,t)=>S||(S=new x(e,t),S)},"8ntK":function(e,t,i){"use strict";var o;i.d(t,"a",(function(){return o})),function(e){e.Save="Save",e.Mute="Mute",e.Follow="Follow",e.Unfollow="Unfollow",e.InterestFailure="InterestFailure",e.ShowMore="ShowMore",e.ShowFewer="ShowFewer",e.Hide="Hide",e.DisableNotification="DisableNotification",e.EnableNotification="EnableNotification"}(o||(o={}))},"93CZ":function(e,t,i){"use strict";i.d(t,"a",(function(){return v}));var o=i("D57K"),r=i("KHt8"),a=i("P4Ao"),n=i("QBS5");class s extends r.b{constructor(){super(...arguments),this.dismiss=()=>{this.$emit("action-dialog-dismiss")}}}Object(o.d)([Object(n.b)({attribute:"headline"})],s.prototype,"headline",void 0);var c=i("4X57"),l=i("xY0q");const d=c.a`
+    ${Object(l.a)("flex")} :host {
+        --dialog-height: var(--action-dialog-height, auto);
+        --dialog-width: var(--action-dialog-width, auto);
+        --button-border-radius: 20px;
+        --button-min-width: 160px;
+        --corner-radius: 2px;
+        --dialog-padding: 24px;
+        --space-above-title: 20px;
+        --space-between-buttons: 8px;
+        z-index: var(--action-dialog-z-index, 0);
+    }
+
+    .body {
+        margin: 0 var(--dialog-padding) var(--dialog-padding) var(--dialog-padding);
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .controls {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-gap: var(--space-between-buttons);
+        justify-content: center;
+    }
+
+    .heading {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: 1;
+        position: relative;
+        width: 100%;
+    }
+
+    .heading span {
+        font-size: var(--type-ramp-plus-2-font-size);
+        font-weight: 600;
+        line-height: var(--type-ramp-plus-3-font-size);
+        margin-inline-start: var(--dialog-padding);
+        margin-top: var(--space-above-title);
+    }
+`;var u=i("m1Vi"),h=i("6BDD"),p=i("6vBc"),g=i("+53S");u.b,r.b;const b=h.b`
+    <div class="positioning-region" part="positioning-region">
+        ${Object(p.a)(e=>e.modal,h.b`
+                <div
+                    class="overlay"
+                    part="overlay"
+                    role="presentation"
+                    tabindex="-1"
+                    @click="${e=>e.dismiss()}"
+                ></div>
+            `)}
+        <div
+            role="dialog"
+            class="control"
+            part="control"
+            aria-modal="${e=>e.modal}"
+            aria-describedby="${e=>e.ariaDescribedby}"
+            aria-labelledby="${e=>e.ariaLabelledby}"
+            aria-label="${e=>e.ariaLabel}"
+            ${Object(g.b)("dialog")}
+        >
+            <div class="heading" part="heading">
+                <span>${e=>e.headline}</span>
+                <slot name="close-button"></slot>
+            </div>
+            <div class="body" part="body">
+                <div class="content" part="content">
+                    <slot></slot>
+                </div>
+                <div class="controls" part="controls">
+                    <slot name="action-button"></slot>
+                    <slot name="cancel-button"></slot>
+                </div>
+            </div>
+        </div>
+    </div>
+`;let v=class extends s{};v=Object(o.d)([Object(a.b)({name:"msn-action-dialog",template:b,styles:[r.a,d],shadowOptions:{delegatesFocus:!0}})],v)},CzGr:function(e,t,i){"use strict";i.d(t,"a",(function(){return a}));var o=i("D57K"),r=(i("fuIx"),i("Zsg4"),i("e8jz"));function a(){return Object(o.a)(this,void 0,void 0,(function*(){const e={},t=Object(r.b)();if(t){e.MUID=t.muid;const i=yield Object(r.a)("service::api.msn.com::MBI_SSL");"MSA"===t.accountType&&i?e.UserAuthToken=i:"AAD"===t.accountType&&i&&(e.Authorization=i)}return e}))}},JzSW:function(e,t,i){"use strict";i.d(t,"a",(function(){return a}));var o=i("HxRh"),r=i("u5KZ");class a extends Map{constructor(e){super(),this.identifier=e,this.subscriptions=new Map}set(e,t){super.set(e,t);const i=this.subscriptions.get(e)||[];return i.length?(i.forEach((i,a)=>{try{i&&i(t)}catch(t){r.a.sendAppErrorEvent(Object.assign(Object.assign({},o.eh),{message:"Failed to exceute subscription callback",pb:Object.assign(Object.assign({},o.eh.pb),{customMessage:`Error executing subscription callback for key [${e}] at handler index [${a}]`,instanceId:this.identifier,errorMessage:t&&t.message})}))}}),this):this}subscribe(e,t){const i=this.subscribeInternal(e,t);return this.has(e)&&this.tryExecuteSubscriptionCallback(e,i.index,this.get(e)),{unsubscribe:i.unsubscribe}}subscribeInternal(e,t){const i=this.subscriptions.get(e)||[];this.subscriptions.set(e,[...i,t]);const o=i.length;return{unsubscribe:()=>{const t=this.subscriptions.get(e)||[];t[o]&&(t[o]=null),this.subscriptions.set(e,t)},index:o}}tryExecuteSubscriptionCallback(e,t,i){const o=this.subscriptions.get(e);if(!o||!o.length)return;const r=o[t];"function"==typeof r&&r(i)}}},"KC/q":function(e,t,i){"use strict";i.d(t,"e",(function(){return o})),i.d(t,"b",(function(){return r})),i.d(t,"c",(function(){return a})),i.d(t,"f",(function(){return n})),i.d(t,"d",(function(){return s})),i.d(t,"a",(function(){return c}));const o='<svg class="button-glyph" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" width="16" height="16"><path d="M2048 640H0V512h2048v128zm0 1024H0v-128h2048v128zm0-513H0v-127h2048v127z" /></svg>',r='<svg class="button-glyph" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" width="16" height="16"><path d="M1169 1024l879 879-145 145-879-879-879 879L0 1903l879-879L0 145 145 0l879 879L1903 0l145 145-879 879z" /></svg>',a='<svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M5.70801 5L10 9.29199L9.29199 10L5 5.70801L0.708008 10L0 9.29199L4.29199 5L0 0.708008L0.708008 0L5 4.29199L9.29199 0L10 0.708008L5.70801 5Z"/></svg>',n='<svg width="106" height="22" viewBox="0 0 106 22" xmlns="http://www.w3.org/2000/svg"><path d="M45.2018 4.40014V17.6001H42.921V7.24181H42.8906L38.8156 17.6001H37.295L33.1288 7.24181H33.0983V17.6001H31V4.40014H34.2844L38.0553 14.1779H38.1161L42.0999 4.40014H45.2018ZM47.0873 5.40847C47.0873 5.04181 47.2089 4.73625 47.4826 4.49181C47.7563 4.24736 48.0604 4.12514 48.4254 4.12514C48.8207 4.12514 49.1552 4.24736 49.3985 4.52236C49.6418 4.76681 49.7938 5.07236 49.7938 5.43903C49.7938 5.8057 49.6722 6.11125 49.3985 6.3557C49.1248 6.60014 48.8207 6.72236 48.4254 6.72236C48.03 6.72236 47.7259 6.60014 47.4826 6.3557C47.2393 6.05014 47.0873 5.74459 47.0873 5.40847ZM49.5505 8.12792V17.6001H47.3306V8.12792H49.5505ZM56.2713 15.9807C56.6058 15.9807 56.9708 15.889 57.3661 15.7363C57.7614 15.5835 58.1264 15.3696 58.4609 15.1251V17.2029C58.096 17.4168 57.7006 17.5696 57.2445 17.6613C56.7883 17.7529 56.3017 17.814 55.7543 17.814C54.3554 17.814 53.2302 17.3863 52.3787 16.5001C51.4968 15.614 51.0711 14.4835 51.0711 13.139C51.0711 11.6113 51.5273 10.3585 52.4092 9.3807C53.2911 8.40292 54.5379 7.91403 56.1801 7.91403C56.6058 7.91403 57.0012 7.97514 57.4269 8.06681C57.8527 8.18903 58.1872 8.31125 58.4305 8.43348V10.5724C58.096 10.3279 57.731 10.114 57.3965 9.99181C57.0316 9.83903 56.6667 9.77792 56.3017 9.77792C55.4198 9.77792 54.7204 10.0529 54.173 10.6335C53.6256 11.214 53.3519 11.9779 53.3519 12.9557C53.3519 13.9029 53.5952 14.6668 54.1122 15.1863C54.69 15.7057 55.3894 15.9807 56.2713 15.9807ZM64.7559 7.97514C64.9384 7.97514 65.0904 7.97514 65.2425 8.0057C65.3945 8.03625 65.5162 8.06681 65.6074 8.09736V10.3585C65.4858 10.2668 65.3337 10.2057 65.0904 10.114C64.8776 10.0224 64.6039 9.99181 64.2693 9.99181C63.722 9.99181 63.2658 10.2363 62.9009 10.6946C62.5359 11.1529 62.3231 11.8557 62.3231 12.8335V17.6001H60.1031V8.12792H62.3231V9.62514H62.3535C62.5663 9.1057 62.8705 8.70847 63.2658 8.40292C63.6915 8.12792 64.1781 7.97514 64.7559 7.97514ZM65.7291 13.0168C65.7291 11.4585 66.1548 10.2057 67.0367 9.28903C67.9186 8.37236 69.1351 7.91403 70.7164 7.91403C72.1761 7.91403 73.3317 8.34181 74.1528 9.22792C74.9739 10.114 75.3997 11.3057 75.3997 12.8029C75.3997 14.3307 74.9739 15.5529 74.092 16.4696C73.2101 17.3863 72.0241 17.8446 70.5036 17.8446C69.0438 17.8446 67.8882 17.4168 67.0367 16.5613C66.1548 15.6751 65.7291 14.4835 65.7291 13.0168ZM68.0403 12.9251C68.0403 13.9029 68.2532 14.6668 68.7093 15.1863C69.1655 15.7057 69.8041 15.9807 70.6252 15.9807C71.4463 15.9807 72.0545 15.7057 72.4802 15.1863C72.906 14.6668 73.1189 13.9029 73.1189 12.864C73.1189 11.8557 72.906 11.0918 72.4498 10.5724C72.0241 10.0529 71.4159 9.80847 70.6252 9.80847C69.8041 9.80847 69.1959 10.0835 68.7397 10.6335C68.2532 11.1529 68.0403 11.9168 68.0403 12.9251ZM78.684 10.6335C78.684 10.939 78.7753 11.214 78.9881 11.3974C79.201 11.5807 79.6268 11.7946 80.3262 12.0696C81.2081 12.4363 81.8468 12.8335 82.1813 13.2613C82.5462 13.7196 82.7287 14.239 82.7287 14.8807C82.7287 15.7668 82.3941 16.5001 81.6947 17.0196C81.0257 17.5696 80.0829 17.8446 78.9273 17.8446C78.532 17.8446 78.1062 17.7835 77.6197 17.6918C77.1331 17.6001 76.7377 17.4779 76.4032 17.3251V15.1251C76.7986 15.4001 77.2547 15.6446 77.7109 15.7974C78.1671 15.9501 78.5928 16.0418 78.9881 16.0418C79.4747 16.0418 79.8701 15.9807 80.0829 15.8279C80.3262 15.6751 80.4479 15.4613 80.4479 15.1251C80.4479 14.8196 80.3262 14.5446 80.0829 14.3613C79.8396 14.1474 79.3531 13.9029 78.684 13.6279C77.8629 13.2918 77.2851 12.8946 76.9506 12.4668C76.6161 12.039 76.4336 11.489 76.4336 10.8168C76.4336 9.96125 76.7682 9.25847 77.4372 8.70847C78.1062 8.15847 78.9881 7.88347 80.0525 7.88347C80.387 7.88347 80.752 7.91403 81.1473 8.0057C81.5426 8.06681 81.9076 8.18903 82.1813 8.2807V10.389C81.8772 10.2057 81.5426 10.0224 81.1473 9.86959C80.752 9.71681 80.3566 9.6557 79.9917 9.6557C79.5659 9.6557 79.2314 9.74736 79.0186 9.90014C78.8057 10.114 78.684 10.3279 78.684 10.6335ZM83.6714 13.0168C83.6714 11.4585 84.0972 10.2057 84.9791 9.28903C85.861 8.37236 87.0774 7.91403 88.6588 7.91403C90.1185 7.91403 91.2741 8.34181 92.0952 9.22792C92.9163 10.114 93.342 11.3057 93.342 12.8029C93.342 14.3307 92.9163 15.5529 92.0343 16.4696C91.1524 17.3863 89.9664 17.8446 88.4459 17.8446C86.9862 17.8446 85.8306 17.4168 84.9791 16.5613C84.1276 15.6751 83.6714 14.4835 83.6714 13.0168ZM85.9826 12.9251C85.9826 13.9029 86.1955 14.6668 86.6517 15.1863C87.1078 15.7057 87.7464 15.9807 88.5675 15.9807C89.3886 15.9807 89.9968 15.7057 90.4226 15.1863C90.8483 14.6668 91.0612 13.9029 91.0612 12.864C91.0612 11.8557 90.8483 11.0918 90.3922 10.5724C89.9664 10.0529 89.3582 9.80847 88.5675 9.80847C87.7464 9.80847 87.1382 10.0835 86.6821 10.6335C86.2259 11.1529 85.9826 11.9168 85.9826 12.9251ZM100.701 9.96125H97.3866V17.6001H95.1362V9.96125H93.5549V8.12792H95.1362V6.81403C95.1362 5.8057 95.4708 5.01125 96.1094 4.36959C96.748 3.72792 97.5691 3.42236 98.5727 3.42236C98.8464 3.42236 99.0896 3.42236 99.3025 3.45292C99.5154 3.48347 99.6979 3.51403 99.8499 3.57514V5.50014C99.7891 5.46959 99.637 5.40847 99.4546 5.34736C99.2721 5.28625 99.0592 5.2557 98.8159 5.2557C98.3598 5.2557 97.9949 5.40847 97.7516 5.68347C97.5083 5.98903 97.3866 6.41681 97.3866 6.96681V8.09736H100.701V5.95847L102.921 5.28625V8.09736H105.172V9.9307H102.921V14.3613C102.921 14.9418 103.013 15.3696 103.226 15.5835C103.438 15.8279 103.773 15.9501 104.229 15.9501C104.351 15.9501 104.503 15.9196 104.685 15.8585C104.868 15.7974 105.02 15.7363 105.172 15.6446V17.4779C105.02 17.5696 104.807 17.6307 104.472 17.6918C104.138 17.7529 103.834 17.7835 103.499 17.7835C102.556 17.7835 101.857 17.539 101.401 17.0196C100.945 16.5307 100.701 15.7668 100.701 14.7585V9.96125Z" /><path d="M10.4005 0H0V10.45H10.4005V0Z" fill="#F25022" /><path d="M21.8958 0H11.4954V10.45H21.8958V0Z" fill="#7FBA00" /><path d="M10.4005 11.55H0V22.0001H10.4005V11.55Z" fill="#00A4EF"/><path d="M21.8958 11.55H11.4954V22.0001H21.8958V11.55Z" fill="#FFB900"/></svg>',s='<svg width="16" height="10" viewBox="0 0 16 10" xmlns="http://www.w3.org/2000/svg"><path d="M12 3V4C12.3958 4 12.7734 4.04688 13.1328 4.14062C13.4974 4.22917 13.8177 4.375 14.0938 4.57812C14.3698 4.77604 14.5885 5.03385 14.75 5.35156C14.9167 5.66406 15 6.04688 15 6.5C15 6.84375 14.9323 7.16667 14.7969 7.46875C14.6667 7.77083 14.487 8.03646 14.2578 8.26562C14.0339 8.48958 13.7708 8.66927 13.4688 8.80469C13.1667 8.9349 12.8438 9 12.5 9H8.5C8.15625 9 7.83333 8.9349 7.53125 8.80469C7.22917 8.66927 6.96354 8.48958 6.73438 8.26562C6.51042 8.03646 6.33073 7.77083 6.19531 7.46875C6.0651 7.16667 6 6.84375 6 6.5C6 6.04688 6.08073 5.66406 6.24219 5.35156C6.40885 5.03385 6.63021 4.77604 6.90625 4.57812C7.18229 4.375 7.5 4.22917 7.85938 4.14062C8.22396 4.04688 8.60417 4 9 4V3H8.5C8.01562 3 7.5599 3.09375 7.13281 3.28125C6.71094 3.46354 6.34115 3.71354 6.02344 4.03125C5.71094 4.34375 5.46094 4.71354 5.27344 5.14062C5.09115 5.5625 5 6.01562 5 6.5C5 6.98438 5.09115 7.4401 5.27344 7.86719C5.46094 8.28906 5.71094 8.65885 6.02344 8.97656C6.34115 9.28906 6.71094 9.53906 7.13281 9.72656C7.5599 9.90885 8.01562 10 8.5 10H12.5C12.9844 10 13.4375 9.90885 13.8594 9.72656C14.2865 9.53906 14.6562 9.28906 14.9688 8.97656C15.2865 8.65885 15.5365 8.28906 15.7188 7.86719C15.9062 7.4401 16 6.98438 16 6.5C16 6.01562 15.9062 5.5625 15.7188 5.14062C15.5365 4.71354 15.2865 4.34375 14.9688 4.03125C14.6562 3.71354 14.2865 3.46354 13.8594 3.28125C13.4375 3.09375 12.9844 3 12.5 3H12ZM7 7V6C7.39583 6 7.77344 5.95573 8.13281 5.86719C8.4974 5.77344 8.81771 5.6276 9.09375 5.42969C9.36979 5.22656 9.58854 4.96875 9.75 4.65625C9.91667 4.33854 10 3.95312 10 3.5C10 3.15625 9.93229 2.83333 9.79688 2.53125C9.66667 2.22917 9.48698 1.96615 9.25781 1.74219C9.03385 1.51302 8.77083 1.33333 8.46875 1.20312C8.16667 1.06771 7.84375 1 7.5 1H3.5C3.15625 1 2.83333 1.06771 2.53125 1.20312C2.22917 1.33333 1.96354 1.51302 1.73438 1.74219C1.51042 1.96615 1.33073 2.22917 1.19531 2.53125C1.0651 2.83333 1 3.15625 1 3.5C1 3.95312 1.08073 4.33854 1.24219 4.65625C1.40885 4.96875 1.63021 5.22656 1.90625 5.42969C2.18229 5.6276 2.5 5.77344 2.85938 5.86719C3.22396 5.95573 3.60417 6 4 6V7H3.5C3.01562 7 2.5599 6.90885 2.13281 6.72656C1.71094 6.53906 1.34115 6.28906 1.02344 5.97656C0.710938 5.65885 0.460938 5.28906 0.273438 4.86719C0.0911458 4.4401 0 3.98438 0 3.5C0 3.01562 0.0911458 2.5625 0.273438 2.14062C0.460938 1.71354 0.710938 1.34375 1.02344 1.03125C1.34115 0.713542 1.71094 0.463542 2.13281 0.28125C2.5599 0.09375 3.01562 0 3.5 0H7.5C7.98438 0 8.4375 0.09375 8.85938 0.28125C9.28646 0.463542 9.65625 0.713542 9.96875 1.03125C10.2865 1.34375 10.5365 1.71354 10.7188 2.14062C10.9062 2.5625 11 3.01562 11 3.5C11 3.98438 10.9062 4.4401 10.7188 4.86719C10.5365 5.28906 10.2865 5.65885 9.96875 5.97656C9.65625 6.28906 9.28646 6.53906 8.85938 6.72656C8.4375 6.90885 7.98438 7 7.5 7H7Z" fill-opacity="0.83"/></svg>',c='<svg height="20" width="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill="currentcolor" d="M5.0293 19.0918L14.1113 10L5.0293 0.908203L5.9082 0.0292969L15.8887 10L5.9082 19.9707L5.0293 19.0918Z"></path></svg>'},KETb:function(e,t,i){"use strict";i.d(t,"a",(function(){return D})),i.d(t,"b",(function(){return M}));var o=i("D57K"),r=i("XlyT"),a=i("IhCV"),n=i("z2Ro"),s=i("vq4Z"),c=i("VcDS");class l extends n.a{constructor(e,t,i,o){super(e,i,c.a.BeginActivity,a.a.newGuid(),new Date,t),this.LogLevel=s.a.Activity,this.Ended=!1,this.correlationVector=o}}var d=i("KSHU"),u=i("mRXR");class h extends n.a{constructor(e,t,i,o,r,n,l,d){super(e,d,c.a.BeginNetworkActivity,a.a.newGuid(),new Date,l),this.serviceName=t,this.LogLevel=s.a.Activity,this.Ended=!1,this.requestUri=i,this.requestHttpMethod=o,this.currentOperationName=r,this.correlationVector=n}}var p=i("9RHM");class g extends d.a{constructor(e,t){super(e),this.correlationVectorProvider=t}static getInstance(e,t){var i=e||"Default",o=g.InstancesMap[i];if(o)return o;var r=new u.a(i,s.a.Activity);return o=new g(r,t),g.InstancesMap[i]=o,o}isActivityEnabled(){return this.logger.isEnabledFor(s.a.Activity)}createActivity(e,t,i){if(this.isActivityEnabled()){let o,r;t&&(o=t.ActivityId,r=this.getVectorForNewActivity(t,!1));let a=new l(e,o,i,r);return this.logger.log(s.a.Activity,a),a}return t||null}createActivityCallback(e,t,i){return this.isActivityEnabled()?this.createActivity(e(),t,i):t||null}endActivity(e){if(this.isActivityEnabled()&&e&&!e.Ended){e.Ended=!0;const t=new Date,i=Object(p.a)(e);i.LogType=c.a.EndActivity,i.LogDateTime=t;const o=i.LogDateTime.getTime()-e.LogDateTime.getTime();i.Message=i.Message+" ElapsedTime (Milliseconds):"+o.toString(),i.elapsedTimeInMs=o,this.logger.log(s.a.Activity,i)}}createNetworkActivity(e,t,i,o,r,a,n,s){if(this.isActivityEnabled()){a||n||console.warn("'correlationVector' or 'parentActivity' is required to create network activity");let c=a||this.getVectorForNewActivity(n,!0),l=n?n.ActivityId:"";return new h(e,t,i,o,r,c,l,s)}return null}endSuccessfulNetworkActivity(e,t,i){this.endNetworkActivity(e,!0,t,i)}endFailedNetworkActivity(e,t,i,o){this.endNetworkActivity(e,!1,t,i,o)}endNetworkActivity(e,t,i,o,r){if(e&&!e.Ended){e.Ended=!0;let a=new Date,n=Object(p.a)(e);n.LogType=c.a.EndNetworkActivity,n.LogDateTime=a,n.elapsedTimeInMs=n.LogDateTime.getTime()-e.LogDateTime.getTime(),n.successful=t,n.responseSize=i,n.responseStatusCode=o,n.errorMessage=r,this.logger.log(s.a.Activity,n)}}getVectorForNewActivity(e,t){return e&&this.correlationVectorProvider?(e.latestChildCorrelationVector?e.latestChildCorrelationVector=this.correlationVectorProvider.incrementExternalVector(e.latestChildCorrelationVector):(e.latestChildCorrelationVector=this.correlationVectorProvider.extendExternalVector(e.correlationVector),t&&(e.latestChildCorrelationVector=this.correlationVectorProvider.incrementExternalVector(e.latestChildCorrelationVector))),e.latestChildCorrelationVector):""}}g.InstancesMap={};var b=i("/wq8");class v{constructor(e){if(this.loggingService=e,!e)throw"loggingService is required for LoggedExceptionManager."}error(e){throw this.loggingService.error(e),e}fatal(e){throw this.loggingService.fatal(e),e}}var m=i("HDSB");class f{constructor(e,t,i,o,r,a,n){if(!e)throw new Error("loggingService is required for ExponentialBackoffRetry.");const s=new v(e);this.logInvalidParams(s,t,i,o,r,n),this.loggingService=e,this.maxRetries=t||f.defaultMaxRetries,this.baseRetryDelayInMs=i||f.defaultBaseRetryDelayInMs,this.maxRetryDelayInMs=o||f.maxAllowedRetryDelayInMs,this.factor=r||f.defaultFactor,this.minOffsetInMs=a||f.defaultMinOffsetInMs,this.maxOffsetInMs=n||f.defaultMaxOffsetInMs,Object(m.a)()&&this.loggingService.infoCallback(()=>"ExponentialBackoffRetry has been configured.",null,{maxRetries:t,minTimeout:i,maxTimeout:o,factor:r})}executeRequest(e,t,i){return Object(o.a)(this,void 0,void 0,(function*(){return new Promise((r,a)=>Object(o.a)(this,void 0,void 0,(function*(){yield this.tryRequest(e,r,a,0,t,i)})))}))}logInvalidParams(e,t,i,o,r,a){t&&(t<1||t>f.maxAllowedRetries)&&e.fatal(`maxRetries should be at least 1 and less than ${f.maxAllowedRetries}.`),i&&i<f.defaultBaseRetryDelayInMs&&e.fatal("baseRetryDelay has to be a positive value greater than or equal to 100."),i&&a&&i<=a&&e.fatal("baseRetryDelay must not be smaller than the maximum delay offset."),o&&(o<=0||o>f.maxAllowedRetryDelayInMs)&&e.fatal(`maxRetryDelay has to be a positive value less than ${f.maxAllowedRetryDelayInMs}.`),r&&r<=0&&e.fatal("factor has to be a positive value.")}tryRequest(e,t,i,r,a,n){return Object(o.a)(this,void 0,void 0,(function*(){try{const i=1e4,o=yield this.timeoutServiceRequest(i,e());t(o)}catch(o){if(Object(m.a)()&&r<this.maxRetries){const s=3,c=parseFloat((Math.random()*(this.minOffsetInMs-this.maxOffsetInMs)+this.maxOffsetInMs).toFixed(s)),l=.5,d=Math.random()<l?-1:1,u=Math.min(this.baseRetryDelayInMs*Math.pow(this.factor,r),this.maxRetryDelayInMs)+c*d;this.loggingService.warnCallback(()=>`Retrying the request in ${u} milliseconds.`,n,{error:o,currentRetry:r+1,requestInfo:a}),setTimeout(()=>this.tryRequest(e,t,i,r+1,a,n),u)}else this.loggingService.errorCallback(()=>Object(m.a)()&&r<this.maxRetries?"ExponentialBackoffRetry has exceeded maximum retries "+this.maxRetries:"Request has failed.",n,{error:o,currentRetry:r,requestInfo:a}),i(o)}}))}timeoutServiceRequest(e,t){return Object(o.a)(this,void 0,void 0,(function*(){return new Promise((i,r)=>Object(o.a)(this,void 0,void 0,(function*(){const o=setTimeout(()=>r(new Error("Service Request Timed out!")),e);try{const e=yield t;i(e),clearTimeout(o)}catch(e){r(e),clearTimeout(o)}})))}))}}f.defaultBaseRetryDelayInMs=100,f.defaultFactor=2,f.defaultMaxOffsetInMs=25,f.defaultMaxRetries=5,f.defaultMinOffsetInMs=1,f.maxAllowedRetries=10,f.maxAllowedRetryDelayInMs=2e3;var y,C=i("VOUN"),w=i("hqLi");class O extends n.a{constructor(e,t,i,o,r){super(e,i,c.a.Instrumentation,o,r),this._counterName=e,this.CounterValue=t}get CounterName(){return this._counterName}incrementValue(){if("number"!=typeof this.CounterValue)throw"ERROR: Counter value is never initialized, cannot perform increment action.";this.CounterValue++}}class k extends d.a{constructor(e){super(e)}static getInstance(e){const t=e||"Default";let i=k.InstancesMap[t];if(i)return i;let o=new u.a(t,s.a.Trace);return i=new k(o),k.InstancesMap[t]=i,i}static getDimensionedLogItems(e,t){let i=[],o=new O(e.CounterName,e.CounterValue,Object(p.a)(e.Data),e.ActivityId,e.LogDateTime);if(o.LogLevel=s.a.Trace,i.push(o),t&&!Object(w.a)(t))for(let o of Object.keys(t))for(let r of t[o]){let t=o.indexOf(":")>-1?`${e.CounterName}(${o.replace(":","-")}: ${r})`:`${e.CounterName}(${o}: ${r})`,a=new O(t,e.CounterValue,Object(p.a)(e.Data),e.ActivityId,e.LogDateTime);a.LogLevel=s.a.Trace,i.push(a)}return i}logPerfCounter(e,t,i,o){const r=new O(e,t,o);this.logPerfCounterItem(r,i)}logPerfCounterItem(e,t){const i=k.getDimensionedLogItems(e,t);for(let e of i)this.logger.log(s.a.Trace,e)}}k.InstancesMap={};class A extends n.a{constructor(e,t,i,o,r,a,n,c){super(e,n),this.pageName=e,this.LogLevel=s.a.Activity,this._userActivityType=t,this.correlationVector=i,this.trackingData=o,this.pageTitle=r,this.pageUri=a,this.eventData=c}get userActivityType(){return this._userActivityType}}!function(e){e[e.None=0]="None",e[e.PageAction=1]="PageAction",e[e.PageView=2]="PageView"}(y||(y={}));class T extends d.a{constructor(e){super(e)}static getInstance(e){var t=e||"Default",i=T.InstancesMap[t];if(i)return i;var o=new u.a(t,s.a.Activity);return i=new T(o),T.InstancesMap[t]=i,i}isActivityTrackingEnabled(){return this.logger.isEnabledFor(s.a.Activity)}logPageView(e,t,i,o,r,a){this.isActivityTrackingEnabled()&&this.logger.log(s.a.Activity,this.getUserActivityLogItem(e,t,i,r,a,o))}logPageActionEvent(e,t,i,o,r,a,n){if(this.isActivityTrackingEnabled()){if(!e)throw"''eventData' required for logging page action event.";e.elementTitle&&e.eventType&&e.elementTitle.trim()&&e.eventType.trim()&&this.logger.log(s.a.Activity,this.getUserActivityLogItem(t,i,o,a,n,r,e))}}getUserActivityLogItem(e,t,i,o,r,a,n){if(!e)throw"''pageName' is required for logging user activity.";return n?new A(e,y.PageAction,t,i,o,r,a,n):new A(e,y.PageView,t,i,o,r,a)}}T.InstancesMap={};class x{constructor(e,t,i,o){this.loggingServiceInstance=e||C.a.getInstance(),this.activityServiceInstance=t||g.getInstance(),this.userActivityServiceInstance=i||T.getInstance(),this.perfCounterServiceInstance=o||k.getInstance()}get loggingService(){return this.loggingServiceInstance}get activityLoggingService(){return this.activityServiceInstance}get userActivityTrackingService(){return this.userActivityServiceInstance}get perfCounterLoggingService(){return this.perfCounterServiceInstance}getLoggingServiceByName(e){return this.checkLoggerName(e),C.a.getInstance(e)}getActivityLoggingServiceByName(e){return this.checkLoggerName(e),g.getInstance(e)}getUserActivityTrackingServiceByName(e){return this.checkLoggerName(e),T.getInstance(e)}getPerfCounterLoggingServiceByName(e){return this.checkLoggerName(e),k.getInstance(e)}addActivityLoggingService(e){this.checkServiceInstance(e),g.getInstance(e.getLoggerName())}checkLoggerName(e){if(!e)throw"'loggerName' is required."}checkServiceInstance(e){if(!e)throw"'serviceInstance' is required."}}var S=i("msIb"),j=i("tMmC");let I,P;function D(e,t,i){return Object(o.a)(this,void 0,void 0,(function*(){let o,a;try{if(o=yield fetch(e,t),o&&o.ok)return o}catch(t){Object(r.c)(t,i,"Exception calling 1S primary Url: "+e)}return o&&o.headers&&o.headers.get("OneWebServiceLatency")?o:e.indexOf("assets.msn.com/service/")>0?(a=e.replace("assets.msn.com/service/","api.msn.com/"),yield fetch(a,t)):o}))}function M(e,t){return Object(o.a)(this,void 0,void 0,(function*(){const i=$().activityLoggingService.createActivity(t);return yield S.a.serviceRequestOnComplete(()=>function(){if(P)return P;return P=new f($().loggingService,3),P}().executeRequest(e,null,i),()=>$().activityLoggingService.endActivity(i))}))}function $(){if(I)return I;const e=g.getInstance("ExperienceActivityLogger");return Object(m.a)()&&j.a.isDebug()&&e.addAppender(new b.a(s.a.Activity)),I=new x(j.a.getLoggingService(),e),I}},OTKB:function(e,t,i){"use strict";i.d(t,"c",(function(){return n})),i.d(t,"b",(function(){return s})),i.d(t,"g",(function(){return c})),i.d(t,"f",(function(){return l})),i.d(t,"e",(function(){return d})),i.d(t,"d",(function(){return u})),i.d(t,"a",(function(){return h}));var o=i("hOj1"),r=i("rvYQ"),a=i("I6Lx");const n="00000000400F9D16",s="3a4d129e-7f50-4e0d-a7fd-033add0a29f4",c="service::www.msn.com::MBI_SSL",l="User.Read Userinfo.ReadWrite",d="https://www.api.msn.com/",u="https://enterprisenews.microsoft.com/";function h(e){var t;const i=r.a.IsCnDomain||"zh-cn"===(null===(t=null===a.b||void 0===a.b?void 0:a.b.Locale)||void 0===t?void 0:t.toLowerCase());e&&Object(o.c)("MUID",e,365,i?".msn.cn":".msn.com","/")}},Qo3E:function(e,t,i){"use strict";i.d(t,"a",(function(){return n}));var o=i("u5KZ"),r=i("XlyT"),a=i("HxRh");class n{static renderToast(e){this.renderToastCallback?this.renderToastCallback(e):o.a.sendAppErrorEvent(Object(r.a)(a.Gh,"Undefined toast render callback function"))}static setRenderToastCallback(e){this.renderToastCallback=e}static expireToast(e){this.expireToastCallback?this.expireToastCallback(e):o.a.sendAppErrorEvent(Object(r.a)(a.Fh,"Undefined toast expire callback function"))}static setExpireToastCallback(e){this.expireToastCallback=e}static setCurrentToast(e,t){this.currentToastId!==e&&(this.currentToastId=e,this.renderToastCallback=t,this.currentToastIdChangeCallbacks.forEach(t=>t(e)),this.renderToast())}static addCurrentToastIdChangeCallback(e){e&&this.currentToastIdChangeCallbacks.push(e)}}n.currentToastIdChangeCallbacks=[]},RIQ7:function(e,t,i){"use strict";i.d(t,"c",(function(){return a})),i.d(t,"b",(function(){return n})),i.d(t,"a",(function(){return s}));var o=i("Am8i"),r=i("u5KZ");i("y+Kz");function a(e,t){if(e){const i={type:o.e.Module,name:t,content:{}};return e.addOrUpdateChild(i)}return null}function n(){if(!r.a)return;const e=r.a.getPageMetadata();return e&&e.contract&&e.contract.page?e.contract.page.ocid:void 0}function s(e){const t=n(),i=e.toLowerCase();if(!t||-1!=i.indexOf("?ocid=")||-1!=i.indexOf("&ocid="))return e;const o=-1==e.indexOf("?")?"?":"&";return`${e}${o}ocid=${encodeURIComponent(t)}`}},S35a:function(e,t,i){"use strict";i.d(t,"a",(function(){return v}));var o=i("3rEL"),r=i("QBS5"),a=i("P4Ao"),n=i("xQNS"),s=i("6BDD"),c=i("+53S"),l=i("UauI"),d=i("C5kU");const u=s.b`
+    <a
+        class="control"
+        part="control"
+        download="${e=>e.download}"
+        href="${e=>e.href}"
+        hreflang="${e=>e.hreflang}"
+        ping="${e=>e.ping}"
+        referrerpolicy="${e=>e.referrerpolicy}"
+        rel="${e=>e.rel}"
+        target="${e=>e.target}"
+        type="${e=>e.type}"
+        aria-atomic="${e=>e.ariaAtomic}"
+        aria-busy="${e=>e.ariaBusy}"
+        aria-controls="${e=>e.ariaControls}"
+        aria-current="${e=>e.ariaCurrent}"
+        aria-describedBy="${e=>e.ariaDescribedby}"
+        aria-details="${e=>e.ariaDetails}"
+        aria-disabled="${e=>e.ariaDisabled}"
+        aria-errormessage="${e=>e.ariaErrormessage}"
+        aria-expanded="${e=>e.ariaExpanded}"
+        aria-flowto="${e=>e.ariaFlowto}"
+        aria-haspopup="${e=>e.ariaHaspopup}"
+        aria-hidden="${e=>e.ariaHidden}"
+        aria-invalid="${e=>e.ariaInvalid}"
+        aria-keyshortcuts="${e=>e.ariaKeyshortcuts}"
+        aria-label="${e=>e.ariaLabel}"
+        aria-labelledby="${e=>e.ariaLabelledby}"
+        aria-live="${e=>e.ariaLive}"
+        aria-owns="${e=>e.ariaOwns}"
+        aria-relevant="${e=>e.ariaRelevant}"
+        aria-roledescription="${e=>e.ariaRoledescription}"
+        ${Object(c.b)("control")}
+    >
+        ${d.c}
+        <span class="content" part="content">
+            <slot ${Object(l.b)("defaultSlottedContent")}></slot>
+        </span>
+        ${d.b}
+    </a>
+`;var h=i("4X57"),p=i("vHfj"),g=i("57ob");const b=h.a`
+  ${p.b}
+`.withBehaviors(Object(g.a)("accent",p.a),Object(g.a)("hypertext",p.c),Object(g.a)("lightweight",p.d),Object(g.a)("outline",p.e),Object(g.a)("stealth",p.f));let v=class extends n.a{appearanceChanged(e,t){e!==t&&(this.classList.add(t),this.classList.remove(e))}connectedCallback(){super.connectedCallback(),this.appearance||(this.appearance="neutral")}defaultSlottedContentChanged(){const e=this.defaultSlottedContent.filter(e=>e.nodeType===Node.ELEMENT_NODE);1===e.length&&e[0]instanceof SVGElement?this.control.classList.add("icon-only"):this.control.classList.remove("icon-only")}};Object(o.a)([r.b],v.prototype,"appearance",void 0),v=Object(o.a)([Object(a.b)({name:"fluent-anchor",template:u,styles:b,shadowOptions:{delegatesFocus:!0,mode:"closed"}})],v)},VGrc:function(e,t,i){"use strict";i.d(t,"b",(function(){return s})),i.d(t,"a",(function(){return c}));var o=i("D57K"),r=i("XlyT"),a=i("HxRh"),n=i("rfxS");function s(e,t,i,s,c=""){return Object(o.a)(this,void 0,void 0,(function*(){if(!e)return null;try{const o=e.tryGetApi("authenticator",n.a,n.a);return yield o.getToken(t,i,s,c)}catch(e){return Object(r.c)(e,a.Xb,"Exception calling GetToken",JSON.stringify(e)),null}}))}function c(e){return Object(o.a)(this,void 0,void 0,(function*(){if(!e)return null;try{const t=e.tryGetApi("authenticator",n.a,n.a);return yield t.getProperty("MUID")}catch(e){return Object(r.c)(e,a.Xb,"Exception fetching MUID",JSON.stringify(e)),null}}))}},Z5nQ:function(e,t,i){"use strict";i.d(t,"a",(function(){return r})),i.d(t,"b",(function(){return a}));var o=i("4X57");const r=o.a`
+    .line-clamp {
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: var(--heading-max-lines, 3);
+    }
+`,a=o.a`
+    .sd-action:not([appearance="lightweight"]) {
+        --corner-radius: 999;
+        font-size: var(--type-ramp-minus-1-font-size);
+        line-height: var(--type-ramp-minus-1-line-height);
+    }
+
+    .sd-action::part(control) {
+        width: 100%;
+    }
+
+    .sd-action::part(content) {
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+`},ac9z:function(e,t,i){"use strict";i.d(t,"a",(function(){return d})),i.d(t,"d",(function(){return h})),i.d(t,"e",(function(){return p})),i.d(t,"b",(function(){return g})),i.d(t,"c",(function(){return b}));var o=i("D57K"),r=i("k3mM"),a=i("hOj1"),n=i("rvYQ"),s=i("zfSW"),c=i("l+Jz"),l=i("tWvP");const d="cbypass";let u=parseInt(Object(a.a)(d))||0;function h(){return Object(o.a)(this,void 0,void 0,(function*(){u=Date.now(),Object(l.a)(d,u.toString(),10/1440,n.a.HostPage.topDomain,"/"),yield r.b.purgeCacheAsync(r.a.river),Object(s.d)({id:c.a.UpdateMyFeed,payload:u})}))}function p(){return Object(o.a)(this,void 0,void 0,(function*(){u=Date.now(),Object(l.a)(d,u.toString(),10/1440,n.a.HostPage.topDomain,"/"),yield r.b.purgeCacheAsync(r.a.river)}))}function g(){return u}function b(e){u>0&&e.searchParams.set(d,u.toString())}},dMmp:function(e,t,i){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var o=function(){function e(){}return e.IsNullOrWhiteSpace=function(e){try{return null==e||"undefined"==e||e.toString().replace(/\s/g,"").length<1}catch(e){return console.log(e),!1}},e.Join=function(t){for(var i=[],o=1;o<arguments.length;o++)i[o-1]=arguments[o];try{var r=i[0];if(Array.isArray(r)||r instanceof Array){for(var a=e.Empty,n=0;n<r.length;n++){var s=r[n];n<r.length-1?a+=s+t:a+=s}return a}if("object"==typeof r){var c=e.Empty,l=r;return Object.keys(r).forEach((function(e){c+=l[e]+t})),c=c.slice(0,c.length-t.length)}var d=i;return e.join.apply(e,[t].concat(d))}catch(t){return console.log(t),e.Empty}},e.Format=function(t){for(var i=[],o=1;o<arguments.length;o++)i[o-1]=arguments[o];try{return t.match(e.regexNumber)?e.format(e.regexNumber,t,i):t.match(e.regexObject)?e.format(e.regexObject,t,i,!0):e.Empty}catch(t){return console.log(t),e.Empty}},e.format=function(t,i,o,r){return void 0===r&&(r=!1),i.replace(t,(function(t,i){var a,n=t.split(":");return n.length>1&&(i=n[0].replace("{",""),t=n[1].replace("}","")),null==(a=r?o[0][i]:o[i])||null==a||t.match(/{\d+}/)||void 0!==(a=e.parsePattern(t,a))&&null!=a?a:e.Empty}))},e.parsePattern=function(t,i){switch(t){case"L":return i.toLowerCase();case"U":return i.toUpperCase();case"d":if("string"==typeof i)return e.getDisplayDateFromString(i);if(i instanceof Date)return e.Format("{0:00}.{1:00}.{2:0000}",i.getDate(),i.getMonth(),i.getFullYear());break;case"s":if("string"==typeof i)return e.getSortableDateFromString(i);if(i instanceof Date)return e.Format("{0:0000}-{1:00}-{2:00}",i.getFullYear(),i.getMonth(),i.getDate());break;case"n":"string"!=typeof i&&(i=i.toString());var o=i.replace(/,/g,".");if(isNaN(parseFloat(o))||o.length<=3)break;var r=o.split(/[^0-9]+/g),a=r;r.length>1&&(a=[e.join.apply(e,[""].concat(r.splice(0,r.length-1))),r[r.length-1]]);var n=a[0],s=n.length%3,c=s>0?n.substring(0,s):e.Empty,l=n.substring(s).match(/.{3}/g);return(c=c+"."+e.Join(".",l))+(a.length>1?","+a[1]:"")}return"number"!=typeof i&&isNaN(i)||isNaN(+t)||e.IsNullOrWhiteSpace(i)?i:e.formatNumber(i,t)},e.getDisplayDateFromString=function(e){var t;if((t=e.split("-")).length<=1)return e;var i=t[t.length-1],o=t[t.length-2],r=t[t.length-3];return(i=(i=i.split("T")[0]).split(" ")[0])+"."+o+"."+r},e.getSortableDateFromString=function(t){var i=t.replace(",","").split(".");if(i.length<=1)return t;var o=i[i.length-1].split(" "),r=e.Empty;o.length>1&&(r=o[o.length-1]);var a=i[i.length-1].split(" ")[0]+"-"+i[i.length-2]+"-"+i[i.length-3];return!e.IsNullOrWhiteSpace(r)&&r.length>1?a+="T"+r:a+="T00:00:00",a},e.formatNumber=function(e,t){var i=t.length,o=e.toString();if(i<=o.length)return o;var r=i-o.length;return new Array(r+=1).join("0")+o},e.join=function(t){for(var i=[],o=1;o<arguments.length;o++)i[o-1]=arguments[o];for(var r=e.Empty,a=0;a<i.length;a++)if(!("string"==typeof i[a]&&e.IsNullOrWhiteSpace(i[a])||"number"!=typeof i[a]&&"string"!=typeof i[a])){r+=""+i[a];for(var n=a+1;n<i.length;n++)if(!e.IsNullOrWhiteSpace(i[n])){r+=t,a=n-1;break}}return r},e.regexNumber=/{(\d+(:\w*)?)}/g,e.regexObject=/{(\w+(:\w*)?)}/g,e.Empty="",e}();t.String=o;var r=function(){function e(e){void 0===e&&(e=o.Empty),this.Values=[],this.Values=new Array(e)}return e.prototype.ToString=function(){return this.Values.join("")},e.prototype.Append=function(e){this.Values.push(e)},e.prototype.AppendFormat=function(e){for(var t=[],i=1;i<arguments.length;i++)t[i-1]=arguments[i];this.Values.push(o.Format.apply(o,[e].concat(t)))},e.prototype.Clear=function(){this.Values=[]},e}();t.StringBuilder=r},dQeM:function(e,t,i){"use strict";i.r(t),i.d(t,"ToolingInfo",(function(){return Be})),i.d(t,"CardActionWC",(function(){return ee})),i.d(t,"CardActionWCTemplate",(function(){return Me})),i.d(t,"CardActionWCStyles",(function(){return Le}));var o=i("A03o"),r=i("C49W"),a=i("sydv"),n=i("akWC"),s=i("Zn5T");const c=Object(o.a)(s.a.cardActionWC,"A sample Peregrine Web Component experience",Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({},Object(r.b)("availableActions","Available content menu items","menu items",Object(a.b)("Action item","",["Hide","Like","Dislike","Mute","Save","Share","ShowMore","ShowFewer","Divider","Report","ReportAd","ManageInterests","Follow"],void 0))),Object(r.b)("availableSavedStoriesActions","Available content menu items for the saved stories section","menu items",Object(a.b)("Action item","",["Hide","Like","Dislike","Mute","Save","Share","ShowMore","ShowFewer","Divider","Report","ManageInterests"],void 0))),Object(r.b)("shareSocialMedia","Share social Media items","social media items",Object(a.b)("Social media item","",["email","facebook","line","linkedin","skype","twitter","whatsapp"],void 0))),Object(r.c)("enableShareCopyLink","Enable Share Copy Link","Flag to enabled share copy link")),Object(r.c)("muteToastUsingPersonalize","Mute Toast Using Personalize","True if the mute toast should send the user to the personalize page instead of the my interests page.")),Object(r.c)("displayToastForShowFewerAction","Display toast or hide story card","True if we want display toast for show fewer action")),Object(r.c)("enableShowMoreArrowIcons","Display arrow icons for show more/fewer buttons","True if we want display arrow icons for show more and show fewer actions")),Object(r.c)("enableBlackOrWhiteFilledShowMoreIcon","Display black or white filled show more icon","True if we want display black or white filled show more icon instead of blue")),Object(n.a)({cardActionMenuItemMute:"Hide stories card action menu title. {0} will be replaced with the provider name for the card content",cardActionMenuItemSave:"Save card action menu title",cardActionMenuItemHide:"Hide story card action menu title",cardActionMenuItemShare:"Share card action menu title",cardActionMenuItemUndoSave:"Undo save card action menu title",cardActionMenuItemShowMore:"Show more card action menu title",cardActionMenuItemShowFewer:"Show fewer card action menu title",cardActionMenuItemUndoShowMore:"Undo show more card action menu title",cardActionMenuItemUndoShowFewer:"Undo show fewer card action menu title",cardActionMenuItemReport:"Report an issue card action menu title",cardActionMenuItemReportAd:"Report an ad card action menu title for ad cards",cardActionMenuItemManageInterests:"Manage interests card action menu title",cardActionMenuItemAdPrivacy:"More information about privacy card action menu title for ad cards",cardActionMenuItemFollow:"Follow publisher action menu title. {0} will be replaced with the provider name for the card content",cardActionMenuItemUndoFollow:"Unfollow publisher action menu title. {0} will be replaced with the provider name for the card content",followToastButtonText:"Toast button text that the user can click to directly go to personalize page.",dialogCancelButtonText:"Card action menu entry to Cancel and close the menu",dialogCloseButtonText:"Dialog close button title",personalizeTabName:"Settings page where a provider can be unmuted. Value used in the mute dialog body text",muteDialogButtonCancelAriaLabel:"Screen reader text for the CANCEL action in the mute provider dialog",muteDialogButtonConfirmAriaLabel:"Screen reader text for the MUTE action in the mute provider dialog",muteDialogConfirmButtonText:"Button text for the MUTE action in the mute provider dialog",muteDialogRefreshBodyMessage:"Body text in the MUTE dialog specifically references the refresh that will occur. {0} will be replaced with the provider name, {1} will be replaced with the settings page where the provider can be unmuted (see muteDialogUnmuteLinkText)",muteToastButtonText:"Toast button text that the user can click to directly go to muted provider section on personalize page",reportDialogButtonCancelAriaLabel:"Screen reader text for the CANCEL action in the report an issue dialog",reportDialogSaveAriaLabel:"Screen reader text for the Submit button in the report an issue dialog",reportDialogSaveButtonText:"Button text for the Submit button in the report an issue dialog",reportDialogOffensiveContentText:"Body text for the offensive content checkbox item in the report an issue dialog",reportDialogMisleadingTitleText:"Body text for the misleading title checkbox item in the report an issue dialog",reportDialogOutdatedArticleText:"Body text for the outdated article checkbox item in the report an issue dialog",reportDialogDuplicateArticleText:"Body text for the duplicate article checkbox item in the report an issue dialog",reportDialogNotRelevantToMeText:"Body text for the not relevant to me checkbox item in the report an issue dialog",reportDialogBlurryImageText:"Body text for the blurry image checkbox item in the report an issue dialog",reportDialogFeedbackText:"Feedback text for any of the checkbox items in the report an issue dialog",reportDialogFeedbackDisclaimerText:"Feedback disclaimer text for any of the checkbox items in the report an issue dialog",reportDialogPrivacyStatementLinkText:"Microsoft Privacy Statement link text in the report an issue dialog",shareDialogEmailBodyText:"The email body text to be shared. {0}: Content Title, {1}: Content URL",shareDialogCopyButtonText:"Text used for copy link button in share dialog",shareDialogLinkCopiedButtonText:"Text used for copy link button when clicked in share dialog",socialMediaEmailLabel:"Text used for Email Social Media",socialMediaEmailAriaLabel:'Text used for accessibility text of "share via email" button',socialMediaIconsAriaLabel:'Text used for accessibility text of "share on {Linkedin}" button',dialogAriaText:"Aria label text used to describe the various dialogs that appear; used with non-sighted users through tools such as narrator"})));var l,d,u,h=i("D57K");!function(e){e.Email="email",e.Facebook="facebook",e.Line="line",e.LinkedIn="linkedin",e.Skype="skype",e.Twitter="twitter",e.VK="vk",e.WhatsApp="whatsapp"}(l||(l={})),function(e){e.Share="share",e.Mute="mute",e.Report="report",e.ReportAd="reportad"}(d||(d={})),function(e){e.cancel="Cancel",e.cardAction="CardAction",e.closeHeadline="Close dialog",e.closeModule="Dismiss",e.copy="Copy",e.hideMenuItem="Hide",e.hideHeadline="Hide Story",e.manageInterestsMenuItem="ManageInterests",e.muteMenuItem="MutePublisher",e.muteButton="Mute",e.muteConfirmation="Hide Stories from Publisher",e.reportAdHeadline="Report an issue",e.reportAdMenuItem="ReportAd",e.reportButton="Submit",e.reportChecked="Checked",e.reportDialog="ReportedReason",e.reportHeadline="Report an issue",e.reportMenuItem="ReportArticle",e.reportUnchecked="Unchecked",e.reportDialogFeedbackText="Feedback",e.reportDialogPrivacyStatement="Privacy Statement",e.saveMenuItem="Save",e.showFewerHeadline="Fewer stories like this",e.showFewerMenuItem="showFewer",e.showMoreHeadline="More stories like this",e.showMoreMenuItem="showMore",e.shareArticle="ShareArticle",e.shareDialog="Share",e.toastButton="ToastButton",e.followMenuItem="FollowPublisher",e.hoverFollowMenuItem="FollowPublisherHover",e.hoverMuteMenuItem="MutePublisherHover"}(u||(u={}));const p="Personalize",g="MyInterests",b="/{locale}/feed/personalize#mutedPublishers";var v=i("h3hC"),m=i("7qs3"),f=i("ypwz"),y=i("XlyT"),C=i("HxRh"),w=i("Am8i"),O=i("Gsg7"),k=i("0QZK"),A=i("dMmp"),T=i("kpPY"),x=i("vhqU");const S=(e,t,i,o)=>{const r="data:image/svg+xml;charset=UTF-8,";return{[l.Email]:{tooltip:Object(T.a)(e.socialMediaEmailAriaLabel,e.socialMediaEmailLabel),backgroundColor:"#0078D7",image:{alt:e.socialMediaEmailLabel,src:r+encodeURIComponent(k.xb)},source:e.socialMediaEmailLabel,target:"_self",href:A.String.Format("mailto:?subject={title}&body={body}",{title:encodeURIComponent(i),body:encodeURIComponent(Object(T.a)(e.shareDialogEmailBodyText,i,t))}),telemetryTag:o&&o[l.Email]},[l.Facebook]:{tooltip:Object(T.a)(e.socialMediaIconsAriaLabel,"Facebook"),backgroundColor:"#4267B2",image:{alt:"Facebook",src:r+encodeURIComponent(k.L)},source:"Facebook",target:"_blank",href:A.String.Format("https://www.facebook.com/sharer.php?u={url}&amp;t={title}",{url:encodeURIComponent(t),title:encodeURIComponent(i)}),telemetryTag:o&&o[l.Facebook]},[l.LinkedIn]:{tooltip:Object(T.a)(e.socialMediaIconsAriaLabel,"LinkedIn"),backgroundColor:"#0083BE",image:{alt:"LinkedIn",src:r+encodeURIComponent(k.sb)},source:"LinkedIn",target:"_blank",href:A.String.Format("https://www.linkedin.com/shareArticle?mini=true&url={url}&title={title}&source={refererUrl}",{url:encodeURIComponent(t),title:encodeURIComponent(i),refererUrl:location.href}),telemetryTag:o&&o[l.LinkedIn]},[l.Skype]:{tooltip:Object(T.a)(e.socialMediaIconsAriaLabel,"Skype"),backgroundColor:"#33BFFC",image:{alt:"Skype",src:r+encodeURIComponent(k.sc)},source:"Skype",target:"_blank",href:A.String.Format("https://web.skype.com/share?url={url}&flow_id={flowid}&source=msn",{url:encodeURIComponent(t),flowid:Object(x.a)()}),telemetryTag:o&&o[l.Skype]},[l.Twitter]:{tooltip:Object(T.a)(e.socialMediaIconsAriaLabel,"Twitter"),backgroundColor:"#20A2F2",image:{alt:"Twitter",src:r+encodeURIComponent(k.Mc)},source:"Twitter",target:"_blank",href:A.String.Format("https://twitter.com/share?url={url}&text={title}&original_referer={refererUrl}",{url:encodeURIComponent(t),title:encodeURIComponent(i),refererUrl:location.href}),telemetryTag:o&&o[l.Twitter]},[l.WhatsApp]:{tooltip:Object(T.a)(e.socialMediaIconsAriaLabel,"WhatsApp"),backgroundColor:"#25D366",image:{alt:"WhatsApp",src:r+encodeURIComponent(k.Uc)},source:"WhatsApp",target:"_blank",href:A.String.Format("https://web.whatsapp.com/send?text={url}",{url:encodeURIComponent(t)}),telemetryTag:o&&o[l.WhatsApp]}}},j={name:u.cardAction,type:w.e.Module},I={cardAction:{name:u.cardAction,type:w.e.Module},articleShare:{name:u.shareArticle,type:w.e.Headline,behavior:w.b.Navigate,content:{headline:u.shareArticle}},cancelButton:{name:u.cancel,type:w.e.ActionButton,behavior:w.b.Cancel,content:{headline:u.cancel}},closeButton:{name:u.closeModule,type:w.e.ActionButton,behavior:w.b.Close,content:{headline:u.closeHeadline}},copyShareButton:{name:u.copy,type:w.e.ActionButton,behavior:w.b.Share,content:{headline:u.copy}},muteActionButton:{name:u.muteButton,type:w.e.ActionButton,behavior:w.b.Mute,content:{headline:u.muteButton}},muteDialog:{name:u.muteConfirmation,type:w.e.Interaction,behavior:w.b.Mute,action:w.a.View,content:{headline:u.muteConfirmation}},reportActionButton:{name:u.reportButton,type:w.e.ActionButton,behavior:w.b.Report,content:{headline:u.reportButton}},reportDialog:{name:u.reportDialog,type:w.e.Interaction,behavior:w.b.Report,action:w.a.View,content:{headline:u.reportDialog}},reportDialogPrivacyStatementLink:{name:u.reportDialogPrivacyStatement,type:w.e.ActionButton,behavior:w.b.Navigate,content:{headline:u.reportDialogPrivacyStatement}},shareDialog:{name:u.shareDialog,type:w.e.Interaction,behavior:w.b.Share,content:{headline:u.shareDialog}}};function P(e,t,i){const{href:o,headlineTitle:r}=i||{},a=S(t,o,r);return Object.assign(Object.assign({},function(e,t){const i={};return Object.keys(e).forEach(o=>{const r=Object.assign({},e[o]);r.content=Object.assign(Object.assign({},t),r.content),i[o]=new O.a(r).getMetadataTag()}),i}(I,e)),{shareMediaIcons:Object.keys(a).reduce((t,i)=>(t[i]=function(e,t,i){return new O.a({name:e,behavior:w.b.Navigate,action:w.a.Click,destinationUrl:t,content:Object.assign(Object.assign({},i),{headline:e})}).getMetadataTag()}(a[i].source,o,e),t),{}),getItemTelemetryTag:D})}function D(e,t,i,o,r,a){return new O.a({name:e,type:t,behavior:i,content:Object.assign(Object.assign({},a),{headline:o||e,id:r})}).getMetadataTag()}function M(e,t){return{name:u.toastButton,type:w.e.ActionButton,content:{headline:e},action:w.a.Click,destinationUrl:t}}var $,R=i("5ZAu"),L=i("QBS5"),B=i("oePG"),E=i("3KaK"),F=i("plCa"),U=i("lifk"),H=i("rvYQ"),N=i("RIQ7"),z=i("I6Lx"),q=i("fNg4"),V=i("dXdr");!function(e){e.CMS="0",e.SD="5"}($||($={}));class K{static buildShortUrl(e,t){const i=this.getAppId();if(!i)return null;return this.getSharingUrlBase(e.sharingUrl)+Object(T.a)(this.shortUrlPathFormat,e.documentType,i,t,e.documentId)}static getAppId(){const{HostPage:e}=Object(H.b)(),t=(e&&e.verticalKey||"news").toLowerCase();let i=Object(V.a)(this.AppKeys,t);(-1===i||i>=this.Base36AppIdString.length)&&(i=1);return this.Base36AppIdString.substr(i,1)}static getSharingUrlBase(e){const t=new URL(e,location.origin),i=t.host,o=t.origin+"/";return this.SharingProductionHosts.split("|").indexOf(i)>-1?this.SharingBaseUrlDefault:o}}K.SharingBaseUrlDefault="http://a.msn.com/",K.shortUrlPathFormat="{0}{1}/{2}/{3}",K.SharingProductionHosts="bing.com|www.bing.com|preview.msn.com|www.msn.com",K.Base36AppIdString="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ",K.AppKeys=["finance","news","sports","travel","weather","health","foodanddrink","entertainment","autos","video","tv","music","movies","games","lifestyle","kids","sample","asia","africa","australasia","europe","latinamerica","middleeast","northamerica"];var W=i("Qo3E"),G=i("8ntK"),Q=i("IqCT"),Z=i("3i3w"),_=i("Gy7L"),J=i("L1Sn"),X=i("w0HK"),Y=i("qxGE");class ee extends Q.a{constructor(){super(...arguments),this.isWindowsDashboard=H.a.AppType===f.a.NewsAndInterests||H.a.AppType===f.a.WindowsNewsPlus,this.useFastAnchoredRegion=!1,this.onOutsideClick=e=>{var t;const{buttonElement:i,enabled:o}=this.cardActionProps||{},r=e.composedPath()&&e.composedPath()[0];!o||e.target instanceof ee||i.contains(e.target)||i.contains(r)||(null===(t=this.actionsMenuRef)||void 0===t?void 0:t.fluentMenu.contains(r))||this.resetCardAction()},this.onKeydown=e=>{if("Escape"===e.key)return void this.resetCardAction(!0);const{enabled:t,openedDialog:i}=this.cardActionProps||{};switch(i){case d.Mute:this.onKeyDownHideStoriesFromPublisher(e);break;case d.Report:this.onKeyDownReportAnIssueDialog(e);break;default:t&&this.onKeyDownCardActionMenu(e)}},this.onKeyDownCardActionMenu=e=>{"Tab"!==e.key?"Space"===e.key&&(this.cardActionProps.openedDialog||e.preventDefault()):this.resetCardAction(!0)},this.onKeyDownHideStoriesFromPublisher=e=>{"Tab"===e.key&&(e.shiftKey?this.shadowRoot.activeElement&&"actionDialogCloseButton"===this.shadowRoot.activeElement.id&&(e.preventDefault(),this.setFocus("actionDialogCancelButton")):this.shadowRoot.activeElement&&"actionDialogCancelButton"===this.shadowRoot.activeElement.id&&(e.preventDefault(),this.setFocus("actionDialogCloseButton")))},this.onKeyDownReportAnIssueDialog=e=>{var t,i;if("Tab"===e.key)if(e.shiftKey){if(this.shadowRoot.activeElement&&"actionDialogCloseButton"===this.shadowRoot.activeElement.id)e.preventDefault(),this.setFocus("actionDialogCancelButton");else if(this.shadowRoot.activeElement&&"actionDialogCancelButton"===this.shadowRoot.activeElement.id){e.preventDefault();this.reportDialogOptions&&0===this.reportDialogOptions.reportDialogNumberOfOptionsChecked&&0===(null===(i=null===(t=this.reportDialogOptions)||void 0===t?void 0:t.reportDialogFeedbackInput)||void 0===i?void 0:i.trim().length)?this.setFocus("reportDialogPrivacyStatementLink"):this.setFocus(this.cardActionProps&&this.cardActionProps.actionDialogProps&&this.cardActionProps.actionDialogProps.localizedStrings&&this.cardActionProps.actionDialogProps.localizedStrings.actionButtonText)}}else this.shadowRoot.activeElement&&"actionDialogCancelButton"===this.shadowRoot.activeElement.id&&(e.preventDefault(),this.setFocus("actionDialogCloseButton"))},this.setFocus=e=>{const t=this.shadowRoot.getElementById(e);t&&t.focus()},this.onDashboardScroll=()=>{const{enabled:e}=this.cardActionProps||{};e&&this.resetCardAction(!0)},this.backgroundColorChangeHandler=()=>{this.backgroundColor=Object(E.e)()?E.b:E.c},this.resetCardAction=e=>{var t,i,o,r,a;if(this.setIsCaptured(null===(t=this.actionsMenuRef)||void 0===t?void 0:t.fluentMenu.children),(null===(i=this.cardActionProps)||void 0===i?void 0:i.openedDialog)===d.Share?this.setIsCaptured(null===(o=this.dialogRef)||void 0===o?void 0:o.shadowRoot.children):this.setIsCaptured(null===(r=this.dialogRef)||void 0===r?void 0:r.children),this.reportDialogOptions=null,this.cardActionProps=null,null===(a=this.referrerButton)||void 0===a||a.setAttribute("aria-expanded","false"),this.$emit("card-action-menu-reset",{referrerButton:this.referrerButton}),e){const e=this.referrerButton;R.a.queueUpdate(()=>{null==e||e.focus()})}this.referrerButton=null},this.getUserFollowedPublishers=async()=>{try{this.publisherServiceClient=this.publisherServiceClient||new q.b(window.fetch.bind(window)),this.publisherServiceClient.getUserFollowedPublishers().then(e=>{this.followedPublisherList=e})}catch(e){Object(y.c)(e,C.ab.CardActionGetActionError,"Exception getting user followed publishers.")}},this.onFollow=async(e,t)=>{var i;const{article:{provider:o},article:{id:r},onStatusChange:a,openPersonalizeWithoutRouter:n}=this.cardActionProps,s=(e&v.b.follow)>0;this.followPublisherCallback(o?o.id:"",o?o.name:"",s,n),a&&a(r,e),t&&(null===(i=this.referrerButton)||void 0===i||i.focus()),this.resetCardAction()},this.followPublisherCallback=async(e,t,i,o)=>{let r=!0;try{await this.publisherServiceClient.publisherUserAction(e,q.a.More,i?"POST":"DELETE")}catch(o){const a=`Error: ${o&&o.message}, Publisher Id: ${e}, Publisher Name: ${t}`;i?Object(y.c)(o,C.ab.CardActionPostActionError,"Exception following publisher. ",a):Object(y.c)(o,C.ab.CardActionDeleteActionError,"Exception unfollowing publisher. ",a),r=!1}this.getUserFollowedPublishers(),this.requestInterestToast(e,t,i,r,o)},this.menuItemOnClick=(e,t,i,o=!0)=>{var r;const{article:{id:a},onStatusChange:n,refreshFeedCallback:s,updateFeedOnHide:c}=this.cardActionProps;this.PostCardActionEvent(e,t,a,n,o).then(()=>{t===v.a.Hide&&c&&s()}),i&&(null===(r=this.referrerButton)||void 0===r||r.focus()),this.resetCardAction()},this.mapDialogProps=async e=>{var t;let i;switch(e){case d.Share:this.shareProps=this.mapShareProps();break;case d.Mute:this.providerIcon=await this.getProviderIcon(),i={muteProps:this.mapMuteProps(),actionDialogProps:this.mapActionDialogProps(e)};break;case d.Report:i={reportProps:this.mapReportProps(),actionDialogProps:this.mapActionDialogProps(e)}}null===(t=this.referrerButton)||void 0===t||t.setAttribute("aria-expanded","false"),this.cardActionProps=Object.assign(Object.assign(Object.assign({},this.cardActionProps),i),{enabled:!1,openedDialog:e,dialogToOpen:null}),requestAnimationFrame(()=>{if(e===d.Report){const e=Object.keys(this.cardActionProps.reportProps.reportLocalizedStrings)[0];e&&this.setFocus(e.replace("Text","Checked"))}})},this.onMute=()=>{const{article:{provider:e},refreshFeedCallback:t,openPersonalizeWithoutRouter:i}=this.cardActionProps;e&&e.id&&(Object(m.a)(void 0,this.additionalHeaders).Mute(e.id).then(()=>{const{muteToastButtonText:o}=this.strings,r=new URL(b.replace("{locale}",H.a.CurrentMarket),"https://www.msn.com"),a=Object(N.b)();a&&r.searchParams.set("ocid",a),W.a.renderToast({id:G.a.Mute+"-"+e.id,toastType:G.a.Mute,buttonText:o,onClick:()=>this.navigateToPersonalize(!0,i),buttonTelemetryContract:M(o,r.href),inputText:e.name,expirationInMs:5e3}),setTimeout(()=>{t()},500)}),this.resetCardAction())},this.navigateToPersonalize=(e,t,i)=>{const{muteToastUsingPersonalize:o,oneRiverInterestsPivotInfo:r}=this.config,a=new URL((i?"/{locale}/feed/personalize":b).replace("{locale}",H.a.CurrentMarket),"https://www.msn.com"),n=Object(N.b)();n&&a.searchParams.set("ocid",n);const s={isRequestFromMutePublisherToast:e,noScroll:!0,pageType:o?p:g};if(t)r?Object(X.a)().switchPivot({pivotId:r.pivotId,configIndexHref:r.configIndexHref,configIndexRef:r.configIndexRef,context:s,telemetryPageName:s.pageType,display:r.displayName}):window.open(a.href,"_blank");else if(Y.a.getRouteById("personalize"))Y.a.navigate("personalize",s);else{const e=new URL(window.location.href);e.pathname=`/${H.a.CurrentMarket}/feed/personalize`,window.history.pushState(Object.assign(Object.assign({},s),{shouldPush:!0}),"",e.toString())}},this.onArticleReportChoosing=(e,t)=>{if(t instanceof MouseEvent&&"click"===t.type||t instanceof KeyboardEvent&&(t.code===_.s||"Space"===t.code)){const t=this.reportDialogOptions;this.reportDialogOptions=Object.assign(Object.assign({},this.reportDialogOptions),{[e]:!t[e],reportDialogNumberOfOptionsChecked:t.reportDialogNumberOfOptionsChecked+(t[e]?-1:1)})}},this.setReportDialogFeedbackInput=e=>{this.reportDialogOptions=Object.assign(Object.assign({},this.reportDialogOptions),{reportDialogFeedbackInput:e})},this.getReportDialogActionTelemetryTag=()=>{var e,t,i;const o=this.getFeedbackTags();Object.keys(o).filter(e=>!o[e]).map(e=>{delete o[e]});const r=this.reportDialogOptions.reportDialogFeedbackInput,a=null===(e=this.cardActionProps)||void 0===e?void 0:e.article.headlineTitle,n=null===(t=this.cardActionProps)||void 0===t?void 0:t.article.id;return function(e,t,i,o,r){return new O.a({name:u.reportButton,type:w.e.ActionButton,behavior:w.b.Report,action:w.a.Submit,content:Object.assign({headline:i,id:o,type:w.c.Article},r),ext:{fields:{checkedReportOption:e,feedbackText:t}}}).getMetadataTag()}(o,r,a,n,null===(i=this.cardActionProps)||void 0===i?void 0:i.parentTelemetryObject.contract.content)},this.providerIcons={},this.getProviderIcon=async()=>{const{provider:e}=this.cardActionProps.article,t=e&&e.id;let i=this.providerIcons[t];if(!i){const e=await Object(m.a)(void 0,this.additionalHeaders).GetProviderIcon(t);i=e&&Object(U.g)(e,{width:64,height:64,format:U.d.PNG,enableDpiScaling:!1}),this.providerIcons[t]=i}return i},this.getFeedbackTags=()=>({DisplayIssue:this.reportDialogOptions.reportDialogDuplicateArticleChecked,Duplicate:this.reportDialogOptions.reportDialogOutdatedArticleChecked,InaccurateOrMisleading:this.reportDialogOptions.reportDialogBlurryImageChecked,OffensiveOrAdult:this.reportDialogOptions.reportDialogNotRelevantToMeChecked,Other:this.reportDialogOptions.reportDialogOffensiveContentChecked,Outdated:this.reportDialogOptions.reportDialogMisleadingTitleChecked})}experienceConnected(){this.cardActionTelemetryTags=new O.a(j).getMetadataTag(),this.backgroundColor=Object(E.e)()?E.b:E.c,window.addEventListener("dashboardscroll",this.onDashboardScroll,{passive:!0}),this.config.availableActions&&this.config.availableActions.find(e=>e===v.a.Follow)&&this.getUserFollowedPublishers()}shadowDomPopulated(){this.setAttribute("data-t",this.cardActionTelemetryTags),Object(F.a)().subscribe(this.resetCardAction.bind(this)),document.addEventListener("mousedown",this.onOutsideClick),document.addEventListener("keydown",this.onKeydown),this.cardActionRef&&(this.cardActionRef.ref=this.cardAction),window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",this.backgroundColorChangeHandler)}disconnectedCallback(){Object(F.a)().unsubscribe(this.resetCardAction.bind(this)),document.removeEventListener("mousedown",this.onOutsideClick),document.removeEventListener("keydown",this.onKeydown),window.matchMedia("(prefers-color-scheme: dark)").removeEventListener("change",this.backgroundColorChangeHandler),window.removeEventListener("dashboardscroll",this.onDashboardScroll)}getExperienceType(){return s.a.cardActionWC}setIsCaptured(e){e&&Array.from(e).forEach(e=>{var t;if((null===(t=e.children)||void 0===t?void 0:t.length)>1)this.setIsCaptured(e.children);else{const t=J.a.get(e);t&&(t.isCaptured=!1)}})}getMenuItems(){const{actionsArrayOverride:e,isUserStoryCardAction:t,isPublisherAction:i}=this.cardActionProps;return e?this.mapActionsToHandler(e):t?this.mapActionsToHandler(this.config.availableSavedStoriesActions||[v.a.Share,v.a.Save]):i?this.mapActionsToHandler([v.a.Follow,v.a.Mute]):this.mapActionsToHandler(this.config.availableActions)}mapActionsToHandler(e){const{cardStatus:t,article:i,openPersonalizeWithoutRouter:o,isPublisherAction:r}=this.cardActionProps,{enableBlackOrWhiteFilledShowMoreIcon:a,enableShowMoreArrowIcons:n,isForQna:s}=this.config,c=((e,t=!1,i,o,r)=>({[v.a.Save]:{title:e.cardActionMenuItemSave,glyph:k.gc,undoGlyph:Object(k.ic)(!o&&k.q),onClickPropKey:v.a.Save,undoText:e.cardActionMenuItemUndoSave,key:v.a.Save,telemetryName:u.saveMenuItem,telemetryBehavior:w.b.Save,telemetryType:w.e.ActionButton,undoTelemetryType:w.e.ActionButton,undoTelemetryBehavior:w.b.Unpin},[v.a.Share]:{title:e.cardActionMenuItemShare,glyph:k.pc,onClickPropKey:v.a.Save,key:v.a.Share,telemetryName:u.shareDialog,telemetryBehavior:w.b.Share,telemetryType:w.e.ActionButton},[v.a.ShowMore]:{title:e.cardActionMenuItemShowMore,glyph:i?k.m:k.Hc,undoGlyph:i?k.k:Object(k.Fc)(!o&&k.q),onClickPropKey:v.a.ShowMore,undoText:e.cardActionMenuItemUndoShowMore,key:v.a.ShowMore,telemetryName:u.showMoreMenuItem,telemetryBehavior:w.b.Like,telemetryType:w.e.ActionButton,telemetryContentHeadline:u.showMoreHeadline,undoTelemetryType:w.e.ActionButton,undoTelemetryBehavior:w.b.Unlike},[v.a.ShowFewer]:{title:e.cardActionMenuItemShowFewer,glyph:i?k.e:k.Dc,undoGlyph:Object(k.Cc)(!o&&k.q),onClickPropKey:v.a.ShowFewer,undoText:e.cardActionMenuItemUndoShowFewer,key:v.a.ShowFewer,telemetryName:u.showFewerMenuItem,telemetryType:w.e.ActionButton,telemetryContentHeadline:u.showFewerHeadline,telemetryBehavior:w.b.Dislike,undoTelemetryType:w.e.ActionButton,undoTelemetryBehavior:w.b.Undislike},[v.a.Hide]:{title:t?e.cardActionMenuItemHideQna:e.cardActionMenuItemHide,glyph:k.fb,onClickPropKey:v.a.Save,key:v.a.Hide,telemetryName:u.hideMenuItem,telemetryBehavior:w.b.Hide,telemetryType:w.b.Hide,telemetryContentHeadline:u.hideHeadline,undoTelemetryBehavior:w.b.Unpin},[v.a.Mute]:{title:e.cardActionMenuItemMute,glyph:k.eb,onClickPropKey:v.a.Save,key:v.a.Mute,telemetryName:r?u.hoverMuteMenuItem:u.muteMenuItem,telemetryBehavior:w.b.Mute,telemetryType:w.b.Mute},[v.a.Report]:{title:e.cardActionMenuItemReport,glyph:k.Q,onClickPropKey:v.a.Report,key:v.a.Report,telemetryName:u.reportMenuItem,telemetryBehavior:w.b.Report,telemetryType:w.e.ActionButton,telemetryContentHeadline:u.reportHeadline},[v.a.ReportAd]:{title:e.cardActionMenuItemReportAd,glyph:k.Q,onClickPropKey:v.a.ReportAd,key:v.a.ReportAd,telemetryName:u.reportAdMenuItem,telemetryBehavior:w.b.ReportAd,telemetryType:w.e.ActionButton,telemetryContentHeadline:u.reportAdHeadline},[v.a.ManageInterests]:{title:e.cardActionMenuItemManageInterests,glyph:k.xc,onClickPropKey:v.a.ManageInterests,key:v.a.ManageInterests,telemetryName:u.manageInterestsMenuItem,telemetryBehavior:w.b.Navigate,telemetryType:w.e.ActionButton,telemetryContentHeadline:u.manageInterestsMenuItem,isNavigation:!0},[v.a.Follow]:{title:e.cardActionMenuItemFollow,glyph:k.T,onClickPropKey:v.a.Follow,undoText:e.cardActionMenuItemUndoFollow,key:v.a.Follow,telemetryName:r?u.hoverFollowMenuItem:u.followMenuItem,telemetryBehavior:w.b.Follow,telemetryType:w.e.ActionButton,undoTelemetryType:w.e.ActionButton,undoTelemetryBehavior:w.b.Unfollow,undoGlyph:k.Nc}}))(this.strings,s,n,a,r);return e.map(e=>{if(e===v.a.Divider)return{isDivider:!0};const r=c[e],a=null==i?void 0:i.id;switch(e){case v.a.Save:return Object.assign(Object.assign({},this.mapActionToMenuItemProps(r,a,t&&(t&v.b.saved)>0)),{onClick:()=>this.menuItemOnClick(t^v.b.saved,e,!0)});case v.a.Share:return Object.assign(Object.assign({},this.mapActionToMenuItemProps(r,a)),{onClick:()=>this.mapDialogProps(d.Share)});case v.a.ShowMore:{const i=t&v.b.showFewer?t^v.b.showMore^v.b.showFewer:t^v.b.showMore;return Object.assign(Object.assign({},this.mapActionToMenuItemProps(r,a,t&&(t&v.b.showMore)>0)),{onClick:()=>this.menuItemOnClick(i,e,!0,this.config.displayToastForShowMoreAction)})}case v.a.ShowFewer:{const i=t&v.b.showMore?t^v.b.showMore^v.b.showFewer:t^v.b.showFewer;return Object.assign(Object.assign({},this.mapActionToMenuItemProps(r,a,t&&(t&v.b.showFewer)>0)),{onClick:()=>this.menuItemOnClick(i,e,!0,!!this.config.displayToastForShowFewerAction)})}case v.a.Hide:return Object.assign(Object.assign({},this.mapActionToMenuItemProps(r,a)),{onClick:()=>this.menuItemOnClick(t^v.b.hide,e,!1)});case v.a.Mute:return Object.assign(Object.assign({},this.mapActionToMenuItemProps(r,a,null,Object(T.a)(r.title,i.provider.name))),{onClick:async()=>{var e;await this.mapDialogProps(d.Mute),await Object(Z.a)(),null===(e=this.actionButtonInActionDialog)||void 0===e||e.focus()}});case v.a.Report:return Object.assign(Object.assign({},this.mapActionToMenuItemProps(Object.assign(Object.assign({},r),{telemetryContentHeadline:i.headlineTitle}),a)),{onClick:()=>this.mapDialogProps(d.Report)});case v.a.ReportAd:return Object.assign(Object.assign({},this.mapActionToMenuItemProps(r,a)),{onClick:()=>this.menuItemOnClick(t^v.b.hide,e,!1)});case v.a.ManageInterests:return Object.assign(Object.assign({},this.mapActionToMenuItemProps(Object.assign(Object.assign({},r),{telemetryContentHeadline:i.headlineTitle}),a)),{onClick:()=>this.navigateToPersonalize(!1,o,!0)});case v.a.Follow:{const e=this.getFollowStatus();let o=t;return o=e?(t&&t&v.b.follow)>0?t^v.b.follow:t:t&&(t&v.b.follow)>0?t:t^v.b.follow,Object.assign(Object.assign({},this.mapActionToMenuItemProps(r,a,e,e?Object(T.a)(r.undoText,i.provider.name):Object(T.a)(r.title,i.provider.name))),{onClick:()=>this.onFollow(o,!0)})}default:return this.mapActionToMenuItemProps(r,a)}})}getFollowStatus(){const{article:{provider:e}}=this.cardActionProps;return this.followedPublisherList||this.getUserFollowedPublishers(),this.followedPublisherList&&null!=this.followedPublisherList.find(t=>t.id===e.id)}requestInterestToast(e,t,i,o,r){const{followToastButtonText:a}=this.strings,n=new URL(b.replace("{locale}",H.a.CurrentMarket),"https://www.msn.com"),s=Object(N.b)();s&&n.searchParams.set("ocid",s),o?W.a.renderToast({id:`${e}-${i}`,toastType:i?G.a.Follow:G.a.Unfollow,inputText:t,expirationInMs:5e3,buttonText:a,onClick:()=>this.navigateToPersonalize(!1,r),buttonTelemetryContract:M(a,n.href)}):W.a.renderToast({id:`${e}-${i}`,toastType:G.a.InterestFailure,expirationInMs:5e3})}onReport(e){const{article:{id:t},cardStatus:i,onStatusChange:o,updateFeedOnHide:r,refreshFeedCallback:a}=this.cardActionProps,{reportDialogDuplicateArticleChecked:n,reportDialogOutdatedArticleChecked:s,reportDialogBlurryImageChecked:c,reportDialogOffensiveContentChecked:l,reportDialogMisleadingTitleChecked:d,reportDialogNotRelevantToMeChecked:u,reportDialogFeedbackInput:h}=this.reportDialogOptions;let p;p=this.getFeedbackTags();const g=Object.keys(p).filter(e=>p[e]);u&&g.length>1?(this.PostCardActionEvent(i^v.b.hide,v.a.Hide,t,o,!0).then(()=>{r&&a()}),Object(m.a)(void 0,this.additionalHeaders).Report(t,p,h)):u?this.PostCardActionEvent(i^v.b.hide,v.a.Hide,t,o,!0).then(()=>{r&&a()}):Object(m.a)(void 0,this.additionalHeaders).Report(t,p,h),e&&(p={Duplicate:n,Outdated:s,BlurryImage:c,NotRelevant:u,Offensive:l,Misleading:d},Object(m.a)(void 0,this.additionalHeaders).reportNonCMS(t,p,h,e)),this.resetCardAction()}mapActionToMenuItemProps(e,t,i,o){var r,a;const n=i?e.undoText:e.title,s=i?e.undoGlyph:e.glyph,c=i?"Undo"+e.telemetryName:e.telemetryName,l=i?e.undoTelemetryType:e.telemetryType,d=i?e.undoTelemetryBehavior:e.telemetryBehavior,u=o||e.telemetryContentHeadline,h=this.telemetryTags.getItemTelemetryTag(c,l,d,u,t,null===(a=null===(r=this.cardActionProps)||void 0===r?void 0:r.parentTelemetryObject)||void 0===a?void 0:a.contract.content);return{id:e.key,title:o||n,glyph:s,telemetryTag:h,isNavigation:e.isNavigation}}mapShareProps(){var e,t;const{id:i,href:o,headlineTitle:r,provider:a,image:n}=this.cardActionProps.article,{enableShareCopyLink:s,localizedStrings:c,shareSocialMedia:l}=this.config,{cardActionMenuItemShare:d,shareDialogCopyButtonText:u,shareDialogLinkCopiedButtonText:h,dialogCloseButtonText:p,dialogAriaText:g}=c,b=K.buildShortUrl({documentId:i,sharingUrl:o,documentType:$.CMS},z.b.Locale),v=S(this.config.localizedStrings,b,r,this.telemetryTags.shareMediaIcons);return{localizedStrings:{closeButtonText:p,copyLinkButtonText:s&&u,dialogHeadline:d,dialogAriaText:g},closeButtonTelemetryTag:this.telemetryTags.closeButton,copyLinkButtonHandler:s?()=>{navigator.clipboard.writeText(b),this.shareProps=Object.assign(Object.assign({},this.shareProps),{localizedStrings:Object.assign(Object.assign({},this.shareProps.localizedStrings),{copyLinkButtonText:h})})}:null,copyLinkButtonTelemetryTag:this.telemetryTags.copyShareButton,linkCopiedButtonText:s&&h,share:{attribution:null==a?void 0:a.name,attributionImg:Object(U.g)(null===(e=null==a?void 0:a.image)||void 0===e?void 0:e.src,{width:16,height:16,format:U.d.PNG,enableDpiScaling:!1}),attributionImgAltText:(null===(t=null==a?void 0:a.image)||void 0===t?void 0:t.alt)||(null==a?void 0:a.name),headlineTitle:r,image:{alt:(null==n?void 0:n.alt)||r,src:Object(U.g)(n.src,{width:100,height:100,enableDpiScaling:!1,quality:90})},href:o,telemetryTag:this.telemetryTags.articleShare},shareToList:null==l?void 0:l.map(e=>v[e])}}mapMuteProps(){const{article:{provider:e}}=this.cardActionProps,{muteDialogRefreshBodyMessage:t,personalizeTabName:i}=this.strings;return{dialogContent:t,personalizeTabName:i,providerName:null==e?void 0:e.name}}mapReportProps(){const{reportDialogOffensiveContentText:e,reportDialogMisleadingTitleText:t,reportDialogOutdatedArticleText:i,reportDialogDuplicateArticleText:o,reportDialogNotRelevantToMeText:r,reportDialogBlurryImageText:a,reportDialogFeedbackText:n,reportDialogFeedbackDisclaimerText:s,reportDialogPrivacyStatementLinkText:c}=this.strings;return this.reportDialogOptions={reportDialogNotRelevantToMeChecked:!1,reportDialogBlurryImageChecked:!1,reportDialogMisleadingTitleChecked:!1,reportDialogOutdatedArticleChecked:!1,reportDialogDuplicateArticleChecked:!1,reportDialogOffensiveContentChecked:!1,reportDialogNumberOfOptionsChecked:0,reportDialogFeedbackInput:""},{reportLocalizedStrings:{reportDialogNotRelevantToMeText:r,reportDialogBlurryImageText:a,reportDialogMisleadingTitleText:t,reportDialogOutdatedArticleText:i,reportDialogDuplicateArticleText:o,reportDialogOffensiveContentText:e},reportFeedbackLocalizedStrings:{reportDialogFeedbackText:n,reportDialogFeedbackDisclaimerText:s,reportDialogPrivacyStatementLinkText:c},getReportDialogActionTelemetryTag:this.getReportDialogActionTelemetryTag}}mapActionDialogProps(e){const{dialogCancelButtonText:t,dialogCloseButtonText:i,dialogAriaText:o}=this.strings,r={cancelButtonText:t,closeButtonAriaLabel:i,closeButtonTitleLabel:i,dialogAriaText:o};switch(e){case d.Mute:{const{provider:e}=this.cardActionProps.article,{muteDialogButtonCancelAriaLabel:t,muteDialogButtonConfirmAriaLabel:i,muteDialogConfirmButtonText:o,cardActionMenuItemMute:a}=this.strings;return{actionButtonCallback:this.onMute,cancelButtonCallback:()=>this.resetCardAction(!0),localizedStrings:Object.assign(Object.assign({},r),{actionButtonAriaLabel:i,actionButtonText:o,actionButtonTitleLabel:i,cancelButtonAriaLabel:t,cancelButtonTitleLabel:t,dialogHeadline:Object(T.a)(a,null==e?void 0:e.name)}),dialogTelemetryTag:this.telemetryTags.muteDialog,actionButtonTelemetryTag:this.telemetryTags.muteActionButton}}case d.Report:{const{reportDialogButtonCancelAriaLabel:e,reportDialogSaveAriaLabel:t,reportDialogSaveButtonText:i,cardActionMenuItemReport:o}=this.strings;return{actionButtonCallback:()=>this.onReport(this.config.isForQna?"Qna":this.cardActionProps.ocvVertical),cancelButtonCallback:()=>this.resetCardAction(!0),localizedStrings:Object.assign(Object.assign({},r),{actionButtonAriaLabel:t,actionButtonText:i,actionButtonTitleLabel:t,cancelButtonAriaLabel:e,cancelButtonTitleLabel:e,dialogHeadline:o}),dialogTelemetryTag:this.telemetryTags.reportDialog,actionButtonTelemetryTag:this.telemetryTags.reportActionButton}}}}PostCardActionEvent(e,t,i,o,r){return Object(m.a)(void 0,this.additionalHeaders).PostCardActionEvent(e,t,i,o,null,null,r,this.referrerButton)}updateCardActionProps(e,t){var i,o,r;this.additionalHeaders=t;const{buttonElement:a,enabled:n,article:s,dialogToOpen:c}=e;if(this.cardActionProps&&this.cardActionProps.buttonElement===a)this.resetCardAction();else if(this.telemetryTags=P(null===(i=null==e?void 0:e.parentTelemetryObject)||void 0===i?void 0:i.contract.content,null===(o=this.config)||void 0===o?void 0:o.localizedStrings,s),this.cardActionProps=Object.assign(Object.assign({},e),{buttonElement:a,enabled:n}),this.referrerButton=a,null===(r=this.referrerButton)||void 0===r||r.setAttribute("aria-expanded","true"),c){const e=c;this.mapDialogProps(e)}else n&&(this.actionsMenuItems=s&&this.getMenuItems())}}Object(h.d)([L.b],ee.prototype,"backgroundColor",void 0),Object(h.d)([Object(L.b)({mode:"boolean"})],ee.prototype,"isWindowsDashboard",void 0),Object(h.d)([B.d],ee.prototype,"cardActionProps",void 0),Object(h.d)([B.d],ee.prototype,"isLinkCopied",void 0),Object(h.d)([B.d],ee.prototype,"referrerButton",void 0),Object(h.d)([B.d],ee.prototype,"useFastAnchoredRegion",void 0),Object(h.d)([B.d],ee.prototype,"reportDialogOptions",void 0),Object(h.d)([B.d],ee.prototype,"shareProps",void 0);var te=i("6BDD"),ie=i("+53S"),oe=i("6vBc"),re=i("vmYD"),ae=i("93CZ");const ne=te.b`
+    <div>
+        ${Object(oe.a)(e=>e.providerIcon,te.b`
+            <div class="mute-dialog-img">
+                <img src=${e=>e.providerIcon}>
+            </div>
+        `)}
+        <div class="mute-dialog-content">
+            <p :innerHTML=${e=>{var t,i,o;return Object(T.a)(null===(t=e.cardActionProps)||void 0===t?void 0:t.muteProps.dialogContent,"<b>"+(null===(i=e.cardActionProps)||void 0===i?void 0:i.muteProps.providerName)+"</b>","<b>"+k.F+(null===(o=e.cardActionProps)||void 0===o?void 0:o.muteProps.personalizeTabName)+"</b>")}}></p>
+        </div>
+    </div>
+`;var se=i("S35a"),ce=i("kd7Q"),le=i("sUlk"),de=i("UNqU"),ue=i("eUhr");se.a,ce.a,le.a;const he=te.b`
+    <fluent-checkbox
+        id=${e=>e}
+        class="input-option ${(e,t)=>{var i;return(null===(i=t.parent.reportDialogOptions)||void 0===i?void 0:i[e])?"checked":""}}"
+        @click=${(e,t)=>t.parent.onArticleReportChoosing(e,t.event)}
+        @keypress=${(e,t)=>t.parent.onArticleReportChoosing(e,t.event)}
+        aria-checked="${(e,t)=>{var i;return null===(i=t.parent.reportDialogOptions)||void 0===i?void 0:i[e]}}"
+    >
+        ${(e,t)=>{var i;return null===(i=t.parent.cardActionProps)||void 0===i?void 0:i.reportProps.reportLocalizedStrings[e.replace("Checked","Text")]}}
+    </fluent-checkbox>
+`,pe=te.b`
+    <div class="report-dialog-content">
+        ${Object(de.c)(e=>{var t;return Object.keys(null===(t=e.cardActionProps)||void 0===t?void 0:t.reportProps.reportLocalizedStrings).map(e=>e.replace("Text","Checked"))},he)}
+        <fluent-text-area
+            class="feedback-inputbox"
+            :value=${e=>{var t;return null===(t=e.reportDialogOptions)||void 0===t?void 0:t.reportDialogFeedbackInput}}
+            @input=${(e,t)=>e.setReportDialogFeedbackInput(t.event.target.value)}
+            placeholder=${e=>{var t,i;return null===(i=null===(t=e.cardActionProps)||void 0===t?void 0:t.reportProps.reportFeedbackLocalizedStrings)||void 0===i?void 0:i.reportDialogFeedbackText}}
+            aria-required="false"
+        >
+        </fluent-text-area>
+        <div class="feedback-footer">
+            <div class="feedback-disclaimer">
+                ${e=>{var t;return null===(t=e.cardActionProps)||void 0===t?void 0:t.reportProps.reportFeedbackLocalizedStrings.reportDialogFeedbackDisclaimerText}}
+            </div>
+            <fluent-anchor
+                appearance="lightweight"
+                href=${"https://go.microsoft.com/fwlink/?LinkId=521839"}
+                target="_blank"
+                id="reportDialogPrivacyStatementLink"
+                ${Object(ue.b)(e=>e.telemetryTags.reportDialogPrivacyStatementLink)}
+            >
+                ${e=>{var t;return null===(t=e.cardActionProps)||void 0===t?void 0:t.reportProps.reportFeedbackLocalizedStrings.reportDialogPrivacyStatementLinkText}}
+            </fluent-anchor>
+        </div>
+    </div>
+`;ae.a;const ge=te.b`
+    <msn-action-dialog 
+        ${Object(ie.b)("dialogRef")}
+        class="action-dialog"
+        headline=${e=>{var t;return null===(t=e.cardActionProps)||void 0===t?void 0:t.actionDialogProps.localizedStrings.dialogHeadline}}
+        ariaLabel=${e=>{var t;return null===(t=e.cardActionProps)||void 0===t?void 0:t.actionDialogProps.localizedStrings.dialogAriaText}}
+        @action-dialog-dismiss=${e=>e.resetCardAction(!0)}
+        ${Object(ue.b)(e=>{var t;return null===(t=e.cardActionProps)||void 0===t?void 0:t.actionDialogProps.dialogTelemetryTag})}
+        >
+        <fluent-button
+            slot="close-button"
+            appearance="stealth"
+            tabindex="0"
+            id="actionDialogCloseButton"
+            @click=${e=>e.resetCardAction(!0)}
+            aria-label=${e=>{var t;return null===(t=e.cardActionProps)||void 0===t?void 0:t.actionDialogProps.localizedStrings.closeButtonAriaLabel}}
+            title=${e=>{var t;return null===(t=e.cardActionProps)||void 0===t?void 0:t.actionDialogProps.localizedStrings.closeButtonTitleLabel}}
+            ${Object(ue.b)(e=>e.telemetryTags.closeButton)}
+        >
+            ${k.u}
+        </fluent-button>
+        ${Object(oe.a)(e=>{var t;return(null===(t=e.cardActionProps)||void 0===t?void 0:t.openedDialog)===d.Mute},ne)}
+        ${Object(oe.a)(e=>{var t;return(null===(t=e.cardActionProps)||void 0===t?void 0:t.openedDialog)===d.Report},pe)}
+        <div class="action-dialog-controls-container">
+            <fluent-button
+                class="action-dialog-control-buttons"
+                slot="action-button"
+                appearance="accent"
+                id="${e=>e.cardActionProps&&e.cardActionProps.actionDialogProps&&e.cardActionProps.actionDialogProps.localizedStrings&&e.cardActionProps.actionDialogProps.localizedStrings.actionButtonText}"
+                ${Object(ie.b)("actionButtonInActionDialog")} 
+                :disabled="${e=>{var t,i,o;return 0===(null===(t=e.reportDialogOptions)||void 0===t?void 0:t.reportDialogNumberOfOptionsChecked)&&0===(null===(o=null===(i=e.reportDialogOptions)||void 0===i?void 0:i.reportDialogFeedbackInput)||void 0===o?void 0:o.trim().length)}}"
+                @click=${e=>{var t;return null===(t=e.cardActionProps)||void 0===t?void 0:t.actionDialogProps.actionButtonCallback()}}
+                aria-label=${e=>{var t;return null===(t=e.cardActionProps)||void 0===t?void 0:t.actionDialogProps.localizedStrings.actionButtonAriaLabel}}
+                title=${e=>{var t;return null===(t=e.cardActionProps)||void 0===t?void 0:t.actionDialogProps.localizedStrings.actionButtonTitleLabel}}
+                ${Object(ue.b)(e=>{var t,i,o;return(null===(t=e.cardActionProps)||void 0===t?void 0:t.openedDialog)===d.Report?null===(i=e.cardActionProps)||void 0===i?void 0:i.reportProps.getReportDialogActionTelemetryTag():null===(o=e.cardActionProps)||void 0===o?void 0:o.actionDialogProps.actionButtonTelemetryTag})}
+            >
+                ${e=>{var t;return null===(t=e.cardActionProps)||void 0===t?void 0:t.actionDialogProps.localizedStrings.actionButtonText}}
+            </fluent-button>
+            <fluent-button
+                class="action-dialog-control-buttons"
+                slot="cancel-button"
+                id="actionDialogCancelButton"
+                @click=${e=>{var t;return null===(t=e.cardActionProps)||void 0===t?void 0:t.actionDialogProps.cancelButtonCallback()}}
+                aria-label=${e=>{var t;return null===(t=e.cardActionProps)||void 0===t?void 0:t.actionDialogProps.localizedStrings.cancelButtonAriaLabel}}
+                title=${e=>{var t;return null===(t=e.cardActionProps)||void 0===t?void 0:t.actionDialogProps.localizedStrings.cancelButtonTitleLabel}}
+                ${Object(ue.b)(e=>e.telemetryTags.cancelButton)}
+            >
+                ${e=>{var t;return null===(t=e.cardActionProps)||void 0===t?void 0:t.actionDialogProps.localizedStrings.cancelButtonText}}
+            </fluent-button>
+        </div>
+    </msn-action-dialog>
+`;var be=i("w7FX"),ve=i("P4Ao");class me extends ve.a{constructor(){super(...arguments),this.localizedStrings={},this.share=null,this.shareToList=[],this.dismissDialog=()=>{this.$emit("share-dialog-dismiss")}}}Object(be.a)([B.d],me.prototype,"localizedStrings",void 0),Object(be.a)([B.d],me.prototype,"copyLinkButtonHandler",void 0),Object(be.a)([B.d],me.prototype,"share",void 0),Object(be.a)([B.d],me.prototype,"shareToList",void 0),Object(be.a)([B.d],me.prototype,"closeButtonTelemetryTag",void 0),Object(be.a)([B.d],me.prototype,"copyLinkButtonTelemetryTag",void 0);var fe=i("4X57"),ye=i("cQsl"),Ce=i("kL0l"),we=i("wHpb"),Oe=i("Z5nQ");const ke=fe.a`
+    ${Oe.a} :host {
+        --corner-radius: 2px;
+        --dialog-z-index: 0;
+    }
+
+    .dialog a {
+        color: inherit;
+        outline: none;
+        text-decoration: none;
+    }
+
+    .dialog a:hover .line-clamp,
+    .dialog a:${we.a} .line-clamp {
+        text-decoration: underline;
+    }
+
+    section {
+        display: grid;
+        font-size: var(--type-ramp-minus-1-line-height);
+        font-weight: 600;
+        line-height: var(--type-ramp-plus-1-line-height);
+        margin: 0 24px 20px;
+    }
+
+    section div {
+        grid-column: 1;
+    }
+
+    section div msft-attribution {
+        margin-top: 8px;
+    }
+
+    section img {
+        border-radius: var(--corner-radius);
+        grid-column: 2;
+        justify-self: end;
+        margin-inline-start: 16px;
+    }
+
+    section img.article-img {
+        height: 100px;
+        object-fit: cover;
+        width: 100px;
+    }
+
+    .atr-img {
+        border-radius: 0;
+        margin-inline-start: 0;
+    }
+
+    .copy-button {
+        align-items: center;
+        border-radius: var(--corner-radius);
+        display: flex;
+        fill: currentcolor;
+        height: 30px;
+        justify-content: center;
+        margin-bottom: 8px;
+        width: 30px;
+        --elevation: 11; 
+        ${ye.a};
+    }
+
+    hr.divider {
+        border-top: 1px solid ${Ce.k.var};
+    }
+
+    .dialog {
+        --dialog-height: var(--share-dialog-height, auto);
+        --dialog-width: var(--share-dialog-width, 400);
+        position: absolute;
+        z-index: var(--share-dialog-z-index);
+    }
+
+    .heading {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: 1;
+        position: relative;
+        width: 100%;
+    }
+
+    .heading fluent-button svg {
+        height: 12px;
+        width: 12px;
+    }
+
+    .heading span {
+        font-size: var(--type-ramp-plus-2-font-size);
+        font-weight: 600;
+        line-height: var(--type-ramp-plus-3-font-size);
+        margin-inline-start: 24px;
+        margin-bottom: 16px;
+        margin-top: 20px;
+    }
+
+    .share-button {
+        align-items: center;
+        background: none;
+        border: calc(var(--focus-outline-width) * 1px) solid transparent;
+        color: inherit;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        font-size: var(--type-ramp-minus-1-font-size);
+        line-height: var(--type-ramp-minus-1-line-height);
+        text-decoration: none;
+    }
+
+    .share-button:${we.a} {
+        border: calc(var(--focus-outline-width) * 1px) solid ${Ce.N.var};
+    }
+
+    .share-button img {
+        border-radius: var(--corner-radius);
+        margin-bottom: 8px;
+    }
+
+    .share-grid {
+        display: grid;
+        grid-gap: 16px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        margin: 27px 16px;
+    }
+
+    .social-button {
+        border-radius: 2px;
+        height: 32px;
+        margin: 0 auto 8px auto;
+        position: relative;
+        width: 32px;
+        --elevation: 11; 
+        ${ye.a};
+    }
+
+    .social-button img {
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+`.withBehaviors(Ce.k,Ce.N);var Ae=i("m1Vi"),Te=i("KHt8"),xe=i("KC/q");Ae.b,Te.b;const Se=te.b` <a
+    class="share-button"
+    part="share-button"
+    aria-label=${e=>e.tooltip}
+    title=${e=>e.tooltip}
+    target=${e=>e.target}
+    href=${e=>e.href}
+    ${Object(ue.b)(e=>e.telemetryTag)}
+>
+    <div class="social-button" style="background-color:${e=>e.backgroundColor}">
+        ${e=>e.image?te.b`<img src="${e=>e.image.src}" alt="${e=>e.image.alt}" />`:""}
+    </div>
+    ${e=>e.source}
+</a>`,je=te.b`
+    <fluent-dialog
+        @dismiss=${e=>e.dismissDialog()}
+        class="dialog"
+        part="dialog"
+        aria-label="${e=>e.localizedStrings.dialogAriaText}"
+    >
+        <div class="heading" part="heading">
+            <span>${e=>e.localizedStrings.dialogHeadline}</span>
+            <fluent-button
+                tabindex="0"
+                @click=${e=>e.dismissDialog()}
+                @keypress=${e=>e.dismissDialog()}
+                appearance="stealth"
+                aria-label=${e=>e.localizedStrings.closeButtonText}
+                title=${e=>e.localizedStrings.closeButtonText}
+                ${Object(ue.b)(e=>e.closeButtonTelemetryTag)}
+            >
+                ${xe.c}
+            </fluent-button>
+        </div>
+        <a
+            class="article-section"
+            part="article-section"
+            href=${e=>{var t;return null===(t=e.share)||void 0===t?void 0:t.href}}
+            aria-label=${e=>{var t,i,o;return(null===(i=null===(t=e.share)||void 0===t?void 0:t.image)||void 0===i?void 0:i.alt)||(null===(o=e.share)||void 0===o?void 0:o.headlineTitle)}}
+            title=${e=>{var t,i,o;return(null===(i=null===(t=e.share)||void 0===t?void 0:t.image)||void 0===i?void 0:i.alt)||(null===(o=e.share)||void 0===o?void 0:o.headlineTitle)}}
+            target="_blank"
+            ${Object(ue.b)(e=>{var t;return null===(t=e.share)||void 0===t?void 0:t.telemetryTag})}
+        >
+            <section>
+                <div>
+                    <div class="line-clamp" part="headline">
+                        ${e=>{var t;return null===(t=e.share)||void 0===t?void 0:t.headlineTitle}}
+                    </div>
+                    <msft-attribution>
+                        ${e=>{var t;return null===(t=e.share)||void 0===t?void 0:t.attribution}}
+                        ${Object(oe.a)(e=>{var t;return null===(t=e.share)||void 0===t?void 0:t.attributionImg},te.b` <img
+                                class="atr-img"
+                                slot="image"
+                                src="${e=>{var t;return null===(t=e.share)||void 0===t?void 0:t.attributionImg}}"
+                                alt="${e=>{var t;return null===(t=e.share)||void 0===t?void 0:t.attributionImgAltText}}"
+                            />`)}
+                    </msft-attribution>
+                </div>
+                ${Object(oe.a)(e=>{var t,i;return null===(i=null===(t=e.share)||void 0===t?void 0:t.image)||void 0===i?void 0:i.src},te.b` <img
+                        class="article-img"
+                        src="${e=>{var t;return null===(t=e.share)||void 0===t?void 0:t.image.src}}"
+                        alt="${e=>{var t;return null===(t=e.share)||void 0===t?void 0:t.image.alt}}"
+                    />`)}
+            </section>
+        </a>
+        <hr class="divider" />
+        <div class="share-grid">
+            ${Object(oe.a)(e=>e.copyLinkButtonHandler,te.b` <a
+                    class="share-button"
+                    part="share-button"
+                    aria-label=${e=>e.localizedStrings.copyLinkButtonText}
+                    title=${e=>e.localizedStrings.copyLinkButtonText}
+                    @click="${e=>e.copyLinkButtonHandler&&e.copyLinkButtonHandler()}"
+                    @keypress="${e=>e.copyLinkButtonHandler&&e.copyLinkButtonHandler()}"
+                    href="#"
+                    ${Object(ue.b)(e=>e.copyLinkButtonTelemetryTag)}
+                >
+                    <div class="copy-button">
+                        ${xe.d}
+                    </div>
+                    ${e=>e.localizedStrings.copyLinkButtonText}
+                </a>`)}
+            ${Object(de.c)(e=>e.shareToList,Se)}
+        </div>
+    </fluent-dialog>
+`;let Ie=class extends me{};Ie=Object(be.a)([Object(ve.b)({name:"msft-share-dialog",template:je,styles:ke,shadowOptions:{delegatesFocus:!0}})],Ie);const Pe=te.b`
+    <msft-share-dialog
+        ${Object(ie.b)("dialogRef")}
+        class="share-dialog"
+        @share-dialog-dismiss="${(e,t)=>e.resetCardAction(!0)}"
+        :shareToList=${e=>{var t;return null===(t=e.shareProps)||void 0===t?void 0:t.shareToList}}
+        :share=${e=>{var t;return null===(t=e.shareProps)||void 0===t?void 0:t.share}}
+        :linkCopiedButtonText=${e=>{var t;return null===(t=e.shareProps)||void 0===t?void 0:t.linkCopiedButtonText}}
+        :copyLinkButtonTelemetryTag=${e=>{var t;return null===(t=e.shareProps)||void 0===t?void 0:t.copyLinkButtonTelemetryTag}}
+        :copyLinkButtonHandler=${e=>{var t;return null===(t=e.shareProps)||void 0===t?void 0:t.copyLinkButtonHandler}}
+        :closeButtonTelemetryTag=${e=>{var t;return null===(t=e.shareProps)||void 0===t?void 0:t.closeButtonTelemetryTag}}
+        :localizedStrings=${e=>{var t;return null===(t=e.shareProps)||void 0===t?void 0:t.localizedStrings}}
+        ${Object(ue.b)(e=>e.telemetryTags.shareDialog)}>
+    </msft-share-dialog>
+`;re.a;const De=te.b`
+<msn-actions-menu ${Object(ie.b)("actionsMenuRef")}
+    :useFastAnchoredRegion=${e=>e.useFastAnchoredRegion}
+    :referrerButton=${e=>e.referrerButton}
+    :menuItems=${e=>e.actionsMenuItems}
+    :isWindowsDashboard=${e=>e.isWindowsDashboard}
+    @mouseenter=${e=>e&&e.cardActionProps&&e.cardActionProps.onHoverChange&&e.cardActionProps.onHoverChange(!0)}
+    @mouseleave=${e=>e&&e.cardActionProps&&e.cardActionProps.onHoverChange&&e.cardActionProps.onHoverChange(!1)}
+</msn-actions-menu>`,Me=te.b`
+<template ${Object(ie.b)("cardAction")}>
+    <fluent-design-system-provider
+        use-defaults
+        background-color=${e=>e.backgroundColor}
+    >
+        ${Object(oe.a)(e=>{var t;return(null===(t=e.cardActionProps)||void 0===t?void 0:t.enabled)&&!e.cardActionProps.openedDialog},De)}
+        ${Object(oe.a)(e=>{var t;return(null===(t=e.cardActionProps)||void 0===t?void 0:t.openedDialog)===d.Share},Pe)}
+        ${Object(oe.a)(e=>{var t;return(null===(t=e.cardActionProps)||void 0===t?void 0:t.openedDialog)===d.Mute},ge)}
+        ${Object(oe.a)(e=>{var t;return(null===(t=e.cardActionProps)||void 0===t?void 0:t.openedDialog)===d.Report},ge)}
+    </fluent-design-system-provider>
+</template>`;var $e=i("0fst"),Re=i("oqLQ");const Le=fe.a`
+    :host {
+        border-radius: 6px;
+    }
+
+    msn-actions-menu {
+        z-index: ${($e.a.Default+10).toString()}
+    }
+
+    msn-actions-menu::part(actions-menu-start) {
+        justify-content: center;
+    }
+
+    msft-share-dialog::part(share-button) {
+        text-align: center;
+    }
+
+    .action-dialog {
+        --action-dialog-z-index: ${$e.a.Dialog.toString()};
+        --elevated-corner-radius: 6;
+        --neutral-divider-rest: ${Ce.k.var};
+        --action-dialog-width: min(368px, 88%);
+        --button-min-width: min(156px, 50%);
+        position: relative;
+    }
+
+    .action-dialog svg {
+        fill: var(--neutral-foreground-rest);
+    }
+
+    .action-dialog-control-buttons {
+        border-radius: var(--button-border-radius);
+        font-size: var(--type-ramp-minus-1-font-size, 12px);
+    }
+
+    .action-dialog-controls-container {
+        display: grid;
+        grid-template-columns: var(--button-min-width) var(--button-min-width);
+        justify-content: center;
+        grid-gap: var(--space-between-buttons);
+    }
+
+    .mute-dialog-content {
+        margin: 27px 0;
+    }
+
+    .mute-dialog-content b {
+        display: inline-block;
+    }
+
+    .mute-dialog-img {
+        display: flex;
+        justify-content: center;
+        height: 64px;
+        margin: 27px 0;
+    }
+
+    .mute-dialog-personalize {
+        display: inline-block;
+    }
+
+    .report-dialog-content {
+        display: flex;
+        flex-direction: column;
+        margin: 18px 0 4px;
+    }
+
+    .report-dialog-content .input-option {
+        margin-bottom: 14px;
+    }
+
+    .report-dialog-content .feedback-inputbox {
+        height: 72px;
+        resize: none;
+        width: 100%;
+    }
+
+    .report-dialog-content .feedback-inputbox::part(control)::placeholder {
+        color: rgba(0, 0, 0, 0.55);
+        fill: #FFFFFF;
+    }
+
+    .report-dialog-content .feedback-footer {
+        display: block;
+        height: 25px;
+        margin-bottom: 40px;
+    }
+    
+    .report-dialog-content .feedback-footer fluent-anchor {
+        font-size: var(--type-ramp-minus-2-font-size, 10px);
+    }
+
+    .report-dialog-content .feedback-disclaimer {
+        display: block;
+        margin-top: 5px;
+        font-size: var(--type-ramp-minus-2-font-size, 10px);
+    }
+
+    .share-dialog {
+        --share-dialog-z-index: ${$e.a.Dialog.toString()};
+        --elevated-corner-radius: 6;
+        --neutral-divider-rest: ${Ce.k.var};
+        --share-dialog-width: min(368px, 88%);
+    }
+
+    .title {
+        height: 48px;
+        border-bottom: 1px solid ${Ce.k.var};
+    }
+`.withBehaviors(Ce.k,Object(Re.b)(fe.a`
+    .report-dialog-content .feedback-inputbox::part(control)::placeholder {
+        color: rgba(255, 255, 255, 0.54);
+        fill: #4A4A4A;
+    }`)),Be={experienceConfigSchema:c}},dXdr:function(e,t,i){"use strict";var o=i("QjXF"),r=i("v6nU"),a=Math.max;t.a=function(e,t,i){var n=null==e?0:e.length;if(!n)return-1;var s=null==i?0:Object(r.a)(i);return s<0&&(s=a(n+s,0)),Object(o.a)(e,t,s)}},fNg4:function(e,t,i){"use strict";var o;i.d(t,"b",(function(){return f})),i.d(t,"a",(function(){return o})),function(e){e.More="More",e.Mute="Mute"}(o||(o={}));var r=i("D57K"),a=i("y+Kz"),n=i("rvYQ"),s=i("I6Lx"),c=i("6ADy"),l=i("msIb"),d=i("KETb"),u=i("ac9z"),h=i("tERu"),p=i("/+Un"),g=i("fuIx"),b=i("e8jz"),v=i("CzGr"),m=i("Zsg4");class f{constructor(e,t=!0){this.fetchImpl=e,this.addPageInfoToOcid=t,this.followedPublishersEndpoint="v1/News/Users/Me/PreferredProviders",this.publishersServiceEndpoint="Msn/Providers",this.actionsServiceEndpoint="Graph/Actions",this.ocid="feeds"}getUserMutedPublishers(){return Object(r.a)(this,void 0,void 0,(function*(){const e=yield this.getUserActions(o.Mute);if(!e||!e.value)return null;if(!e.value.length)return[];const t=e.value.reduce((e,t)=>(e[t.targetId]=t,e),{}),i=yield this.getPublisherDetails(Object.keys(t));if(!i||!i.value||!i.value.length)return null;return i.value.map(e=>{const i={createdDateTime:t[e.id].createdDateTime};return Object.assign(Object.assign({},e),i)})}))}getUserFollowedPublishers(e=100){return Object(r.a)(this,void 0,void 0,(function*(){const t=yield this.getRequestInit(),i=[...yield this.getCommonParams(),{key:a.t.top,value:""+e}],o=Object(c.c)(this.followedPublishersEndpoint);this.appendQs(i,o),Object(g.b)()||Object(u.c)(o);const r=yield this.sendRequest(decodeURIComponent(o.href),t,"getFollowedPublishers");return null==r?void 0:r.value}))}publisherUserAction(e,t,i){return Object(r.a)(this,void 0,void 0,(function*(){if(!e||!t)return null;const o=yield this.getRequestInit();o.method=i;let r=yield this.getCommonParams();"POST"===i?o.body=JSON.stringify({actionType:t,targetId:e,targetType:"SourceProvider"}):"DELETE"===i&&(r=[...r,{key:a.t.filter,value:`actionType eq '${t}' and targetId eq '${e}'`}]);const n=Object(c.c)(this.actionsServiceEndpoint);this.appendQs(r,n);const s=yield this.sendRequest(decodeURIComponent(n.href),o,"deleteUserAction "+t,!0,!0);if(s.status>=400){const i=`OneService returned error response. Status: ${s.status} for actionType: ${t}, targetId: ${e}`;throw new Error(i)}return s}))}getUserPublisherStatus(e,t){var i;return Object(r.a)(this,void 0,void 0,(function*(){const o=yield this.getRequestInit();o.method="GET";const r=[...yield this.getCommonParams(),{key:a.t.filter,value:`actionType eq '${t}' and targetId eq '${e}'`}],n=Object(c.c)(this.actionsServiceEndpoint);this.appendQs(r,n),Object(g.b)()||Object(u.c)(n);const s=yield this.sendRequest(decodeURIComponent(n.href),o,"getUserPublisherStatus "+t);return!!(null===(i=s.value)||void 0===i?void 0:i.length)}))}getUserActions(e,t=100){return Object(r.a)(this,void 0,void 0,(function*(){const i=yield this.getRequestInit(),o=[...yield this.getCommonParams(),{key:a.t.filter,value:`actionType eq '${e}' and deleted eq false`},{key:a.t.top,value:""+t}],r=Object(c.c)(this.actionsServiceEndpoint);return this.appendQs(o,r),Object(g.b)()||Object(u.c)(r),yield this.sendRequest(decodeURIComponent(r.href),i,"getUserActions "+e)}))}getPublisherDetails(e){return Object(r.a)(this,void 0,void 0,(function*(){const t=yield this.getRequestInit(),i=Object(c.c)(this.publishersServiceEndpoint),o=[...l.a.getOneServiceParamsWithoutAuth(null,this.ocid,this.addPageInfoToOcid),{key:a.t.ids,value:e.join(",")}];return this.appendQs(o,i),yield this.sendRequest(decodeURIComponent(i.href),t,"getPublisherDetails")}))}getCommonParams(){return Object(r.a)(this,void 0,void 0,(function*(){if(Object(g.b)())return this.getSapphireQueryParams();return(yield this.isUserSignedIn())?l.a.getOneServiceParamsWithAuth(n.a.UserId,this.ocid,this.addPageInfoToOcid):l.a.getOneServiceParamsWithoutAuth(n.a.UserId,this.ocid,this.addPageInfoToOcid)}))}getSapphireQueryParams(){const e=l.a.getOneServiceNonDynamicParamsWithoutAuth(this.ocid,this.addPageInfoToOcid),t=Object(b.b)();return t&&(e.push({key:a.t.market,value:t.market}),e.push({key:a.t.fdhead,value:t.features}),e.push({key:a.t.activityId,value:t.activityId}),t.latitude&&t.longitude&&e.push({key:a.t.location,value:`${t.latitude}|${t.longitude}`})),e}getRequestInit(e=null){return Object(r.a)(this,void 0,void 0,(function*(){return null==e&&(e={method:"GET"}),(yield this.isUserSignedIn())&&(e.credentials="include"),e.headers=Object(g.b)()?yield Object(v.a)():yield l.a.getOneServiceHeaders(),e}))}isUserSignedIn(){return Object(r.a)(this,void 0,void 0,(function*(){const e=Object(s.a)().UserIsSignedIn;if(void 0!==e)return e;return(yield Object(p.d)())===h.c.SignedIn}))}sendRequest(e,t,i,o,a){return Object(r.a)(this,void 0,void 0,(function*(){return Object(g.b)()?yield this.sapphireRequest(decodeURIComponent(e),t):yield this.networkRequest(decodeURIComponent(e),t,i,o,a)}))}sapphireRequest(e,t){return Object(r.a)(this,void 0,void 0,(function*(){const i={url:e,headers:t.headers,body:t.body,refresh:!0};let o;switch(t.method){case"POST":o=yield Object(m.j)(i);break;case"DELETE":o=yield Object(m.a)(i);break;default:o=yield Object(m.c)(i)}return JSON.parse(o||"{}")}))}networkRequest(e,t,i,o,a){return Object(r.a)(this,void 0,void 0,(function*(){return Object(d.b)(()=>Object(r.a)(this,void 0,void 0,(function*(){const i=yield this.fetchImpl(e,t);if(!i.ok)throw Error(i.statusText);return o&&Object(u.d)(),a?i:i.json()})),i)}))}appendQs(e,t){e.forEach(e=>{e.value&&t.searchParams.set(e.key,e.value)})}}},h3hC:function(e,t,i){"use strict";var o,r;i.d(t,"b",(function(){return o})),i.d(t,"a",(function(){return r})),function(e){e[e.none=0]="none",e[e.enabled=1]="enabled",e[e.saved=2]="saved",e[e.hide=4]="hide",e[e.showMore=8]="showMore",e[e.showFewer=16]="showFewer",e[e.mute=32]="mute",e[e.hidden=64]="hidden",e[e.report=128]="report",e[e.adFeedbackSubmitted=256]="adFeedbackSubmitted",e[e.saveHovered=512]="saveHovered",e[e.seeMoreHovered=1024]="seeMoreHovered",e[e.follow=2048]="follow"}(o||(o={})),function(e){e.Hide="Hide",e.Like="Like",e.Dislike="Dislike",e.Mute="Mute",e.Save="Save",e.Share="Share",e.ShowMore="ShowMore",e.ShowFewer="ShowFewer",e.Divider="Divider",e.Report="Report",e.ManageInterests="ManageInterests",e.ReportAd="ReportAd",e.AdPrivacy="AdPrivacy",e.Follow="Follow"}(r||(r={}))},kd7Q:function(e,t,i){"use strict";i.d(t,"a",(function(){return T}));var o=i("3rEL"),r=i("P4Ao"),a=i("eftJ"),n=i("QBS5"),s=i("oePG"),c=i("Gy7L"),l=i("o87Z");class d extends r.a{}class u extends(Object(l.a)(d)){constructor(){super(...arguments),this.proxy=document.createElement("input")}}class h extends u{constructor(){super(),this.initialValue="on",this.indeterminate=!1,this.dirtyChecked=!1,this.constructed=!1,this.formResetCallback=()=>{this.checked=this.checkedAttribute,this.dirtyChecked=!1},this.keypressHandler=e=>{switch(e.keyCode){case c.q:this.checked=!this.checked}},this.clickHandler=e=>{this.disabled||this.readOnly||(this.checked=!this.checked)},this.defaultChecked=!!this.checkedAttribute,this.checked=this.defaultChecked,this.constructed=!0}readOnlyChanged(){this.proxy instanceof HTMLInputElement&&(this.proxy.readOnly=this.readOnly)}checkedAttributeChanged(){this.defaultChecked=this.checkedAttribute}defaultCheckedChanged(){this.dirtyChecked||(this.checked=this.defaultChecked,this.dirtyChecked=!1)}checkedChanged(){this.dirtyChecked||(this.dirtyChecked=!0),this.updateForm(),this.proxy instanceof HTMLInputElement&&(this.proxy.checked=this.checked),this.constructed&&this.$emit("change"),this.validate()}connectedCallback(){super.connectedCallback(),this.proxy.setAttribute("type","checkbox"),this.updateForm()}updateForm(){const e=this.checked?this.value:null;this.setFormValue(e,e)}}Object(a.a)([Object(n.b)({attribute:"readonly",mode:"boolean"})],h.prototype,"readOnly",void 0),Object(a.a)([Object(n.b)({attribute:"checked",mode:"boolean"})],h.prototype,"checkedAttribute",void 0),Object(a.a)([s.d],h.prototype,"defaultSlottedNodes",void 0),Object(a.a)([s.d],h.prototype,"defaultChecked",void 0),Object(a.a)([s.d],h.prototype,"checked",void 0),Object(a.a)([s.d],h.prototype,"indeterminate",void 0);var p=i("6BDD"),g=i("UauI");const b=p.b`
+    <template
+        role="checkbox"
+        aria-checked="${e=>e.checked}"
+        aria-required="${e=>e.required}"
+        aria-disabled="${e=>e.disabled}"
+        aria-readonly="${e=>e.readOnly}"
+        tabindex="${e=>e.disabled?null:0}"
+        @keypress="${(e,t)=>e.keypressHandler(t.event)}"
+        @click="${(e,t)=>e.clickHandler(t.event)}"
+        class="${e=>e.readOnly?"readonly":""} ${e=>e.checked?"checked":""} ${e=>e.indeterminate?"indeterminate":""}"
+    >
+        <div part="control" class="control">
+            <slot name="checked-indicator">
+                <svg
+                    aria-hidden="true"
+                    part="checked-indicator"
+                    class="checked-indicator"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M8.143 12.6697L15.235 4.5L16.8 5.90363L8.23812 15.7667L3.80005 11.2556L5.27591 9.7555L8.143 12.6697Z"
+                    />
+                </svg>
+            </slot>
+            <slot name="indeterminate-indicator">
+                <div part="indeterminate-indicator" class="indeterminate-indicator"></div>
+            </slot>
+        </div>
+        <label
+            part="label"
+            class="${e=>e.defaultSlottedNodes&&e.defaultSlottedNodes.length?"label":"label label__hidden"}"
+        >
+            <slot ${Object(g.b)("defaultSlottedNodes")}></slot>
+        </label>
+    </template>
+`;var v=i("4X57"),m=i("xY0q"),f=i("wHpb"),y=i("2i1/"),C=i("oqLQ"),w=i("j9Xn"),O=i("QkLF"),k=i("kL0l");const A=v.a`
+    ${Object(m.a)("inline-flex")} :host {
+        align-items: center;
+        outline: none;
+        margin: calc(var(--design-unit) * 1px) 0;
+        ${""} user-select: none;
+    }
+
+    .control {
+        position: relative;
+        width: calc((${O.a} / 2 + var(--design-unit)) * 1px);
+        height: calc((${O.a} / 2 + var(--design-unit)) * 1px);
+        box-sizing: border-box;
+        border-radius: calc(var(--corner-radius) * 1px);
+        border: calc(var(--outline-width) * 1px) solid ${k.P.var};
+        background: ${k.r.var};
+        outline: none;
+        cursor: pointer;
+    }
+
+    .label__hidden {
+        display: none;
+        visibility: hidden;
+    }
+
+    .label {
+        font-family: var(--body-font);
+        color: ${k.G.var};
+        ${""} padding-inline-start: calc(var(--design-unit) * 2px + 2px);
+        margin-inline-end: calc(var(--design-unit) * 2px + 2px);
+        cursor: pointer;
+        font-size: var(--type-ramp-base-font-size);
+        line-height: var(--type-ramp-base-line-height);
+    }
+
+    .checked-indicator {
+        width: 100%;
+        height: 100%;
+        display: block;
+        fill: ${k.G.var};
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .indeterminate-indicator {
+        border-radius: calc(var(--corner-radius) * 1px);
+        background: ${k.G.var};
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50%;
+        height: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+    }
+
+    :host(:enabled) .control:hover {
+        background: ${k.q.var};
+        border-color: ${k.O.var};
+    }
+
+    :host(:enabled) .control:active {
+        background: ${k.p.var};
+        border-color: ${k.M.var};
+    }
+
+    :host(:${f.a}) .control {
+        box-shadow: 0 0 0 2px var(--background-color), 0 0 0 4px ${k.z.var};
+        border-color: ${k.z.var};
+    }
+
+    :host(.disabled) .label,
+    :host(.readonly) .label,
+    :host(.readonly) .control,
+    :host(.disabled) .control {
+        cursor: ${y.a};
+    }
+
+    :host(.checked:not(.indeterminate)) .checked-indicator,
+    :host(.indeterminate) .indeterminate-indicator {
+        opacity: 1;
+    }
+
+    :host(.disabled) {
+        opacity: var(--disabled-opacity);
+    }
+`.withBehaviors(k.p,k.q,k.r,k.z,k.G,k.M,k.O,k.P,Object(C.c)(v.a`
+            .control {
+                forced-color-adjust: none;
+                border-color: ${w.a.FieldText};
+                background: ${w.a.Field};
+            }
+            :host(:enabled) .control:hover, .control:active {
+                border-color: ${w.a.Highlight};
+                background: ${w.a.Field};
+            }
+            .checked-indicator {
+                fill: ${w.a.FieldText};
+            }
+            .indeterminate-indicator {
+                background: ${w.a.FieldText};
+            }
+            :host(:${f.a}) .control {
+                border-color: ${w.a.Highlight};
+                box-shadow: 0 0 0 2px ${w.a.Field}, 0 0 0 4px ${w.a.FieldText};
+            }
+            :host(.checked:${f.a}:enabled) .control {
+                box-shadow: 0 0 0 2px ${w.a.Field}, 0 0 0 4px ${w.a.FieldText};
+            }
+            :host(.checked) .control {
+                background: ${w.a.Highlight};
+                border-color: ${w.a.Highlight};
+            }
+            :host(.checked) .control:hover, .control:active {
+                background: ${w.a.HighlightText};
+            }
+            :host(.checked) .checked-indicator {
+                fill: ${w.a.HighlightText};
+            }
+            :host(.checked) .control:hover .checked-indicator {
+                fill: ${w.a.Highlight}
+            }
+            :host(.checked) .indeterminate-indicator {
+                background: ${w.a.HighlightText};
+            }
+            :host(.checked) .control:hover .indeterminate-indicator {
+                background: ${w.a.Highlight}
+            }
+            :host(.disabled) {
+                opacity: 1;
+            }
+            :host(.disabled) .control {
+                forced-color-adjust: none;
+                border-color: ${w.a.GrayText};
+                background: ${w.a.Field};
+            }
+            :host(.disabled) .indeterminate-indicator,
+            :host(.checked.disabled) .control:hover .indeterminate-indicator {
+                forced-color-adjust: none;
+                background: ${w.a.GrayText};
+            }
+            :host(.disabled) .checked-indicator,
+            :host(.checked.disabled) .control:hover .checked-indicator {
+                forced-color-adjust: none;
+                fill: ${w.a.GrayText};
+            }
+        `));let T=class extends h{};T=Object(o.a)([Object(r.b)({name:"fluent-checkbox",template:b,styles:A,shadowOptions:{mode:"closed"}})],T)},lifk:function(e,t,i){"use strict";i.d(t,"d",(function(){return n})),i.d(t,"e",(function(){return s})),i.d(t,"c",(function(){return c})),i.d(t,"a",(function(){return l})),i.d(t,"b",(function(){return d})),i.d(t,"h",(function(){return u})),i.d(t,"g",(function(){return h})),i.d(t,"f",(function(){return g}));var o=i("HDSB"),r=i("0hJ9");let a;var n,s;!function(e){e.JPG="jpg",e.PNG="png"}(n||(n={})),function(e){e[e.None=0]="None",e[e.Letterbox=1]="Letterbox",e[e.Scale=2]="Scale",e[e.Stretch=3]="Stretch",e[e.Crop=4]="Crop",e[e.FocalCrop=5]="FocalCrop",e[e.FacialCrop=6]="FacialCrop"}(s||(s={}));const c=90,l="www.bing.com/th",d=new RegExp(/bing.(com|net)\/th/);function u(e,t){return h("//img-s-msn-com.akamaized.net/tenant/amp/entityid/"+e,t)}function h(e,t){if(e&&d.test(e))return g(e,t);const{focalRegion:i,backgroundColor:s}=t;let{width:c=0,height:l=0,format:u=n.JPG}=t,h="";if(i){const e=b(i.x1,i.x2),t=b(i.y1,i.y2);null!=e&&null!=t&&(h+=`&x=${e}&y=${t}`)}s&&(h+="&b="+s);const p=null==t.mode?6:t.mode;if(6===p&&(h+="&u=t"),t.enableDpiScaling){if(!t.devicePixelRatio)throw new Error("A valid devicePixelRatio value must be provided when DPI scaling is enabled");const e=function(e){if(Object(o.a)()&&a)return a;if(e<1)return null;let t=e;Object(r.a)(4*t)||(t=Math.ceil(10*t)/10);t>3&&(t=3);Object(o.a)()&&(a=t);return t}(t.devicePixelRatio);e&&(c=Math.round(c*e),l=Math.round(l*e))}return`${e}?w=${c}&h=${l}&q=${t.quality||60}&m=${p}&f=${u}${h}`}function p(e,t){const{width:i=0,height:o=0}=t,r=t.quality||c;return e.searchParams.set("w",""+i),e.searchParams.set("h",""+o),e.searchParams.set("qlt",""+r),e.searchParams.set("c","1"),e.searchParams.set("rs","1"),t.enableDpiScaling&&(e.searchParams.set("dpr",""+t.devicePixelRatio),e.searchParams.set("p","0")),e}function g(e,t){try{return p(new URL(e),t).href}catch(i){const o=p(new URL("https://"+e),t);return`//${o.host}${o.pathname}${o.search}`}}function b(e,t){if(null!=e&&null!=t)return Math.floor((e+t)/2)}},mJTN:function(e,t,i){"use strict";i.d(t,"b",(function(){return o})),i.d(t,"a",(function(){return r}));const o=new(i("JzSW").a)("AppState");var r;!function(e){e[e.IsSignedIn=1]="IsSignedIn",e[e.CookieConsentStatus=2]="CookieConsentStatus",e[e.OnetrustActiveCookieGroups=3]="OnetrustActiveCookieGroups",e[e.IsDarkMode=4]="IsDarkMode",e[e.ColumnArrangement=5]="ColumnArrangement",e[e.CurrentRoute=6]="CurrentRoute",e[e.TopicData=7]="TopicData",e[e.AboveTheFoldVisuallyReady=8]="AboveTheFoldVisuallyReady",e[e.IsDocumentVisible=9]="IsDocumentVisible"}(r||(r={}))},msIb:function(e,t,i){"use strict";i.d(t,"a",(function(){return o}));var o,r=i("D57K"),a=i("rvYQ"),n=i("y+Kz"),s=i("I6Lx"),c=i("wBSZ"),l=i("OTKB"),d=i("hOj1"),u=i("ax+D"),h=i("BQg2"),p=i("kN1G"),g=i("VGrc"),b=i("/+Un"),v=i("HDSB"),m=i("NIfb"),f=i("4wjP"),y=i("MptA"),C=i("u5KZ"),w=i("HxRh");!function(e){let t;function i(e=null,t,i=!0,o=null,r=!1,c=Object(p.j)()){const l=Object(a.b)(),d=[{key:n.t.apiKey,value:l.OneServiceApiKey},{key:n.t.activityId,value:l.ActivityId},{key:n.t.ocid,value:i?O(l.TrackInfo,t):t},{key:n.t.market,value:l.CurrentMarket}];e&&d.push({key:n.t.user,value:e});let u=Object(s.a)().CurrentFlights;if(o){u=u?`${u},${o}`:o;const e="prg-bngimg-t";-1===u.indexOf(e)&&(u+=","+e),!0===r&&(u=o)}return u&&d.push({key:n.t.fdhead,value:u}),c&&d.push({key:p.c,value:p.d}),s.b.IsBlendedEnterprise&&d.push({key:"audienceMode",value:"enterprise"}),d}function o(e=Object(p.j)(),t){return Object(r.a)(this,void 0,void 0,(function*(){const i={};if(e&&!(yield Object(p.g)())){const e=yield Object(p.e)(c.c,c.f,c.e);e&&e.token&&t?i[n.s.entAuthorization]=e.token:e&&e.token&&(i[n.s.authorization]="Bearer "+e.token)}if(!Object(v.a)()){const e=Object(m.a)().cookie;e&&(i.Cookie=e);const t=Object(m.a)().referer;t&&(i.Referer=t)}return i}))}function O(e,t){return u.a.isNonNullObject(e)&&u.a.isNonNullObject(e.sitePage)&&Object(y.a)(e.sitePage.page_product)&&Object(y.a)(e.sitePage.page_type)?e.sitePage.page_product+"-"+e.sitePage.page_type+(t?"-"+t:""):t}e.authenticationTicketType="10",e.signedInCookieNameHeader="signedInCookieName",e.userLocationHeader="user-location",e.serviceRequestOnComplete=function(e,t){return Object(r.a)(this,void 0,void 0,(function*(){try{const i=yield e();return t(),i}catch(e){throw t(),e}}))},e.getOneServiceParamsWithoutAuth=i,e.getOneServiceNonDynamicParamsWithoutAuth=function(e,t=!0){const i=Object(a.b)(),o=[{key:n.t.apiKey,value:i.OneServiceApiKey},{key:n.t.ocid,value:t?O(i.TrackInfo,e):e},{key:n.t.market,value:i.CurrentMarket}];return Object(p.j)()&&o.push({key:p.c,value:p.d}),o},e.getOneServiceParamsWithAuth=function(e=null,t,o=!0,r=null,s=!1){const c=Object(a.b)().AuthCookieName,l=[...i(e,t,o,r,s)];return c&&l.push({key:n.t.signInCookieName,value:c.toUpperCase()}),l},e.getOneServiceHeaders=o,e.getWinWidgetOneServiceHeaders=function(e,i=!1,o,s,c){var u;return Object(r.a)(this,void 0,void 0,(function*(){const r=Object(a.b)(),h=(null===(u=null==r?void 0:r.CurrentRequestTargetScope)||void 0===u?void 0:u.audienceMode)===f.a.Enterprise,p={};if(!e)return C.a.sendAppErrorEvent(Object.assign(Object.assign({},w.ic),{message:"Failed to retrieve user auth token and MUID from WDX client due to undefined widget instance",source:"OneSericeUtility",pb:Object.assign(Object.assign({},w.ic.pb),{widgetInstance:e,widgetInstanceId:o,windowsSessionId:s})})),p;let b;const v=Object(g.b)(e,h?l.b:l.c,h?l.f:l.g,h?l.d:l.e);t?b=yield v:[b,t]=yield Promise.all([v,Object(g.a)(e)]),b?(h&&i&&(p[n.s.entAuthorization]=b),h||(p[n.s.rpsToken]=b)):c&&C.a.sendAppErrorEvent(Object.assign(Object.assign({},w.hc),{message:"WDX Client failed to return user auth token",source:"OneSericeUtility",pb:Object.assign(Object.assign({},w.hc.pb),{widgetInstance:e,widgetInstanceId:o,windowsSessionId:s})}));const m=Object(d.b)();return t?(p[n.s.muid]=t,t!==m&&Object(l.a)(t)):m&&(p[n.s.muid]=m),p}))},e.getOneServiceFeedCallHeaders=function(e,t){return Object(r.a)(this,void 0,void 0,(function*(){const i=yield o(e,t),r=Object(a.b)(),s=r.ActivityId;return r.SendFeedCallActivityIdInHeader&&s&&(i[n.s.activityId]=s),i}))},e.getLocationParams=function(e,t){const i=Object(a.b)(),o=e||i.Latitude,r=t||i.Longitude;return o&&r?{key:n.t.location,value:`${o}|${r}`}:null},e.getOneServiceOCID=O,e.getBaseRequestData=function(t){return Object(r.a)(this,void 0,void 0,(function*(){return{headers:yield e.getOneServiceHeaders(),method:t}}))},e.getCommonParams=function(e,t=!1){return Object(s.a)().UserIsSignedIn?this.getOneServiceParamsWithAuth(Object(a.b)().UserId,e,t):this.getOneServiceParamsWithoutAuth(Object(a.b)().UserId,e,t)},e.getCommonParams2=function(e,t=!0,i=!1){return Object(b.e)()?this.getOneServiceParamsWithAuth(Object(a.b)().UserId,e,t,i):this.getOneServiceParamsWithoutAuth(Object(a.b)().UserId,e,t,i)},e.urlContainsOcidParam=function(e){if(!e)return!1;const t=e.split("?");if(t.length<2)return!1;const i=t[1].split("#")[0];return!!new h.a(i).get("ocid")},e.removeOcidFromUrl=function(e){if(!e)return e;const t=e.split("?");if(t.length<2)return e;const i=t[1].split("#")[0],o=new h.a(i);if(o.get("ocid")){o.delete("ocid");let t=e.replace(i,o.toString());return"?"===t.charAt(t.length-1)&&(t=t.substring(0,t.length-1)),t}return e},e.removeOcidFromRiverCardProviderResponse=function(t){t&&t.cardMetadata&&t.cardMetadata.length&&t.cardMetadata.forEach(t=>{t.cardContent&&t.cardContent.destinationUrl?t.cardContent.destinationUrl=e.removeOcidFromUrl(t.cardContent.destinationUrl):t.subItems&&t.subItems.length&&t.subItems.forEach(t=>{t.cardContent&&t.cardContent.destinationUrl&&(t.cardContent.destinationUrl=e.removeOcidFromUrl(t.cardContent.destinationUrl))})})},e.removeOcidFromWindowsOneServiceResponse=function(t){t&&t.cards&&t.cards.forEach(t=>{t.subCards.forEach(t=>{t.url?t.url=e.removeOcidFromUrl(t.url):t.subCards&&t.subCards.forEach(t=>{t.url&&(t.url=e.removeOcidFromUrl(t.url))})})})}}(o||(o={}))},qxGE:function(e,t,i){"use strict";i.d(t,"a",(function(){return l}));var o,r,a=i("rvYQ"),n=i("Am8i"),s=i("Gsg7"),c=i("mJTN");!function(e){e[e.Router=0]="Router",e[e.ExternalLink=2]="ExternalLink",e[e.PrimeExternalLink=3]="PrimeExternalLink"}(o||(o={})),function(e){e.Replace="replace",e.Retain="retain"}(r||(r={}));const l=new class{constructor(){this.routeMap=new Map,this.market=a.a.CurrentMarket,this.currentUrl=new URL(location.href.toLowerCase())}init(e){if(this.options||!e)return;this.options=e,this.config=e.config,this.options.localizedStrings=this.options.localizedStrings||{},this.options.blockedQueryParams=this.options.blockedQueryParams||[],this.baseUrl=`${location.origin}/${this.market}${e.basePath}`,"/"===location.pathname&&(location.pathname=`/${this.market}${e.basePath}`);const t=this.currentUrl.searchParams.get("spapage");this.currentPath=t?`/${this.market}${e.basePath}/${t}`:this.currentUrl.pathname,this.currentUrl.searchParams.delete("spapage"),this.setRoutes(this.config),this.currentRoute&&(c.b.set(c.a.CurrentRoute,this.currentRoute),window.history.replaceState(this.currentRoute,"",this.currentRoute.destinationUrl)),window.addEventListener("popstate",e=>{const t=this.routeMap.get(e.state.id);c.b.set(c.a.CurrentRoute,t||this.config.homeNavigationItem)})}navigate(e,t){const i=c.b.get(c.a.CurrentRoute);if(i&&i.id===e)return;const o=this.routeMap.get(e),r=new URL(o.destinationUrl);if(r.hash&&(r.hash="",o.destinationUrl=r.toString()),!o)return;const a=Object.assign(Object.assign({},o),{dynamicContext:t});window.history.pushState(a,o.display,o.destinationUrl),c.b.set(c.a.CurrentRoute,a)}getRouteById(e){return this.routeMap.get(e)}updateMarket(e){location.replace(location.href.replace(`/${this.market}/`,`/${e}/`))}getUrlInfo(e){const{context:t,renderType:i,path:r,externalUrl:a}=e.renderInfo;if(e.id===this.config.homeNavigationItem.id)return{url:`${this.baseUrl}${this.currentUrl.search}`,path:`/${this.market}/${r}`};if(i===o.Router){let e=this.baseUrl;t&&t.excludeFeedPrefix&&(e=`${location.origin}/${this.market}/`);const i=`${0===r.indexOf("personalize")?"":"/interest"}/${r}`;return{url:`${e}${i}${this.currentUrl.search}${location.hash}`,path:`/${this.market}${t&&t.excludeFeedPrefix?"":"/feed"}${i}`}}let n=new URL(a);const s=n.searchParams;return-1!==n.hostname.indexOf(".msn.com")&&(n.hostname!==location.hostname&&(n=new URL(`${n.pathname}${n.search}`,location.origin)),this.currentUrl.search&&this.currentUrl.searchParams.forEach((e,t)=>{t=t.toLowerCase(),-1===s.getAll(t).indexOf(e)&&-1===this.options.blockedQueryParams.indexOf(t)&&n.searchParams.append(t,e)}),!n.searchParams.get("ocid")&&this.options.ocid&&n.searchParams.set("ocid",this.options.ocid)),{url:decodeURIComponent(n.toString()),path:n.pathname,searchParams:s}}setRoutes(e){if(!e)return;const{contextualNavItems:t=[],hamburgerMenuItems:i=[],homeNavigationItem:o,interestsNavigationItem:r}=e;o&&i.length&&t.length&&(this.buildNavMap(o),this.buildNavMap(r),this.mapChildItems(i),this.mapChildItems(t))}processRoute(e,t){const{id:i,display:o,displayKey:r}=e,a=r?this.options.localizedStrings[r]:o,c=this.getUrlInfo(e),l=c.url,d=Object.assign(Object.assign({},e),{display:a,destinationUrl:l,parentId:t,telemetryMetadata:new s.a({name:a,action:n.a.Click,behavior:n.b.Navigate,content:{headline:a},destinationUrl:l,overrideDestinationUrl:l,feed:{id:i,name:a,type:"category filter"}}).getMetadata()});return this.detectCurrentRoute(d,c.path,c.searchParams),d}detectCurrentRoute(e,t="",i){if(t=t.toLowerCase(),this.currentPath===t||this.currentPath===t+"/"){let t=!1;if(i&&i.toString()&&i.forEach((e,i)=>{i=i.toLowerCase(),-1===this.currentUrl.searchParams.getAll(i).indexOf(e.toLowerCase())&&(t=!0)}),t)return;this.currentRoute=e}}buildNavMap(e){if(!e||this.routeMap.get(e.id))return;const{id:t,children:i=[]}=e;this.routeMap.set(t,this.processRoute(e)),this.mapChildItems(i,e.id)}mapChildItems(e=[],t){e.forEach(e=>{this.routeMap.get(e.id)||this.routeMap.set(e.id,this.processRoute(e,t));const{children:i}=e;i&&i.length&&this.mapChildItems(i,e.id)})}}},rfxS:function(e,t,i){"use strict";i.d(t,"a",(function(){return o}));const o=1},sUlk:function(e,t,i){"use strict";i.d(t,"a",(function(){return D}));var o,r=i("3rEL"),a=i("QBS5"),n=i("P4Ao"),s=i("eftJ"),c=i("oePG"),l=i("B85f"),d=i("6fxl"),u=i("o87Z");class h extends n.a{}class p extends(Object(u.a)(h)){constructor(){super(...arguments),this.proxy=document.createElement("textarea")}}!function(e){e.none="none",e.both="both",e.horizontal="horizontal",e.vertical="vertical"}(o||(o={}));class g extends p{constructor(){super(...arguments),this.resize=o.none,this.cols=20,this.handleTextInput=()=>{this.value=this.control.value}}readOnlyChanged(){this.proxy instanceof HTMLTextAreaElement&&(this.proxy.readOnly=this.readOnly)}autofocusChanged(){this.proxy instanceof HTMLTextAreaElement&&(this.proxy.autofocus=this.autofocus)}listChanged(){this.proxy instanceof HTMLTextAreaElement&&this.proxy.setAttribute("list",this.list)}maxlengthChanged(){this.proxy instanceof HTMLTextAreaElement&&(this.proxy.maxLength=this.maxlength)}minlengthChanged(){this.proxy instanceof HTMLTextAreaElement&&(this.proxy.minLength=this.minlength)}spellcheckChanged(){this.proxy instanceof HTMLTextAreaElement&&(this.proxy.spellcheck=this.spellcheck)}handleChange(){this.$emit("change")}}Object(s.a)([Object(a.b)({mode:"boolean"})],g.prototype,"readOnly",void 0),Object(s.a)([a.b],g.prototype,"resize",void 0),Object(s.a)([Object(a.b)({mode:"boolean"})],g.prototype,"autofocus",void 0),Object(s.a)([Object(a.b)({attribute:"form"})],g.prototype,"formId",void 0),Object(s.a)([a.b],g.prototype,"list",void 0),Object(s.a)([Object(a.b)({converter:a.d})],g.prototype,"maxlength",void 0),Object(s.a)([Object(a.b)({converter:a.d})],g.prototype,"minlength",void 0),Object(s.a)([a.b],g.prototype,"name",void 0),Object(s.a)([a.b],g.prototype,"placeholder",void 0),Object(s.a)([Object(a.b)({converter:a.d,mode:"fromView"})],g.prototype,"cols",void 0),Object(s.a)([Object(a.b)({converter:a.d,mode:"fromView"})],g.prototype,"rows",void 0),Object(s.a)([Object(a.b)({mode:"boolean"})],g.prototype,"spellcheck",void 0),Object(s.a)([c.d],g.prototype,"defaultSlottedNodes",void 0),Object(d.a)(g,l.a);var b=i("6BDD"),v=i("UauI"),m=i("+53S");const f=b.b`
+    <template
+        class="
+            ${e=>e.readOnly?"readonly":""}
+            ${e=>e.resize!==o.none?"resize-"+e.resize:""}"
+    >
+        <label
+            part="label"
+            for="control"
+            class="${e=>e.defaultSlottedNodes&&e.defaultSlottedNodes.length?"label":"label label__hidden"}"
+        >
+            <slot ${Object(v.b)("defaultSlottedNodes")}></slot>
+        </label>
+        <textarea
+            part="control"
+            class="control"
+            id="control"
+            ?autofocus="${e=>e.autofocus}"
+            cols="${e=>e.cols}"
+            ?disabled="${e=>e.disabled}"
+            form="${e=>e.form}"
+            list="${e=>e.list}"
+            maxlength="${e=>e.maxlength}"
+            minlength="${e=>e.minlength}"
+            name="${e=>e.name}"
+            placeholder="${e=>e.placeholder}"
+            ?readonly="${e=>e.readOnly}"
+            ?required="${e=>e.required}"
+            rows="${e=>e.rows}"
+            ?spellcheck="${e=>e.spellcheck}"
+            :value="${e=>e.value}"
+            aria-atomic="${e=>e.ariaAtomic}"
+            aria-busy="${e=>e.ariaBusy}"
+            aria-controls="${e=>e.ariaControls}"
+            aria-current="${e=>e.ariaCurrent}"
+            aria-describedBy="${e=>e.ariaDescribedby}"
+            aria-details="${e=>e.ariaDetails}"
+            aria-disabled="${e=>e.ariaDisabled}"
+            aria-errormessage="${e=>e.ariaErrormessage}"
+            aria-flowto="${e=>e.ariaFlowto}"
+            aria-haspopup="${e=>e.ariaHaspopup}"
+            aria-hidden="${e=>e.ariaHidden}"
+            aria-invalid="${e=>e.ariaInvalid}"
+            aria-keyshortcuts="${e=>e.ariaKeyshortcuts}"
+            aria-label="${e=>e.ariaLabel}"
+            aria-labelledby="${e=>e.ariaLabelledby}"
+            aria-live="${e=>e.ariaLive}"
+            aria-owns="${e=>e.ariaOwns}"
+            aria-relevant="${e=>e.ariaRelevant}"
+            aria-roledescription="${e=>e.ariaRoledescription}"
+            @input="${(e,t)=>e.handleTextInput()}"
+            @change="${e=>e.handleChange()}"
+            ${Object(m.b)("control")}
+        ></textarea>
+    </template>
+`;var y=i("4X57"),C=i("oqLQ"),w=i("xY0q"),O=i("wHpb"),k=i("2i1/"),A=i("j9Xn"),T=i("kL0l"),x=i("Ki0l"),S=i("QkLF"),j=i("57ob");const I=y.a`
+  :host([appearance='filled']) .control {
+    background: ${T.s.var};
+    border-color: transparent;
+  }
+
+  :host([appearance='filled']:hover:not([disabled])) .control {
+    background: ${T.o.var};
+    border-color: transparent;
+  }
+
+  :host([appearance='filled']:focus-within:not([disabled])) .control {
+    border-color: transparent;
+    box-shadow: none;
+  }
+  ${x.a}
+`.withBehaviors(T.c,T.o,T.s,Object(C.c)(y.a`
+      :host([appearance='filled']:hover:not([disabled])) .control,
+      :host([appearance='filled']:focus-within:not([disabled])) .control {
+        background: ${A.a.Field};
+        border-color: ${A.a.FieldText};
+      }
+      :host([appearance='filled']:not([disabled]):active)::after,
+      :host([appearance='filled']:not([disabled]):focus-within:not(:active))::after {
+        border-bottom-color: ${A.a.Highlight};
+      }
+    `)),P=y.a`
+    ${Object(w.a)("inline-flex")} :host {
+        font-family: var(--body-font);
+        outline: none;
+        user-select: none;
+        position: relative;
+        flex-direction: column;
+        vertical-align: bottom;
+    }
+
+    .control {
+        box-sizing: border-box;
+        position: relative;
+        color: ${T.G.var};
+        background: ${T.r.var};
+        border-radius: calc(var(--corner-radius) * 1px);
+        border: calc(var(--outline-width) * 1px) solid ${T.P.var};
+        height: calc(${S.a} * 2px);
+        font: inherit;
+        font-size: var(--type-ramp-base-font-size);
+        line-height: var(--type-ramp-base-line-height);
+        padding: calc(var(--design-unit) * 1.5px) calc(var(--design-unit) * 2px + 1px);
+        width: 100%;
+        resize: none;
+    }
+
+    .control:hover:enabled {
+        background: ${T.q.var};
+        border-color: ${T.O.var};
+    }
+
+    .control:hover,
+    .control:${O.a},
+    .control:disabled,
+    .control:active {
+        outline: none;
+    }
+
+    :host(:focus-within) .control {
+        border-color: ${T.z.var};
+        box-shadow: 0 0 0 1px ${T.z.var} inset;
+    }
+
+    :host(.resize-both) .control {
+        resize: both;
+    }
+
+    :host(.resize-horizontal) .control {
+        resize: horizontal;
+    }
+
+    :host(.resize-vertical) .control {
+        resize: vertical;
+    }
+
+    .label__hidden {
+        display: none;
+        visibility: hidden;
+    }
+
+    .label {
+        display: block;
+        color: ${T.G.var};
+        cursor: pointer;
+        $font-size: var(--type-ramp-base-font-size);
+        line-height: var(--type-ramp-base-line-height);
+        margin-bottom: 4px;
+    }
+
+    :host([disabled]) .label,
+    :host([readonly]) .label,
+    :host([readonly]) .control,
+    :host([disabled]) .control {
+        cursor: ${k.a};
+    }
+    :host([disabled]) {
+        opacity: var(--disabled-opacity);
+    }
+`.withBehaviors(Object(j.a)("filled",I),T.q,T.r,T.z,T.G,T.O,T.P,Object(C.c)(y.a`
+      :host([disabled]) {
+        opacity: 1;
+      }
+      ::placeholder,
+      ::-webkit-input-placeholder {
+        color: ${A.a.FieldText};
+      }
+      :host([disabled]) ::placeholder,
+      :host([disabled]) ::-webkit-input-placeholder,
+      :host([disabled]) .label {
+        color: ${A.a.GrayText};
+      }
+    `));let D=class extends g{appearanceChanged(e,t){e!==t&&(this.classList.add(t),this.classList.remove(e))}connectedCallback(){super.connectedCallback(),this.appearance||(this.appearance="outline")}};Object(r.a)([a.b],D.prototype,"appearance",void 0),D=Object(r.a)([Object(n.b)({name:"fluent-text-area",template:f,styles:P,shadowOptions:{mode:"closed"}})],D)},xQNS:function(e,t,i){"use strict";i.d(t,"a",(function(){return d}));var o=i("eftJ"),r=i("P4Ao"),a=i("QBS5"),n=i("oePG"),s=i("uXNP"),c=i("C5kU"),l=i("6fxl");class d extends r.a{}Object(o.a)([a.b],d.prototype,"download",void 0),Object(o.a)([a.b],d.prototype,"href",void 0),Object(o.a)([a.b],d.prototype,"hreflang",void 0),Object(o.a)([a.b],d.prototype,"ping",void 0),Object(o.a)([a.b],d.prototype,"referrerpolicy",void 0),Object(o.a)([a.b],d.prototype,"rel",void 0),Object(o.a)([a.b],d.prototype,"target",void 0),Object(o.a)([a.b],d.prototype,"type",void 0),Object(o.a)([n.d],d.prototype,"defaultSlottedContent",void 0);class u{}Object(o.a)([Object(a.b)({attribute:"aria-expanded",mode:"fromView"})],u.prototype,"ariaExpanded",void 0),Object(l.a)(u,s.a),Object(l.a)(d,c.a,u)}}]);

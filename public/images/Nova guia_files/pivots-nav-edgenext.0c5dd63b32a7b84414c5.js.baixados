@@ -1,0 +1,95 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["pivots-nav-edgenext"],{"5Bes":function(t,e,i){"use strict";i.d(e,"a",(function(){return n})),i.d(e,"b",(function(){return a}));var s=i("D57K");const o=new(i("bWC+").a);function n(t){o.set()}function a(t){return Object(s.a)(this,void 0,void 0,(function*(){t&&t.length&&(yield o.getResultAsync())}))}},YEzE:function(t,e,i){"use strict";i.d(e,"a",(function(){return o})),i.d(e,"b",(function(){return n}));var s=i("wAA9");const o=(t,e,i)=>({[s.a.title]:t,[s.a.type]:"string"==typeof i?s.b.string:s.b.number,[s.a.description]:e||t,[s.a.const]:i}),n=(t,e,i,s)=>({[t]:Object.assign({},o(e,i,s))})},s7W5:function(t,e,i){"use strict";i.r(e),i.d(e,"ToolingInfo",(function(){return H})),i.d(e,"PivotsNavEdgeNext",(function(){return E})),i.d(e,"PivotsNavEdgeNextTemplate",(function(){return A})),i.d(e,"PivotsNavEdgeNextStyles",(function(){return M}));var s=i("C49W"),o=i("nkry"),n=i("YEzE"),a=i("sydv"),c=i("N5Mh"),r=i("A03o"),l=i("tZnx"),d=i("akWC"),v=i("Zn5T");function h(t,e,i){return Object(s.f)(t,e,i,{additionalProperties:Object(o.a)("Pivot choice","Pivot choice",[Object(s.e)("External pivot","External pivot",Object.assign(Object.assign({},Object(n.b)("type","Type","Type","external")),Object(s.f)("externalTargetUrl","External target url","External target url",Object.assign(Object.assign({},Object(a.c)("href","Link URL","Link URL")),Object(s.c)("openInNewTab","Open in new tab")),["href"])),["type","externalTargetUrl"]),Object(s.e)("Static pivot","Static pivot",Object.assign(Object.assign(Object.assign(Object.assign({},Object(n.b)("type","Type","Type","static")),Object(c.b)("configInfo","Pivot config info","Pivot config info")),Object(a.c)("telemetryPageName","Telemetry page name")),Object(a.c)("telemetryPivotCategory","Telemetry pivot category")),["type","configInfo"]),Object(s.e)("Topic pivot","Topic pivot",Object.assign(Object.assign({},Object(n.b)("type","Type","Type","topic")),Object(a.c)("feedId","Feed Id")),["type","feedId"])])})}const p=Object(r.a)(v.a.pivotsNavEdgeNext,"PivotsNavEdgeNext experience",Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({},h("pivots","Pivots","Pivots to show")),h("overridePivots","Override pivots","Override pivots list")),Object(c.b)("topicsConfigInfo","Topics config info")),Object(l.b)(Object(s.b)("waitOnNavBarItems","Wait on nav bar items","Wait on nav bar items",Object(a.b)("Nav bar item","Nav bar items",["Personalize"])))),Object(d.a)({myFeed:"Localization for the My Feed pivot",office365:"Localization for the office365 pivot"})),["pivots","topicsConfigInfo"]);var g=i("D57K"),b=i("s9+9"),f=i("g447"),u=i("ADRF"),y=i("Am8i"),m=i("w0HK"),x=i("5Bes"),P=i("loKy"),O=i("oePG"),j=i("5ZAu"),I=i("IqCT"),k=i("plCa"),w=i("XgsJ"),T=i("d0Z1");class E extends I.a{constructor(){super(...arguments),this.refreshPivotVisibility=()=>{const t=this.pivotElements,e=this.shadowRoot.getElementById("root").offsetWidth;let i=0;this.lastVisiblePivotIndex=0;for(let s=0;s<t.length;s++)i+=this.pivotWidths[s],i>=e?t[s].style.display="none":(this.lastVisiblePivotIndex=s,t[s].style.display=null);this.selectedIndex<=this.lastVisiblePivotIndex?0!==this.selectedIndex&&t[0].setAttribute("tabindex","-1"):t[0].setAttribute("tabindex","0")},this.switchListenerCallback=t=>{const e=this.pivots.findIndex(e=>e.pivotId===t.newSelection.pivotId);this.selectedId=t.newSelection.pivotId,e!==this.selectedIndex&&(this.selectedIndex>=0&&this.markPivotSelectionState(this.selectedIndex,!1,0===this.selectedIndex&&-1===e),this.selectedIndex=e,e>=0?this.markPivotSelectionState(e,!0):this.pivotElements[0].setAttribute("tabindex","0"),this.focusSelectedPivotAfterSwitch&&(setTimeout(()=>{this.getSelectedAnchorElement().focus()},0),this.focusSelectedPivotAfterSwitch=!1))}}experienceConnected(){this.pivots=[],this.pivotManager=Object(m.a)(this.config.pivotsNavInstanceId),this.configEntries=Object.entries(this.config.overridePivots||this.config.pivots);for(const t of this.configEntries){const e=t[1];if(e){"static"===e.type&&this.switchToStaticPivot(t[0],e,!1),"topic"===e.type&&this.switchToTopicPivot(e);break}}Object(f.b)("navBar",t=>{this.onTranslucentBackground="translucentBackground"===t}),Object(x.b)(this.config.waitOnNavBarItems).then(()=>{this.showPivots()})}disconnectedCallback(){super.disconnectedCallback(),this.pivotManager.removeSwitchListener(this.switchListenerCallback)}showPivots(){for(const[t,e]of this.configEntries)e&&("topic"===e.type?this.addTopicPivot(e):"static"===e.type?this.addStaticPivot(t,e):this.addExternalPivot(t,e));this.pivots.length&&(this.pivots[0].selected=!0,this.selectedIndex=0,this.selectedId=this.pivots[0].pivotId),this.pivotManager.addSwitchListener(this.switchListenerCallback,P.a.LoadContent),this.addEventListener("keydown",this.onKeyPressed),this.addEventListener("focusout",()=>{this.resetLastKeyFocusedElementState()}),Object(T.c)(b.a.ChromiumPageSettings,t=>{this.selectedFeedDisplaySetting=t.selectedFeedDisplaySetting,setTimeout(()=>{this.refreshPivotVisibility()},0)}),j.a.queueUpdate(()=>{const t=this.pivotElements;this.pivotWidths=[];for(let e=0;e<t.length;e++)this.pivotWidths[e]=t[e].offsetWidth;this.refreshPivotVisibility(),Object(k.a)().subscribe(this.refreshPivotVisibility)})}getExperienceType(){return v.a.pivotsNavEdgeNext}onKeyPressed(t){const e="ArrowLeft"===t.key,i="ArrowRight"===t.key;if(this.pivots.length>1&&(e||i)){const i=Array.from(this.pivotElements);let s=i.indexOf(this.shadowRoot.activeElement);const o=Math.min(i.length-1,this.lastVisiblePivotIndex);e?s--:s++,s<0?s=o:s>o&&(s=0);const n=i[s];this.lastKeyFocusedElement!==n&&this.resetLastKeyFocusedElementState(),this.pivots[s].externalTargetUrl?(n.setAttribute("tabindex","0"),n.focus(),this.lastKeyFocusedElement=n):s===this.selectedIndex?n.focus():(this.focusSelectedPivotAfterSwitch=!0,this.loadPivotContentFromIndex(s)),t.preventDefault()}}get pivotElements(){return this.shadowRoot.querySelectorAll("a")}resetLastKeyFocusedElementState(){this.lastKeyFocusedElement&&!this.lastKeyFocusedElement.hasAttribute("aria-selected")&&this.lastKeyFocusedElement.setAttribute("tabindex","-1")}markPivotSelectionState(t,e,i){this.pivots.splice(t,1,Object.assign(Object.assign({},this.pivots[t]),{selected:e,focusable:i}))}getSelectedAnchorElement(){return this.pivotElements[this.selectedIndex]}getBaseTelemetryContract(t){return{name:t,action:y.a.Click,behavior:y.b.Navigate,content:{headline:t}}}addExternalPivot(t,e){const i=Object.assign(Object.assign({},this.getBasePivot(t,e)),{externalTargetUrl:e.externalTargetUrl});this.pivots.push(i)}addStaticPivot(t,e){const i=()=>{this.switchToStaticPivot(t,e,!0)};this.pivots.push(Object.assign(Object.assign({},this.getBasePivot(t,e)),{clickHandler:this.createClickHandler(i),loadContent:i}))}addTopicPivot(t){const e=this.getBaseTelemetryContract(t.display),i=t.feedId;e.overrideDestinationUrl=u.a.appendSearchParam(new URL(Object(w.i)()),"filter",i).toString(),e.feed={id:i,name:t.display,type:"category filter"};const s=()=>{this.switchToTopicPivot(t)};this.pivots.push(Object.assign(Object.assign({},this.getBasePivot(i,t,e)),{clickHandler:this.createClickHandler(s),loadContent:s}))}getBasePivot(t,e,i){var s;const o=this.getDisplay(e);i||(i=this.getBaseTelemetryContract(o));const n=null===(s=this.telemetryObject)||void 0===s?void 0:s.addOrUpdateChild(i);return{pivotId:t,display:o,selected:!1,telemetryTag:null==n?void 0:n.getMetadataTag()}}createClickHandler(t){return e=>{const i=this.shadowRoot.activeElement;e.preventDefault(),t(),i&&setTimeout(()=>{i.focus()},0)}}switchToStaticPivot(t,e,i){const s={pivotId:t,display:this.getDisplay(e),configIndexRef:e.configInfo,telemetryPageName:e.telemetryPageName,telemetryPivotCategory:e.telemetryPivotCategory};this.executePivotSwitch(s,i)}switchToTopicPivot(t){const e={pivotId:t.feedId,display:t.display,context:{feedId:t.feedId},configIndexRef:this.config.topicsConfigInfo,telemetryPageName:"xfeed",telemetryPivotCategory:"news"};this.executePivotSwitch(e,!0)}executePivotSwitch(t,e){const i=t.pivotId!==this.selectedId;i&&this.pivotManager.switchPivot(t),e&&this.pivotManager.clickPivot(i,t)}loadPivotContentFromIndex(t){this.pivots[t].loadContent()}getDisplay(t){var e;return null!==(e=t.display)&&void 0!==e?e:this.config.localizedStrings[t.displayKey]}}Object(g.d)([O.d],E.prototype,"onTranslucentBackground",void 0),Object(g.d)([O.d],E.prototype,"selectedFeedDisplaySetting",void 0);var S=i("6BDD"),L=i("UNqU"),C=i("6vBc"),N=i("eUhr");const A=S.b`
+<div role="tablist" id="root" class="${t=>t.config.pivotsNavInstanceId?"singleColumnPivotsRoot":""}">
+    ${Object(L.c)(t=>t.pivots,S.b`
+    <a href=${t=>t.externalTargetUrl?t.externalTargetUrl.href:"#"}
+        @click=${(t,e)=>{if(null==(null==t?void 0:t.clickHandler))return!0;t.clickHandler(e.event)}}
+        class=${(t,e)=>{let i="pivotLink";return e.parent.onTranslucentBackground?i+=" pivotLink_tb":t.pivotId===e.parent.selectedId&&(i+=" pivotLink_selected"),i}}
+        role="tab"
+        ?aria-selected=${(t,e)=>t.pivotId===e.parent.selectedId}
+        tabindex=${(t,e)=>t.pivotId===e.parent.selectedId||t.focusable?0:-1}
+        ${Object(N.b)(t=>t.telemetryTag)}>
+        <span class="pivotLinkText">
+            ${t=>t.display}
+            ${Object(C.a)((t,e)=>t.pivotId===e.parent.selectedId,S.b`<div class="pivotLinkUnderline" />`)}
+        </span>
+    </a>
+</div>`)}
+`;var B=i("Jw3B"),U=i("CzTk"),F=i("oqLQ"),$=i("kL0l"),D=i("j9Xn"),K=i("4X57");const R=K.a`
+.pivotLinkUnderline {
+    left: 0;
+}`,W=K.a`
+.pivotLinkUnderline {
+    right: 0;
+}`,z=K.a`
+.pivotLinkUnderline {
+    background: ${D.a.LinkText};
+}
+`,M=K.a`
+:host {
+    flex-grow: 1;
+    margin-inline-start: -16px;
+    white-space: nowrap;
+    width: 0;
+}
+
+#root {
+    display: flex;
+}
+
+.singleColumnPivotsRoot {
+    align-items: center;
+    justify-content: center;
+}
+
+${Object(B.c)(B.a.c4,null)} {
+    .singleColumnPivotsRoot {
+        margin-inline-start: 200px;
+        writing-mode: horizontal-tb
+    }
+}
+
+.pivotLink {
+    display: inline-block;
+    padding: 14px 16px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    color: ${$.D.var};
+}
+
+.pivotLink:hover {
+    background: ${$.v.var};
+}
+
+.pivotLink_selected {
+    color: ${$.G.var}
+}
+
+.pivotLink_tb {
+    color: white;
+}
+
+.pivotLink_tb:hover, .pivotLink_tb:active {
+    background: #404040;
+}
+
+.pivotLink:active {
+    background: ${$.u.var};
+}
+
+.pivotLinkText {
+    font-size: var(--type-ramp-base-font-size);
+    line-height: var(--type-ramp-base-line-height);
+    display: inline-block;
+    position: relative;
+}
+
+.pivotLinkUnderline {
+    background: ${$.h.var};
+    height: 2px;
+    position: absolute;
+    bottom: -3px;
+    width: 100%;
+}
+
+`.withBehaviors($.G,$.D,$.v,$.u,$.h,new U.a(R,W),Object(F.c)(z)),H={experienceConfigSchema:p}}}]);

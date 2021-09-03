@@ -1,0 +1,61 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["personalize-nav-button"],{"5Bes":function(e,t,n){"use strict";n.d(t,"a",(function(){return o})),n.d(t,"b",(function(){return r}));var i=n("D57K");const a=new(n("bWC+").a);function o(e){a.set()}function r(e){return Object(i.a)(this,void 0,void 0,(function*(){e&&e.length&&(yield a.getResultAsync())}))}},yGU0:function(e,t,n){"use strict";n.r(t),n.d(t,"ToolingInfo",(function(){return y})),n.d(t,"PersonalizeNavButton",(function(){return f})),n.d(t,"PersonalizeNavButtonTemplate",(function(){return C})),n.d(t,"PersonalizeNavButtonStyles",(function(){return j}));var i=n("A03o"),a=n("N5Mh"),o=n("akWC"),r=n("C49W"),s=n("Zn5T");const l=Object(i.a)(s.a.personalizeNavButton,"A sample Peregrine Web Component experience",Object.assign(Object.assign(Object.assign({},Object(a.b)("interestsConfigInfo","Interests experience config info")),Object(o.a)({buttonTitle:"Localization for the button text"})),Object(r.c)("enablePillShapedPersonalizeNavButton","Enable pill shaped personalize nav button")),["interestsConfigInfo"]);var c=n("D57K"),d=n("g447"),u=n("w0HK"),b=n("5Bes"),p=n("Am8i"),v=n("IqCT"),h=n("oePG");const g="oneriver.editinterests";class f extends v.a{constructor(){super(...arguments),this.switchListenerCallback=e=>{this.selected=e.newSelection.pivotId===g}}experienceConnected(){var e;Object(u.a)().addSwitchListener(this.switchListenerCallback);const t=null===(e=this.telemetryObject)||void 0===e?void 0:e.addOrUpdateChild({name:"destination",action:p.a.Click,behavior:p.b.Navigate,content:{headline:this.strings.buttonTitle}});this.telemetryTag=null==t?void 0:t.getMetadataTag(),Object(d.b)("navBar",e=>{this.onTranslucentBackground="translucentBackground"===e})}disconnectedCallback(){super.disconnectedCallback(),Object(u.a)().removeSwitchListener(this.switchListenerCallback)}shadowDomPopulated(){Object(b.a)("Personalize")}getExperienceType(){return s.a.personalizeNavButton}buttonClick(e){e.preventDefault(),Object(u.a)().switchPivot({pivotId:g,display:this.strings.buttonTitle,configIndexRef:this.config.interestsConfigInfo,telemetryPageName:"cinterests",telemetryPivotCategory:"news"})}}Object(c.d)([h.d],f.prototype,"selected",void 0),Object(c.d)([h.d],f.prototype,"onTranslucentBackground",void 0);var k=n("6BDD"),w=n("0QZK"),x=n("eUhr");const C=k.b`
+<a @click=${(e,t)=>e.buttonClick(t.event)} href="#" class=${(e,t)=>((e,t)=>{let n="link";return e.onTranslucentBackground?n+=" link_tb":e.selected&&(n+=" link_selected"),e.config&&e.config.enablePillShapedPersonalizeNavButton&&(n+=" pillShape"),n})(e)} ${Object(x.b)(e=>e.telemetryTag)}>
+    ${w.Qb}
+    <span class="linkText">${e=>e.strings.buttonTitle}</span>
+</a>
+`;var m=n("4X57"),O=n("kL0l");const j=m.a`
+:host {
+    border-radius: 6px;
+}
+
+.link {
+    padding: 0px 12px;
+    border: 1px solid ${O.P.var};
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    height: 34px;
+    font-weight: 600;
+    color: ${O.D.var};
+    text-decoration: none;
+}
+
+.link:hover {
+    background: ${O.v.var};
+}
+
+.link:active {
+    background: ${O.u.var};
+}
+
+.link_selected {
+    color: ${O.G.var};
+}
+
+.link_tb {
+    color: white;
+}
+
+.link_tb:hover, .link_tb:active {
+    background: #404040;
+}
+
+.link > svg {
+    fill: ${O.G.var};
+}
+
+.link_tb > svg {
+    fill: white;
+}
+
+.linkText {
+    font-size: var(--type-ramp-base-font-size);
+    line-height: var(--type-ramp-base-line-height);
+    margin-left: 3px;
+}
+
+.link.pillShape {
+    height: 30px;
+    border-radius: 16px;
+}
+`.withBehaviors(O.D,O.P,O.v,O.u,O.G),y={experienceConfigSchema:l}}}]);

@@ -29,16 +29,15 @@ import Divider from "../../../components/Divider";
 import ClienteCaracteristicasItem from "./ClienteCaracteristicasItem";
 import TagsCliente from "./TagsCliente";
 import FormMensagem from "./FormMensagem";
+import GroupClienteItem from "./GroupClienteItem";
 
-interface ISidebarClientes {
+interface ISideBarGrupo {
   pic: string;
   json: object;
   onClose: Function;
 }
 
-const SideBarClientes: React.FC<ISidebarClientes> = (
-  prop: ISidebarClientes
-) => {
+const SideBarGrupo: React.FC<ISideBarGrupo> = (prop: ISideBarGrupo) => {
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
@@ -66,7 +65,11 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
         <ListItem position={"absolute"} width={"100%"} top={"32px"} zIndex={1}>
           <Flex className={"clientes_detalhes_flex"} zIndex={1}>
             <Avatar
-              src={prop.json["picture"] == null ? null : prop.json["picture"]}
+              src={
+                prop.json["contact"]["profilePicThumbObj"] == null
+                  ? null
+                  : prop.json["contact"]["profilePicThumbObj"]["eurl"]
+              }
               height={"160px"}
               width={"160px"}
             ></Avatar>
@@ -74,11 +77,10 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
             <List>
               <ListItem>
                 <Text fontSize={"40px"} marginLeft={"16px"} fontWeight={"100"}>
-                  {prop.json["name"] == null ||
-                  prop.json["name"] == undefined ||
-                  prop.json["name"] == "null" ||
-                  prop.json["name"] == "undefined"
-                    ? "Desconhecido"
+                  {prop.json["name"] == null || prop.json["name"] == undefined
+                    ? prop.json["id"] == null
+                      ? ""
+                      : prop.json["id"]["user"]
                     : prop.json["name"]}
                 </Text>
               </ListItem>
@@ -89,12 +91,12 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
                   marginLeft={"12px"}
                   fontWeight={"100"}
                 >
-                  {prop.json["whatsapp"] == null ||
-                  prop.json["whatsapp"] == undefined ||
-                  prop.json["whatsapp"] == "null" ||
-                  prop.json["whatsapp"] == "undefined"
+                  {prop.json["id"] == null || prop.json["id"] == undefined
                     ? ""
-                    : prop.json["whatsapp"].replace(
+                    : prop.json["id"]["user"] == null ||
+                      prop.json["id"]["user"] == undefined
+                    ? ""
+                    : prop.json["id"]["user"].replace(
                         /(\d{2})(\d{2})(\d{5})(\d{2})/,
                         "+$1 ($2) $3-$4"
                       )}
@@ -124,11 +126,10 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
             </List>
           </Flex>
 
-          <TagsCliente />
           <Flex
             opacity={0.5}
             height={"1px"}
-            marginTop={"8px"}
+            marginTop={"24px"}
             background={"#a0aec0"}
             width={"100%"}
           />
@@ -137,31 +138,30 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
             margin={"24px"}
             marginTop={"16px"}
           >
-            <ClienteCaracteristicasItem
-              keyName={"CPF:"}
-              value={"320.221.221-23"}
-            />
-            <ClienteCaracteristicasItem keyName={"Idade:"} value={"34 anos"} />
-            <ClienteCaracteristicasItem
-              keyName={"Estado Civil:"}
-              value={"Casada"}
-            />
-            <ClienteCaracteristicasItem keyName={"Sexo:"} value={"Feminino"} />
-            <ClienteCaracteristicasItem
-              keyName={"Filhos:"}
-              value={"3 (Jair, Romeu e Jobson)"}
-            />
-            <ClienteCaracteristicasItem
-              keyName={"Cônjuge:"}
-              value={"Bruno Brito"}
-            />
-            <ClienteCaracteristicasItem
-              keyName={"Esporte:"}
-              value={"Musculação"}
-            />
-            <ClienteCaracteristicasItem
-              keyName={"Animais:"}
-              value={"2 Cachorros (Theo e Zion)"}
+            <GroupClienteItem
+              size={
+                prop.json["groupMetadata"] == null ||
+                prop.json["groupMetadata"] == undefined ||
+                prop.json["groupMetadata"]["participants"] == null ||
+                prop.json["groupMetadata"]["participants"] == undefined
+                  ? 0
+                  : prop.json["groupMetadata"]["participants"].length
+              }
+              click={(e) => console.log(e)}
+              json={prop.json}
+              name={
+                prop.json["name"] == null || prop.json["name"] == undefined
+                  ? prop.json["id"] == null
+                    ? ""
+                    : prop.json["id"]["user"]
+                  : prop.json["name"]
+              }
+              phone={""}
+              pic={
+                prop.json["contact"]["profilePicThumbObj"] == null
+                  ? null
+                  : prop.json["contact"]["profilePicThumbObj"]["eurl"]
+              }
             />
           </List>
 
@@ -196,70 +196,6 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
               <i style={{ fontSize: "24px" }} className="fab fa-whatsapp"></i>
               <Text marginLeft={"8px"}>Enviar Mensagem </Text>
             </Button>
-
-            <Button
-              height={"60px"}
-              marginRight={"8px"}
-              borderRadius={30}
-              backgroundColor={"#000000"}
-              color={"#FFFFFF"}
-              _hover={{
-                backgroundColor: "#000000c7",
-              }}
-              _active={{
-                backgroundColor: "#000000",
-                boxShadow: "0 0 10px black !important",
-              }}
-              zIndex={99999999999}
-            >
-              <FontAwesomeIcon icon={faCartPlus} size="1x" />
-              <Text marginLeft={"8px"}>Registrar Atendimento </Text>
-            </Button>
-
-            <Button
-              className={"borderless"}
-              height={"60px"}
-              marginRight={"8px"}
-              borderRadius={30}
-              backgroundColor={"#FFFFFF"}
-              color={"#000000"}
-              borderColor={"#000000 !important"}
-              borderStyle={"solid"}
-              borderWidth={"3px"}
-              _hover={{
-                backgroundColor: "#000000c7",
-              }}
-              _active={{
-                backgroundColor: "#000000",
-                boxShadow: "0 0 10px black !important",
-              }}
-              zIndex={99999999999}
-            >
-              <FontAwesomeIcon icon={faPlus} size="1x" />
-              <Text marginLeft={"8px"}>Adicionar Características </Text>
-            </Button>
-          </Flex>
-
-          <Flex
-            padding={"40px"}
-            position={"absolute"}
-            top={"-40px"}
-            right={"-20px"}
-            paddingBottom={"0px"}
-            paddingTop={"16px"}
-          >
-            <i
-              className="fas fa-trophy"
-              style={{
-                color: "#ff8f00",
-                marginRight: "8px",
-                fontSize: "16px",
-                marginTop: "4px",
-              }}
-            ></i>
-            <Text color={"#495057"} fontSize={"16px"}>
-              Cliente <b>OURO</b>
-            </Text>
           </Flex>
 
           {message == null ? (
@@ -277,4 +213,4 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
   );
 };
 
-export default SideBarClientes;
+export default SideBarGrupo;

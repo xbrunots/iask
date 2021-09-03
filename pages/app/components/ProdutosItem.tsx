@@ -53,7 +53,7 @@ import {
 interface IClienteItem {
   json: object;
   name: string;
-  phone: string;
+  description: string;
   pic: string;
   click: Function;
 }
@@ -79,56 +79,25 @@ const ClienteItem: React.FC<IClienteItem> = (props: IClienteItem) => {
   return (
     <Stat
       onClick={() => handleClickMenu()}
-      className={"indicator_clients_chat client_item" + props.phone}
+      className={"indicator_clients_chat "}
     >
       <Flex width={"100%"}>
-        <Avatar
+        <Image
           marginTop={"8px"}
           color={"#FFFFFF"}
           src={props.pic}
-          height={"40px"}
-          width={"40px"}
+          height={"180px"}
+          width={"200px"}
           fontSize={14}
           textShadow={"0px 0px 2px #00000075"}
-          name={
-            props.name == null ||
-            props.name == undefined ||
-            props.name == "null" ||
-            props.name == "undefined"
-              ? ""
-              : props.name.toString()
-          }
         />
         <List className={"client_name"}>
-          {props.name == null ||
-          props.name == undefined ||
-          props.name == "null" ||
-          props.name == "undefined" ? (
-            ""
-          ) : (
-            <StatLabel fontSize={"16px"} marginLeft={3} marginTop={"4px"}>
-              {props.name.toString()}
-            </StatLabel>
-          )}
-
-          {props.json["isGroup"] == true ? (
-            <Tag>Lista de transmição</Tag>
-          ) : (
-            <Text />
-          )}
-
-          {props.phone == null || props.phone == undefined ? (
-            ""
-          ) : (
-            <StatHelpText marginBottom={"0px"} marginLeft={"8px"}>
-              {props.phone == null || props.phone == undefined
-                ? ""
-                : props.phone.replace(
-                    /(\d{2})(\d{2})(\d{5})(\d{2})/,
-                    "+$1 ($2) $3-$4"
-                  )}
-            </StatHelpText>
-          )}
+          <StatLabel fontSize={"16px"} marginLeft={3} marginTop={"4px"}>
+            {props.name.toString()}
+          </StatLabel>
+          <StatHelpText marginBottom={"0px"} marginLeft={"8px"}>
+            {props.description.toString()}
+          </StatHelpText>
 
           <Flex position={"absolute"} right={0} top={2}></Flex>
         </List>

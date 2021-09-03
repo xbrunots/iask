@@ -1,0 +1,372 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["search-history-edgenext-wc"],{"1Rjw":function(module,__webpack_exports__,__webpack_require__){"use strict";__webpack_require__.d(__webpack_exports__,"a",(function(){return SearchHistoryService}));var tslib__WEBPACK_IMPORTED_MODULE_0__=__webpack_require__("D57K"),_msnews_telemetry_contracts__WEBPACK_IMPORTED_MODULE_1__=__webpack_require__("u5KZ"),_msnews_diagnostics__WEBPACK_IMPORTED_MODULE_2__=__webpack_require__("HxRh");class SearchHistoryService{getSearchHistory(config,overriddenEndpoint,rpsToken){return Object(tslib__WEBPACK_IMPORTED_MODULE_0__.a)(this,void 0,void 0,(function*(){let searchHistoryResponseJson,xMSEdgeRef;const headers=new Headers;headers.append("Content-Type","text/plain"),rpsToken&&headers.append("X-RPS-Token",rpsToken);const requestObj={method:"GET",credentials:"include",mode:"cors",cache:"no-cache",headers};try{let timeoutId=null;const timeout=config.apiTimeoutInMilliSeconds;let isSearchHistoryFetchCompleted=!1,isSearchHistoryTimeout=!1;const endpoint=overriddenEndpoint||config.apiEndpoint,timeoutPromise=new Promise(e=>{timeoutId=setTimeout(e,timeout)}).then(()=>{isSearchHistoryFetchCompleted||(isSearchHistoryTimeout=!0,_msnews_telemetry_contracts__WEBPACK_IMPORTED_MODULE_1__.a.sendAppErrorEvent(Object.assign(Object.assign({},_msnews_diagnostics__WEBPACK_IMPORTED_MODULE_2__.wg),{message:`timeout: Search history response not received within ${timeout} secs.`,pb:{url:endpoint}}))),clearTimeout(timeoutId)}),searchHistoryFetchPromise=yield fetch(endpoint,requestObj),fetchResponse=searchHistoryFetchPromise;if(xMSEdgeRef=fetchResponse&&fetchResponse.headers&&fetchResponse.headers.get("X-MSEdge-Ref"),isSearchHistoryFetchCompleted=!0,isSearchHistoryTimeout)_msnews_telemetry_contracts__WEBPACK_IMPORTED_MODULE_1__.a.sendAppErrorEvent(Object.assign(Object.assign({},_msnews_diagnostics__WEBPACK_IMPORTED_MODULE_2__.xg),{message:`timeout: Search history response not received within ${timeout} secs.`,pb:Object.assign(Object.assign({},_msnews_diagnostics__WEBPACK_IMPORTED_MODULE_2__.xg.pb),{customMessage:"X-MSEdge-Ref: "+xMSEdgeRef,url:endpoint})}));else{if(!fetchResponse||!fetchResponse.ok)throw Error("search history service returned error response: "+searchHistoryFetchPromise.status);try{const contentType=fetchResponse.headers.get("content-type"),parseResponseAsText=contentType&&contentType.indexOf("text/plain")>=0;if(parseResponseAsText){const searchHistoryResponseText=yield fetchResponse.text();searchHistoryResponseJson=eval("("+searchHistoryResponseText+")")}else searchHistoryResponseJson=yield fetchResponse.json()}catch(e){const t=e?e.toString():"",i=fetchResponse.headers&&fetchResponse.headers.get("content-type");_msnews_telemetry_contracts__WEBPACK_IMPORTED_MODULE_1__.a.sendAppErrorEvent(Object.assign(Object.assign({},_msnews_diagnostics__WEBPACK_IMPORTED_MODULE_2__.ug),{message:"Didn't get valid JSON from response.",pb:Object.assign(Object.assign({},_msnews_diagnostics__WEBPACK_IMPORTED_MODULE_2__.ug.pb),{customMessage:`X-MSEdge-Ref: ${xMSEdgeRef}. Exception: ${t}. ContentType: ${i}.`,url:endpoint})}))}}}catch(e){let t=_msnews_diagnostics__WEBPACK_IMPORTED_MODULE_2__.vg;-1!==e.message.indexOf("401")?t=_msnews_diagnostics__WEBPACK_IMPORTED_MODULE_2__.yg:-1!==e.message.indexOf("403")?t=_msnews_diagnostics__WEBPACK_IMPORTED_MODULE_2__.sg:-1!==e.message.indexOf("404")&&(t=_msnews_diagnostics__WEBPACK_IMPORTED_MODULE_2__.tg),_msnews_telemetry_contracts__WEBPACK_IMPORTED_MODULE_1__.a.sendAppErrorEvent(Object.assign(Object.assign({},t),{message:""+e,pb:Object.assign(Object.assign({},t.pb),{customMessage:"X-MSEdge-Ref: "+xMSEdgeRef})}))}return searchHistoryResponseJson}))}getSearchHistoryItems(e){if(!e||!e.UserHistory||!e.UserHistory.QuerySets)return[];const t=e.UserHistory.QuerySets.filter(e=>"recent"===e.Type);if(!t||!t.length||!t[0].Queries)return[];const i=t[0].Queries.slice(0,5);return i&&i.length?i.map(e=>({title:e.Text,href:e.Url})):[]}}},"KC/q":function(e,t,i){"use strict";i.d(t,"e",(function(){return o})),i.d(t,"b",(function(){return n})),i.d(t,"c",(function(){return s})),i.d(t,"f",(function(){return a})),i.d(t,"d",(function(){return r})),i.d(t,"a",(function(){return c}));const o='<svg class="button-glyph" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" width="16" height="16"><path d="M2048 640H0V512h2048v128zm0 1024H0v-128h2048v128zm0-513H0v-127h2048v127z" /></svg>',n='<svg class="button-glyph" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" width="16" height="16"><path d="M1169 1024l879 879-145 145-879-879-879 879L0 1903l879-879L0 145 145 0l879 879L1903 0l145 145-879 879z" /></svg>',s='<svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M5.70801 5L10 9.29199L9.29199 10L5 5.70801L0.708008 10L0 9.29199L4.29199 5L0 0.708008L0.708008 0L5 4.29199L9.29199 0L10 0.708008L5.70801 5Z"/></svg>',a='<svg width="106" height="22" viewBox="0 0 106 22" xmlns="http://www.w3.org/2000/svg"><path d="M45.2018 4.40014V17.6001H42.921V7.24181H42.8906L38.8156 17.6001H37.295L33.1288 7.24181H33.0983V17.6001H31V4.40014H34.2844L38.0553 14.1779H38.1161L42.0999 4.40014H45.2018ZM47.0873 5.40847C47.0873 5.04181 47.2089 4.73625 47.4826 4.49181C47.7563 4.24736 48.0604 4.12514 48.4254 4.12514C48.8207 4.12514 49.1552 4.24736 49.3985 4.52236C49.6418 4.76681 49.7938 5.07236 49.7938 5.43903C49.7938 5.8057 49.6722 6.11125 49.3985 6.3557C49.1248 6.60014 48.8207 6.72236 48.4254 6.72236C48.03 6.72236 47.7259 6.60014 47.4826 6.3557C47.2393 6.05014 47.0873 5.74459 47.0873 5.40847ZM49.5505 8.12792V17.6001H47.3306V8.12792H49.5505ZM56.2713 15.9807C56.6058 15.9807 56.9708 15.889 57.3661 15.7363C57.7614 15.5835 58.1264 15.3696 58.4609 15.1251V17.2029C58.096 17.4168 57.7006 17.5696 57.2445 17.6613C56.7883 17.7529 56.3017 17.814 55.7543 17.814C54.3554 17.814 53.2302 17.3863 52.3787 16.5001C51.4968 15.614 51.0711 14.4835 51.0711 13.139C51.0711 11.6113 51.5273 10.3585 52.4092 9.3807C53.2911 8.40292 54.5379 7.91403 56.1801 7.91403C56.6058 7.91403 57.0012 7.97514 57.4269 8.06681C57.8527 8.18903 58.1872 8.31125 58.4305 8.43348V10.5724C58.096 10.3279 57.731 10.114 57.3965 9.99181C57.0316 9.83903 56.6667 9.77792 56.3017 9.77792C55.4198 9.77792 54.7204 10.0529 54.173 10.6335C53.6256 11.214 53.3519 11.9779 53.3519 12.9557C53.3519 13.9029 53.5952 14.6668 54.1122 15.1863C54.69 15.7057 55.3894 15.9807 56.2713 15.9807ZM64.7559 7.97514C64.9384 7.97514 65.0904 7.97514 65.2425 8.0057C65.3945 8.03625 65.5162 8.06681 65.6074 8.09736V10.3585C65.4858 10.2668 65.3337 10.2057 65.0904 10.114C64.8776 10.0224 64.6039 9.99181 64.2693 9.99181C63.722 9.99181 63.2658 10.2363 62.9009 10.6946C62.5359 11.1529 62.3231 11.8557 62.3231 12.8335V17.6001H60.1031V8.12792H62.3231V9.62514H62.3535C62.5663 9.1057 62.8705 8.70847 63.2658 8.40292C63.6915 8.12792 64.1781 7.97514 64.7559 7.97514ZM65.7291 13.0168C65.7291 11.4585 66.1548 10.2057 67.0367 9.28903C67.9186 8.37236 69.1351 7.91403 70.7164 7.91403C72.1761 7.91403 73.3317 8.34181 74.1528 9.22792C74.9739 10.114 75.3997 11.3057 75.3997 12.8029C75.3997 14.3307 74.9739 15.5529 74.092 16.4696C73.2101 17.3863 72.0241 17.8446 70.5036 17.8446C69.0438 17.8446 67.8882 17.4168 67.0367 16.5613C66.1548 15.6751 65.7291 14.4835 65.7291 13.0168ZM68.0403 12.9251C68.0403 13.9029 68.2532 14.6668 68.7093 15.1863C69.1655 15.7057 69.8041 15.9807 70.6252 15.9807C71.4463 15.9807 72.0545 15.7057 72.4802 15.1863C72.906 14.6668 73.1189 13.9029 73.1189 12.864C73.1189 11.8557 72.906 11.0918 72.4498 10.5724C72.0241 10.0529 71.4159 9.80847 70.6252 9.80847C69.8041 9.80847 69.1959 10.0835 68.7397 10.6335C68.2532 11.1529 68.0403 11.9168 68.0403 12.9251ZM78.684 10.6335C78.684 10.939 78.7753 11.214 78.9881 11.3974C79.201 11.5807 79.6268 11.7946 80.3262 12.0696C81.2081 12.4363 81.8468 12.8335 82.1813 13.2613C82.5462 13.7196 82.7287 14.239 82.7287 14.8807C82.7287 15.7668 82.3941 16.5001 81.6947 17.0196C81.0257 17.5696 80.0829 17.8446 78.9273 17.8446C78.532 17.8446 78.1062 17.7835 77.6197 17.6918C77.1331 17.6001 76.7377 17.4779 76.4032 17.3251V15.1251C76.7986 15.4001 77.2547 15.6446 77.7109 15.7974C78.1671 15.9501 78.5928 16.0418 78.9881 16.0418C79.4747 16.0418 79.8701 15.9807 80.0829 15.8279C80.3262 15.6751 80.4479 15.4613 80.4479 15.1251C80.4479 14.8196 80.3262 14.5446 80.0829 14.3613C79.8396 14.1474 79.3531 13.9029 78.684 13.6279C77.8629 13.2918 77.2851 12.8946 76.9506 12.4668C76.6161 12.039 76.4336 11.489 76.4336 10.8168C76.4336 9.96125 76.7682 9.25847 77.4372 8.70847C78.1062 8.15847 78.9881 7.88347 80.0525 7.88347C80.387 7.88347 80.752 7.91403 81.1473 8.0057C81.5426 8.06681 81.9076 8.18903 82.1813 8.2807V10.389C81.8772 10.2057 81.5426 10.0224 81.1473 9.86959C80.752 9.71681 80.3566 9.6557 79.9917 9.6557C79.5659 9.6557 79.2314 9.74736 79.0186 9.90014C78.8057 10.114 78.684 10.3279 78.684 10.6335ZM83.6714 13.0168C83.6714 11.4585 84.0972 10.2057 84.9791 9.28903C85.861 8.37236 87.0774 7.91403 88.6588 7.91403C90.1185 7.91403 91.2741 8.34181 92.0952 9.22792C92.9163 10.114 93.342 11.3057 93.342 12.8029C93.342 14.3307 92.9163 15.5529 92.0343 16.4696C91.1524 17.3863 89.9664 17.8446 88.4459 17.8446C86.9862 17.8446 85.8306 17.4168 84.9791 16.5613C84.1276 15.6751 83.6714 14.4835 83.6714 13.0168ZM85.9826 12.9251C85.9826 13.9029 86.1955 14.6668 86.6517 15.1863C87.1078 15.7057 87.7464 15.9807 88.5675 15.9807C89.3886 15.9807 89.9968 15.7057 90.4226 15.1863C90.8483 14.6668 91.0612 13.9029 91.0612 12.864C91.0612 11.8557 90.8483 11.0918 90.3922 10.5724C89.9664 10.0529 89.3582 9.80847 88.5675 9.80847C87.7464 9.80847 87.1382 10.0835 86.6821 10.6335C86.2259 11.1529 85.9826 11.9168 85.9826 12.9251ZM100.701 9.96125H97.3866V17.6001H95.1362V9.96125H93.5549V8.12792H95.1362V6.81403C95.1362 5.8057 95.4708 5.01125 96.1094 4.36959C96.748 3.72792 97.5691 3.42236 98.5727 3.42236C98.8464 3.42236 99.0896 3.42236 99.3025 3.45292C99.5154 3.48347 99.6979 3.51403 99.8499 3.57514V5.50014C99.7891 5.46959 99.637 5.40847 99.4546 5.34736C99.2721 5.28625 99.0592 5.2557 98.8159 5.2557C98.3598 5.2557 97.9949 5.40847 97.7516 5.68347C97.5083 5.98903 97.3866 6.41681 97.3866 6.96681V8.09736H100.701V5.95847L102.921 5.28625V8.09736H105.172V9.9307H102.921V14.3613C102.921 14.9418 103.013 15.3696 103.226 15.5835C103.438 15.8279 103.773 15.9501 104.229 15.9501C104.351 15.9501 104.503 15.9196 104.685 15.8585C104.868 15.7974 105.02 15.7363 105.172 15.6446V17.4779C105.02 17.5696 104.807 17.6307 104.472 17.6918C104.138 17.7529 103.834 17.7835 103.499 17.7835C102.556 17.7835 101.857 17.539 101.401 17.0196C100.945 16.5307 100.701 15.7668 100.701 14.7585V9.96125Z" /><path d="M10.4005 0H0V10.45H10.4005V0Z" fill="#F25022" /><path d="M21.8958 0H11.4954V10.45H21.8958V0Z" fill="#7FBA00" /><path d="M10.4005 11.55H0V22.0001H10.4005V11.55Z" fill="#00A4EF"/><path d="M21.8958 11.55H11.4954V22.0001H21.8958V11.55Z" fill="#FFB900"/></svg>',r='<svg width="16" height="10" viewBox="0 0 16 10" xmlns="http://www.w3.org/2000/svg"><path d="M12 3V4C12.3958 4 12.7734 4.04688 13.1328 4.14062C13.4974 4.22917 13.8177 4.375 14.0938 4.57812C14.3698 4.77604 14.5885 5.03385 14.75 5.35156C14.9167 5.66406 15 6.04688 15 6.5C15 6.84375 14.9323 7.16667 14.7969 7.46875C14.6667 7.77083 14.487 8.03646 14.2578 8.26562C14.0339 8.48958 13.7708 8.66927 13.4688 8.80469C13.1667 8.9349 12.8438 9 12.5 9H8.5C8.15625 9 7.83333 8.9349 7.53125 8.80469C7.22917 8.66927 6.96354 8.48958 6.73438 8.26562C6.51042 8.03646 6.33073 7.77083 6.19531 7.46875C6.0651 7.16667 6 6.84375 6 6.5C6 6.04688 6.08073 5.66406 6.24219 5.35156C6.40885 5.03385 6.63021 4.77604 6.90625 4.57812C7.18229 4.375 7.5 4.22917 7.85938 4.14062C8.22396 4.04688 8.60417 4 9 4V3H8.5C8.01562 3 7.5599 3.09375 7.13281 3.28125C6.71094 3.46354 6.34115 3.71354 6.02344 4.03125C5.71094 4.34375 5.46094 4.71354 5.27344 5.14062C5.09115 5.5625 5 6.01562 5 6.5C5 6.98438 5.09115 7.4401 5.27344 7.86719C5.46094 8.28906 5.71094 8.65885 6.02344 8.97656C6.34115 9.28906 6.71094 9.53906 7.13281 9.72656C7.5599 9.90885 8.01562 10 8.5 10H12.5C12.9844 10 13.4375 9.90885 13.8594 9.72656C14.2865 9.53906 14.6562 9.28906 14.9688 8.97656C15.2865 8.65885 15.5365 8.28906 15.7188 7.86719C15.9062 7.4401 16 6.98438 16 6.5C16 6.01562 15.9062 5.5625 15.7188 5.14062C15.5365 4.71354 15.2865 4.34375 14.9688 4.03125C14.6562 3.71354 14.2865 3.46354 13.8594 3.28125C13.4375 3.09375 12.9844 3 12.5 3H12ZM7 7V6C7.39583 6 7.77344 5.95573 8.13281 5.86719C8.4974 5.77344 8.81771 5.6276 9.09375 5.42969C9.36979 5.22656 9.58854 4.96875 9.75 4.65625C9.91667 4.33854 10 3.95312 10 3.5C10 3.15625 9.93229 2.83333 9.79688 2.53125C9.66667 2.22917 9.48698 1.96615 9.25781 1.74219C9.03385 1.51302 8.77083 1.33333 8.46875 1.20312C8.16667 1.06771 7.84375 1 7.5 1H3.5C3.15625 1 2.83333 1.06771 2.53125 1.20312C2.22917 1.33333 1.96354 1.51302 1.73438 1.74219C1.51042 1.96615 1.33073 2.22917 1.19531 2.53125C1.0651 2.83333 1 3.15625 1 3.5C1 3.95312 1.08073 4.33854 1.24219 4.65625C1.40885 4.96875 1.63021 5.22656 1.90625 5.42969C2.18229 5.6276 2.5 5.77344 2.85938 5.86719C3.22396 5.95573 3.60417 6 4 6V7H3.5C3.01562 7 2.5599 6.90885 2.13281 6.72656C1.71094 6.53906 1.34115 6.28906 1.02344 5.97656C0.710938 5.65885 0.460938 5.28906 0.273438 4.86719C0.0911458 4.4401 0 3.98438 0 3.5C0 3.01562 0.0911458 2.5625 0.273438 2.14062C0.460938 1.71354 0.710938 1.34375 1.02344 1.03125C1.34115 0.713542 1.71094 0.463542 2.13281 0.28125C2.5599 0.09375 3.01562 0 3.5 0H7.5C7.98438 0 8.4375 0.09375 8.85938 0.28125C9.28646 0.463542 9.65625 0.713542 9.96875 1.03125C10.2865 1.34375 10.5365 1.71354 10.7188 2.14062C10.9062 2.5625 11 3.01562 11 3.5C11 3.98438 10.9062 4.4401 10.7188 4.86719C10.5365 5.28906 10.2865 5.65885 9.96875 5.97656C9.65625 6.28906 9.28646 6.53906 8.85938 6.72656C8.4375 6.90885 7.98438 7 7.5 7H7Z" fill-opacity="0.83"/></svg>',c='<svg height="20" width="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill="currentcolor" d="M5.0293 19.0918L14.1113 10L5.0293 0.908203L5.9082 0.0292969L15.8887 10L5.9082 19.9707L5.0293 19.0918Z"></path></svg>'},MpPR:function(e,t,i){"use strict";Object.defineProperty(t,"__esModule",{value:!0});t.default=function(e){var t=void 0,i=function(i,o){return function(){t=null,e.apply(i,o)}},o=function(){if(null==t){for(var e=arguments.length,o=Array(e),n=0;n<e;n++)o[n]=arguments[n];t=requestAnimationFrame(i(this,o))}};return o.cancel=function(){return cancelAnimationFrame(t)},o}},Tokt:function(e,t,i){"use strict";i.r(t),i.d(t,"ToolingInfo",(function(){return Te})),i.d(t,"SearchHistoryEdgeNextWC",(function(){return X})),i.d(t,"SearchHistoryEdgeNextWCTemplate",(function(){return _e})),i.d(t,"SearchHistoryEdgeNextWCStyles",(function(){return xe}));var o=i("A03o"),n=i("sydv"),s=i("C49W"),a=i("wAA9");var r=i("akWC"),c=i("Zn5T");const l=Object(o.a)(c.a.searchHistoryEdgeNextWC,"Config settings for the SearchHistoryEdgeNextWC Peregrine experience",Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({},Object(n.c)("manageHistoryFormCode","Manage History Form Code","Form code that is sent to bing when user click Manage History button")),Object(s.f)("formCodes","Form Codes","The Form Codes",Object.assign(Object.assign(Object.assign(Object.assign({},Object(n.c)("childMode","Child Mode","The form code for child mode")),Object(n.c)("contentAlwaysOn","Content Always On / Start Page","The form code for StartPage/content always on")),Object(n.c)("contentOn","Content On / New tab page","The form code for New Tab Page/content on")),Object(n.c)("contentOff","Content Off","The form code for content off")))),Object(s.f)("itemAriaLabel","Aria Label","Label to use for screen readers",Object.assign({},Object(n.c)("children","Children","The aria label for Recent Search History")))),Object(s.c)("openItemLinkInNewTab","Open Search History Item Link In New Tab?","Open search history item in new tab?. Default value is false")),Object(n.c)("apiEndpoint","Api endpoint","Search history api endpoint")),Object(s.d)("apiTimeoutInMilliSeconds","Api timeout in millisecondse","Search history api timeout in milliseconds")),Object(n.c)("manageHistoryLink","Manage history link","Manage history link")),Object(s.d)("fontSize","Item font Size","Search history item label font size")),Object(n.c)("itemColor","Item color","Search history item color")),Object(n.c)("defaultBackgroundColor","Default item button background color","Search History default button background color")),Object(n.c)("fontColorWhenHomepageImageEnabled","Item font color when Homepage image enabled","Search History item font color when Homepage image enabled")),Object(n.c)("backgroundColorWhenHomepageImageEnabled","Item button background color when Homepage image enabled","Search History button background color when Homepage image enabled")),(d="privacy link",h="privacy link for privacy dialog",{["privacyHypertext"]:Object.assign(Object.assign({},Object(s.e)("Hypertext","Hypertext",Object.assign({},Object(n.c)("href","HTML href attribute")),[])),{[a.a.title]:d,[a.a.description]:h||d})})),Object(s.c)("enableOneColumn","support one column")),Object(s.f)("treatmentConfig","Different search history treatments Config","Set different configs for treatment",Object.assign(Object.assign(Object.assign({},Object(s.c)("enableNoShadowSelectiveMode","Enable search history without shadow in focus and inspirational modes","Enable without shadow in focus and inspirational modes.")),Object(s.c)("enableNoShadowAllMode","Enable search history without shadow in all modes","Enable search history without shadow in all modes.")),Object(s.c)("transparentSearchHistoryOnScroll","Enable search history transparent when users scrool down page","Enable search history disappear when users scroll down page.")))),Object(r.a)({hideSearchHistoryLabel:"Localization for Hide Search History label text on context menu",manageSearchHistoryLabel:"Localization for Manage Search History label text on context menu",moreOptionsAriaLabel:"Localization for More options aria label text for screen readers",privacyRecentSearchLabel:"Localization for Why am I seeing this aria label text on context menu for screen readers",privacyDialogCloseButtonText:"Localization for Why am I seeing this Dialog close button",privacyDialogTitleText:"Localization for Why am I seeing this Dialog title",privacyTitle:"Localization for Why am I seeing this Dialog privacy content title",privacyLinkContent:"Localization for Why am I seeing this Dialog privacy content link",itemAriaLabel:"Localization for item aria label"})),["itemAriaLabel","fontSize","apiEndpoint","apiTimeoutInMilliSeconds","manageHistoryLink"]);var d,h,g=i("D57K"),p=i("tERu"),u=i("4wjP"),C=i("0fst");const b="service::bing.com::MBI_SSL",m="f3222e55-ab35-49de-81f3-88a3be08cf77",y="no-search-history-expected-auth";C.a.CookieWall;var v;!function(e){e.MSA="0",e.AAD="1",e.NonSignedIn="2"}(v||(v={}));const O="SearchHistoryEdgenext",f="MoreOptions",w="HideSearchHistory",S="managehistory",_="WhyAmISeeingThis",x="privacyDialogCloseButton";var T=i("jE1l"),j=i("s9+9"),H=i("KRKw"),M=i("HxRh"),A=i("u5KZ"),E=i("Am8i"),B=i("dTwT"),L=i("rvYQ"),I=i("3Amp"),k=i("iCAe"),P=i("GqIT"),R=i("1Rjw"),D=i("L1Sn"),$=i("IqCT"),F=i("oePG"),z=i("A8DD"),V=i("QHbP"),W=i("wZHk");let U,Z;function q(e){window.requestAnimationFrame(()=>{const t=e&&e.length;for(let i=0;i<t;i++){const t=e[i].intersectionRatio;t>=1?(U.style.visibility="",U.style.opacity="1"):t>=.5?(U.style.visibility="",U.style.opacity=t/2+""):(U.style.opacity="0",U.style.visibility="hidden")}})}const K={initialize:function(){U=document.getElementById("c_srch_hist")||Object(V.a)(W.a.searchHistory)},updateObserver:function(e){U&&(Z||function(e){if(!window.IntersectionObserver)return;let t="-87px 0px 0px";e&&(t="-76px 0px 0px");const i={root:null,rootMargin:t,threshold:[.2,.4,.6,.8,1]};Z=new window.IntersectionObserver(q,i),Z.observe(U)}(e))},removeListeners:function(){Z&&(Z.unobserve(U),Z=null)}};var N=i("d0Z1"),Q=i("+Ht2");class X extends $.a{constructor(){super(...arguments),this.items=[],this.searchHistoryToggleEnabled=e=>{var t;(null==e?void 0:e.detail)&&((null===(t=e.detail)||void 0===t?void 0:t.enabled)?this.searchHistoryEnabled=!0:this.searchHistoryEnabled=!1)}}experienceConnected(){this.generateTelemetryTags(),this.actionsMenuProps=this.getActionsMenuProps(),this.searchHistoryEnabled=Object(B.a)().getObject("search-history-enabled",!0),this.showSearchHistory=!0;const e=Object(Q.c)(j.a.ChromiumPageSettings);this.enableFocusRedirect=e.getCurrentState().configData.inPageSearchBoxType===T.b.redirect,this.isOnImage=e.getCurrentState().imageOfTheDayEnabled,e.getLayoutStateAsync().then(e=>{"always"!==e.selectedFeedDisplaySetting||this.config.treatmentConfig&&this.config.treatmentConfig.enableNoShadowAllMode||(this.showSearchHistory=!1)}),Object(N.c)(j.a.ChromiumPageSettings,e=>{"always"!==e.selectedFeedDisplaySetting||this.config.treatmentConfig&&this.config.treatmentConfig.enableNoShadowAllMode?(this.showSearchHistory=!0,this.isOnImage=e.imageOfTheDayEnabled):this.showSearchHistory=!1}),this.renderSearchHistory()}getExperienceType(){return c.a.searchHistoryEdgeNextWC}connectedCallback(){super.connectedCallback()}shadowDomPopulated(){var e;if(null===(e=this.config.treatmentConfig)||void 0===e?void 0:e.transparentSearchHistoryOnScroll){K.initialize();const e=this.config.treatmentConfig.enableNoShadowAllMode||this.config.treatmentConfig.enableNoShadowSelectiveMode;K.updateObserver(e)}window.addEventListener("searchHistoryToggle",this.searchHistoryToggleEnabled)}getActionsMenuProps(){const e=[];return e.push({glyph:'\n <svg class="contextMenuItem_image-DS-EntryPoint1-4" viewBox="0 0 16 16" width="16px" height="16px" xmlns="http://www.w3.org/2000/svg">\n     <path d="M8 4C8.78125 4 9.54167 4.10156 10.2812 4.30469C11.0208 4.50781 11.7292 4.78906 12.4062 5.14844C13.0885 5.5026 13.7292 5.92448 14.3281 6.41406C14.9323 6.90365 15.4896 7.43229 16 8C15.4896 8.57292 14.9323 9.10417 14.3281 9.59375C13.7292 10.0781 13.0885 10.5 12.4062 10.8594C11.7292 11.2135 11.0208 11.4922 10.2812 11.6953C9.54167 11.8984 8.78125 12 8 12C7.21875 12 6.45833 11.8984 5.71875 11.6953C4.97917 11.4922 4.26823 11.2135 3.58594 10.8594C2.90885 10.5 2.26823 10.0781 1.66406 9.59375C1.0599 9.10417 0.505208 8.57292 0 8C0.505208 7.43229 1.0599 6.90365 1.66406 6.41406C2.26823 5.92448 2.90885 5.5026 3.58594 5.14844C4.26823 4.78906 4.97917 4.50781 5.71875 4.30469C6.45833 4.10156 7.21875 4 8 4ZM11 8C11 7.58854 10.9193 7.20052 10.7578 6.83594C10.6016 6.47135 10.388 6.15365 10.1172 5.88281C9.84635 5.61198 9.52865 5.39844 9.16406 5.24219C8.79948 5.08073 8.41146 5 8 5C7.58854 5 7.20052 5.08073 6.83594 5.24219C6.47135 5.39844 6.15365 5.61198 5.88281 5.88281C5.61198 6.15365 5.39583 6.47135 5.23438 6.83594C5.07812 7.20052 5 7.58854 5 8C5 8.41146 5.07812 8.79948 5.23438 9.16406C5.39583 9.52865 5.61198 9.84635 5.88281 10.1172C6.15365 10.388 6.47135 10.6042 6.83594 10.7656C7.20052 10.9219 7.58854 11 8 11C8.41146 11 8.79948 10.9219 9.16406 10.7656C9.52865 10.6042 9.84635 10.388 10.1172 10.1172C10.388 9.84635 10.6016 9.52865 10.7578 9.16406C10.9193 8.79948 11 8.41146 11 8ZM1.38281 8C1.8724 8.47396 2.39323 8.90885 2.94531 9.30469C3.4974 9.69531 4.08854 10.0234 4.71875 10.2891C4.48438 9.95573 4.30469 9.59375 4.17969 9.20312C4.0599 8.80729 4 8.40625 4 8C4 7.59375 4.0599 7.19531 4.17969 6.80469C4.30469 6.40885 4.48438 6.04427 4.71875 5.71094C4.08854 5.97656 3.4974 6.30729 2.94531 6.70312C2.39323 7.09375 1.8724 7.52604 1.38281 8ZM11.2812 10.2891C11.9115 10.0234 12.5026 9.69531 13.0547 9.30469C13.6068 8.90885 14.1276 8.47396 14.6172 8C14.1276 7.52604 13.6068 7.09375 13.0547 6.70312C12.5026 6.30729 11.9115 5.97656 11.2812 5.71094C11.5156 6.04427 11.6927 6.40885 11.8125 6.80469C11.9375 7.19531 12 7.59375 12 8C12 8.40625 11.9375 8.80729 11.8125 9.20312C11.6927 9.59375 11.5156 9.95573 11.2812 10.2891ZM8 9C7.85938 9 7.72917 8.97396 7.60938 8.92188C7.48958 8.86979 7.38281 8.79948 7.28906 8.71094C7.20052 8.61719 7.13021 8.51042 7.07812 8.39062C7.02604 8.27083 7 8.14062 7 8C7 7.85938 7.02604 7.72917 7.07812 7.60938C7.13021 7.48958 7.20052 7.38542 7.28906 7.29688C7.38281 7.20312 7.48958 7.13021 7.60938 7.07812C7.72917 7.02604 7.85938 7 8 7C8.14062 7 8.27083 7.02604 8.39062 7.07812C8.51042 7.13021 8.61458 7.20312 8.70312 7.29688C8.79688 7.38542 8.86979 7.48958 8.92188 7.60938C8.97396 7.72917 9 7.85938 9 8C9 8.14062 8.97396 8.27083 8.92188 8.39062C8.86979 8.51042 8.79688 8.61719 8.70312 8.71094C8.61458 8.79948 8.51042 8.86979 8.39062 8.92188C8.27083 8.97396 8.14062 9 8 9Z">\n     </path>\n     <line x1="1.36031" y1="14.5754" x2="15.3603" y2="0.575402" stroke="black">\n     </line>\n </svg>',title:this.strings.hideSearchHistoryLabel,id:"hide",onClick:e=>Object(g.a)(this,void 0,void 0,(function*(){this.hideSearchHistory(e)})),telemetryTag:this.hideSearchHistoryTelemetryTag}),e.push({glyph:'\n <svg class="contextMenuItem_image-DS-EntryPoint1-4" viewBox="0 0 16 16" width="16px" height="16px" xmlns="http://www.w3.org/2000/svg">\n     <path d="M6.10833 5.275L13.2 7.75833V11.4L5.2 16L2 14.2083V0L5.2 1.11667V12.3667L9.70833 9.775L7.49167 8.74167L6.10833 5.275Z">\n     </path>\n </svg>\n ',id:"manage",onClick:e=>Object(g.a)(this,void 0,void 0,(function*(){this.manageSearchHistory(e)})),title:this.strings.manageSearchHistoryLabel,telemetryTag:this.manageHistoryTelemetryTag}),e.push({glyph:'\n <svg class="contextMenuItem_image-DS-EntryPoint1-4" viewBox="0 0 16 16" width="16px" height="16px" xmlns="http://www.w3.org/2000/svg">\n     <path d="M7.5 0.03125C8.1875 0.03125 8.84896 0.119792 9.48438 0.296875C10.1198 0.473958 10.7135 0.726562 11.2656 1.05469C11.8229 1.3776 12.3281 1.76562 12.7812 2.21875C13.2344 2.67188 13.6224 3.17708 13.9453 3.73438C14.2734 4.28646 14.526 4.88021 14.7031 5.51562C14.8802 6.15104 14.9688 6.8125 14.9688 7.5C14.9688 8.1875 14.8802 8.84896 14.7031 9.48438C14.526 10.1198 14.2734 10.7161 13.9453 11.2734C13.6224 11.8255 13.2344 12.3281 12.7812 12.7812C12.3281 13.2344 11.8229 13.625 11.2656 13.9531C10.7135 14.276 10.1198 14.526 9.48438 14.7031C8.84896 14.8802 8.1875 14.9688 7.5 14.9688C6.8125 14.9688 6.15104 14.8802 5.51562 14.7031C4.88021 14.526 4.28385 14.276 3.72656 13.9531C3.17448 13.625 2.67188 13.2344 2.21875 12.7812C1.76562 12.3281 1.375 11.8255 1.04688 11.2734C0.723958 10.7161 0.473958 10.1198 0.296875 9.48438C0.119792 8.84896 0.03125 8.1875 0.03125 7.5C0.03125 6.8125 0.119792 6.15104 0.296875 5.51562C0.473958 4.88021 0.723958 4.28646 1.04688 3.73438C1.375 3.17708 1.76562 2.67188 2.21875 2.21875C2.67188 1.76562 3.17448 1.3776 3.72656 1.05469C4.28385 0.726562 4.88021 0.473958 5.51562 0.296875C6.15104 0.119792 6.8125 0.03125 7.5 0.03125ZM7.5 14.0312C8.09896 14.0312 8.67708 13.9531 9.23438 13.7969C9.79167 13.6406 10.3125 13.4219 10.7969 13.1406C11.2812 12.8542 11.7214 12.513 12.1172 12.1172C12.513 11.7214 12.8516 11.2812 13.1328 10.7969C13.4193 10.3125 13.6406 9.79167 13.7969 9.23438C13.9531 8.67708 14.0312 8.09896 14.0312 7.5C14.0312 6.90104 13.9531 6.32292 13.7969 5.76562C13.6406 5.20833 13.4193 4.6875 13.1328 4.20312C12.8516 3.71875 12.513 3.27865 12.1172 2.88281C11.7214 2.48698 11.2812 2.14844 10.7969 1.86719C10.3125 1.58073 9.79167 1.35938 9.23438 1.20312C8.67708 1.04688 8.09896 0.96875 7.5 0.96875C6.90104 0.96875 6.32292 1.04688 5.76562 1.20312C5.20833 1.35938 4.6875 1.58073 4.20312 1.86719C3.71875 2.14844 3.27865 2.48698 2.88281 2.88281C2.48698 3.27865 2.14583 3.71875 1.85938 4.20312C1.57812 4.6875 1.35938 5.20833 1.20312 5.76562C1.04688 6.32292 0.96875 6.90104 0.96875 7.5C0.96875 8.09896 1.04688 8.67708 1.20312 9.23438C1.35938 9.79167 1.57812 10.3125 1.85938 10.7969C2.14583 11.2812 2.48698 11.7214 2.88281 12.1172C3.27865 12.513 3.71875 12.8542 4.20312 13.1406C4.6875 13.4219 5.20833 13.6406 5.76562 13.7969C6.32292 13.9531 6.90104 14.0312 7.5 14.0312ZM7 11H8V12H7V11ZM7.5 3.5C7.84375 3.5 8.16667 3.56771 8.46875 3.70312C8.77083 3.83333 9.03385 4.01302 9.25781 4.24219C9.48698 4.46615 9.66667 4.72917 9.79688 5.03125C9.93229 5.33333 10 5.65625 10 6C10 6.3125 9.95052 6.58594 9.85156 6.82031C9.7526 7.04948 9.6276 7.25781 9.47656 7.44531C9.33073 7.63281 9.17188 7.80469 9 7.96094C8.82812 8.11198 8.66667 8.26562 8.51562 8.42188C8.36979 8.57292 8.2474 8.73698 8.14844 8.91406C8.04948 9.08594 8 9.28125 8 9.5V10H7V9.5C7 9.1875 7.04948 8.91667 7.14844 8.6875C7.2474 8.45312 7.36979 8.24219 7.51562 8.05469C7.66667 7.86719 7.82812 7.69792 8 7.54688C8.17188 7.39062 8.33073 7.23698 8.47656 7.08594C8.6276 6.92969 8.7526 6.76562 8.85156 6.59375C8.95052 6.42188 9 6.22396 9 6C9 5.79167 8.96094 5.59635 8.88281 5.41406C8.80469 5.23177 8.69792 5.07292 8.5625 4.9375C8.42708 4.80208 8.26823 4.69531 8.08594 4.61719C7.90365 4.53906 7.70833 4.5 7.5 4.5C7.29167 4.5 7.09635 4.53906 6.91406 4.61719C6.73177 4.69531 6.57292 4.80208 6.4375 4.9375C6.30208 5.07292 6.19531 5.23177 6.11719 5.41406C6.03906 5.59635 6 5.79167 6 6H5C5 5.65625 5.0651 5.33333 5.19531 5.03125C5.32552 4.72917 5.5026 4.46615 5.72656 4.24219C5.95573 4.01302 6.22135 3.83333 6.52344 3.70312C6.83073 3.56771 7.15625 3.5 7.5 3.5Z">\n     </path>\n </svg>\n ',id:"privacy",onClick:e=>Object(g.a)(this,void 0,void 0,(function*(){this.showPrivacyDialog(e)})),title:this.strings.privacyRecentSearchLabel,telemetryTag:this.whyAmISeeingThisTelemetryTag}),{menuItems:e}}manageSearchHistory(e){const t=`${this.config.manageHistoryLink}?FORM=${this.config.manageHistoryFormCode||this.getFormCode()}`;D.a.addElement(e.currentTarget),A.a.sendActionEvent(e.currentTarget),t&&t.length>0&&window.open(t,"_self")}hideSearchHistory(e){Object(B.a)().setItem("search-history-enabled","false"),this.searchHistoryEnabled=!1,D.a.addElement(e.currentTarget),A.a.sendActionEvent(e.currentTarget,E.a.Click,E.b.Hide)}showPrivacyDialog(e){this.dialogShown=!0,this.isActionMenuOpen=!1,Object(k.c)(k.a.searchHistoryMoreOptions,!0),D.a.addElement(e.currentTarget),A.a.sendActionEvent(e.currentTarget)}dismissPrivacyDialog(){this.dialogShown=!1,Object(k.c)(k.a.searchHistoryMoreOptions,!1)}generateTelemetryTags(){this.telemetryObject&&(this.rootTelemetryObject=this.telemetryObject.addOrUpdateChild({name:O,content:{type:E.c.StructuredData}}),this.rootTelemetryTag=this.rootTelemetryObject.getMetadataTag(),this.hideSearchHistoryTelemetryTag=this.rootTelemetryObject.addOrUpdateChild({name:w,type:E.e.Interaction,content:{headline:"Hide Search History"}}).getMetadataTag(),this.manageHistoryTelemetryTag=this.rootTelemetryObject.addOrUpdateChild({name:S,type:E.e.Interaction,content:{headline:"Manage Search History"}}).getMetadataTag(),this.whyAmISeeingThisTelemetryTag=this.rootTelemetryObject.addOrUpdateChild({name:_,type:E.e.Interaction,content:{headline:"Why am I seeing this?"}}).getMetadataTag(),this.moreOptionsTelemetryTag=this.rootTelemetryObject.addOrUpdateChild({name:f,type:E.e.ActionButton,behavior:E.b.More,content:{headline:"More Options"}}).getMetadataTag(),this.closeButtonTelemetryTag=this.rootTelemetryObject.addOrUpdateChild({name:x,behavior:E.b.Close}).getMetadataTag())}renderSearchHistory(){return Object(g.a)(this,void 0,void 0,(function*(){if(L.a.CurrentRequestTargetScope&&"kids"===L.a.CurrentRequestTargetScope.audienceMode)return;const e=Object(Q.c)(j.a.ChromiumPageSettings);if(this.enableFocusRedirect=(null==e?void 0:e.getCurrentState().configData.inPageSearchBoxType)===T.b.redirect,this.enableFocusRedirect)return;this.isCookieConsentRequired()?I.a.cookieConsentStatus.registerObserver(e=>{e.params[0]===H.b.NotRequired&&Object(z.a)().then(()=>{this.fetchAndRenderSearchHistory()})}):Object(z.a)().then(()=>{this.fetchAndRenderSearchHistory()})}))}isCookieConsentRequired(){const e=P.a.getInstance().rootReducer.connector(j.a.SharedState);return e&&e.getCurrentState().cookieConsentStatus===H.b.Required}fetchAndRenderSearchHistory(){return Object(g.a)(this,void 0,void 0,(function*(){const e=yield this.getAccountType(),t=this.config.apiEndpoint+e,i=yield this.getRPSToken(),o=new R.a,n=yield o.getSearchHistory(this.config,t,i);this.setAuthBasedSearchHistoryStatus(e,n);const s=this.getFormCode(),a=o.getSearchHistoryItems(n);return 0==a.length&&Object(B.a)().setItem(y,"true"),this.items=this.getSearchHistoryItemProps(a,s,this.rootTelemetryObject),this.items}))}setAuthBasedSearchHistoryStatus(e,t){if(t&&t.UserHistory&&void 0!==t.UserHistory.BingUserAccountType&&null!==t.UserHistory.BingUserAccountType&&e){const i=t.UserHistory.BingUserAccountType.toString();if(e===v.AAD&&i===v.AAD||e===v.AAD&&i===v.MSA||e===v.MSA&&i===v.AAD||e===v.NonSignedIn&&i===v.AAD)Object(B.a)().setItem(y,"true");else if(e===v.MSA&&i===v.MSA){const e=t.UserHistory.QuerySets.filter(e=>"recent"===e.Type);e&&e.length&&e[0].Queries&&e[0].Queries.length?Object(B.a)().setItem(y,"false"):Object(B.a)().setItem(y,"true")}else Object(B.a)().setItem(y,"false")}else Object(B.a)().setItem(y,"false")}getRPSToken(){return Object(g.a)(this,void 0,void 0,(function*(){if(!L.a.AccountInfoPromise)return;const e=yield L.a.AccountInfoPromise;if(e)return e.account_type===p.b.MSA?new Promise(t=>{const i={account_id:e.account_id,account_type:e.account_type,client_id:m,scope_or_resource:b};(0,window.chrome.authPrivate.acquireAccessTokenSilently)(i,e=>{if(!e.is_success||!e.is_token_valid){const t=Object.assign(Object.assign({},e.error_info),{authPrivateApi:"acquireAccessTokenSilently",accountType:i.account_type,clientId:i.client_id,resource:i.scope_or_resource});A.a.sendAppErrorEvent(Object.assign(Object.assign({},M.pg),{message:"Failed to get access token for search history",pb:Object.assign(Object.assign({},M.pg.pb),{customMessage:JSON.stringify(t)})}))}const o=e.access_token;let n=o;o&&o.length>2&&"t="===o.substring(0,2)&&(n=o.substring(2)),t(n)})}):void 0;A.a.sendAppErrorEvent(Object.assign(Object.assign({},M.qg),{message:"Account info promise is not available on search history",pb:Object.assign(Object.assign({},M.qg.pb),{customMessage:"Bing API Scope: "+b})}))}))}getFormCode(){const e=this.config.formCodes;switch(L.a.CurrentRequestTargetScope&&L.a.CurrentRequestTargetScope.pageType){case u.b.DHP:return e.contentAlwaysOn;case u.b.NTP:return e.contentOn;default:return"Hi"}}getAccountType(){return Object(g.a)(this,void 0,void 0,(function*(){if(!L.a.AccountInfoPromise)return null;const e=yield L.a.AccountInfoPromise;if(!e)return A.a.sendAppErrorEvent(Object.assign(Object.assign({},M.rg),{message:"Failed to retrieve account type"})),v.NonSignedIn;switch(e.account_type){case p.b.MSA:return"0";case p.b.AAD:return"1";default:return v.NonSignedIn}}))}getSearchHistoryItemProps(e,t,i){const o=this.getRequestId();return e.map((e,n)=>{const s="https://www.bing.com"+e.href+"&FORM="+t+"&refig="+o+"&msnews=1",a=this.config.itemAriaLabel.children+(n+1)+": "+e.children,r=null==i?void 0:i.addOrUpdateChild({name:"searchHistory",type:E.e.Interaction}),c=null==r?void 0:r.addOrUpdateChild({name:"recentsearch",type:E.e.Interaction,behavior:E.b.TextSearch,content:{type:E.c.SearchHistory},action:E.a.Submit}),l=null==c?void 0:c.render();return Object.assign({href:s,title:e.title,target:this.config.openItemLinkInNewTab?"_blank":"_self","aria-label":a,isOnImage:this.isOnImage},l)})}getRequestId(){var e;return A.a.getPageMetadata()&&A.a.getRequestId()||(null===(e=null===L.a||void 0===L.a?void 0:L.a.ActivityId)||void 0===e?void 0:e.toLowerCase())}}Object(g.d)([F.d],X.prototype,"items",void 0),Object(g.d)([F.d],X.prototype,"actionsMenuProps",void 0),Object(g.d)([F.d],X.prototype,"dialogShown",void 0),Object(g.d)([F.d],X.prototype,"isActionMenuOpen",void 0),Object(g.d)([F.d],X.prototype,"searchHistoryEnabled",void 0),Object(g.d)([F.d],X.prototype,"isOnImage",void 0),Object(g.d)([F.d],X.prototype,"showSearchHistory",void 0),Object(g.d)([F.d],X.prototype,"rootTelemetryTag",void 0),Object(g.d)([F.d],X.prototype,"moreOptionsTelemetryTag",void 0),Object(g.d)([F.d],X.prototype,"hideSearchHistoryTelemetryTag",void 0),Object(g.d)([F.d],X.prototype,"manageHistoryTelemetryTag",void 0),Object(g.d)([F.d],X.prototype,"whyAmISeeingThisTelemetryTag",void 0),Object(g.d)([F.d],X.prototype,"closeButtonTelemetryTag",void 0),Object(g.d)([F.d],X.prototype,"rootTelemetryObject",void 0);var G=i("6BDD"),J=i("UNqU"),Y=i("6vBc"),ee=i("X0nS"),te=i("eUhr"),ie=i("AxnZ"),oe=i("P4Ao"),ne=i("Gy7L");const se=".belowSearchBoxSuggestion_item",ae=".belowSearchBoxSuggestion",re=".belowSearchBoxSuggestion_moreOptions";var ce=i("MpPR"),le=i.n(ce),de=i("4X57"),he=i("kL0l"),ge=i("wHpb");const pe=de.a`
+@media (max-width: 607px) {
+    .belowSearchBoxSuggestion.oneColumn {
+        width: 300px;
+    }
+}
+
+@media (max-width: 943px) {
+    .belowSearchBoxSuggestion {
+        width: 400px;
+    }
+}
+
+@media (min-width: 944px) and (max-width: 1255px) {
+    .belowSearchBoxSuggestion {
+        width: 527px;
+    }
+}
+
+@media (min-width: 1256px) {
+    .belowSearchBoxSuggestion {
+        width: 760px;
+    }
+}
+
+:host {
+    border-radius: 6px;
+}
+
+.title {
+    height: 48px;
+    border-bottom: 1px solid ${he.k.var};
+}
+
+.belowSearchBoxSuggestion {
+    align-items: center;
+    display: flex;
+    position: relative;
+    height: 32px;
+}
+
+.belowSearchBoxSuggestion_contentRegion {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.belowSearchBoxSuggestion_item {
+    padding: 0;
+    white-space: nowrap;
+}
+
+.belowSearchBoxSuggestion_item[aria-hidden='true'] {
+    display: none
+}
+
+.belowSearchBoxSuggestion_item_hypertext {
+    display: block;
+    max-width: 136px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    padding: 6px 10px 8px 10px;
+    padding-left: 0;
+    height: 32px;
+    top: 70px;
+    border-radius: 16px;
+    align-self: center;
+    order: 0;
+    flex: none;
+    font-family: Segoe UI, Segoe WP, Arial, Sans-Serif;
+    line-height: 16px;
+    color: ${he.G.var};
+    box-sizing: border-box;
+    font-size: 12px;
+    border-radius: 0px;
+    border: 2px solid transparent;
+}
+
+.belowSearchBoxSuggestion_item_hypertext:hover, .belowSearchBoxSuggestion_item_hypertext:focus {
+    outline: none;
+    text-decoration: underline;
+}
+
+.belowSearchBoxSuggestion_item_hypertext:${ge.a} {
+    border-color: ${he.z.var};
+}
+
+.belowSearchBoxSuggestion_moreOptions {
+    margin: 0px 4px;
+    white-space: nowrap;
+    max-width: 200px;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: initial;
+    text-decoration: none;
+    height: 32px;
+    width: 32px;
+    top: 70px;
+    border-radius: 16px;
+    align-self: center;
+    order: 0;
+    flex: none;
+    font-family: Segoe UI, Segoe WP, Arial, Sans-Serif;
+    line-height: 16px;
+    color: ${he.G.var};
+    background: none;
+    box-sizing: border-box;
+}
+
+.belowSearchBoxSuggestion_moreOptions:hover, .belowSearchBoxSuggestion_moreOptions:focus {
+    outline: none;
+    text-decoration: underline;
+    background: none !important;
+}
+
+.belowSearchBoxSuggestion_moreOptions > span > svg {
+    vertical-align: middle;
+}
+
+.privacyHyperLink {
+    color: ${he.c.var}
+}
+
+.about-slug-dialog {
+    --action-dialog-z-index: 5000;
+    --action-dialog-width: 400px;
+}
+
+fluent-button::part(control) {
+    padding: 7px;
+}
+
+msn-actions-menu::part(menu-item) {
+    font-size: 12px;
+}
+
+msn-actions-menu::part(menu) {
+    min-width: 210px;
+}
+`.withBehaviors(he.G,he.k,he.c,he.z);var ue=i("m1Vi"),Ce=i("vmYD");ue.b,Ce.a;const be=G.b`
+<li 
+    aria-hidden="false"
+    class="belowSearchBoxSuggestion_item">
+    <a
+        href=${e=>e.href}
+        target=${e=>e.target}
+        aria-label=${e=>e.aria_label}
+        style=${(e,t)=>t.parent.isOnImage?"color: #FFFFFF; text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);":""}
+        class="belowSearchBoxSuggestion_item_hypertext"
+        data-t=${e=>e["data-t"]}
+        title=${e=>e.title}>
+        <span>${e=>e.title}</span>
+    </a>
+</li>`,me=G.b`
+<msn-actions-menu
+    :referrerButton=${e=>e.actionsMenuButtonElement}
+    :menuItems=${e=>{var t;return null===(t=e.actionsMenuProps)||void 0===t?void 0:t.menuItems}}
+    ?autoFocus=${e=>!1}>
+</msn-actions-menu>
+`,ye=G.b`
+<fluent-button
+    appearance="neutral"
+    title=${e=>e.strings.moreOptionsAriaLabel}
+    aria-label=${e=>e.strings.moreOptionsAriaLabel}
+    class="belowSearchBoxSuggestion_moreOptions"
+    style=${e=>e.isOnImage?"color: #FFFFFF;":""}
+    ${Object(te.b)(e=>e.moreOptionsTelemetryTag)}
+    @click=${(e,t)=>e.toggleActionMenu&&e.toggleActionMenu(!e.isActionMenuOpen,t.event)}>
+    <span>
+        ${'\n<svg viewBox="0 0 16 16" width="16px" height="16px" xmlns="http://www.w3.org/2000/svg">\n    <path \n        d="M2 7C2.14063 7 2.27083 7.02607 2.39063 7.07813C2.51041 7.1302 2.61459 7.20313 2.70313 7.29687C2.79687 7.3854 2.86979 7.4896 2.92187 7.6094C2.97396 7.7292 3 7.8594 3 8C3 8.1406 2.97396 8.2708 2.92187 8.3906C2.86979 8.5104 2.79687 8.6172 2.70313 8.71093C2.61459 8.79947 2.51041 8.8698 2.39063 8.92187C2.27083 8.97393 2.14063 9 2 9C1.85937 9 1.72917 8.97393 1.60937 8.92187C1.48959 8.8698 1.38281 8.79947 1.28906 8.71093C1.20052 8.6172 1.13021 8.5104 1.07813 8.3906C1.02604 8.2708 1 8.1406 1 8C1 7.8594 1.02604 7.7292 1.07813 7.6094C1.13021 7.4896 1.20052 7.3854 1.28906 7.29687C1.38281 7.20313 1.48959 7.1302 1.60937 7.07813C1.72917 7.02607 1.85937 7 2 7ZM8 7C8.1406 7 8.2708 7.02607 8.3906 7.07813C8.5104 7.1302 8.6146 7.20313 8.70313 7.29687C8.79687 7.3854 8.8698 7.4896 8.92187 7.6094C8.97393 7.7292 9 7.8594 9 8C9 8.1406 8.97393 8.2708 8.92187 8.3906C8.8698 8.5104 8.79687 8.6172 8.70313 8.71093C8.6146 8.79947 8.5104 8.8698 8.3906 8.92187C8.2708 8.97393 8.1406 9 8 9C7.8594 9 7.7292 8.97393 7.6094 8.92187C7.4896 8.8698 7.3828 8.79947 7.28907 8.71093C7.20053 8.6172 7.1302 8.5104 7.07813 8.3906C7.02607 8.2708 7 8.1406 7 8C7 7.8594 7.02607 7.7292 7.07813 7.6094C7.1302 7.4896 7.20053 7.3854 7.28907 7.29687C7.3828 7.20313 7.4896 7.1302 7.6094 7.07813C7.7292 7.02607 7.8594 7 8 7ZM14 7C14.1406 7 14.2708 7.02607 14.3906 7.07813C14.5104 7.1302 14.6146 7.20313 14.7031 7.29687C14.7969 7.3854 14.8698 7.4896 14.9219 7.6094C14.9739 7.7292 15 7.8594 15 8C15 8.1406 14.9739 8.2708 14.9219 8.3906C14.8698 8.5104 14.7969 8.6172 14.7031 8.71093C14.6146 8.79947 14.5104 8.8698 14.3906 8.92187C14.2708 8.97393 14.1406 9 14 9C13.8594 9 13.7292 8.97393 13.6094 8.92187C13.4896 8.8698 13.3828 8.79947 13.2891 8.71093C13.2005 8.6172 13.1302 8.5104 13.0781 8.3906C13.0261 8.2708 13 8.1406 13 8C13 7.8594 13.0261 7.7292 13.0781 7.6094C13.1302 7.4896 13.2005 7.3854 13.2891 7.29687C13.3828 7.20313 13.4896 7.1302 13.6094 7.07813C13.7292 7.02607 13.8594 7 14 7Z">\n    </path>\n</svg>\n'}
+    </span>
+</fluent-button>
+`,ve=G.b`
+<div
+    id="belowsearchboxsuggestion"
+    class="belowSearchBoxSuggestion ${e=>e.enableOneColumn?"oneColumn":""}"
+    data-t=${e=>e.searchHistoryEdgenextTelemetryTag}>
+    <ul
+        class="belowSearchBoxSuggestion_contentRegion">
+        ${Object(J.c)(e=>e.items,be)}  
+    </ul>
+    ${ye}
+    ${Object(Y.a)(e=>e.isActionMenuOpen,me)}
+</div>
+`;var Oe;let fe=Oe=class extends oe.a{constructor(){super(),this.items=[],this.itemsWidths=[],this.handleWindowResize=()=>{this.createNewAnimationFrameRequest(),this.isActionMenuOpen&&this.toggleActionMenu(!1,null)},this.checkForClippedItems=()=>{if(0===this.items.length)return;this.animationFrameInProgress=!1;const e=this.shadowRoot.querySelectorAll(se),t=this.shadowRoot.querySelector(ae),i=this.shadowRoot.querySelector(re);if(!e)return;let o=0;const n=t.clientWidth-i.clientWidth;for(let t=0;t<e.length;t++)o+=this.itemsWidths[t],o<n?e[t].setAttribute("aria-hidden","false"):e[t].setAttribute("aria-hidden","true")},this.onOutsideClick=e=>{var t;if(!(e.target instanceof Oe||(null===(t=this.actionsMenuButtonElement)||void 0===t?void 0:t.contains(e.path[0])))){for(const t of(null==e?void 0:e.composedPath())||[])if("hide"===t.id)return;this.toggleActionMenu(!1,e)}},this.onKeydown=e=>{e.keyCode===ne.m&&this.toggleActionMenu(!1,null)},this.handleScrollEvent=()=>{this.toggleActionMenu(!1,null)},le()(this.handleWindowResize),window.addEventListener("resize",this.handleWindowResize)}connectedCallback(){super.connectedCallback();const e=this.shadowRoot.querySelectorAll(se);for(let t=0;t<e.length;t++){const i=e[t];this.itemsWidths.push(i.clientWidth)}this.checkForClippedItems()}createNewAnimationFrameRequest(){this.animationFrameInProgress||window.requestAnimationFrame(this.checkForClippedItems),this.animationFrameInProgress=!0}toggleActionMenu(e,t){var i;if(this.isActionMenuOpen=e,this.isActionMenuOpen)Object(k.c)(k.a.searchHistoryMoreOptions,!0),this.actionsMenuButtonElement=t&&t.currentTarget,document.addEventListener("click",this.onOutsideClick),document.addEventListener("keydown",this.onKeydown),window.addEventListener("scroll",this.handleScrollEvent);else{null===(i=this.actionsMenuButtonElement)||void 0===i||i.blur(),this.actionsMenuButtonElement=null,document.removeEventListener("click",this.onOutsideClick),document.removeEventListener("keydown",this.onKeydown),window.removeEventListener("scroll",this.handleScrollEvent);for(const e of(null==t?void 0:t.composedPath())||[])if("privacy"===e.id)return;Object(k.c)(k.a.searchHistoryMoreOptions,!1)}}};Object(g.d)([F.d],fe.prototype,"actionsMenuProps",void 0),Object(g.d)([F.d],fe.prototype,"menuShown",void 0),Object(g.d)([F.d],fe.prototype,"items",void 0),Object(g.d)([F.d],fe.prototype,"strings",void 0),Object(g.d)([F.d],fe.prototype,"dialogShown",void 0),Object(g.d)([F.d],fe.prototype,"isActionMenuOpen",void 0),Object(g.d)([F.d],fe.prototype,"searchHistoryEnabled",void 0),Object(g.d)([F.d],fe.prototype,"isOnImage",void 0),Object(g.d)([F.d],fe.prototype,"showSearchHistory",void 0),Object(g.d)([F.d],fe.prototype,"enableOneColumn",void 0),Object(g.d)([F.d],fe.prototype,"searchHistoryEdgenextTelemetryTag",void 0),Object(g.d)([F.d],fe.prototype,"moreOptionsTelemetryTag",void 0),Object(g.d)([F.d],fe.prototype,"hideSearchHistoryTelemetryTag",void 0),Object(g.d)([F.d],fe.prototype,"manageHistoryTelemetryTag",void 0),Object(g.d)([F.d],fe.prototype,"whyAmISeeingThisTelemetryTag",void 0),fe=Oe=Object(g.d)([Object(oe.b)({name:"below-searchbox-suggestion",template:ve,styles:pe})],fe),ee.a;const we=G.b`
+<a
+    href="${(e,t)=>{var i;return(null===(i=t.parent.config.privacyHypertext)||void 0===i?void 0:i.href)||"https://www.bing.com"}}"
+    class="privacyHyperLink"
+    target="_blank">
+    ${(e,t)=>{var i;return(null===(i=t.parent.config.privacyHypertext)||void 0===i?void 0:i.children)||"Bing.com"}}</a>`,Se=G.b`
+<msft-action-dialog
+    class="about-slug-dialog"
+    :localizedStrings=${e=>{return{dialogHeadline:(t=e.strings).privacyDialogTitleText,closeButtonTitleLabel:t.privacyDialogCloseButtonText,closeButtonAriaLabel:t.privacyDialogCloseButtonText};var t}}
+    :closeButtonTelemetryTag=${e=>e.closeButtonTelemetryTag}
+    @dismiss="${e=>e.dismissPrivacyDialog()}"
+    @action-dialog-dismiss="${e=>e.dismissPrivacyDialog()}"
+>
+    <div style="text-align: left;">
+        <span>
+            ${e=>e.strings.privacyTitle}
+        </span>
+        <ul></ul>
+        <div class="privacyLinkContent">
+            ${Object(J.c)(e=>Object(ie.a)(e.strings.privacyLinkContent,we),G.b`${e=>e}`)}
+        </div>
+    </div>
+</msft-action-dialog>
+`,_e=G.b`
+${Object(Y.a)(e=>e.items.length>0&&e.searchHistoryEnabled&&e.showSearchHistory,G.b`
+    <div
+        ${Object(te.b)(e=>e.rootTelemetryTag)}>
+        <below-searchbox-suggestion
+            :items=${e=>e.items}
+            :actionsMenuProps=${e=>e.actionsMenuProps}
+            :strings=${e=>e.strings}
+            :isOnImage=${e=>e.isOnImage}
+            :enableOneColumn=${e=>e.config.enableOneColumn}
+            :moreOptionsTelemetryTag=${e=>e.moreOptionsTelemetryTag}>
+        </below-searchbox-suggestion>
+        ${Object(Y.a)(e=>e.dialogShown,Se)}
+    </div>
+    `)}
+`,xe=de.a`
+:host {
+    border-radius: 6px;
+}
+
+.title {
+    height: 48px;
+    border-bottom: 1px solid ${he.k.var};
+}
+
+msft-action-dialog::part(heading) {
+    padding-bottom: 12px;
+}
+
+.belowSearchBoxSuggestion {
+    align-items: center;
+    display: flex;
+    position: relative;
+    height: 32px;
+}
+
+.privacyHyperLink {
+    color: ${he.c.var};
+    text-decoration: none;
+}
+
+.about-slug-dialog {
+    font-size: 14px;
+    --action-dialog-z-index: 5000;
+    --action-dialog-width: 370px;
+}
+`.withBehaviors(he.k,he.c),Te={experienceConfigSchema:l}},X0nS:function(e,t,i){"use strict";i.d(t,"a",(function(){return y}));var o=i("w7FX"),n=i("P4Ao"),s=i("QBS5"),a=i("oePG");class r extends n.a{constructor(){super(...arguments),this.hidden=!1,this.disableActionButton=!1,this.disableCancelButton=!1,this.hideCloseButton=!1,this.localizedStrings={},this.dismissDialog=()=>{this.$emit("action-dialog-dismiss")}}}Object(o.a)([Object(s.b)({mode:"boolean"})],r.prototype,"hidden",void 0),Object(o.a)([a.d],r.prototype,"disableActionButton",void 0),Object(o.a)([a.d],r.prototype,"disableCancelButton",void 0),Object(o.a)([a.d],r.prototype,"hideCloseButton",void 0),Object(o.a)([a.d],r.prototype,"actionButtonTelemetryTag",void 0),Object(o.a)([a.d],r.prototype,"cancelButtonTelemetryTag",void 0),Object(o.a)([a.d],r.prototype,"closeButtonTelemetryTag",void 0),Object(o.a)([a.d],r.prototype,"localizedStrings",void 0);var c=i("4X57"),l=i("xY0q");const d=c.a`
+    ${Object(l.a)("flex")} :host {
+        --button-border-radius: 20px;
+        --button-min-width: 160px;
+        --corner-radius: 2px;
+        --dialog-padding: 24px;
+        --space-above-title: 20px;
+        --space-between-buttons: 8px;
+    }
+
+    .dialog {
+        --dialog-height: var(--action-dialog-height, auto);
+        --dialog-width: var(--action-dialog-width, auto);
+        position: absolute;
+        z-index: var(--action-dialog-z-index, 0);
+    }
+
+    .body {
+        margin: 0 var(--dialog-padding) var(--dialog-padding) var(--dialog-padding);
+    }
+
+    .button {
+        border-radius: var(--button-border-radius);
+        min-width: var(--button-min-width);
+    }
+
+    .button-spacer {
+        width: var(--space-between-buttons);
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .controls {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .heading {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: 1;
+        position: relative;
+        width: 100%;
+    }
+
+    .heading fluent-button svg {
+        height: 12px;
+        width: 12px;
+    }
+
+    .heading span {
+        font-size: var(--type-ramp-plus-2-font-size);
+        font-weight: 600;
+        line-height: var(--type-ramp-plus-3-font-size);
+        margin-inline-start: var(--dialog-padding);
+        margin-top: var(--space-above-title);
+    }
+`;var h=i("m1Vi"),g=i("KHt8"),p=i("6BDD"),u=i("6vBc"),C=i("KC/q"),b=i("eUhr");h.b,g.b;const m=p.b`
+    <fluent-dialog
+        @dismiss=${e=>e.dismissDialog()}
+        class="dialog"
+        part="dialog"
+        aria-label="${e=>e.localizedStrings.dialogAriaText}"
+    >
+        <div class="heading" part="heading">
+            <span>${e=>e.localizedStrings.dialogHeadline}</span>
+            <fluent-button
+                tabindex="0"
+                title=${e=>e.localizedStrings.closeButtonTitleLabel}
+                aria-label=${e=>e.localizedStrings.closeButtonAriaLabel}
+                @click=${e=>e.dismissDialog()}
+                @keypress=${e=>e.dismissDialog()}
+                appearance="stealth"
+                :hidden=${e=>e.hideCloseButton}
+                ${Object(b.b)(e=>e.closeButtonTelemetryTag)}
+            >
+                ${C.c}
+            </fluent-button>
+        </div>
+        <div class="body" part="body">
+            <div class="content" part="content">
+                <slot></slot>
+            </div>
+            <div class="controls" part="controls">
+                ${Object(u.a)(e=>e.localizedStrings.actionButtonText&&e.actionButtonCallback,p.b`<fluent-button
+                        tabindex="0"
+                        title=${e=>e.localizedStrings.actionButtonTitleLabel}
+                        aria-label=${e=>e.localizedStrings.actionButtonAriaLabel}
+                        class="button"
+                        @click=${(e,t)=>e.actionButtonCallback&&e.actionButtonCallback(t.event)}
+                        @keypress=${(e,t)=>e.actionButtonCallback&&e.actionButtonCallback(t.event)}
+                        appearance="accent"
+                        :disabled=${e=>e.disableActionButton}
+                        ${Object(b.b)(e=>e.actionButtonTelemetryTag)}
+                    >
+                        ${e=>e.localizedStrings.actionButtonText}
+                    </fluent-button>`)}
+                ${Object(u.a)(e=>e.localizedStrings.actionButtonText&&e.actionButtonCallback&&e.localizedStrings.cancelButtonText&&e.cancelButtonCallback,p.b`<div class="button-spacer"></div>`)}
+                ${Object(u.a)(e=>e.localizedStrings.cancelButtonText&&e.cancelButtonCallback,p.b`<fluent-button
+                        tabindex="0"
+                        title=${e=>e.localizedStrings.cancelButtonTitleLabel}
+                        aria-label=${e=>e.localizedStrings.cancelButtonAriaLabel}
+                        class="button"
+                        @click=${(e,t)=>e.cancelButtonCallback&&e.cancelButtonCallback(t.event)}
+                        @keypress=${(e,t)=>e.cancelButtonCallback&&e.cancelButtonCallback(t.event)}
+                        :disabled=${e=>e.disableCancelButton}
+                        ${Object(b.b)(e=>e.cancelButtonTelemetryTag)}
+                    >
+                        ${e=>e.localizedStrings.cancelButtonText}
+                    </fluent-button>`)}
+            </div>
+        </div>
+    </fluent-dialog>
+`;let y=class extends r{};y=Object(o.a)([Object(n.b)({name:"msft-action-dialog",template:m,styles:d,shadowOptions:{delegatesFocus:!0}})],y)}}]);

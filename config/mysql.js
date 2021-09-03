@@ -6,6 +6,7 @@ const inst = () => new mysql({
     user: 'Wewr5hhx2L',
     password: 'GvgWl1bzEQ',
     database: 'Wewr5hhx2L',
+    charset: 'utf8mb4'
 });
 
 exports.sql = inst;

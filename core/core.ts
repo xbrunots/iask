@@ -29,9 +29,79 @@ class WhatsApp {
     } else {
       WhatsApp._instance.init(sessionName, function (client) {
         WhatsApp._instance.start(client, sessionName);
+
         result(client);
       });
     }
+  }
+
+  chatbotInit(client) {
+    console.log("liveLocation");
+
+    client.onMessage((message) => {
+      if (
+        (message.body.toString().toLowerCase().includes("bom dia") &&
+          message.isGroupMsg === false) ||
+        (message.body.toString().toLowerCase().includes("boa tarde") &&
+          message.isGroupMsg === false) ||
+        (message.body.toString().toLowerCase().includes("boa noite") &&
+          message.isGroupMsg === false) ||
+        (message.body.toString().toLowerCase().includes("ola") &&
+          message.isGroupMsg === false) ||
+        (message.body.toString().toLowerCase().includes("hello") &&
+          message.isGroupMsg === false) ||
+        (message.body.toString().toLowerCase().includes("hi") &&
+          message.isGroupMsg === false) ||
+        (message.body.toString().toLowerCase().includes("oi") &&
+          message.isGroupMsg === false)
+      ) {
+        client.sendText(message.from, "Oi sumido ❤️").catch((erro) => {
+          console.error("Error when sending: ", erro); //return object error
+        });
+      }
+
+      if (
+        message.body.toString().toLowerCase().includes("projeto") &&
+        message.isGroupMsg === false
+      ) {
+        client
+          .sendText(message.from, "Muito bom que perguntou isso")
+          .then((_) => {
+            client
+              .sendText(message.from, "Eu sou o Assistente Virtual da Evolve")
+              .then((ass) => {
+                client
+                  .sendText(
+                    message.from,
+                    "Estou aqui para aprender e atender, muito alem de um atendimento comum! "
+                  )
+                  .then((result) => {
+                    client
+                      .reply(
+                        message.from,
+                        "🤖🤖🤖🤖🤖🚀🚀🚀🚀🚀",
+                        message.id.toString()
+                      )
+                      .then((result) => {
+                        console.log("Result: ", result); //return object success
+                      })
+                      .catch((erro) => {
+                        console.error("Error when sending: ", erro); //return object error
+                      });
+                  })
+                  .catch((erro) => {
+                    console.error("Error when sending: ", erro); //return object error
+                  });
+              })
+              .catch((erro) => {
+                console.error("Error when sending: ", erro); //return object error
+              });
+          })
+          .catch((erro) => {
+            console.error("Error when sending: ", erro); //return object error
+          });
+      }
+    });
   }
 
   start(client, sessionName): void {
@@ -51,7 +121,10 @@ class WhatsApp {
         },
         undefined
       )
-      .then((client) => result(client))
+      .then((client) => {
+        this.chatbotInit(client);
+        result(client);
+      })
       .catch((erro) => {
         console.log(erro);
         result(erro);

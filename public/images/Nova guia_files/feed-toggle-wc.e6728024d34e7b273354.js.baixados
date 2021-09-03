@@ -1,0 +1,775 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["feed-toggle-wc"],{"4N55":function(e,t,o){"use strict";o.d(t,"a",(function(){return p}));var i,a=o("eftJ"),s=o("P4Ao"),n=o("oePG"),r=o("QBS5"),d=o("vhqU"),l=o("EeEq"),c=o("uXNP"),h=o("6fxl");!function(e){e.listbox="listbox"}(i||(i={}));class p extends s.a{constructor(){super(...arguments),this.selectedIndex=-1,this.typeaheadBuffer="",this.typeaheadTimeout=-1,this.typeAheadExpired=!0,this.role=i.listbox,this._options=[],this.selectedOptions=[],this.shouldSkipFocus=!1,this.handleTypeAhead=e=>{this.typeaheadTimeout&&window.clearTimeout(this.typeaheadTimeout),this.typeaheadTimeout=window.setTimeout(()=>this.typeAheadExpired=!0,p.TYPE_AHEAD_TIMEOUT_MS),e.length>1||(this.typeaheadBuffer=`${this.typeAheadExpired?"":this.typeaheadBuffer}${e}`)}}selectedIndexChanged(e,t){this.setSelectedOptions()}typeaheadBufferChanged(e,t){if(this.$fastController.isConnected){const e=this.typeaheadBuffer.replace(/[.*+\-?^${}()|[\]\\]/g,"\\$&"),t=new RegExp("^"+e,"gi"),o=this.options.filter(e=>e.text.trim().match(t));if(o.length){const e=this.options.indexOf(o[0]);e>-1&&(this.selectedIndex=e)}this.typeAheadExpired=!1}}slottedOptionsChanged(e,t){this.$fastController.isConnected&&(this.options=t.reduce((e,t)=>(Object(l.b)(t)&&e.push(t),e),[]),this.options.forEach(e=>{e.id=e.id||Object(d.a)("option-")}),this.setSelectedOptions(),this.setDefaultSelectedOption())}get options(){return n.b.track(this,"options"),this._options}set options(e){this._options=e,n.b.notify(this,"options")}selectedOptionsChanged(e,t){this.$fastController.isConnected&&this.options.forEach(e=>{e.selected=t.includes(e)})}get firstSelectedOption(){return this.selectedOptions[0]}focusAndScrollOptionIntoView(){this.contains(document.activeElement)&&this.firstSelectedOption&&(this.firstSelectedOption.focus(),requestAnimationFrame(()=>{this.firstSelectedOption.scrollIntoView({block:"nearest"})}))}focusinHandler(e){this.shouldSkipFocus||e.target!==e.currentTarget||(this.setSelectedOptions(),this.focusAndScrollOptionIntoView()),this.shouldSkipFocus=!1}mousedownHandler(e){return this.shouldSkipFocus=!this.contains(document.activeElement),!0}setDefaultSelectedOption(){if(this.options&&this.$fastController.isConnected){const e=this.options.findIndex(e=>null!==e.getAttribute("selected"));if(-1!==e)return void(this.selectedIndex=e);this.selectedIndex=0}}setSelectedOptions(){if(this.$fastController.isConnected&&this.options){const e=this.options[this.selectedIndex]||null;this.selectedOptions=this.options.filter(t=>t.isSameNode(e)),this.ariaActiveDescendant=this.firstSelectedOption?this.firstSelectedOption.id:"",this.focusAndScrollOptionIntoView()}}selectFirstOption(){this.disabled||(this.selectedIndex=0)}selectLastOption(){this.disabled||(this.selectedIndex=this.options.length-1)}selectNextOption(){!this.disabled&&this.options&&this.selectedIndex<this.options.length-1&&(this.selectedIndex+=1)}get length(){return this.options?this.options.length:0}selectPreviousOption(){!this.disabled&&this.selectedIndex>0&&(this.selectedIndex=this.selectedIndex-1)}clickHandler(e){const t=e.target.closest("option,[role=option]");if(t&&!t.disabled)return this.selectedIndex=this.options.indexOf(t),!0}keydownHandler(e){if(this.disabled)return!0;this.shouldSkipFocus=!1;const t=e.key;switch(t){case"Home":e.shiftKey||(e.preventDefault(),this.selectFirstOption());break;case"ArrowDown":e.shiftKey||(e.preventDefault(),this.selectNextOption());break;case"ArrowUp":e.shiftKey||(e.preventDefault(),this.selectPreviousOption());break;case"End":e.preventDefault(),this.selectLastOption();break;case"Tab":return this.focusAndScrollOptionIntoView(),!0;case"Enter":case"Escape":return!0;case" ":if(this.typeAheadExpired)return!0;default:return 1===t.length&&this.handleTypeAhead(""+t),!0}}}p.TYPE_AHEAD_TIMEOUT_MS=1e3,p.slottedOptionFilter=e=>Object(l.b)(e)&&!e.disabled&&!e.hidden,Object(a.a)([n.d],p.prototype,"selectedIndex",void 0),Object(a.a)([n.d],p.prototype,"typeaheadBuffer",void 0),Object(a.a)([r.b],p.prototype,"role",void 0),Object(a.a)([Object(r.b)({mode:"boolean"})],p.prototype,"disabled",void 0),Object(a.a)([n.d],p.prototype,"slottedOptions",void 0),Object(a.a)([n.d],p.prototype,"selectedOptions",void 0);class u{constructor(){this.ariaActiveDescendant=""}}Object(a.a)([n.d],u.prototype,"ariaActiveDescendant",void 0),Object(a.a)([n.d],u.prototype,"ariaDisabled",void 0),Object(a.a)([n.d],u.prototype,"ariaExpanded",void 0),Object(h.a)(u,c.a),Object(h.a)(p,u)},EeEq:function(e,t,o){"use strict";o.d(t,"b",(function(){return c})),o.d(t,"a",(function(){return h}));var i=o("eftJ"),a=o("P4Ao"),s=o("oePG"),n=o("QBS5"),r=o("FGLN"),d=o("C5kU"),l=o("6fxl");function c(e){return Object(r.d)(e)&&("option"===e.getAttribute("role")||e instanceof HTMLOptionElement)}class h extends a.a{constructor(e,t,o,i){super(),this.defaultSelected=!1,this.dirtySelected=!1,this.selected=this.defaultSelected,this.dirtyValue=!1,this.initialValue=this.initialValue||"",e&&(this.textContent=e),t&&(this.initialValue=t),o&&(this.defaultSelected=o),i&&(this.selected=i),this.proxy=new Option(""+this.textContent,this.initialValue,this.defaultSelected,this.selected),this.proxy.disabled=this.disabled}defaultSelectedChanged(){this.dirtySelected||(this.selected=this.defaultSelected,this.proxy instanceof HTMLOptionElement&&(this.proxy.selected=this.defaultSelected))}disabledChanged(e,t){this.proxy instanceof HTMLOptionElement&&(this.proxy.disabled=this.disabled)}selectedAttributeChanged(){this.defaultSelected=this.selectedAttribute,this.proxy instanceof HTMLOptionElement&&(this.proxy.defaultSelected=this.defaultSelected)}selectedChanged(){this.$fastController.isConnected&&(this.dirtySelected||(this.dirtySelected=!0),this.proxy instanceof HTMLOptionElement&&(this.proxy.selected=this.selected))}initialValueChanged(e,t){this.dirtyValue||(this.value=this.initialValue,this.dirtyValue=!1)}get label(){return this.value?this.value:this.textContent?this.textContent:""}get text(){return this.textContent}set value(e){this._value=e,this.dirtyValue=!0,this.proxy instanceof HTMLElement&&(this.proxy.value=e),s.b.notify(this,"value")}get value(){return s.b.track(this,"value"),this._value?this._value:this.text}get form(){return this.proxy?this.proxy.form:null}}Object(i.a)([s.d],h.prototype,"defaultSelected",void 0),Object(i.a)([Object(n.b)({mode:"boolean"})],h.prototype,"disabled",void 0),Object(i.a)([Object(n.b)({attribute:"selected",mode:"boolean"})],h.prototype,"selectedAttribute",void 0),Object(i.a)([s.d],h.prototype,"selected",void 0),Object(i.a)([Object(n.b)({attribute:"value",mode:"fromView"})],h.prototype,"initialValue",void 0),Object(l.a)(h,d.a)},XiV1:function(e,t,o){"use strict";o.d(t,"a",(function(){return C}));var i=o("3rEL"),a=o("P4Ao"),s=o("eftJ"),n=o("QBS5"),r=o("oePG"),d=o("Gy7L"),l=o("o87Z");class c extends a.a{}class h extends(Object(l.a)(c)){constructor(){super(...arguments),this.proxy=document.createElement("input")}}class p extends h{constructor(){super(),this.initialValue="on",this.dirtyChecked=!1,this.formResetCallback=()=>{this.checked=this.checkedAttribute,this.dirtyChecked=!1},this.keypressHandler=e=>{switch(e.keyCode){case d.q:this.checked=!this.checked}},this.clickHandler=e=>{this.disabled||this.readOnly||(this.checked=!this.checked)},this.defaultChecked=!!this.checkedAttribute,this.checked=this.defaultChecked}readOnlyChanged(){this.proxy instanceof HTMLInputElement&&(this.proxy.readOnly=this.readOnly),this.readOnly?this.classList.add("readonly"):this.classList.remove("readonly")}checkedAttributeChanged(){this.defaultChecked=this.checkedAttribute}defaultCheckedChanged(){this.dirtyChecked||(this.checked=this.defaultChecked,this.dirtyChecked=!1)}checkedChanged(){this.dirtyChecked||(this.dirtyChecked=!0),this.updateForm(),this.proxy instanceof HTMLInputElement&&(this.proxy.checked=this.checked),this.$emit("change"),this.checked?this.classList.add("checked"):this.classList.remove("checked"),this.validate()}connectedCallback(){super.connectedCallback(),this.proxy.setAttribute("type","checkbox"),this.updateForm()}updateForm(){const e=this.checked?this.value:null;this.setFormValue(e,e)}}Object(s.a)([Object(n.b)({attribute:"readonly",mode:"boolean"})],p.prototype,"readOnly",void 0),Object(s.a)([Object(n.b)({attribute:"checked",mode:"boolean"})],p.prototype,"checkedAttribute",void 0),Object(s.a)([r.d],p.prototype,"defaultSlottedNodes",void 0),Object(s.a)([r.d],p.prototype,"defaultChecked",void 0),Object(s.a)([r.d],p.prototype,"checked",void 0);var u=o("6BDD"),b=o("UauI");const g=u.b`
+    <template
+        role="switch"
+        aria-checked="${e=>e.checked}"
+        aria-disabled="${e=>e.disabled}"
+        aria-readonly="${e=>e.readOnly}"
+        tabindex="${e=>e.disabled?null:0}"
+        @keypress="${(e,t)=>e.keypressHandler(t.event)}"
+        @click="${(e,t)=>e.clickHandler(t.event)}"
+        class="${e=>e.checked?"checked":""}"
+    >
+        <label
+            part="label"
+            class="${e=>e.defaultSlottedNodes&&e.defaultSlottedNodes.length?"label":"label label__hidden"}"
+        >
+            <slot ${Object(b.b)("defaultSlottedNodes")}></slot>
+        </label>
+        <div part="switch" class="switch">
+            <span class="checked-indicator" part="checked-indicator"></span>
+        </div>
+        <span class="status-message" part="status-message">
+            <span class="checked-message" part="checked-message">
+                <slot name="checked-message"></slot>
+            </span>
+            <span class="unchecked-message" part="unchecked-message">
+                <slot name="unchecked-message"></slot>
+            </span>
+        </span>
+    </template>
+`;var f=o("4X57"),v=o("j9Xn"),x=o("xY0q"),y=o("2i1/"),k=o("wHpb"),m=o("CzTk"),$=o("oqLQ"),O=o("QkLF"),w=o("kL0l");const S=f.a`
+    :host([hidden]) {
+        display: none;
+    }
+
+    ${Object(x.a)("inline-flex")} :host {
+        align-items: center;
+        outline: none;
+        font-family: var(--body-font);
+        margin: calc(var(--design-unit) * 1px) 0;
+        ${""} user-select: none;
+    }
+
+    :host(.disabled) {
+        opacity: var(--disabled-opacity);
+    }
+
+    :host(.disabled) .label,
+    :host(.readonly) .label,
+    :host(.readonly) .switch,
+    :host(.disabled) .switch {
+        cursor: ${y.a};
+    }
+
+    .switch {
+        position: relative;
+        outline: none;
+        box-sizing: border-box;
+        width: calc(((${O.a} / 2) + var(--design-unit)) * 2px);
+        height: calc(((${O.a} / 2) + var(--design-unit)) * 1px);
+        background: ${w.r.var};
+        border-radius: calc(${O.a} * 1px);
+        border: calc(var(--outline-width) * 1px) solid ${w.P.var};
+    }
+
+    :host(:enabled) .switch:hover {
+        background: ${w.q.var};
+        border-color: ${w.O.var};
+        cursor: pointer;
+    }
+
+    :host(:enabled) .switch:active {
+        background: ${w.p.var};
+        border-color: ${w.M.var};
+    }
+
+    :host(:${k.a}) .switch {
+        box-shadow: 0 0 0 2px var(--background-color), 0 0 0 4px ${w.z.var};
+        border-color: ${w.z.var};
+    }
+
+    .checked-indicator {
+        position: absolute;
+        height: calc((${O.a} - (var(--design-unit) * 5.5)) * 1px);
+        width: calc((${O.a} - (var(--design-unit) * 5.5)) * 1px);
+        top: calc(var(--design-unit) * 1px);
+        background: ${w.G.var};
+        border-radius: 50%;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .status-message {
+        color: ${w.G.var};
+        cursor: pointer;
+        font-size: var(--type-ramp-base-font-size);
+        line-height: var(--type-ramp-base-line-height);
+    }
+
+    .label__hidden {
+        display: none;
+        visibility: hidden;
+    }
+
+    .label {
+        color: ${w.G.var};
+        font-size: var(--type-ramp-base-font-size);
+        line-height: var(--type-ramp-base-line-height);
+        margin-inline-end: calc(var(--design-unit) * 2px + 2px);
+        cursor: pointer;
+    }
+
+    ::slotted(*) {
+        ${""} margin-inline-start: calc(var(--design-unit) * 2px + 2px);
+    }
+
+    :host([aria-checked="true"]) .checked-indicator {
+        background: ${w.f.var};
+    }
+
+    :host([aria-checked="true"]) .switch {
+        background: ${w.c.var};
+    }
+
+    :host([aria-checked="true"]:enabled) .switch:hover {
+        background: ${w.b.var};
+    }
+
+    :host([aria-checked="true"]:enabled) .switch:active {
+        background: ${w.a.var};
+    }
+
+    :host([aria-checked="true"]:${k.a}:enabled) .switch {
+        box-shadow: 0 0 0 2px var(--background-color), 0 0 0 4px ${w.z.var};
+        border-color: transparent;
+    }
+
+    .unchecked-message {
+        display: block;
+    }
+
+    .checked-message {
+        display: none;
+    }
+
+    :host([aria-checked="true"]) .unchecked-message {
+        display: none;
+    }
+
+    :host([aria-checked="true"]) .checked-message {
+        display: block;
+    }
+`.withBehaviors(w.a,w.b,w.c,w.f,w.p,w.q,w.r,w.z,w.G,w.M,w.O,w.P,new m.a(f.a`
+      .checked-indicator {
+        left: calc(var(--design-unit) * 1px);
+      }
+
+      :host([aria-checked='true']) .checked-indicator {
+        left: calc((((${O.a} / 2) + var(--design-unit)) + var(--design-unit)) * 1px);
+      }
+    `,f.a`
+      .checked-indicator {
+        right: calc(var(--design-unit) * 1px);
+      }
+
+      :host([aria-checked='true']) .checked-indicator {
+        right: calc((((${O.a} / 2) + var(--design-unit)) + var(--design-unit)) * 1px);
+      }
+    `),Object($.c)(f.a`
+            .checked-indicator,
+            :host(:enabled) .switch:active .checked-indicator {
+                forced-color-adjust: none;
+                background: ${v.a.FieldText};
+            }
+            .switch {
+                forced-color-adjust: none;
+                background: ${v.a.Field};
+                border-color: ${v.a.FieldText};
+            }
+            :host(:enabled) .switch:hover {
+                background: ${v.a.HighlightText};
+                border-color: ${v.a.Highlight};
+            }
+            :host(.checked) .switch {
+                background: ${v.a.Highlight};
+                border-color: ${v.a.Highlight};
+            }
+            :host(.checked:enabled) .switch:hover,
+            :host(:enabled) .switch:active {
+                background: ${v.a.HighlightText};
+                border-color: ${v.a.Highlight};
+            }
+            :host(.checked) .checked-indicator {
+                background: ${v.a.HighlightText};
+            }
+            :host(.checked:enabled) .switch:hover .checked-indicator {
+                background: ${v.a.Highlight};
+            }
+            :host(:${k.a}) .switch {
+                border-color: ${v.a.Highlight};
+                box-shadow: 0 0 0 2px ${v.a.Field}, 0 0 0 4px ${v.a.FieldText};
+            }
+            :host(.checked:${k.a}:enabled) .switch {
+                box-shadow: 0 0 0 2px ${v.a.Field}, 0 0 0 4px ${v.a.FieldText};
+            }
+            :host(.disabled) {
+                opacity: 1;
+            }
+            :host(.disabled) .checked-indicator {
+                background: ${v.a.GrayText};
+            }
+            :host(.disabled) .switch {
+                background: ${v.a.Field};
+                border-color: ${v.a.GrayText};
+            }
+            .status-message,
+            .label {
+              color: ${v.a.FieldText};
+          }
+        `));let C=class extends p{};C=Object(i.a)([Object(a.b)({name:"fluent-switch",template:g,styles:S,shadowOptions:{mode:"closed"}})],C)},e8No:function(e,t,o){"use strict";o.d(t,"a",(function(){return x}));var i=o("3rEL"),a=o("P4Ao"),s=o("EeEq"),n=o("6BDD"),r=o("C5kU");const d=n.b`
+    <template
+        aria-selected="${e=>e.selected}"
+        class="${e=>e.selected?"selected":""} ${e=>e.disabled?"disabled":""}"
+        role="option"
+    >
+        ${r.c}
+        <span class="content" part="content">
+            <slot></slot>
+        </span>
+        ${r.b}
+    </template>
+`;var l=o("4X57"),c=o("xY0q"),h=o("wHpb"),p=o("2i1/"),u=o("oqLQ"),b=o("j9Xn"),g=o("kL0l"),f=o("QkLF");const v=l.a`
+    ${Object(c.a)("inline-flex")} :host {
+        font-family: var(--body-font);
+        border-radius: calc(var(--corner-radius) * 1px);
+        border: calc(var(--focus-outline-width) * 1px) solid transparent;
+        box-sizing: border-box;
+        color: ${g.G.var};
+        cursor: pointer;
+        fill: currentcolor;
+        font-size: var(--type-ramp-base-font-size);
+        height: calc(${f.a} * 1px);
+        line-height: var(--type-ramp-base-line-height);
+        margin: 0 calc(var(--design-unit) * 1px);
+        outline: none;
+        overflow: hidden;
+        align-items: center;
+        padding: 0 calc(var(--design-unit) * 2.25px);
+        user-select: none;
+        white-space: nowrap;
+    }
+
+    :host(:${h.a}) {
+        box-shadow: 0 0 0 calc(var(--focus-outline-width) * 1px) inset ${g.A.var};
+        border-color: ${g.z.var};
+        background: ${g.b.var};
+        color: ${g.f.var};
+    }
+
+    :host([aria-selected="true"]) {
+        background: ${g.b.var};
+        color: ${g.f.var};
+    }
+
+    :host(:active) {
+        background: ${g.a.var};
+        color: ${g.f.var};
+    }
+
+    :host(:not([aria-selected="true"]):hover) {
+        background: ${g.o.var};
+        color: ${g.F.var};
+    }
+
+    :host(:not([aria-selected="true"]):active) {
+        background: ${g.o.var};
+        color: ${g.F.var};
+    }
+
+    :host([disabled]) {
+        cursor: ${p.a};
+        opacity: var(--disabled-opacity);
+    }
+
+    :host([disabled]:hover) {
+        background-color: inherit;
+    }
+
+    .content {
+        grid-column-start: 2;
+        justify-self: start;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .start,
+    .end,
+    ::slotted(svg) {
+        display: flex;
+    }
+
+    ::slotted(svg) {
+        ${""}
+        height: calc(var(--design-unit) * 4px);
+        width: calc(var(--design-unit) * 4px);
+    }
+
+    ::slotted([slot="end"]) {
+        margin-inline-start: 1ch;
+    }
+
+    ::slotted([slot="start"]) {
+        margin-inline-end: 1ch;
+    }
+
+`.withBehaviors(g.a,g.b,g.d,g.f,Object(u.c)(l.a`
+      :host {
+        border-color: transparent;
+        color: ${b.a.ButtonText};
+        forced-color-adjust: none;
+      }
+
+      :host(:not([aria-selected='true']):hover),
+      :host([aria-selected='true']) {
+        background: ${b.a.Highlight};
+        color: ${b.a.HighlightText};
+      }
+
+      :host([disabled]),
+      :host([disabled]:not([aria-selected='true']):hover) {
+        background: ${b.a.Canvas};
+        color: ${b.a.GrayText};
+        fill: currentcolor;
+        opacity: 1;
+      }
+    `),g.o,g.v,g.w,g.x,g.z,g.A,g.F,g.G,g.K);let x=class extends s.a{};x=Object(i.a)([Object(a.b)({name:"fluent-option",template:d,styles:v})],x)},i56n:function(e,t,o){"use strict";o.d(t,"a",(function(){return L}));var i=o("3rEL"),a=o("QBS5"),s=o("P4Ao"),n=o("eftJ"),r=o("oePG"),d=o("uXNP"),l=o("C5kU"),c=o("6fxl"),h=o("4N55"),p=o("o87Z");class u extends h.a{}class b extends(Object(p.a)(u)){constructor(){super(...arguments),this.proxy=document.createElement("select")}}var g=o("xDi8");class f extends b{constructor(){super(...arguments),this.open=!1,this.forcedPosition=!1,this.role=g.b.combobox,this.position=g.a.below,this.maxHeight=0,this.displayValue="",this.formResetCallback=()=>{this.setProxyOptions(),this.setDefaultSelectedOption(),this.value=this.firstSelectedOption.value}}openChanged(){this.ariaExpanded=this.open?"true":"false",this.open&&(this.setPositioning(),this.focusAndScrollOptionIntoView(),this.indexWhenOpened=this.selectedIndex)}get value(){return r.b.track(this,"value"),this._value}set value(e){const t=""+this._value;if(this.$fastController.isConnected&&this.options){const t=this.options.findIndex(t=>t.value===e),o=this.options[this.selectedIndex],i=this.options[t],a=o?o.value:null,s=i?i.value:null;-1!==t&&a===s||(e="",this.selectedIndex=t),this.firstSelectedOption&&(e=this.firstSelectedOption.value)}t!==e&&(this._value=e,super.valueChanged(t,e),r.b.notify(this,"value"))}updateValue(e){this.$fastController.isConnected&&(this.value=this.firstSelectedOption?this.firstSelectedOption.value:"",this.displayValue=this.firstSelectedOption?this.firstSelectedOption.textContent||this.firstSelectedOption.value:this.value),e&&this.$emit("change")}selectedIndexChanged(e,t){super.selectedIndexChanged(e,t),this.updateValue()}setPositioning(){const e=this.getBoundingClientRect(),t=window.innerHeight-e.bottom;this.position=this.forcedPosition?this.positionAttribute:e.top>t?g.a.above:g.a.below,this.positionAttribute=this.forcedPosition?this.positionAttribute:this.position,this.maxHeight=this.position===g.a.above?~~e.top:~~t}disabledChanged(e,t){super.disabledChanged&&super.disabledChanged(e,t),this.ariaDisabled=this.disabled?"true":"false"}clickHandler(e){if(!this.disabled){if(this.open){const t=e.target.closest("option,[role=option]");if(t&&t.disabled)return}return super.clickHandler(e),this.open=!this.open,this.open||this.indexWhenOpened===this.selectedIndex||this.updateValue(!0),!0}}focusoutHandler(e){if(!this.open)return!0;const t=e.relatedTarget;this.isSameNode(t)?this.focus():this.options&&this.options.includes(t)||(this.open=!1)}slottedOptionsChanged(e,t){super.slottedOptionsChanged(e,t),this.setProxyOptions(),this.updateValue()}setProxyOptions(){this.proxy instanceof HTMLSelectElement&&this.options&&(this.proxy.options.length=0,this.options.forEach(e=>{const t=e.proxy||(e instanceof HTMLOptionElement?e.cloneNode():null);t&&this.proxy.appendChild(t)}))}keydownHandler(e){super.keydownHandler(e);switch(e.key||e.key.charCodeAt(0)){case" ":this.typeAheadExpired&&(e.preventDefault(),this.open=!this.open);break;case"Enter":e.preventDefault(),this.open=!this.open;break;case"Escape":this.open&&(e.preventDefault(),this.open=!1);break;case"Tab":if(!this.open)return!0;e.preventDefault(),this.open=!1}return this.open||this.indexWhenOpened===this.selectedIndex||this.updateValue(!0),!0}connectedCallback(){super.connectedCallback(),this.forcedPosition=!!this.positionAttribute}}Object(n.a)([Object(a.b)({attribute:"open",mode:"boolean"})],f.prototype,"open",void 0),Object(n.a)([Object(a.b)({attribute:"position"})],f.prototype,"positionAttribute",void 0),Object(n.a)([r.d],f.prototype,"position",void 0),Object(n.a)([r.d],f.prototype,"maxHeight",void 0),Object(n.a)([r.d],f.prototype,"displayValue",void 0);class v{}Object(n.a)([r.d],v.prototype,"ariaExpanded",void 0),Object(n.a)([Object(a.b)({attribute:"aria-pressed",mode:"fromView"})],v.prototype,"ariaPressed",void 0),Object(c.a)(v,d.a),Object(c.a)(f,l.a,v);var x=o("6BDD"),y=o("UauI");const k=x.b`
+    <template
+        class="${e=>e.open?"open":""} ${e=>e.disabled?"disabled":""} ${e=>e.position}"
+        role="${e=>e.role}"
+        tabindex="${e=>e.disabled?null:"0"}"
+        aria-disabled="${e=>e.ariaDisabled}"
+        aria-expanded="${e=>e.ariaExpanded}"
+        @click="${(e,t)=>e.clickHandler(t.event)}"
+        @focusout="${(e,t)=>e.focusoutHandler(t.event)}"
+        @keydown="${(e,t)=>e.keydownHandler(t.event)}"
+    >
+        <div
+            aria-activedescendant="${e=>e.open?e.ariaActiveDescendant:null}"
+            aria-controls="listbox"
+            aria-expanded="${e=>e.ariaExpanded}"
+            aria-haspopup="listbox"
+            class="control"
+            part="control"
+            role="button"
+            ?disabled="${e=>e.disabled}"
+        >
+            ${l.c}
+            <slot name="button-container">
+                <div class="selected-value" part="selected-value">
+                    <slot name="selected-value">${e=>e.displayValue}</slot>
+                </div>
+                <div class="indicator" part="indicator" aria-hidden="true">
+                    <slot name="indicator">
+                        <svg
+                            class="select-indicator"
+                            part="select-indicator"
+                            viewBox="0 0 12 7"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M11.85.65c.2.2.2.5 0 .7L6.4 6.84a.55.55 0 01-.78 0L.14 1.35a.5.5 0 11.71-.7L6 5.8 11.15.65c.2-.2.5-.2.7 0z"
+                            />
+                        </svg>
+                    </slot>
+                </div>
+            </slot>
+            ${l.b}
+        </div>
+        <div
+            aria-disabled="${e=>e.disabled}"
+            class="listbox"
+            id="listbox"
+            part="listbox"
+            role="listbox"
+            style="--max-height: ${e=>e.maxHeight}px"
+            ?disabled="${e=>e.disabled}"
+            ?hidden="${e=>!e.open}"
+        >
+            <slot
+                ${Object(y.b)({filter:h.a.slottedOptionFilter,flatten:!0,property:"slottedOptions"})}
+            ></slot>
+        </div>
+    </template>
+`;var m=o("4X57"),$=o("wHpb"),O=o("xY0q"),w=o("2i1/"),S=o("oqLQ"),C=o("j9Xn"),j=o("cQsl"),T=o("kL0l"),D=o("QkLF"),E=o("57ob");const F=m.a`
+  :host([appearance="filled"]) {
+    background: ${T.s.var};
+    border-color: transparent;
+  }
+
+  :host([appearance="filled"]:hover:not([disabled])) {
+    background: ${T.o.var};
+    border-color: transparent;
+  }
+
+  :host([appearance="filled"]:${$.a}) {
+    border-color: ${T.z.var};
+  }
+`.withBehaviors(T.o,T.s,T.z),H=m.a`
+    ${Object(O.a)("inline-flex")} :host {
+        --elevation: 14;
+        background: ${T.r.var};
+        border-radius: calc(var(--corner-radius) * 1px);
+        border: calc(var(--outline-width) * 1px) solid ${T.P.var};
+        box-sizing: border-box;
+        color: ${T.G.var};
+        contain: contents;
+        height: calc(${D.a} * 1px);
+        position: relative;
+        user-select: none;
+        min-width: 250px;
+    }
+
+    .listbox {
+        ${j.a}
+        background: ${T.J.var};
+        border-radius: calc(var(--corner-radius) * 1px);
+        box-sizing: border-box;
+        display: inline-flex;
+        flex-direction: column;
+        left: 0;
+        max-height: calc(var(--max-height) - (${D.a} * 1px));
+        padding: calc(var(--design-unit) * 1px) 0;
+        overflow-y: auto;
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+        margin: 1px 0;
+    }
+
+    .listbox[hidden] {
+        display: none;
+    }
+
+    .control {
+        align-items: center;
+        box-sizing: border-box;
+        cursor: pointer;
+        display: flex;
+        font-size: var(--type-ramp-base-font-size);
+        font: inherit;
+        line-height: var(--type-ramp-base-line-height);
+        min-height: calc(${D.a} * 1px);
+        padding: 0 calc(var(--design-unit) * 2.25px);
+        width: 100%;
+    }
+
+    :host(:not([disabled]):hover) {
+        background: ${T.q.var};
+        border-color: ${T.O.var};
+    }
+
+    :host(:focus) {
+        outline: none;
+    }
+
+    :host(:${$.a}) {
+        border-color: ${T.z.var};
+        outline: none;
+        box-shadow:
+            0 0 0 1px inset ${T.z.var};
+    }
+
+    :host([open]:${$.a}) {
+        border-color: ${T.P.var};
+        outline: none;
+        box-shadow: none;
+  }
+
+    :host(:${$.a}) ::slotted([aria-selected="true"][role="option"]:not([disabled])) {
+        box-shadow: 0 0 0 calc(var(--focus-outline-width) * 1px) inset ${T.A.var};
+        border-color: ${T.z.var};
+        background: ${T.b.var};
+        color: ${T.f.var};
+    }
+
+    :host([disabled]) {
+        cursor: ${w.a};
+        opacity: var(--disabled-opacity);
+    }
+
+    :host([disabled]) .control {
+        cursor: ${w.a};
+    }
+
+    :host([disabled]:hover) {
+        background: ${T.w.var};
+        color: ${T.G.var};
+        fill: currentcolor;
+    }
+
+    :host(:not([disabled])) .control:active {
+        background: ${T.p.var};
+        border-color: ${T.M.var};
+    }
+
+    :host([open][position="above"]) .listbox,
+    :host([open][position="below"]) .control {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    :host([open][position="above"]) .control,
+    :host([open][position="below"]) .listbox {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    :host([open][position="above"]) .listbox {
+        border-bottom: 0;
+        bottom: calc(${D.a} * 1px);
+    }
+
+    :host([open][position="below"]) .listbox {
+        border-top: 0;
+        top: calc(${D.a} * 1px);
+    }
+
+    .selected-value {
+        font-family: var(--body-font);
+        flex: 1 1 auto;
+        text-align: start;
+    }
+
+    .indicator {
+        flex: 0 0 auto;
+        margin-inline-start: 1em;
+    }
+
+    slot[name="listbox"] {
+        display: none;
+        width: 100%;
+    }
+
+    :host([open]) slot[name="listbox"] {
+        display: flex;
+        position: absolute;
+        ${j.a}
+    }
+
+    .end {
+        margin-inline-start: auto;
+    }
+
+    .start,
+    .end,
+    .indicator,
+    .select-indicator,
+    ::slotted(svg) {
+        ${""}
+        fill: currentcolor;
+        height: 1em;
+        min-height: calc(var(--design-unit) * 4px);
+        min-width: calc(var(--design-unit) * 4px);
+        width: 1em;
+    }
+
+    ::slotted([role="option"]) {
+        flex: 0 0 auto;
+    }
+`.withBehaviors(Object(E.a)("filled",F),T.b,T.f,T.M,T.O,T.P,Object(S.c)(m.a`
+            :host([disabled]) {
+                border-color: ${C.a.GrayText};
+                background-color: ${C.a.ButtonFace};
+                color: ${C.a.GrayText};
+                opacity: 1;
+                forced-color-adjust: none;
+            }
+
+            :host([disabled]:hover) {
+                background: ${C.a.ButtonFace};
+            }
+
+            :host([disabled]) .control {
+                color: ${C.a.GrayText};
+                border-color: ${C.a.GrayText};
+            }
+
+            :host(:not([disabled]):hover) {
+              background: ${C.a.ButtonFace};
+              border-color: ${C.a.Highlight};
+            }
+
+            :host(:${$.a}) {
+              forced-color-adjust: none;
+              background: ${C.a.ButtonFace};
+              border-color: ${C.a.Highlight};
+              box-shadow: 0 0 0 1px inset ${C.a.Highlight};
+              color: ${C.a.ButtonText};
+              fill: currentcolor;
+            }
+
+            :host([open]) .listbox {
+                background: ${C.a.ButtonFace};
+                border: 1px solid ${C.a.ButtonText};
+            }
+
+            :host(:${$.a}) ::slotted([aria-selected="true"][role="option"]:not([disabled])) {
+                background: ${C.a.Highlight};
+                border-color: ${C.a.ButtonText};
+                box-shadow: 0 0 0 calc(var(--focus-outline-width) * 1px) inset ${C.a.HighlightText};
+                color: ${C.a.HighlightText};
+                fill: currentcolor;
+            }
+
+            ::slotted([role="option"]:not([aria-selected="true"]):not([disabled]):hover) {
+                forced-color-adjust: none;
+                color: ${C.a.ButtonText};
+                background: ${C.a.ButtonFace};
+                border-color: ${C.a.Highlight};
+                box-shadow: none;
+            }
+        `),T.p,T.q,T.r,T.w,T.z,T.A,T.G,T.J,T.P);let L=class extends f{appearanceChanged(e,t){e!==t&&(this.classList.add(t),this.classList.remove(e))}connectedCallback(){super.connectedCallback(),this.appearance||(this.appearance="outline")}};Object(i.a)([Object(a.b)({mode:"fromView"})],L.prototype,"appearance",void 0),L=Object(i.a)([Object(s.b)({name:"fluent-select",template:k,styles:H})],L)},xDi8:function(e,t,o){"use strict";var i,a;o.d(t,"a",(function(){return i})),o.d(t,"b",(function(){return a})),function(e){e.above="above",e.below="below"}(i||(i={})),function(e){e.combobox="combobox"}(a||(a={}))},y5gg:function(e,t,o){"use strict";o.r(t),o.d(t,"ToolingInfo",(function(){return _})),o.d(t,"FeedToggleWC",(function(){return k})),o.d(t,"OptionWCTemplate",(function(){return H})),o.d(t,"DropdownWCTemplate",(function(){return L})),o.d(t,"FeedToggleWCTemplate",(function(){return A})),o.d(t,"FeedToggleWCStyles",(function(){return G}));var i=o("A03o"),a=o("C49W"),s=o("akWC"),n=o("Zn5T");const r=Object(i.a)(n.a.feedToggleWC,"A sample Peregrine Web Component experience",Object.assign(Object.assign(Object.assign({},Object(a.c)("noFeedBackgroundEnabled","Enable transparent feed background")),Object(a.c)("enablePillShapedFeedToggle","Enable pill shaped feed toggle")),Object(s.a)({contentVisible:"Localization for the content Visible",feedVisible:"Localization for the feed Visible",headingsOnly:"Localization for the headings only",peekContent:"Localization for the content partially visible"})));var d=o("D57K"),l=o("4k19"),c=o("s9+9"),h=o("Am8i"),p=o("u5KZ"),u=o("QHbP"),b=o("wZHk"),g=o("L1Sn"),f=o("IqCT"),v=o("oePG"),x=o("d0Z1"),y=o("+Ht2");class k extends f.a{constructor(){super(...arguments),this.handleOnScroll=()=>{const e=scrollY<100&&this.layoutState.imageOfTheDayEnabled&&("headingsonly"===this.layoutState.selectedFeedDisplaySetting||"peek"===this.layoutState.selectedFeedDisplaySetting);e!=this.isFeedTranslucent&&(this.isFeedTranslucent=e)}}experienceConnected(){this.templateReady=!1,this.feedMenuItemsMap={headingsonly:{id:"headingsonly",title:this.strings.headingsOnly,index:0},peek:{id:"peek",title:this.strings.peekContent,index:1},always:{id:"always",title:this.strings.contentVisible,index:2}},this.feedMenuItems=[this.feedMenuItemsMap.headingsonly,this.feedMenuItemsMap.peek,this.feedMenuItemsMap.always],this.pageSettingsConnector=Object(y.c)(c.a.ChromiumPageSettings),this.pageSettingsConnector&&Object(x.c)(c.a.ChromiumPageSettings,e=>{this.layoutState=e,this.toggleChecked="always"===this.layoutState.selectedFeedDisplaySetting;const t=this.feedMenuItemsMap[this.layoutState.selectedFeedDisplaySetting];this.currentSetting=t&&t.id,this.telemetryContext=this.getTelemetryContext(),this.templateReady=!0,this.isFeedTranslucent=e.imageOfTheDayEnabled&&scrollY<100&&("headingsonly"===e.selectedFeedDisplaySetting||"peek"===e.selectedFeedDisplaySetting)})}connectedCallback(){super.connectedCallback(),document.addEventListener("scroll",this.handleOnScroll)}getExperienceType(){return n.a.feedToggleWC}shadowDomPopulated(){const e=this.shadowRoot.getElementById("feedToggle");e&&Object(u.b)(b.a.feedToggle,e)}updateFeedVisibility(e){const t=e&&e.target;if(!t)return;const o=t.selectedIndex;if(isNaN(o))return;const i=this.feedMenuItems[o].id,a=i;if((this.layoutState?this.layoutState.currentLayout:l.e.currentLayout)!==l.i.custom){const e=l.k[this.layoutState.currentLayout],t={currentBackgroundImageType:e.current_background_image_type,currentLayout:l.i.custom,greetingEnabled:e.greeting,imageOfTheDayEnabled:e.current_background_image_type!==l.a.off,quickLinksEnabled:e.quick_links,selectedQuickLinksDisplaySetting:e.selectedQuickLinksDisplaySetting,selectedFeedDisplaySetting:i};this.pageSettingsConnector.updateLayout(t)}else this.pageSettingsConnector.updateFeeds(i);this.fireFeedToggleTelemetry(a,t)}getTelemetryContext(){if(!this.telemetryObject)return null;return{feedDropdownTelemetryTag:this.telemetryObject.addOrUpdateChild({name:"PinMyFeed",behavior:h.b.Customize,type:h.e.Interaction}).getMetadataTag()}}fireFeedToggleTelemetry(e,t){const o=t,i=o&&g.a.get(o);i&&i.contract&&(i.contract.content={headline:e,type:h.c.Settings},g.a.setAttribute(o,i.contract),p.a.sendActionEvent(o))}}Object(d.d)([v.d],k.prototype,"currentSetting",void 0),Object(d.d)([v.d],k.prototype,"isFeedTranslucent",void 0),Object(d.d)([v.d],k.prototype,"templateReady",void 0),Object(d.d)([v.d],k.prototype,"toggleChecked",void 0);var m=o("m1Vi"),$=o("XiV1"),O=o("i56n"),w=o("e8No"),S=o("Sunj"),C=o("pH9t"),j=o("f6oE"),T=o("6BDD"),D=o("UNqU"),E=o("6vBc"),F=o("eUhr");m.b,$.a,O.a,w.a,S.a,C.a,j.a;const H=T.b`
+    <fluent-option
+        value="${e=>e.title}"
+        id="${e=>e.id}"
+        aria-selected="${(e,t)=>t.parent.currentSetting===e.id}"
+        class=${(e,t)=>t.parent.currentSetting===e.id?"selected":"unselected"}
+        ?selected=${(e,t)=>t.parent.currentSetting===e.id}>
+            <span class="feedOptionTitle">${e=>e.title}</span>
+    </fluent-option>
+`,L=T.b`
+    <fluent-select
+        class="feedDropdown ${e=>e.config.enablePillShapedFeedToggle?"pillShape":""}"
+        ${Object(F.b)(e=>e.telemetryContext&&e.telemetryContext.feedDropdownTelemetryTag)}
+        :selectedIndex="${e=>e.currentSetting&&e.feedMenuItemsMap[e.currentSetting]&&e.feedMenuItemsMap[e.currentSetting].index}"
+        @change=${(e,t)=>e.updateFeedVisibility(t.event)}>
+            <span slot="selected-value">${e=>e.currentSetting&&e.feedMenuItemsMap[e.currentSetting]&&e.feedMenuItemsMap[e.currentSetting].title}</span>
+            ${Object(D.c)(e=>e.feedMenuItems,H)}
+    </fluent-select>
+`,A=T.b`
+    <div id="feedToggle" class=${e=>I(e)}>
+        ${Object(E.a)(e=>e.templateReady,L)}
+    </div>
+`,I=e=>{var t,o;let i="";return(null===(t=e.config)||void 0===t?void 0:t.noFeedBackgroundEnabled)&&(i+="noBackground "),e.isFeedTranslucent?i+="feedLight ":i+="feedDark ",(null===(o=e.config)||void 0===o?void 0:o.enableCommonHeaderStyle)&&(i+="feed-header"),i};var B=o("kL0l"),M=o("CzTk"),V=o("4X57");const P=V.a`
+:host {
+    margin-left: auto;
+}
+`,z=V.a`
+:host {
+    margin-right: auto;
+}
+`,G=V.a`
+:host {
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.feedDark {
+    color: white;
+}
+
+.feedDark .feedDropdown {
+    color: ${B.D.var};
+}
+
+.feedDark .feedDropdown:hover {
+    background:  ${B.v.var};
+}
+
+.feedDark .feedDropdown::part(control):active {
+    background:  ${B.v.var};
+}
+
+.feedDropdown {
+    border-radius: 17px;
+    font-size: 14px;
+    font-weight: 600;
+    height: 34px;
+    min-width: 202px;
+    padding: 2px 0;
+}
+
+.feedDropdown::part(selected-value) {
+   margin-bottom: 4px;
+}
+
+.feed-header .feedDropdown {
+    font-weight: 400;
+}
+
+.feed-header.feedDark .feedDropdown {
+    color: ${B.G.var};
+}
+
+.feedLight .feedDropdown {
+    background: transparent;
+    color: white;
+}
+ 
+.feedLight .feedDropdown:hover {
+    background: #404040
+}
+
+.feedLight .feedDropdown::part(control):active {
+    background: #404040
+}
+
+.feedOptionTitle {
+    font-weight: 600;
+}
+
+fluent-option.selected {
+    background: ${B.l.var};
+    color: ${B.G.var};
+}
+
+fluent-option.unselected {
+    background: unset;
+    color: ${B.G.var};
+}
+
+fluent-option:hover {
+    background: ${B.o.var};
+    color: ${B.G.var};
+}
+
+.noBackground.feedDark .feedDropdown,
+.noBackground.feedLight .feedDropdown {
+    background: transparent;
+    color: white;
+}
+
+.noBackground.feedDark .feedDropdown:hover,
+.noBackground.feedLight .feedDropdown:hover {
+    background: #404040
+}
+
+.pillShape.feedDropdown {
+    height: 32px;
+    padding: 0px 3px;
+    min-width: 202px;
+    border-radius: 16px;
+    transition: border-radius 0.2s ease-in-out;
+    vertical-align: middle;
+}
+
+.pillShape.feedDropdown::part(control) {
+    margin: -1px 0px;
+}
+
+.pillShape.feedDropdown::part(selected-value) {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.pillShape.feedDropdown::part(control):active {
+    background: transparent!important;
+}
+
+.pillShape.feedDropdown::part(listbox) {
+    border-radius: 4px;
+}
+
+.pillShape.feedDropdown > fluent-option {
+    border-radius: 4px;
+}
+
+.pillShape.feedDropdown::part(indicator),
+.pillShape.feedDropdown::part(select-indicator) {
+    height: 12px;
+    width: 12px;
+    line-height: 12px;
+    min-height: 12px;
+    min-width: 12px;
+}
+
+`.withBehaviors(new M.a(P,z),B.z,B.l,B.G,B.D,B.v,B.w),_={experienceConfigSchema:r}}}]);
