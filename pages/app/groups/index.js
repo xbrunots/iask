@@ -23,9 +23,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import React from "react";
 import QRCode from "qrcode.react";
-import SideBarPrincipal from "../components/SideBarPrincipal";
-import SideBarPerfil from "../components/SideBarPerfil";
-import GruposContainer from "../components/GruposContainer";
+import SideBarPrincipal from "../../../core/components/SideBarPrincipal";
+import SideBarPerfil from "../../../core/components/SideBarPerfil";
+import GruposContainer from "../../../core/components/GruposContainer";
 
 import ReactDOM from "react-dom";
 import $ from "jquery";

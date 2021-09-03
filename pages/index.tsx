@@ -12,7 +12,6 @@ import {
 import { useRouter } from "next/router";
 
 import React from "react";
-import Divider from "../components/Divider";
 import Input from "../components/Input";
 import ReactDOM from "react-dom";
 import $ from "jquery";
