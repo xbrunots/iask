@@ -80,6 +80,7 @@ const TagsCliente: React.FC<ITagsCliente> = (props: ITagsCliente) => {
         pontos
       </Tag>
       <Tag
+        className={"tag_points default"}
         color={"#a5a5a5"}
         style={{
           marginRight: "8px",
@@ -92,6 +93,7 @@ const TagsCliente: React.FC<ITagsCliente> = (props: ITagsCliente) => {
         há 1 ano
       </Tag>
       <Tag
+        className={"tag_points default"}
         color={"#a5a5a5"}
         style={{
           marginRight: "8px",
@@ -109,6 +111,7 @@ const TagsCliente: React.FC<ITagsCliente> = (props: ITagsCliente) => {
         Fã de Nike
       </Tag>{" "}
       <Tag
+        className={"tag_points default"}
         textAlign={"center"}
         color={"#a5a5a5"}
         style={{
@@ -127,6 +130,7 @@ const TagsCliente: React.FC<ITagsCliente> = (props: ITagsCliente) => {
         Aniversariante
       </Tag>{" "}
       <Tag
+        className={"tag_points default"}
         color={"#a5a5a5"}
         style={{
           marginRight: "8px",

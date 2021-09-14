@@ -164,14 +164,14 @@ const RegistroAtendimentoTwo: React.FC<IRegistroAtendimentoTwo> = (
             .filter(
               (clienteItemRow) =>
                 safeString(clienteItemRow.name).includes(query) ||
-                safeString(clienteItemRow.whatsapp).includes(query)
+                safeString(clienteItemRow.phone.toString()).includes(query)
             )
             .map((clientItem) => (
               <ClienteItem
                 json={clientItem}
                 name={clientItem.name}
                 pic={clientItem.picture}
-                phone={clientItem.whatsapp}
+                phone={clientItem.phone.toString()}
                 click={(json) => alert(json)}
               />
             ))

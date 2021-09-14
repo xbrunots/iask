@@ -56,11 +56,13 @@ import CampanhaCard from "./CampanhaCard";
 import ClienteItem from "./ClienteItem";
 import setup from "../../config/setup.json";
 import SideBarClientes from "./SideBarClientes";
+import AddCliente from "./AddCliente";
 
 const ClientesContainer: React.FC = () => {
   const [clients, setClients] = useState([]);
   const [query, setQuery] = useState("");
   const [cliente, setCliente] = useState(null);
+  const [addCliente, setAddCliente] = useState(null);
   const handleChange = (event) => setQuery(event.target.value);
 
   const getClients = async () => {
@@ -80,87 +82,96 @@ const ClientesContainer: React.FC = () => {
   }
 
   return (
-    <List width={"100%"} paddingBottom={"40px"} paddingTop={"100px"}>
+    <List>
+      <Flex
+        padding={"2px"}
+        marginTop={"32px"}
+        marginBottom={"16px"}
+        borderRadius={"30px"}
+        boxShadow={"0 0 2px #0000005e"}
+        style={{ backgroundColor: "#ececec" }}
+      >
+        <FontAwesomeIcon
+          icon={faSearch}
+          style={{
+            marginTop: "14px",
+            marginLeft: "15px",
+            fontSize: "14px",
+            color: "#8a8a8a",
+          }}
+        />
+        <Input
+          onChange={handleChange}
+          backgroundColor={"#ececec00"}
+          className={"search_input"}
+          placeholder="digite para buscar cliente..."
+        />
+      </Flex>
+
       <ListItem
         position={"fixed"}
         width={"calc(100% - 400px)"}
         left={"270px"}
         backgroundColor={"#FFFFFF"}
         top={"0px"}
-        zIndex={-1}
+        zIndex={88888}
       >
-        <Text fontWeight={"bold"} margin={4} marginLeft={0}>
+        <Text
+          fontWeight={"400"}
+          fontSize={"24px"}
+          margin={"8px"}
+          marginLeft={"10px"}
+        >
           Clientes
-          <FontAwesomeIcon
-            style={{
-              fontSize: 16,
-              color: "#c5c4c4",
-              marginLeft: "8px",
-            }}
-            icon={faUser}
-          />
         </Text>
 
         <Button
+          className={"button_no_fill"}
           position={"fixed"}
           right={"124px"}
           backgroundColor={"#FFFFFF"}
-          color={"#3f51b5"}
-          top={"12px"}
+          color={"#000000"}
+          top={"8px"}
+          fontWeight={"bolder"}
+          onClick={() => setAddCliente(true)}
           fontSize={"14px"}
         >
-          <i style={{ margin: "4px" }} className="fab fa-whatsapp"></i>Atualizar
-          contatos com o WhatsApp
+          <i style={{ marginRight: "4px" }} className="fas fa-plus"></i>
+          NOVO CLIENTE
         </Button>
-        <Flex
-          borderRadius={"30px"}
-          boxShadow={"0 0 2px #0000005e"}
-          padding={"2px"}
-          style={{ backgroundColor: "#ececec" }}
-        >
-          <FontAwesomeIcon
-            icon={faSearch}
-            style={{
-              marginTop: "14px",
-              marginLeft: "15px",
-              fontSize: "14px",
-              color: "#8a8a8a",
-            }}
-          />
-          <Input
-            onChange={handleChange}
-            backgroundColor={"#ececec00"}
-            className={"search_input"}
-            placeholder="digite para buscar cliente..."
-          />
-        </Flex>
       </ListItem>
-      {clients
-        .filter(
-          (clienteItemRow) =>
-            safeString(clienteItemRow.name).includes(query) ||
-            safeString(clienteItemRow.whatsapp).includes(query)
-        )
-        .map((clientItem) => (
-          <ClienteItem
-            json={clientItem}
-            name={clientItem.name}
-            pic={clientItem.picture}
-            phone={clientItem.whatsapp}
-            click={(json) => setCliente(json)}
-          />
-        ))}
+      <List width={"100%"} paddingBottom={"40px"}>
+        {clients
+          .filter(
+            (clienteItemRow) =>
+              safeString(clienteItemRow.name).toLowerCase().includes(query) ||
+              safeString(clienteItemRow.phone.toString()).includes(query)
+          )
+          .map((clientItem) => (
+            <ClienteItem
+              json={clientItem}
+              name={clientItem.name}
+              pic={clientItem.picture}
+              phone={clientItem.phone.toString()}
+              click={(json) => setCliente(json)}
+            />
+          ))}
 
-      {/*clients.map((clientItem, index) => (
+        {/*clients.map((clientItem, index) => (
         <ClienteItem name={clientItem.name} phone={clientItem.id.user} />
       ))*/}
-      <SideBarClientes
-        json={cliente}
-        onClose={() => setCliente(null)}
-        pic={
-          "https://cdn.12min.com/books/books_background/68_steve_jobs.site_thumb.jpg"
-        }
-      />
+        <SideBarClientes
+          json={cliente}
+          onClose={() => setCliente(null)}
+          pic={
+            "https://cdn.12min.com/books/books_background/68_steve_jobs.site_thumb.jpg"
+          }
+        />
+      </List>
+
+      {addCliente == true ? (
+        <AddCliente close={() => setAddCliente(null)} />
+      ) : null}
     </List>
   );
 };

@@ -1,11 +1,21 @@
- const mysql = require('../../../../config/mysql');
+require('dotenv/config');
+import {
+    createClient
+} from '@supabase/supabase-js'
 
- var conn = mysql.sql();
 
- const customers = async () => {
-     var data = await conn.table('customers').order('picture').select();
-     console.log(data);
-     return data;
- }
+export async function custumers() {
+    const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
- exports.custumers = customers;
+    let {
+        data: profiles,
+        error
+    } = await supabase
+        .from('contacts');
+
+    console.log(profiles);
+
+    exports.custumers = profiles;
+
+    return profiles;
+}

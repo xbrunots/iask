@@ -52,7 +52,7 @@ const FormMensagem: React.FC<IFormMensagem> = (props: IFormMensagem) => {
       fetch(
         setup.API_HOST +
           "/api/message/" +
-          props.json["whatsapp"] +
+          props.json["phone"] +
           "?text=" +
           query
       )
@@ -126,10 +126,9 @@ const FormMensagem: React.FC<IFormMensagem> = (props: IFormMensagem) => {
                 : props.json["name"]}
             </Text>
             <Text marginTop={"-5px"} fontSize={"16px"} color={"#929292"}>
-              {props.json["whatsapp"] == null ||
-              props.json["whatsapp"] == undefined
+              {props.json["phone"] == null || props.json["phone"] == undefined
                 ? "Nenhum numero encontrado"
-                : props.json["whatsapp"].replace(
+                : props.json["phone"].replace(
                     /(\d{2})(\d{2})(\d{5})(\d{2})/,
                     "+$1 ($2) $3-$4"
                   )}

@@ -123,11 +123,7 @@ const RegistroAtendimento: React.FC<IRegistroAtendimento> = (
               cursor={"pointer"}
               padding={"24px"}
             >
-              <FontAwesomeIcon
-                icon={faArrowLeft}
-                size={"lg"}
-                color={"#141414"}
-              />
+              <i className="fas fa-chevron-down"></i>
             </Flex>
             <Text margin={"8px"} style={{ fontSize: "20px" }}>
               Selecione o cliente (1/3)
@@ -164,14 +160,14 @@ const RegistroAtendimento: React.FC<IRegistroAtendimento> = (
             .filter(
               (clienteItemRow) =>
                 safeString(clienteItemRow.name).includes(query) ||
-                safeString(clienteItemRow.whatsapp).includes(query)
+                safeString(clienteItemRow.phone.toString()).includes(query)
             )
             .map((clientItem) => (
               <ClienteItem
                 json={clientItem}
                 name={clientItem.name}
                 pic={clientItem.picture}
-                phone={clientItem.whatsapp}
+                phone={clientItem.phone.toString()}
                 click={(json) => alert(json)}
               />
             ))

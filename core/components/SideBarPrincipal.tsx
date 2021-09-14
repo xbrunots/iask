@@ -96,6 +96,7 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
       justifyContent="top"
       alignItems="center"
       alignContent="center"
+      zIndex={999999999}
     >
       <Flex justifyContent="top" alignItems="center" alignContent="center">
         <Image

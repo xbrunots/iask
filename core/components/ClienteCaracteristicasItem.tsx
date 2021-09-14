@@ -62,6 +62,7 @@ const ClienteCaracteristicasItem: React.FC<IClienteCaracteristicasItem> = (
     <ListItem marginTop={"8px"}>
       <Flex>
         <Text
+          className={"key"}
           fontSize={"18px"}
           color={"#495057"}
           marginLeft={"16px"}
@@ -71,6 +72,7 @@ const ClienteCaracteristicasItem: React.FC<IClienteCaracteristicasItem> = (
           {props.keyName}
         </Text>
         <Text
+          className={"value"}
           width={"50%"}
           textAlign={"start"}
           fontSize={"18px"}

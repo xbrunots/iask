@@ -1,4 +1,9 @@
 export default async function handler(req, res) {
   const sql = require('./controller/profile_controller');
-  res.status(200).json(await sql.custumers())
+  var lst = await sql.custumers();
+
+
+  var lst2 = lst.concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst);
+
+  return res.status(200).json(lst2)
 }

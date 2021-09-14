@@ -103,6 +103,7 @@ const GruposContainer: React.FC = () => {
         </Text>
 
         <Button
+          className={"button_get_whatsapp_contacts"}
           position={"fixed"}
           right={"124px"}
           backgroundColor={"#FFFFFF"}

@@ -83,7 +83,7 @@ const GroupClienteItem: React.FC<IGroupClienteItem> = (
   return (
     <Stat
       onClick={() => handleClickMenu()}
-      className={"indicator_clients_chat client_item" + props.phone}
+      className={"indicator_clients_chat client_item" + props.phone.toString()}
     >
       <Flex width={"100%"}>
         {props.json["isGroup"] != true ? (
@@ -170,16 +170,17 @@ const GroupClienteItem: React.FC<IGroupClienteItem> = (
             >
               LISTA DE TRANSMIÇÃO
             </Tag>
-          ) : props.phone == null || props.phone == undefined ? (
+          ) : props.phone.toString() == null ||
+            props.phone.toString() == undefined ? (
             ""
           ) : (
             <StatHelpText marginBottom={"0px"} marginLeft={"8px"}>
-              {props.phone == null || props.phone == undefined
+              {props.phone.toString() == null ||
+              props.phone.toString() == undefined
                 ? ""
-                : props.phone.replace(
-                    /(\d{2})(\d{2})(\d{5})(\d{2})/,
-                    "+$1 ($2) $3-$4"
-                  )}
+                : props.phone
+                    .toString()
+                    .replace(/(\d{2})(\d{2})(\d{5})(\d{2})/, "+$1 ($2) $3-$4")}
             </StatHelpText>
           )}
 

@@ -1,11 +1,15 @@
 const mysql = require('@hyoga/mysql').default;
+require('dotenv/config');
+
+console.log("PROCESS ENV")
+console.log(process.env.APP_NAME)
 
 const inst = () => new mysql({
-    host: 'remotemysql.com',
+    host: process.env.PLANETSCALE_DB_HOST,
     port: 3306,
-    user: 'Wewr5hhx2L',
-    password: 'GvgWl1bzEQ',
-    database: 'Wewr5hhx2L',
+    user: process.env.PLANETSCALE_DB_USERNAME,
+    password: process.env.PLANETSCALE_DB_PASSWORD,
+    database: process.env.PLANETSCALE_DB,
     charset: 'utf8mb4'
 });
 
