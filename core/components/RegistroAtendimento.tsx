@@ -51,7 +51,7 @@ const RegistroAtendimento: React.FC<IRegistroAtendimento> = (
   const handleChange = (event) => setQuery(event.target.value);
   const getClients = async () => {
     console.log(setup.API_HOST + "/api/profile");
-    const res = await fetch(setup.API_HOST + "/api/profile");
+    const res = await fetch("/api/profile");
     const json = await res.json();
     console.log(json);
     setClients(json);

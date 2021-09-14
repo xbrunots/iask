@@ -158,8 +158,8 @@ const AddCliente: React.FC<IAddCliente> = (props: IAddCliente) => {
   };
 
   const getClients = async () => {
-    console.log(setup.API_HOST + "/api/profile");
-    const res = await fetch(setup.API_HOST + "/api/profile");
+    console.log("/api/profile");
+    const res = await fetch("/api/profile");
     const json = await res.json();
     console.log(json);
     setClients(json);

@@ -66,9 +66,9 @@ const GruposContainer: React.FC = () => {
   const handleChange = (event) => setQuery(event.target.value);
 
   const getClients = async () => {
-    console.log(setup.API_HOST + "/profile");
+    console.log("/profile");
     //const res = await fetch(setup.API_HOST + "/api/profile");
-    const res = await fetch(setup.API_HOST + "/api/product");
+    const res = await fetch("/api/product");
     const json = await res.json();
     console.log(json);
     setGrupo(json);
