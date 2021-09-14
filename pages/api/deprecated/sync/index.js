@@ -1,7 +1,7 @@
 var error = {}
 var success = {}
-import whatsApp from '../../../core/core'
-import sessionMiddleware from '../../../middlewares/Sessions'
+import whatsApp from '../../../../core/core'
+import sessionMiddleware from '../../../../middlewares/Sessions'
 const controller = require('./controller/sync_controller');
 
 
