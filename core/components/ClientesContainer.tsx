@@ -66,8 +66,7 @@ const ClientesContainer: React.FC = () => {
   const handleChange = (event) => setQuery(event.target.value);
 
   const getClients = async () => {
-    console.log(setup.API_HOST + "/api/profile");
-    const res = await fetch(setup.API_HOST + "/api/profile");
+    const res = await fetch("/api/clients");
     const json = await res.json();
     console.log(json);
     setClients(json);
