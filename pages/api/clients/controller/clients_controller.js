@@ -22,10 +22,8 @@ export async function custumers() {
     if (error == null && error == undefined) {
         var lst = data;
 
-        var lst2 = lst.concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst).concat(lst);
-
         response.statusCode = 200;
-        response.data = lst2;
+        response.data = lst;
 
         return response;
     } else {
