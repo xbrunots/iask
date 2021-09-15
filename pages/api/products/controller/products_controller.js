@@ -1,11 +1,12 @@
-require('dotenv/config');
+import setup from "../../../../config/setup.json";
+
 import {
     createClient
 } from '@supabase/supabase-js'
 
 
 export async function products() {
-    const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+    const supabase = createClient(setup.SUPABASE_URL, setup.SUPABASE_KEY);
 
     let {
         data,
