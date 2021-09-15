@@ -1,15 +1,11 @@
 require('dotenv/config');
 import {
-    createClient
+  createClient
 } from '@supabase/supabase-js'
 
+import setup from "./setup.json";
 
-const supabase = () => createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+const supabase = () => createClient(setup.SUPABASE_URL, setup.SUPABASE_KEY);
 
-/*let { user, error } = await supabase.auth.signIn({
-    email: 'xbrunots@email.com',
-    password: 'UilIBOKGfOQaAGTCffSh'
-  })
-*/
 
 exports.supabase = supabase;
