@@ -89,12 +89,10 @@ const ClienteItem: React.FC<IClienteItem> = (props: IClienteItem) => {
       >
         <Avatar
           marginTop={"8px"}
-          color={"#FFFFFF"}
-          src={props.pic}
+          src={props.json["picture"]}
           height={"40px"}
           width={"40px"}
           fontSize={14}
-          textShadow={"0px 0px 2px #00000075"}
           name={
             props.name == null ||
             props.name == undefined ||

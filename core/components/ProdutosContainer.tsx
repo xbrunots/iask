@@ -59,16 +59,22 @@ import ProdutosItem from "./ProdutosItem";
 import setup from "../../config/setup.json";
 import SideBarGrupo from "./SideBarGrupo";
 
-const GruposContainer: React.FC = () => {
+interface IProdutosContainer {
+  isContainer: boolean;
+  clickItem: Function;
+}
+
+const ProdutosContainer: React.FC<IProdutosContainer> = (
+  props: IProdutosContainer
+) => {
   const [openGrupo, setOpenGrupo] = useState(null);
   const [query, setQuery] = useState("");
   const [grupo, setGrupo] = useState([]);
   const handleChange = (event) => setQuery(event.target.value);
+  const [addProducts, setAddProducts] = useState(null);
 
   const getClients = async () => {
-    console.log("/profile");
-    //const res = await fetch(setup.API_HOST + "/api/profile");
-    const res = await fetch("/api/product");
+    const res = await fetch("/api/products");
     const json = await res.json();
     console.log(json);
     setGrupo(json);
@@ -83,66 +89,72 @@ const GruposContainer: React.FC = () => {
   }
 
   return (
-    <List width={"100%"} paddingBottom={"40px"} paddingTop={"100px"}>
-      <ListItem
-        position={"fixed"}
-        width={"calc(100% - 400px)"}
-        left={"270px"}
-        backgroundColor={"#FFFFFF"}
-        top={"0px"}
-        zIndex={-1}
+    <List>
+      <Flex
+        padding={"2px"}
+        marginBottom={"16px"}
+        borderRadius={"30px"}
+        boxShadow={"0 0 2px #0000005e"}
+        style={{ backgroundColor: "#ececec" }}
       >
-        <Text fontWeight={"bold"} margin={4} marginLeft={0}>
-          Produtos
-          <FontAwesomeIcon
-            style={{
-              fontSize: 16,
-              color: "#c5c4c4",
-              marginLeft: "8px",
-            }}
-            icon={faBoxes}
-          />
-        </Text>
-
-        <Button
-          className={"button_get_whatsapp_contacts"}
+        <FontAwesomeIcon
+          icon={faSearch}
+          style={{
+            marginTop: "14px",
+            marginLeft: "15px",
+            fontSize: "14px",
+            color: "#8a8a8a",
+          }}
+        />
+        <Input
+          onChange={handleChange}
+          backgroundColor={"#ececec00"}
+          className={"search_input"}
+          placeholder="digite para filtrar..."
+        />
+      </Flex>
+      {props.isContainer == true ? null : (
+        <ListItem
           position={"fixed"}
-          right={"124px"}
+          width={"calc(100% - 400px)"}
+          left={"270px"}
           backgroundColor={"#FFFFFF"}
-          color={"#3f51b5"}
-          top={"12px"}
-          fontSize={"14px"}
+          top={"0px"}
+          zIndex={88888}
         >
-          <i style={{ margin: "4px" }} className="fab fa-whatsapp"></i>Atualizar
-          contatos com o WhatsApp
-        </Button>
-        <Flex
-          borderRadius={"30px"}
-          boxShadow={"0 0 2px #0000005e"}
-          padding={"2px"}
-          style={{ backgroundColor: "#ececec" }}
-        >
-          <FontAwesomeIcon
-            icon={faSearch}
-            style={{
-              marginTop: "14px",
-              marginLeft: "15px",
-              fontSize: "14px",
-              color: "#8a8a8a",
-            }}
-          />
-          <Input
-            onChange={handleChange}
-            backgroundColor={"#ececec00"}
-            className={"search_input"}
-            placeholder="digite para buscar cliente..."
-          />
-        </Flex>
-      </ListItem>
+          <Text
+            fontWeight={"400"}
+            fontSize={"24px"}
+            margin={"8px"}
+            marginLeft={"10px"}
+          >
+            Produtos
+          </Text>
+
+          <Button
+            className={"button_no_fill"}
+            position={"fixed"}
+            right={"124px"}
+            backgroundColor={"#FFFFFF"}
+            color={"#000000"}
+            top={"8px"}
+            fontWeight={"bolder"}
+            onClick={() => setAddProducts(true)}
+            fontSize={"14px"}
+          >
+            <i style={{ marginRight: "4px" }} className="fas fa-plus"></i>
+            NOVO PRODUTO
+          </Button>
+        </ListItem>
+      )}{" "}
       <Grid
         padding={"16px"}
         marginTop={"24px"}
-        className={"custom_grid_product"}
+        className={
+          props.isContainer
+            ? "custom_grid_product_popup"
+            : "custom_grid_product"
+        }
       >
         {grupo
           .filter(
@@ -156,7 +168,7 @@ const GruposContainer: React.FC = () => {
               name={clientItem.title}
               pic={clientItem.picture}
               description={clientItem.description}
-              click={(json) => alert(json)}
+              click={(json) => props.clickItem(json)}
             />
           ))}
       </Grid>
@@ -174,4 +186,4 @@ const GruposContainer: React.FC = () => {
   );
 };
 
-export default GruposContainer;
+export default ProdutosContainer;

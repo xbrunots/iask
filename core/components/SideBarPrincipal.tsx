@@ -83,7 +83,18 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
 
   useEffect(() => {
     applyProps(props.selectedID.replace("#", ""));
+
+    hideMenus.forEach((f) => $(f).css("display", "none"));
   });
+
+  var hideMenus = [
+    "#btn_menu_configurar",
+    "#btn_menu_grupos",
+    "#btn_menu_bot",
+    "#btn_menu_canais",
+    "#btn_menu_campanha",
+    "#btn_menu_tickets",
+  ];
 
   return (
     <Stack
@@ -337,7 +348,11 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
         <Text marginLeft={2}>Tickets</Text>
       </Button>
       {atendimento == true ? (
-        <RegistroAtendimento close={() => setAtendimento(false)} />
+        <RegistroAtendimento
+          startStep={1}
+          cliente={null}
+          close={() => setAtendimento(false)}
+        />
       ) : (
         <Text />
       )}

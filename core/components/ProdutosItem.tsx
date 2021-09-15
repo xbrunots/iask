@@ -79,23 +79,46 @@ const ClienteItem: React.FC<IClienteItem> = (props: IClienteItem) => {
   return (
     <Stat
       onClick={() => handleClickMenu()}
-      className={"indicator_clients_chat "}
+      className={"indicator_product_chat "}
     >
       <Flex width={"100%"}>
-        <Image
-          marginTop={"8px"}
-          color={"#FFFFFF"}
-          src={props.pic}
-          height={"180px"}
-          width={"200px"}
-          fontSize={14}
-          textShadow={"0px 0px 2px #00000075"}
-        />
-        <List className={"client_name"}>
-          <StatLabel fontSize={"16px"} marginLeft={3} marginTop={"4px"}>
+        <List className={"product_list_item"}>
+          <Image
+            className={"product_image"}
+            color={"#FFFFFF"}
+            src={props.pic}
+            fontSize={14}
+            textShadow={"0px 0px 2px #00000075"}
+          />
+          <Flex className={"parent_prod_tag"}>
+            {props.json["tags"]
+              .filter((p) => p != null && p != undefined)
+              .map((item) => (
+                <Text className={"prod_tag"}>
+                  {" "}
+                  {safeString(item).toUpperCase()}
+                </Text>
+              ))}
+          </Flex>
+          <Text className={"product_price"}>
+            {props.json["price"].toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })}{" "}
+          </Text>
+          <StatLabel
+            className={"product_title"}
+            fontSize={"16px"}
+            marginLeft={3}
+            marginTop={"4px"}
+          >
             {props.name.toString()}
           </StatLabel>
-          <StatHelpText marginBottom={"0px"} marginLeft={"8px"}>
+          <StatHelpText
+            className={"product_desc"}
+            marginBottom={"0px"}
+            marginLeft={"8px"}
+          >
             {props.description.toString()}
           </StatHelpText>
 
@@ -104,6 +127,10 @@ const ClienteItem: React.FC<IClienteItem> = (props: IClienteItem) => {
       </Flex>
     </Stat>
   );
+
+  function safeString(str) {
+    return str == null || str == undefined ? "" : str;
+  }
 };
 
 export default ClienteItem;
