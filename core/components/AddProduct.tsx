@@ -46,12 +46,12 @@ import ClientesContainer from "./ClientesContainer";
 import ClienteItem from "./ClienteItem";
 import AlertError from "./AlertError";
 import axios from "axios";
-import api from '../../core/service/api'
+import api from '../service/api'
 
-interface IAddCliente {
+interface IAddProduct {
   close: Function;
 }
-const AddCliente: React.FC<IAddCliente> = (props: IAddCliente) => {
+const AddProduct: React.FC<IAddProduct> = (props: IAddProduct) => {
   function onClose() {
     props.close();
   }
@@ -403,4 +403,4 @@ const AddCliente: React.FC<IAddCliente> = (props: IAddCliente) => {
   }
 };
 
-export default AddCliente;
+export default AddProduct;

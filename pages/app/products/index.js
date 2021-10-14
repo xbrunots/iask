@@ -18,6 +18,7 @@ import {
   Divider,
 } from "@chakra-ui/core";
 import { useRouter } from "next/router";
+import api from '../../../core/service/api'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -26,6 +27,7 @@ import QRCode from "qrcode.react";
 import SideBarPrincipal from "../../../core/components/SideBarPrincipal";
 import SideBarPerfil from "../../../core/components/SideBarPerfil";
 import ProdutosContainer from "../../../core/components/ProdutosContainer";
+import { useEffect, useState } from "react";
 
 import ReactDOM from "react-dom";
 import $ from "jquery";
@@ -47,19 +49,50 @@ import {
   faUserTag,
 } from "@fortawesome/free-solid-svg-icons";
 
-Home.getInitialProps = async (ctx) => {
-  // const res = await fetch("../api/start");
-  // const json = await res.json();
-  return {
-    code: "json.code",
-  };
-};
 
 export default function Home({ code }) {
   const router = useRouter();
-  const [show, setShow] = React.useState(false);
+  const [products, setProducts] = React.useState(null);
   const [qrcode, setQrcode] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
   const axios = require("axios").default;
+
+  function getUser() {
+    var user = localStorage.getItem('USER');
+    return JSON.parse(user);
+  }
+
+  const getData = async () => {
+    if (!loading) {
+      setLoading(true);
+      setError(null);
+      try {
+
+        console.log(getUser());
+        api.defaults.headers.common = {
+          'token': localStorage.getItem('TOKEN')
+        };
+        const response = await api.get("/api/transform/products/store_uid='" + getUser()['store'] + "'");
+
+        console.log(response.data);
+
+        setProducts(response.data);
+
+        setLoading(false);
+
+      } catch (err) {
+        setLoading(false);
+        console.log(err);
+        setError("Falha ao tentar carregar produtos...");
+      }
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
 
   return (
     <Flex
@@ -84,11 +117,12 @@ export default function Home({ code }) {
         alignItems="top"
         minW={"calc(100% - 240px)"}
         minH="100%"
+        paddingTop={"54px"}
         backgroundColor={""}
       >
         <SideBarPerfil />
         <ListItem height={80} width={"calc(100% - 240px)"}>
-          <ProdutosContainer />
+          {products != null ? <ProdutosContainer data={products} clickItem={(json) => alert(json)} /> : null}
         </ListItem>{" "}
       </List>{" "}
       <SideBarPrincipal selectedID={"#btn_menu_produtos"} />{" "}

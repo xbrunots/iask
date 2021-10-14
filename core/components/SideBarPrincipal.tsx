@@ -83,18 +83,18 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
 
   useEffect(() => {
     applyProps(props.selectedID.replace("#", ""));
-
-    hideMenus.forEach((f) => $(f).css("display", "none"));
+    showItens.forEach((f) => {
+      $(f).css("display", "flex");
+      $(f).removeClass("hide_sidebar_button");
+    })
   });
 
-  var hideMenus = [
-    "#btn_menu_configurar",
-    "#btn_menu_grupos",
-    "#btn_menu_bot",
-    "#btn_menu_canais",
-    "#btn_menu_campanha",
-    "#btn_menu_tickets",
-  ];
+  var showItens = [
+    "#btn_menu_clientes",
+    "#btn_menu_dashboard",
+    "#btn_menu_produtos",
+  ]
+
 
   return (
     <Stack
@@ -147,6 +147,7 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
       </Button>{" "}
       <Button
         id="btn_menu_dashboard"
+        className={"hide_sidebar_button"}
         border={null}
         backgroundColor={"#eeeeee"}
         fontWeight={"normal"}
@@ -171,6 +172,7 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
         border={null}
         id="btn_menu_configurar"
         paddingLeft={4}
+        className={"hide_sidebar_button"}
         backgroundColor={"#eeeeee"}
         fontWeight={"normal"}
         borderRadius={"50px"}
@@ -198,6 +200,7 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
         fontWeight={"normal"}
         borderRadius={"50px"}
         justifyContent={"flex-start"}
+        className={"hide_sidebar_button"}
         fontSize={14}
         alignSelf={"left"}
         onClick={(e) => handleClickMenu("/app/customers")}
@@ -220,6 +223,7 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
         backgroundColor={"#eeeeee"}
         fontWeight={"normal"}
         borderRadius={"50px"}
+        className={"hide_sidebar_button"}
         justifyContent={"flex-start"}
         fontSize={14}
         alignSelf={"left"}
@@ -242,6 +246,7 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
         backgroundColor={"#eeeeee"}
         paddingLeft={4}
         fontWeight={"normal"}
+        className={"hide_sidebar_button"}
         borderRadius={"50px"}
         onClick={(e) => handleClickMenu("/app/groups")}
         fontSize={14}
@@ -265,6 +270,7 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
         backgroundColor={"#eeeeee"}
         fontWeight={"normal"}
         fontSize={14}
+        className={"hide_sidebar_button"}
         paddingLeft={4}
         justifyContent={"flex-start"}
         borderRadius={"50px"}
@@ -287,6 +293,7 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
         backgroundColor={"#eeeeee"}
         paddingLeft={4}
         fontWeight={"normal"}
+        className={"hide_sidebar_button"}
         borderRadius={"50px"}
         fontSize={14}
         justifyContent={"flex-start"}
@@ -309,6 +316,7 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
         backgroundColor={"#eeeeee"}
         paddingLeft={4}
         fontWeight={"normal"}
+        className={"hide_sidebar_button"}
         borderRadius={"50px"}
         fontSize={14}
         justifyContent={"flex-start"}
@@ -331,6 +339,7 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
         backgroundColor={"#eeeeee"}
         fontWeight={"normal"}
         fontSize={14}
+        className={"hide_sidebar_button"}
         paddingLeft={4}
         justifyContent={"flex-start"}
         borderRadius={"50px"}

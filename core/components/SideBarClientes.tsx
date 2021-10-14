@@ -70,9 +70,6 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
             <ListItem width={"100%"} zIndex={1}>
               <Flex className={"clientes_detalhes_flex"} zIndex={1}>
                 <Avatar
-                  src={
-                    prop.json["picture"] == null ? null : prop.json["picture"]
-                  }
                   height={"80px"}
                   name={prop.json["name"]}
                   width={"80px"}
@@ -86,9 +83,9 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
                       fontWeight={"100"}
                     >
                       {prop.json["name"] == null ||
-                      prop.json["name"] == undefined ||
-                      prop.json["name"] == "null" ||
-                      prop.json["name"] == "undefined"
+                        prop.json["name"] == undefined ||
+                        prop.json["name"] == "null" ||
+                        prop.json["name"] == "undefined"
                         ? "Desconhecido"
                         : prop.json["name"]}
                     </Text>
@@ -98,19 +95,19 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
                       fontSize={"20px"}
                       color={"#a5a5a5"}
                       marginLeft={"12px"}
-                      fontWeight={"100"}
+                      fontWeight={"400"}
                     >
                       {prop.json["phone"] == null ||
-                      prop.json["phone"] == undefined ||
-                      prop.json["phone"] == "null" ||
-                      prop.json["phone"] == "undefined"
+                        prop.json["phone"] == undefined ||
+                        prop.json["phone"] == "null" ||
+                        prop.json["phone"] == "undefined"
                         ? ""
                         : prop.json["phone"]
-                            .toString()
-                            .replace(
-                              /(\d{2})(\d{2})(\d{5})(\d{2})/,
-                              "+$1 ($2) $3-$4"
-                            )}
+                          .toString()
+                          .replace(
+                            /(\d{2})(\d{2})(\d{5})(\d{2})/,
+                            "+$1 ($2) $3-$4"
+                          )}
                     </Text>
                   </ListItem>
 

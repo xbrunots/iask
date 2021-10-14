@@ -53,14 +53,15 @@ import {
   faBox,
   faBoxes,
 } from "@fortawesome/free-solid-svg-icons";
-// import { Container } from './styles';
 import CampanhaCard from "./CampanhaCard";
 import ProdutosItem from "./ProdutosItem";
 import setup from "../../config/setup.json";
 import SideBarGrupo from "./SideBarGrupo";
+import AddProduct from "./AddProduct";
 
 interface IProdutosContainer {
   isContainer: boolean;
+  data: object;
   clickItem: Function;
 }
 
@@ -72,17 +73,8 @@ const ProdutosContainer: React.FC<IProdutosContainer> = (
   const [grupo, setGrupo] = useState([]);
   const handleChange = (event) => setQuery(event.target.value);
   const [addProducts, setAddProducts] = useState(null);
+  const [products, setProducts] = useState(props.data);
 
-  const getClients = async () => {
-    const res = await fetch("/api/products");
-    const json = await res.json();
-    console.log(json);
-    setGrupo(json);
-  };
-
-  useEffect(() => {
-    getClients();
-  }, []);
 
   function safeString(str) {
     return str == null || str == undefined ? "" : str;
@@ -156,21 +148,18 @@ const ProdutosContainer: React.FC<IProdutosContainer> = (
             : "custom_grid_product"
         }
       >
-        {grupo
-          .filter(
-            (p) =>
-              safeString(p.title).includes(query) ||
-              safeString(p.description).includes(query)
-          )
-          .map((clientItem) => (
-            <ProdutosItem
-              json={clientItem}
-              name={clientItem.title}
-              pic={clientItem.picture}
-              description={clientItem.description}
-              click={(json) => props.clickItem(json)}
-            />
-          ))}
+        {products != null ? products.filter((p) =>
+          safeString(p.title).includes(query) ||
+          safeString(p.description).includes(query)
+        ).map((clientItem) => (
+          <ProdutosItem
+            json={clientItem}
+            name={clientItem.title}
+            pic={clientItem.picture}
+            description={clientItem.description}
+            click={(json) => props.clickItem(json)}
+          />
+        )) : null}
       </Grid>
       {/*clients.map((clientItem, index) => (
         <GroupClienteItem name={clientItem.name} phone={clientItem.id.user} />
@@ -182,6 +171,11 @@ const ProdutosContainer: React.FC<IProdutosContainer> = (
           "https://cdn.12min.com/books/books_background/68_steve_jobs.site_thumb.jpg"
         }
       />
+
+
+      {addProducts == true ? (
+        <AddProduct close={() => setAddProducts(null)} />
+      ) : null}
     </List>
   );
 };

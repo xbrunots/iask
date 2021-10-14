@@ -91,7 +91,7 @@ const ClienteItem: React.FC<IClienteItem> = (props: IClienteItem) => {
             textShadow={"0px 0px 2px #00000075"}
           />
           <Flex className={"parent_prod_tag"}>
-            {props.json["tags"]
+            {JSON.parse(props.json["tags"])
               .filter((p) => p != null && p != undefined)
               .map((item) => (
                 <Text className={"prod_tag"}>

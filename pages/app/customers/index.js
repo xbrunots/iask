@@ -17,16 +17,14 @@ import {
   ListItem,
   Divider,
 } from "@chakra-ui/core";
-import { useRouter } from "next/router";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import React from "react";
-import QRCode from "qrcode.react";
 import SideBarPrincipal from "../../../core/components/SideBarPrincipal";
 import SideBarPerfil from "../../../core/components/SideBarPerfil";
 import ClientesContainer from "../../../core/components/ClientesContainer";
-
+import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import $ from "jquery";
 import {
@@ -46,20 +44,56 @@ import {
   faUsers,
   faUserTag,
 } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
 
 Home.getInitialProps = async (ctx) => {
-  // const res = await fetch("../api/start");
-  // const json = await res.json();
   return {
     code: "json.code",
   };
 };
+import api from '../../../core/service/api'
 
-export default function Home({ code }) {
+export default function Home() {
   const router = useRouter();
   const [show, setShow] = React.useState(false);
-  const [qrcode, setQrcode] = React.useState(null);
   const axios = require("axios").default;
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
+  const [clients, setClients] = React.useState(null);
+
+  function getUser() {
+    var user = localStorage.getItem('USER');
+    return JSON.parse(user);
+  }
+
+  const getClients = async () => {
+    if (!loading) {
+      setLoading(true);
+      setError(null);
+      try {
+
+        console.log(getUser());
+        api.defaults.headers.common = {
+          'token': localStorage.getItem('TOKEN')
+        };
+        const response = await api.get("/api/transform/clients/store_uid='" + getUser()['store'] + "'");
+
+        setClients(response.data);
+
+        setLoading(false);
+
+      } catch (err) {
+        setLoading(false);
+        console.log(err);
+        setError("E-mail ou senha inválidos!");
+      }
+    }
+  };
+
+  useEffect(() => {
+    getClients();
+  }, []);
+
 
   return (
     <Flex
@@ -88,9 +122,9 @@ export default function Home({ code }) {
       >
         <SideBarPerfil />
         <ListItem height={80} width={"calc(100% - 240px)"}>
-          <ClientesContainer />
+          {clients != null ? <ClientesContainer data={clients} /> : null}
         </ListItem>{" "}
-      </List>{" "}
+      </List>
       <SideBarPrincipal selectedID={"#btn_menu_clientes"} />{" "}
     </Flex>
   );

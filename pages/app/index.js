@@ -24,7 +24,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import QRCode from "qrcode.react";
 import DashboardFragment from "../../core/components/Dashboard";
-import ButtonMenu from "../../components/ButtonMenu";
 import ReactDOM from "react-dom";
 import $ from "jquery";
 import {

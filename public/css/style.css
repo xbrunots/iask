@@ -3,7 +3,7 @@
 *::after {
   border-width: 0;
   border-style: solid;
-  border-color: #082c5c00 !important;
+  border-color: #082c5c00;
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;
@@ -123,7 +123,8 @@ button:focus {
 }
 
 .search_input {
-  box-shadow: none !important;
+  box-shadow: none !important; 
+  border: none !important;
   ;
 }
 
@@ -496,7 +497,7 @@ button:focus {
   font-size: 10px !important;
   text-transform: uppercase !important;
   border-radius: 0px !important;
-  border: 2px solid #00000036 !important;
+  border: 1px solid #00000036 !important;
   font-weight: bolder !important;
   letter-spacing: 2px;
 }
@@ -514,13 +515,18 @@ button:focus {
 }
 
 .option_button_fem {
-  border-radius: 10px 0px 00px 10px !important;
-  border-right: none !important;
+
+    border-radius: 60px !important;
+    border: 1px solid silver;
+    margin-left: 10px;
+    color: #858585;
 }
 
 .option_button_masc {
-  border-radius: 0 10px 10px 0 !important;
-  border-left: none !important;
+  border-radius: 60px !important;
+  border: 1px solid silver;
+  margin-left: 10px;
+  color: #858585;
 }
 
 .button_ok:hover {
@@ -561,7 +567,7 @@ button:focus {
 }
 
 .product_list_item {
-  background: #f1f1f1;
+  background: #ffffff;
   border-radius: 10px;
   box-shadow: 0 0 10px silver;
 }
@@ -569,7 +575,7 @@ button:focus {
 .product_price {
   padding: 24px !important;
   padding-bottom: 0px !important;
-  font-size: 24px !important;
+  font-size: 18px !important;
   color: green !important;
   font-weight: 500 !important;
   padding-top: 0px !important;
@@ -589,4 +595,10 @@ button:focus {
 
 .parent_prod_tag {
   padding: 8px;
+}
+.sidebar_button{
+  display: none;
+}
+.hide_sidebar_button{
+  display: none !important;
 }

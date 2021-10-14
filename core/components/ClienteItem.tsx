@@ -89,24 +89,24 @@ const ClienteItem: React.FC<IClienteItem> = (props: IClienteItem) => {
       >
         <Avatar
           marginTop={"8px"}
-          src={props.json["picture"]}
+          //src={props.json["picture"]}
           height={"40px"}
           width={"40px"}
           fontSize={14}
           name={
             props.name == null ||
-            props.name == undefined ||
-            props.name == "null" ||
-            props.name == "undefined"
+              props.name == undefined ||
+              props.name == "null" ||
+              props.name == "undefined"
               ? ""
               : props.name.toString()
           }
         />
         <List className={"client_name"}>
           {props.name == null ||
-          props.name == undefined ||
-          props.name == "null" ||
-          props.name == "undefined" ? (
+            props.name == undefined ||
+            props.name == "null" ||
+            props.name == "undefined" ? (
             ""
           ) : (
             <StatLabel fontSize={"16px"} marginLeft={3} marginTop={"4px"}>
@@ -121,16 +121,16 @@ const ClienteItem: React.FC<IClienteItem> = (props: IClienteItem) => {
           )}
 
           {props.phone.toString() == null ||
-          props.phone.toString() == undefined ? (
+            props.phone.toString() == undefined ? (
             ""
           ) : (
             <StatHelpText marginBottom={"0px"} marginLeft={"8px"}>
               {props.phone.toString() == null ||
-              props.phone.toString() == undefined
+                props.phone.toString() == undefined
                 ? ""
                 : props.phone
-                    .toString()
-                    .replace(/(\d{2})(\d{2})(\d{5})(\d{2})/, "+$1 ($2) $3-$4")}
+                  .toString()
+                  .replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3")}
             </StatHelpText>
           )}
 

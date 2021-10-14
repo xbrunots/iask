@@ -5,7 +5,7 @@ import {
 
 import setup from "./setup.json";
 
-const supabase = () => createClient(setup.SUPABASE_URL, setup.SUPABASE_KEY);
+const supabase = () => createClient('setup.SUPABASE_URL', 'setup.SUPABASE_KEY');
 
 
 exports.supabase = supabase;

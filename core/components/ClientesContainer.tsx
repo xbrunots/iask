@@ -58,23 +58,18 @@ import setup from "../../config/setup.json";
 import SideBarClientes from "./SideBarClientes";
 import AddCliente from "./AddCliente";
 
-const ClientesContainer: React.FC = () => {
-  const [clients, setClients] = useState([]);
+
+interface IClientesContainer {
+  close: Function;
+  data: object
+}
+const ClientesContainer: React.FC<IClientesContainer> = (props: IClientesContainer) => {
+  const [selectedClient, setSelectedClient] = useState(null);
+  const [clients, setClients] = useState(props.data);
   const [query, setQuery] = useState("");
-  const [cliente, setCliente] = useState(null);
   const [addCliente, setAddCliente] = useState(null);
+
   const handleChange = (event) => setQuery(event.target.value);
-
-  const getClients = async () => {
-    const res = await fetch("/api/clients");
-    const json = await res.json();
-    console.log(json);
-    setClients(json);
-  };
-
-  useEffect(() => {
-    getClients();
-  }, []);
 
   function safeString(str) {
     return str == null || str == undefined ? "" : str;
@@ -140,32 +135,31 @@ const ClientesContainer: React.FC = () => {
         </Button>
       </ListItem>
       <List width={"100%"} paddingBottom={"40px"}>
-        {clients
-          .filter(
-            (clienteItemRow) =>
-              safeString(clienteItemRow.name).toLowerCase().includes(query) ||
-              safeString(clienteItemRow.phone.toString()).includes(query)
-          )
+        {clients.filter(
+          (clienteItemRow) =>
+            safeString(clienteItemRow.name).toLowerCase().includes(query) ||
+            safeString(clienteItemRow.phone.toString()).includes(query)
+        )
           .map((clientItem) => (
             <ClienteItem
               json={clientItem}
               name={clientItem.name}
               pic={clientItem.picture}
               phone={clientItem.phone.toString()}
-              click={(json) => setCliente(json)}
+              click={(json) => setSelectedClient(json)}
             />
           ))}
 
         {/*clients.map((clientItem, index) => (
         <ClienteItem name={clientItem.name} phone={clientItem.id.user} />
       ))*/}
-        <SideBarClientes
-          json={cliente}
-          onClose={() => setCliente(null)}
+        {selectedClient != null ? <SideBarClientes
+          json={selectedClient}
+          onClose={() => setSelectedClient(null)}
           pic={
             "https://cdn.12min.com/books/books_background/68_steve_jobs.site_thumb.jpg"
           }
-        />
+        /> : null}
       </List>
 
       {addCliente == true ? (

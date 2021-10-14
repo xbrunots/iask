@@ -1,8 +1,8 @@
 const json = {
   api: {
     status: "Online",
-    version: "v0.0.0-dev",
-    path: "dev"
+    version: "1", 
+    id: (new Date()).getTime().toString(16) 
   }
 }
 
