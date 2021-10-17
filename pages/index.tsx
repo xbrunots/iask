@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/core";
 import { useRouter } from "next/router";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Input from "../components/Input";
 import ReactDOM from "react-dom";
 import $ from "jquery";
@@ -23,10 +23,13 @@ export default function Home() {
 
   const handleClick = () => setShow(!show);
 
-  const goHome = (e) => {
-    e.preventDefault();
-    router.push("./app");
+  const goHostgator =  () => { 
+    router.push("http://162.240.21.226/login");
   };
+
+  useEffect(() => {
+    window.location.assign('http://162.240.21.226/login')
+})
 
   return (
     <Flex 
