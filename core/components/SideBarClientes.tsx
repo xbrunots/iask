@@ -39,7 +39,7 @@ import Loading from "./Loading";
 
 interface ISidebarClientes {
   pic: string;
-  json: object;
+  json: [];
   onClose: Function;
 }
 
@@ -63,7 +63,7 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
         };
          
 
-        const response = await api.get("/api/transform/client_keys/client_uid='"  + prop.json.uid + "'");
+        const response = await api.get("/api/transform/client_keys/client_uid='"  + prop.json["uid"] + "'");
  
         setKeys(response.data);
 
@@ -261,11 +261,11 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
     
                 <ClienteCaracteristicasItem
                   keyName={"Aniversário:"}
-                  value={prop.json.birthday != null && prop.json.birthday != undefined ? prop.json.birthday.split("-")[2] + "/" + prop.json.birthday.split("-")[1] + "/" + prop.json.birthday.split("-")[0] : ""   }
+                  value={prop.json ["birthday"] != null && prop.json ["birthday"] != undefined ? prop.json ["birthday"].split("-")[2] + "/" + prop.json ["birthday"].split("-")[1] + "/" + prop.json ["birthday"].split("-")[0] : ""   }
                 /> 
                 <ClienteCaracteristicasItem
                   keyName={"Sexo:"}
-                  value={prop.json.sex == "F" ? "Feminino" : "Masculino"}
+                  value={prop.json ["sex"] == "F" ? "Feminino" : "Masculino"}
                 /> 
 
           {keys.map((item) => (
@@ -323,7 +323,7 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
       )}
         {showAdd == true ? (
         <AddCaracteristica 
-          client_uid={prop.json.uid}
+          client_uid={prop.json  ["uid"]}
           close={() => { 
             setShowAdd(false);
             renderKeys();
