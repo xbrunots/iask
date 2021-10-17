@@ -61,7 +61,7 @@ import AddProduct from "./AddProduct";
 
 interface IProdutosContainer {
   isContainer: boolean;
-  data: object;
+  data: [];
   clickItem: Function;
 }
 
@@ -149,14 +149,14 @@ const ProdutosContainer: React.FC<IProdutosContainer> = (
         }
       >
         {products != null ? products.filter((p) =>
-          safeString(p.title).includes(query) ||
-          safeString(p.description).includes(query)
+          safeString(p["title"]).includes(query) ||
+          safeString(p["description"]).includes(query)
         ).map((clientItem) => (
           <ProdutosItem
             json={clientItem}
-            name={clientItem.title}
-            pic={clientItem.picture}
-            description={clientItem.description}
+            name={clientItem["title"]}
+            pic={clientItem["picture"]}
+            description={clientItem["description"]}
             click={(json) => props.clickItem(json)}
           />
         )) : null}
