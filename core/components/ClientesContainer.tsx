@@ -135,17 +135,17 @@ const ClientesContainer: React.FC<IClientesContainer> = (props: IClientesContain
         </Button>
       </ListItem>
       <List width={"100%"} paddingBottom={"40px"}>
-        {clients.filter(
+        {(clients as []).filter(
           (clienteItemRow) =>
-            safeString(clienteItemRow.name).toLowerCase().includes(query) ||
-            safeString(clienteItemRow.phone.toString()).includes(query)
+            safeString(clienteItemRow["name"]).toLowerCase().includes(query) ||
+            safeString(clienteItemRow["phone"]).includes(query)
         )
           .map((clientItem) => (
             <ClienteItem
               json={clientItem}
-              name={clientItem.name}
-              pic={clientItem.picture}
-              phone={clientItem.phone.toString()}
+              name={clientItem["name"]}
+              pic={clientItem["picture"]}
+              phone={clientItem["phone"]}
               click={(json) => setSelectedClient(json)}
             />
           ))}
