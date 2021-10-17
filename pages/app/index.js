@@ -64,6 +64,8 @@ export default function Home({ code }) {
     $("button").removeClass("menu_selected");
     $("#" + e).addClass("menu_selected");
   }
+
+  router.push("../login") 
      
   return (
     <Flex
