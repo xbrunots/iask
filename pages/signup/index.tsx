@@ -24,6 +24,7 @@ export default function Home() {
   const [loading, setLoading] = React.useState(false);
 
   const [email, setEmail] = React.useState(null);
+  const [nome, setNome] = React.useState(null);
 
   const [password, setPassword] = React.useState(null);
 
@@ -32,6 +33,7 @@ export default function Home() {
   const handleClick = () => setShow(!show);
 
   const handleSetEmail = (e) => setEmail(e.target.value);
+  const handleSetNome = (e) => setNome(e.target.value);
   const handleSetPassword = (e) => setPassword(e.target.value);
   const handleSetError = (e) => setError(e);
 
@@ -41,28 +43,26 @@ export default function Home() {
       setLoading(true);
       setError(null);
 
-      var request = { email: email, password: password };
+      var request = { email: email, password: password , name: nome, store: email };
 
       try {
 
-        const response = await api.post("/api/auth", request);
-        localStorage.setItem("TOKEN", response.data.token);
-
-        api.defaults.headers.common = {
-          'token': response.data.token
-        };
-
-        const me = await api.post("/api/me");
-        localStorage.setItem("USER", JSON.stringify(me.data[0]));
-
+        const response = await api.post("/api/signup", request); 
+    
         setLoading(false);
 
-        router.push("./app/customers")
+        if(response.data.success == true){ 
+          router.push("./login")
+        }else{
+          
+        setLoading(false); 
+        setError("E-mail, senha ou nome inválidos!");
+        } 
 
       } catch (err) {
         setLoading(false);
         console.log(err);
-        setError("E-mail ou senha inválidos!");
+        setError("E-mail, senha ou nome inválidos!");
       }
     }
     e.preventDefault();
@@ -106,14 +106,23 @@ export default function Home() {
         alignItems="stretch"
         padding={16}
       >
-        <Input
-          placeholder="E-mail"
-          background="#dcdcdc"
-          onChange={(e) => handleSetEmail(e)}
-          _placeholder={{
-            color: "#737373",
-          }}
-        />
+      <Input
+        placeholder="Nome Completo"
+        background="#dcdcdc"
+        onChange={(e) => handleSetNome(e)} 
+        _placeholder={{
+          color: "#737373",
+        }}
+      />
+      <Input
+        placeholder="E-mail"
+        background="#dcdcdc"
+        marginTop={2}
+        onChange={(e) => handleSetEmail(e)}
+        _placeholder={{
+          color: "#737373",
+        }}
+      />
 
         <InputGroup>
           <Input
@@ -146,17 +155,7 @@ export default function Home() {
           </InputRightElement>
         </InputGroup>
 
-        <Link
-          alignSelf="flex-start"
-          marginTop={2}
-          fontSize="sm"
-          color="#000000"
-          href={'mailto:iask@evolve.tec.br?subject=Esqueci a senha&body=Gostaria de receber uma nova senha no meu email: ' + email}
-          fontWeight="bold"
-          _hover={{ opacity: 0.6 }}
-        >
-          Esqueci minha senha
-        </Link>
+        
 
         <Button
           className="buttonLogin"
@@ -168,13 +167,13 @@ export default function Home() {
           _hover={{ boxShadow: "0 0 10px silver" }}
           onClick={(e) => goHome(e)}
         >
-          {loading ? <Spinner color="#000000" /> : "ENTRAR"}
+          {loading ? <Spinner color="#000000" /> : "CADASTAR"}
         </Button>
 
         <Text textAlign="center" fontSize="sm" color="#808080" marginTop={6}>
-          Não tem uma conta?{" "}
-          <Link color="#000000" fontWeight="bold" onClick={() =>  router.push("./signup") } _hover={{ opacity: 0.6 }}>
-            Registre-se
+          Já tem uma conta?{" "}
+          <Link color="#000000" fontWeight="bold" onClick={() =>  router.push("./login") } _hover={{ opacity: 0.6 }}>
+            Entrar
           </Link>
         </Text>
       </Flex>

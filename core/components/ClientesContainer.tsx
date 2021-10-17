@@ -61,7 +61,7 @@ import AddCliente from "./AddCliente";
 
 interface IClientesContainer {
   close: Function;
-  data: object
+  data: object; 
 }
 const ClientesContainer: React.FC<IClientesContainer> = (props: IClientesContainer) => {
   const [selectedClient, setSelectedClient] = useState(null);
@@ -163,7 +163,11 @@ const ClientesContainer: React.FC<IClientesContainer> = (props: IClientesContain
       </List>
 
       {addCliente == true ? (
-        <AddCliente close={() => setAddCliente(null)} />
+        <AddCliente close={() => {
+          setAddCliente(null)
+          props.close();
+        }}
+           />
       ) : null}
     </List>
   );

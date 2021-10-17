@@ -96,10 +96,8 @@ const SideBarGrupo: React.FC<ISideBarGrupo> = (prop: ISideBarGrupo) => {
                     : prop.json["id"]["user"] == null ||
                       prop.json["id"]["user"] == undefined
                     ? ""
-                    : prop.json["id"]["user"].replace(
-                        /(\d{2})(\d{2})(\d{5})(\d{2})/,
-                        "+$1 ($2) $3-$4"
-                      )}
+                    : prop.json["id"]["user"]                  .replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3")}
+
                 </Text>
               </ListItem>
 

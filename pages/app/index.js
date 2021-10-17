@@ -64,7 +64,7 @@ export default function Home({ code }) {
     $("button").removeClass("menu_selected");
     $("#" + e).addClass("menu_selected");
   }
-
+     
   return (
     <Flex
       as="main"
