@@ -65,8 +65,7 @@ const RegistroStep2: React.FC<IRegistroStep2> = (props: IRegistroStep2) => {
     <List>
       <ProdutosContainer
         isContainer={true}
-        clickItem={(item) => props.clickItem(item)}
-      />
+        clickItem={(item) => props.clickItem(item)} data={[]}      />
     </List>
   );
 };
