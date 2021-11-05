@@ -61,7 +61,7 @@ import AddCliente from "./AddCliente";
 
 interface IClientesContainer {
   close: Function;
-  data: object
+  data: object; 
 }
 const ClientesContainer: React.FC<IClientesContainer> = (props: IClientesContainer) => {
   const [selectedClient, setSelectedClient] = useState(null);
@@ -135,17 +135,17 @@ const ClientesContainer: React.FC<IClientesContainer> = (props: IClientesContain
         </Button>
       </ListItem>
       <List width={"100%"} paddingBottom={"40px"}>
-        {clients.filter(
+        {(clients as []).filter(
           (clienteItemRow) =>
-            safeString(clienteItemRow.name).toLowerCase().includes(query) ||
-            safeString(clienteItemRow.phone.toString()).includes(query)
+            safeString(clienteItemRow["name"]).toLowerCase().includes(query) ||
+            safeString(clienteItemRow["phone"]).includes(query)
         )
           .map((clientItem) => (
             <ClienteItem
               json={clientItem}
-              name={clientItem.name}
-              pic={clientItem.picture}
-              phone={clientItem.phone.toString()}
+              name={clientItem["name"]}
+              pic={clientItem["picture"]}
+              phone={clientItem["phone"]}
               click={(json) => setSelectedClient(json)}
             />
           ))}
@@ -163,7 +163,11 @@ const ClientesContainer: React.FC<IClientesContainer> = (props: IClientesContain
       </List>
 
       {addCliente == true ? (
-        <AddCliente close={() => setAddCliente(null)} />
+        <AddCliente close={() => {
+          setAddCliente(null)
+          props.close();
+        }}
+           />
       ) : null}
     </List>
   );

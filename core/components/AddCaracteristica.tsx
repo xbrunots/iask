@@ -46,13 +46,14 @@ import ClientesContainer from "./ClientesContainer";
 import ClienteItem from "./ClienteItem";
 import AlertError from "./AlertError";
 import axios from "axios";
-import api from '../../core/service/api'
+import api from '../service/api'
 import { cpf } from 'cpf-cnpj-validator'; 
 
-interface IAddCliente {
+interface IAddCaracteristica {
   close: Function;
+  client_uid: String;
 }
-const AddCliente: React.FC<IAddCliente> = (props: IAddCliente) => {
+const AddCaracteristica: React.FC<IAddCaracteristica> = (props: IAddCaracteristica) => {
   function onClose() {
     props.close();
   }
@@ -67,36 +68,21 @@ const AddCliente: React.FC<IAddCliente> = (props: IAddCliente) => {
   const [name, setName] = useState("");
   const onChangeName = (event) => setName(event.target.value);
 
-  const [document, setDocument] = useState(null);
-  const onChangeCpf = (event) => setDocument(event.target.value);
-
-  const [sex, setSex] = useState("F");
-  const onChangeSex = (event) => setName(event.target.value);
-
+  const [valor, setValor] = useState(null);
+  const onChangeValor = (event) => setValor(event.target.value);
+  
   const [alert, setAlert] = useState(null);
-
-  const [phone, setPhone] = useState(null);
-  const onChangePhone = (event) => setPhone(event.target.value);
-
-  const [birth, setBirth] = useState(null);
-  const onChangeBirth = (event) => setBirth(event.target.value);
- 
 
   const onSave = async () => {
     setAlertColor("#FFFFFF");
     if (confirmed) {
       setConfirmed(null);
-      setName("");
-      setBirth("");
-      setPhone("");
+      setName(""); 
     } else {
       var body = {
-        name: name,
-        phone: phone,
-        birthday: birth,
-        sex: sex,
-        cpf: document,
-        store_uid: JSON.parse(localStorage.getItem('USER')).store
+        key: name, 
+        value: valor,
+        client_uid: props.client_uid
       };
 
       setLoading(true);
@@ -109,37 +95,17 @@ const AddCliente: React.FC<IAddCliente> = (props: IAddCliente) => {
         name == undefined ||
         name.length < 1
       ) {
-        errCol.push("NOME");
-      }
-      if (sex == null || sex == "null" || sex == undefined || sex.length < 1) {
-        errCol.push("SEXO");
-      }
-      if (
-        phone == null ||
-        phone == "null" ||
-        phone == undefined ||
-        phone.length < 1
-      ) {
-        errCol.push("CELULAR");
-      }
-      if (
-        birth == null ||
-        birth == "null" ||
-        birth == undefined ||
-        birth.length < 1
-      ) {
-        errCol.push("ANIVERSÁRIO");
-      }
+        errCol.push("TIPO");
+      } 
  
 
-      if (
-       !cpf.isValid(document) ||
-       document == null ||
-       document == "null" ||
-       document == undefined ||
-       document.length < 1
+      if ( 
+       valor == null ||
+       valor == "null" ||
+       valor == undefined ||
+       valor.length < 1
       ) {
-        errCol.push("CPF");
+        errCol.push("VALOR");
       }
 
       if (errCol.length > 0) {
@@ -161,7 +127,7 @@ const AddCliente: React.FC<IAddCliente> = (props: IAddCliente) => {
           api.defaults.headers.common = {
             'token': localStorage.getItem('TOKEN')
           };
-          const response = await api.post("/api/transform/clients", body);
+          const response = await api.post("/api/transform/client_keys", body);
 
           console.log(response);
           setLoading(false);
@@ -184,19 +150,7 @@ const AddCliente: React.FC<IAddCliente> = (props: IAddCliente) => {
       }
     }
   };
-
-  const getClients = async () => {
-    console.log("/api/profile");
-    const res = await fetch("/api/profile");
-    const json = await res.json();
-    console.log(json);
-    setClients(json);
-  };
-
-  useEffect(() => {
-    getClients();
-  }, []);
-
+  
   return (
     <Stack
       minW={"100%"}
@@ -271,7 +225,7 @@ const AddCliente: React.FC<IAddCliente> = (props: IAddCliente) => {
               <i className="fas fa-times"></i>
             </Flex>
             <Text margin={"8px"} style={{ fontSize: "20px" }}>
-              Cadastro de Cliente
+              Cadastro de Característica
             </Text>
           </Flex>
         </ListItem>
@@ -284,7 +238,7 @@ const AddCliente: React.FC<IAddCliente> = (props: IAddCliente) => {
               padding={"2px"}
               style={{ backgroundColor: "#ffffff" ,     border: '1px solid #c0c0c066' }}
             >
-              <Text className={"input_caption_cadastro"}>Nome:</Text>
+              <Text className={"input_caption_cadastro"}>Tipo:</Text>
               <Input
                 isDisabled={confirmed}
                 paddingLeft={"8px"}
@@ -292,7 +246,7 @@ const AddCliente: React.FC<IAddCliente> = (props: IAddCliente) => {
                 value={name}
                 backgroundColor={"#ffffff00"}
                 className={"search_input"}
-                placeholder="Nome completo"
+                placeholder="Tipo"
               />
             </Flex>
           </ListItem>
@@ -304,95 +258,19 @@ const AddCliente: React.FC<IAddCliente> = (props: IAddCliente) => {
               padding={"2px"}
               style={{ backgroundColor: "#ffffff",     border: '1px solid #c0c0c066' }}
             >
-              <Text className={"input_caption_cadastro"}>CPF:</Text>
+              <Text className={"input_caption_cadastro"}>Valor:</Text>
               <Input
                 isDisabled={confirmed}
-                paddingLeft={"8px"}
-                type={"number"}
-                onChange={onChangeCpf}
-                value={document}
+                paddingLeft={"8px"} 
+                onChange={onChangeValor}
+                value={valor}
                 backgroundColor={"#ffffff00"}
                 className={"search_input"}
-                placeholder="CPF"
+                placeholder="Valor referente ao tipo"
               />
             </Flex>
           </ListItem>
-          <ListItem>
-            {" "}
-            <Flex
-              margin={"24px"}
-              marginTop={"24px"}
-              borderRadius={"8px"} 
-              padding={"8px"}
-              style={{ backgroundColor: "#ffffff",     border: '1px solid #c0c0c066' }}
-            >
-              <Text className={"input_caption_cadastro"}>Sexo:</Text>
-              <Flex className={"option_container"}>
-                <Button
-                  isDisabled={confirmed}
-                  onClick={() => setSex("F")}
-                  className={
-                    "option_button option_button_fem" +
-                    (sex == "F" ? " option_button_selected" : "")
-                  }
-                >
-                  Feminino
-                </Button>
-                <Button
-                  isDisabled={confirmed}
-                  onClick={() => setSex("M")}
-                  className={
-                    "option_button option_button_masc" +
-                    (sex == "M" ? " option_button_selected" : "")
-                  }
-                >
-                  Masculino
-                </Button>
-              </Flex>
-            </Flex>
-          </ListItem>
-          <ListItem>
-            <Flex
-              margin={"24px"}
-              marginTop={"24px"}
-              borderRadius={"8px"} 
-              padding={"2px"}
-              style={{ backgroundColor: "#ffffff" ,     border: '1px solid #c0c0c066'}}
-            >
-              <Text className={"input_caption_cadastro"}>Celular:</Text>
-              <Input
-                isDisabled={confirmed}
-                type={"number"}
-                value={phone}
-                paddingLeft={"8px"}
-                onChange={onChangePhone}
-                backgroundColor={"#ffffff00"}
-                className={"search_input"}
-                placeholder="DDD + número"
-              />
-            </Flex>
-          </ListItem>
-          <ListItem>
-            <Flex
-              margin={"24px"}
-              marginTop={"24px"}
-              borderRadius={"8px"} 
-              padding={"2px"}
-              style={{ backgroundColor: "#ffffff",     border: '1px solid #c0c0c066' }}
-            >
-              <Text className={"input_caption_cadastro"}>Aniversário:</Text>
-              <Input
-                value={birth}
-                isDisabled={confirmed}
-                type={"date"}
-                paddingLeft={"8px"}
-                onChange={onChangeBirth}
-                backgroundColor={"#ffffff00"}
-                className={"search_input"}
-                placeholder="DDD + número"
-              />
-            </Flex>
-          </ListItem>
+        
           <ListItem>
             <Flex
               margin={"24px"}
@@ -423,7 +301,7 @@ const AddCliente: React.FC<IAddCliente> = (props: IAddCliente) => {
                 color={"#FFFFFF"}
                 minWidth={"120px"}
               >
-                {confirmed ? "CADASTRAR OUTRO" : "OK"}
+                {confirmed ? "CADASTRAR OUTRA" : "OK"}
               </Button>
             </Flex>
           </ListItem>
@@ -437,4 +315,4 @@ const AddCliente: React.FC<IAddCliente> = (props: IAddCliente) => {
   }
 };
 
-export default AddCliente;
+export default AddCaracteristica;

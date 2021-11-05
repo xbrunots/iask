@@ -11,8 +11,8 @@ const Loading: React.FC<ILoading> = (props: ILoading) => {
       zIndex={999999999999}
       display={props.show == true ? "block" : "none"}
       style={{
-        position: "absolute",
-        right: "27%",
+        position: "fixed",
+        right: "50%", top: "50%",
         width: "35px",
       }}
       value={80}

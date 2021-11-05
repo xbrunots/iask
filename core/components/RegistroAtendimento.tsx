@@ -29,6 +29,7 @@ import {
   faPen,
   faPenAlt,
   faPlus,
+  faSave,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import setup from "../../config/setup.json";
@@ -37,6 +38,8 @@ import ClientesContainer from "./ClientesContainer";
 import ClienteItem from "./ClienteItem";
 import RegistroStep2 from "./RegistroStep2";
 import RegistroStep3 from "./RegistroStep3";
+import api from '../../core/service/api'
+import AlertError from "../../core/components/AlertError";
 interface IRegistroAtendimento {
   close: Function;
   cliente: object;
@@ -52,6 +55,10 @@ const RegistroAtendimento: React.FC<IRegistroAtendimento> = (
 
   const [clients, setClients] = useState([]);
   const [query, setQuery] = useState("");
+  const [review, setReview] = useState(3);
+  const [comments, setComments] = useState(null);
+
+  const [showAlert, setShowAlert] = useState(null);
 
   const [step, setStep] = useState(
     props.startStep == null || props.startStep == undefined
@@ -61,23 +68,75 @@ const RegistroAtendimento: React.FC<IRegistroAtendimento> = (
   const [clientInStep2, setClientInStep2] = useState(props.cliente);
 
   const handleChange = (event) => setQuery(event.target.value);
+
+  function getUser() {
+    var user = localStorage.getItem('USER');
+    return JSON.parse(user);
+  }
+  
   const getClients = async () => {
-    const res = await fetch("/api/clients");
-    const json = await res.json();
-    console.log(json);
-    setClients(json);
+    if (!loading) {
+      setLoading(true); 
+      try {
+ 
+        api.defaults.headers.common = {
+          'token': localStorage.getItem('TOKEN')
+        };
+        const response = await api.get("/api/transform/clients/store_uid='" + getUser()['store'] + "'");
+
+        setClients(response.data);
+
+        setLoading(false);
+
+      } catch (err) {
+        setLoading(false);
+        console.log(err); 
+      }
+    }
   };
 
   const [currentClient, setCurrentClient] = useState(null);
 
   function selectClient(json) {
     setCurrentClient(json);
-    setStep(2);
+    setStep(3); // setStep(2);
   }
 
   useEffect(() => {
     getClients();
   }, []);
+
+
+   async function save(){
+    props.close(); 
+   console.log(currentClient);
+   console.log(review);
+   console.log(comments);
+ 
+    if (!loading) {
+      setLoading(true); 
+      try {
+ 
+        api.defaults.headers.common = {
+          'token': localStorage.getItem('TOKEN')
+        };
+        const response = await api.post("/api/transform/review/store_uid='" + getUser()['store'] + "'", {
+          score: review,
+          comments: comments,
+          client_uid: currentClient.uid,
+          user_uid:  getUser()['uid']
+        });
+ 
+        setShowAlert("Avaliação salva com sucesso!")
+
+        setLoading(false);
+
+      } catch (err) {
+        setLoading(false);
+        console.log(err); 
+      }
+    }
+  };  
 
   return (
     <Stack
@@ -94,8 +153,9 @@ const RegistroAtendimento: React.FC<IRegistroAtendimento> = (
       style={{ overflow: "hidden" }}
     >
       <Flex justifyContent="center" alignItems="center" alignContent="center">
-        <Loading show={loading == true} />
-      </Flex>
+        
+      </Flex> <AlertError show={showAlert != null} message={showAlert} color={"#e90000"} onClose={() => setShowAlert(null)} />
+    
       <List
         overflow={"overlay"}
         background={"#FFFFFF"}
@@ -121,26 +181,31 @@ const RegistroAtendimento: React.FC<IRegistroAtendimento> = (
             borderTopLeftRadius={"10px"}
             borderTopRightRadius={"10px"}
           >
+               
             <Flex
-              background={"#FFFFFF"}
+              background={"#0000002e"}
+              color={"#ffffffb5"}
               width={"32px"}
               height={"32px"}
+              border={"1px solid"}
               justifyContent="center"
               alignItems="center"
               borderRadius={"50%"}
               alignContent="center"
               onClick={() => onClose()}
               cursor={"pointer"}
+              position={"fixed"}
+              marginLeft={"-60px"}
               padding={"24px"}
             >
-              <i className="fas fa-chevron-down"></i>
+              <i className="fas fa-times"></i>
             </Flex>
             <Text margin={"8px"} style={{ fontSize: "20px" }}>
               {step == 1
-                ? "Selecione o cliente (1/3)"
+                ? "Selecione o cliente"
                 : step == 2
-                ? "Adicione um produto (2/3)  "
-                : "Ultimos detalhes (3/3)"}
+                ? "Adicione um produto "
+                : "Avaliação"}
             </Text>
             {step == 2 ? (
               <Button
@@ -213,7 +278,7 @@ const RegistroAtendimento: React.FC<IRegistroAtendimento> = (
               }}
             />
           ) : step == 3 ? (
-            <RegistroStep3 />
+            <RegistroStep3 onReview={(v) => setReview(v)} onComments={(v) => setComments(v)} />
           ) : null
         ) : (
           <Flex zIndex={999999999999} position={"fixed"}>
@@ -238,7 +303,7 @@ const RegistroAtendimento: React.FC<IRegistroAtendimento> = (
               style={{
                 width: "140px",
                 margin: "5px",
-                color: "#0027ff",
+                color: "#858585",
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
@@ -250,7 +315,7 @@ const RegistroAtendimento: React.FC<IRegistroAtendimento> = (
           ) : null}
           {step == 3 ? (
             <Button
-              onClick={() => props.close()}
+              onClick={() => save()}
               fontWeight={"500"}
               className={"button_ok"}
               style={{

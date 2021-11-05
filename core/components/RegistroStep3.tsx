@@ -56,15 +56,22 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 // import { Container } from './styles';
 
-interface IRegistroStep3 {}
+interface IRegistroStep3 {
+  onReview: Function;
+  onComments: Function;
+}
 
 const RegistroStep3: React.FC<IRegistroStep3> = (props: IRegistroStep3) => {
   const [name, setName] = useState("");
-  const onChangeName = (event) => setName(event.target.value);
-
+  const onChangeName = (event) => {
+    setName(event.target.value);
+      props.onComments(event.target.value);
+  }
   const [rate, setRate] = useState(3);
-  const onChangeRate = (event) => setRate(event);
-
+  const onChangeRate = (event) => { 
+    setRate(event);
+    props.onReview(event);
+  }
   return (
     <List>
       <ListItem>

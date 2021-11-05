@@ -65,6 +65,8 @@ export default function Home({ code }) {
     $("#" + e).addClass("menu_selected");
   }
 
+  router.push("../login") 
+     
   return (
     <Flex
       as="main"

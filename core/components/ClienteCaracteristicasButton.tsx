@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Heading,
   Grid,
@@ -23,7 +23,6 @@ import {
   ListIcon,
   ListItem,
   Tag,
-  Input,
 } from "@chakra-ui/core";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -49,25 +48,34 @@ import {
   faClock,
   faMailBulk,
 } from "@fortawesome/free-solid-svg-icons";
-import ProdutosContainer from "./ProdutosContainer";
 // import { Container } from './styles';
 
-interface IRegistroStep2 {
-  clickItem: Function;
+interface IClienteCaracteristicasButton {
+  
 }
 
-const RegistroStep2: React.FC<IRegistroStep2> = (props: IRegistroStep2) => {
-  const [query, setQuery] = useState("");
-
-  const onChangeName = (event) => setQuery(event.target.value);
-
+const ClienteCaracteristicasButton: React.FC<IClienteCaracteristicasButton> = (
+  props: IClienteCaracteristicasButton
+) => {
   return (
-    <List>
-      <ProdutosContainer
-        isContainer={true}
-        clickItem={(item) => props.clickItem(item)} data={[]}      />
-    </List>
+    <ListItem marginTop={"8px"} className={"add_caracteris"}>
+      <Flex>
+        
+      <i style={{ marginRight: "4px" }} className="fas fa-plus"></i>
+        <Text
+          className={"add_caracteris_value"}
+          width={"80%"}
+          textAlign={"start"}
+          fontSize={"16px"}
+          fontWeight={"400"}
+          color={"#495057"}
+          marginLeft={"16px"}
+        >
+         NOVA CARACTERISTICA
+        </Text>
+      </Flex>
+    </ListItem>
   );
 };
 
-export default RegistroStep2;
+export default ClienteCaracteristicasButton;

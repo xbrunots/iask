@@ -128,10 +128,8 @@ const FormMensagem: React.FC<IFormMensagem> = (props: IFormMensagem) => {
             <Text marginTop={"-5px"} fontSize={"16px"} color={"#929292"}>
               {props.json["phone"] == null || props.json["phone"] == undefined
                 ? "Nenhum numero encontrado"
-                : props.json["phone"].replace(
-                    /(\d{2})(\d{2})(\d{5})(\d{2})/,
-                    "+$1 ($2) $3-$4"
-                  )}
+                : props.json["phone"]                  .replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3")}
+
             </Text>
           </List>
         </Flex>

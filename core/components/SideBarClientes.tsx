@@ -32,10 +32,14 @@ import ClienteCaracteristicasItem from "./ClienteCaracteristicasItem";
 import TagsCliente from "./TagsCliente";
 import FormMensagem from "./FormMensagem";
 import RegistroAtendimento from "./RegistroAtendimento";
+import api from '../../core/service/api'
+import ClienteCaracteristicasButton from "./ClienteCaracteristicasButton";
+import AddCaracteristica from "./AddCaracteristica";
+import Loading from "./Loading";
 
 interface ISidebarClientes {
   pic: string;
-  json: object;
+  json: [];
   onClose: Function;
 }
 
@@ -45,10 +49,37 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
   const [atendimento, setAtendimento] = useState(null);
   const [message, setMessage] = useState(null);
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [keys, setKeys] = useState([]);
+  const [showAdd, setShowAdd] = useState(false);
+   
+  const renderKeys = async () => {
+    if (!loading) {
+      setLoading(true); 
+      try {
+ 
+        api.defaults.headers.common = {
+          'token': localStorage.getItem('TOKEN')
+        };
+         
 
+        const response = await api.get("/api/transform/client_keys/client_uid='"  + prop.json["uid"] + "'");
+ 
+        setKeys(response.data);
+
+        setLoading(false);
+
+      } catch (err) {
+        setLoading(false);
+        console.log(err); 
+      }
+    }
+  }; 
+   
   useEffect(() => {
-    console.log(prop.json);
-  });
+    renderKeys();
+  }, []);
+
 
   return prop.json == undefined || prop.json == null ? (
     <Text display={"none"} />
@@ -62,7 +93,7 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
             className={" button_close"}
             padding={"16px"}
           >
-            <i className="fas fa-chevron-down"></i>
+            <i className="fas fa-times"></i>
           </Flex>
         </ListItem>
         <ListItem>
@@ -104,10 +135,8 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
                         ? ""
                         : prop.json["phone"]
                           .toString()
-                          .replace(
-                            /(\d{2})(\d{2})(\d{5})(\d{2})/,
-                            "+$1 ($2) $3-$4"
-                          )}
+                          .replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3")}
+
                     </Text>
                   </ListItem>
 
@@ -169,7 +198,7 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
                   </a>
                 </Link>
 
-                <Button
+          {/*        <Button
                   position={"absolute"}
                   right={"10px"}
                   top={"10px"}
@@ -191,6 +220,7 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
                   <FontAwesomeIcon icon={faCartPlus} size="1x" />
                   <Text marginLeft={"8px"}>Registrar Atendimento </Text>
                 </Button>
+                */}
 
                 <Button
                   className={"borderless"}
@@ -201,6 +231,7 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
                   color={"#000000"}
                   borderColor={"#000000 !important"}
                   borderStyle={"solid"}
+                  onClick={()=>setShowAdd(true)}
                   borderWidth={"3px"}
                   _hover={{
                     backgroundColor: "#000000c7",
@@ -227,38 +258,23 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
                 margin={"24px"}
                 marginTop={"16px"}
               >
+    
                 <ClienteCaracteristicasItem
-                  keyName={"CPF:"}
-                  value={"320.221.221-23"}
-                />
-                <ClienteCaracteristicasItem
-                  keyName={"Idade:"}
-                  value={"34 anos"}
-                />
-                <ClienteCaracteristicasItem
-                  keyName={"Estado Civil:"}
-                  value={"Casada"}
-                />
+                  keyName={"Aniversário:"}
+                  value={prop.json ["birthday"] != null && prop.json ["birthday"] != undefined ? prop.json ["birthday"].split("-")[2] + "/" + prop.json ["birthday"].split("-")[1] + "/" + prop.json ["birthday"].split("-")[0] : ""   }
+                /> 
                 <ClienteCaracteristicasItem
                   keyName={"Sexo:"}
-                  value={"Feminino"}
-                />
-                <ClienteCaracteristicasItem
-                  keyName={"Filhos:"}
-                  value={"3 (Jair, Romeu e Jobson)"}
-                />
-                <ClienteCaracteristicasItem
-                  keyName={"Cônjuge:"}
-                  value={"Bruno Brito"}
-                />
-                <ClienteCaracteristicasItem
-                  keyName={"Esporte:"}
-                  value={"Musculação"}
-                />
-                <ClienteCaracteristicasItem
-                  keyName={"Animais:"}
-                  value={"2 Cachorros (Theo e Zion)"}
-                />
+                  value={prop.json ["sex"] == "F" ? "Feminino" : "Masculino"}
+                /> 
+
+          {keys.map((item) => (
+            <ClienteCaracteristicasItem
+            keyName={item.key+":"}
+            value={item.value}
+          /> 
+          ))}
+ 
               </List>
 
               <Flex
@@ -298,13 +314,34 @@ const SideBarClientes: React.FC<ISidebarClientes> = (
       </List>
       {atendimento == true ? (
         <RegistroAtendimento
-          startStep={2}
+          startStep={3}
           cliente={prop.json}
           close={() => setAtendimento(false)}
         />
       ) : (
         <Text />
       )}
+        {showAdd == true ? (
+        <AddCaracteristica 
+          client_uid={prop.json  ["uid"]}
+          close={() => { 
+            setShowAdd(false);
+            renderKeys();
+          }
+          }
+            />
+      ) : (
+        <Text />
+      )}
+       <Flex
+        position={"absolute"}
+        justifyContent="center"
+        alignItems="center"
+        alignContent="center"
+      >
+        <Loading show={loading == true} />
+      </Flex>
+
     </Stack>
   );
 };

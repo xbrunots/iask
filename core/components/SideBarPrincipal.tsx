@@ -90,9 +90,9 @@ const SideBarPrincipal: React.FC<ISideBarPrincipal> = (
   });
 
   var showItens = [
-    "#btn_menu_clientes",
-    "#btn_menu_dashboard",
-    "#btn_menu_produtos",
+   "#btn_menu_clientes",
+     //"#btn_menu_dashboard",
+    //"#btn_menu_produtos",
   ]
 
 

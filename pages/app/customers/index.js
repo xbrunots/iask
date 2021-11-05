@@ -91,7 +91,12 @@ export default function Home() {
   };
 
   useEffect(() => {
-    getClients();
+    if(localStorage.getItem("TOKEN") == undefined || localStorage.getItem("TOKEN") == null){
+      router.push("../../login?tokenError") 
+    }else{ 
+      getClients(); 
+    } 
+    
   }, []);
 
 
@@ -122,7 +127,7 @@ export default function Home() {
       >
         <SideBarPerfil />
         <ListItem height={80} width={"calc(100% - 240px)"}>
-          {clients != null ? <ClientesContainer data={clients} /> : null}
+          {clients != null ? <ClientesContainer data={clients} close={() => getClients()} /> : null}
         </ListItem>{" "}
       </List>
       <SideBarPrincipal selectedID={"#btn_menu_clientes"} />{" "}
